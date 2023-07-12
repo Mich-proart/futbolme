@@ -66,6 +66,6 @@ class __TwigTemplate_76cd304c041b815cc25d4fb159d2c971019008feb2b2e76c8852416b338
 
     public function getSourceContext()
     {
-        return new Source("{{ form_row(form.partido) }}", "noticias/_form_campo_partidos.html.twig", "/home/futbolme/domains/futbolme.com/public_html/panel/templates/noticias/_form_campo_partidos.html.twig");
+        return new Source("{{ form_row(form.partido) }}", "noticias/_form_campo_partidos.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.eu/panel/templates/noticias/_form_campo_partidos.html.twig");
     }
 }

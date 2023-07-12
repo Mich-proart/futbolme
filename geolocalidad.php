@@ -29,7 +29,7 @@ if (isset($_GET['m'])) {
         }
     } else {
         header('HTTP/1.0 404 Not Found');
-        echo "No disponemos de datos de esta localidad <a href='https://futbolme.com'>Ir a pagina principal de futbolme.com</a>";
+        echo "No disponemos de datos de esta localidad <a href='https://futbolme.eu'>Ir a pagina principal de futbolme.eu</a>";
         die;
     }
 } else {

@@ -258,6 +258,6 @@ class __TwigTemplate_db639b3afcfe32a8b65213007325d6d4bce7cfc19165ddd915ade36a035
 
 <script src=\"https://cdn.tiny.cloud/1/19zd7p7vtknhuabp6t9luepr21o7okuaowymhu163mtaelsk/tinymce/5/tinymce.min.js\" referrerpolicy=\"origin\"></script>
 
-<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css\" integrity=\"sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z\" crossorigin=\"anonymous\">", "noticias/_form.html.twig", "/home/futbolme/domains/futbolme.com/public_html/panel/templates/noticias/_form.html.twig");
+<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css\" integrity=\"sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z\" crossorigin=\"anonymous\">", "noticias/_form.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.eu/panel/templates/noticias/_form.html.twig");
     }
 }

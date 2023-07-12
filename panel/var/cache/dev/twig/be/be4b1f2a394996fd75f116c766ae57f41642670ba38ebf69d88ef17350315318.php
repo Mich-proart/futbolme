@@ -1099,6 +1099,6 @@ $context["log"], "priorityName", [], "any", false, false, false, 206) == "WARNIN
         {% endif %}
     {% endif %}
 {% endmacro %}
-", "@WebProfiler/Collector/logger.html.twig", "/home/futbolme/domains/futbolme.com/public_html/panel/vendor/symfony/web-profiler-bundle/Resources/views/Collector/logger.html.twig");
+", "@WebProfiler/Collector/logger.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.eu/panel/vendor/symfony/web-profiler-bundle/Resources/views/Collector/logger.html.twig");
     }
 }

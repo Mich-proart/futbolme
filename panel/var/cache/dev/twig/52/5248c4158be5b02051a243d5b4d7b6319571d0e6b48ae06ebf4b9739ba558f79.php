@@ -320,6 +320,6 @@ class __TwigTemplate_cfda044b5a5b25fb8ac3ba68c386fa2c59db0384c16ccb001a222e6d943
             {{ form_end(form) }}
         </div><!-- card-body -->
     </div>
-{% endblock %}", "admin/admin-users/add.html.twig", "/home/futbolme/domains/futbolme.com/public_html/panel/templates/admin/admin-users/add.html.twig");
+{% endblock %}", "admin/admin-users/add.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.eu/panel/templates/admin/admin-users/add.html.twig");
     }
 }

@@ -1828,6 +1828,6 @@ class __TwigTemplate_1cc81a026e80fb38e3f6fe58a3119c3462ed738013a261b3fc507ec7abf
         </tbody>
     </table>
 {% endmacro %}
-", "@Doctrine/Collector/db.html.twig", "/home/futbolme/domains/futbolme.com/public_html/panel/vendor/doctrine/doctrine-bundle/Resources/views/Collector/db.html.twig");
+", "@Doctrine/Collector/db.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.eu/panel/vendor/doctrine/doctrine-bundle/Resources/views/Collector/db.html.twig");
     }
 }

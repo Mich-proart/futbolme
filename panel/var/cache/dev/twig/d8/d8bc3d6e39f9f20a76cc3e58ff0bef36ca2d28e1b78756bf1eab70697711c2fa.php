@@ -1176,6 +1176,6 @@ div.sf-toolbar .sf-toolbar-block a:hover {
         display: none;
     }
 }
-", "@WebProfiler/Profiler/toolbar.css.twig", "/home/futbolme/domains/futbolme.com/public_html/panel/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/toolbar.css.twig");
+", "@WebProfiler/Profiler/toolbar.css.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.eu/panel/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/toolbar.css.twig");
     }
 }

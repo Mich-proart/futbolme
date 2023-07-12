@@ -160,6 +160,6 @@ class __TwigTemplate_2637f22c4c57abe722dd3ecb0bdb776ed1e1856dda0231c8bebccbb1ff8
 
     {{ include('@WebProfiler/Profiler/toolbar_item.html.twig', { link: profiler_url, name: 'time', status: status_color }) }}
 {% endblock %}
-", "@WebProfiler/Collector/memory.html.twig", "/home/futbolme/domains/futbolme.com/public_html/panel/vendor/symfony/web-profiler-bundle/Resources/views/Collector/memory.html.twig");
+", "@WebProfiler/Collector/memory.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.eu/panel/vendor/symfony/web-profiler-bundle/Resources/views/Collector/memory.html.twig");
     }
 }

@@ -189,6 +189,6 @@ class __TwigTemplate_86fa325ebd05db66a3f9b4bafe3001aa0a4a8533a313173796dca135a01
         </div>
     </div>
 </div>
-", "@Twig/Exception/traces.html.twig", "/home/futbolme/domains/futbolme.com/public_html/panel/vendor/symfony/twig-bundle/Resources/views/Exception/traces.html.twig");
+", "@Twig/Exception/traces.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.eu/panel/vendor/symfony/twig-bundle/Resources/views/Exception/traces.html.twig");
     }
 }

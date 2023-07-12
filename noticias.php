@@ -2,8 +2,8 @@
 define('_FUTBOLME_', 1);
 require_once 'src/config.php';
 
-$titulo = 'Madrid y Barça: su pugna por el título de Liga... ¿Y por Mbappé?. FUTBOLME.COM';
-$metaDescripcion = 'Noticias de la liga española - Futbolme.com ';
+$titulo = 'Madrid y Barça: su pugna por el título de Liga... ¿Y por Mbappé?. futbolme.eu';
+$metaDescripcion = 'Noticias de la liga española - futbolme.eu ';
 
 require_once 'includes/head.php'; ?>
 

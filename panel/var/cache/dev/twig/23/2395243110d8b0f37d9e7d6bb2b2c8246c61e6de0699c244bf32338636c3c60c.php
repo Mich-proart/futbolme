@@ -273,6 +273,6 @@ class __TwigTemplate_e848d53e8e925db16d015b5599af7dc3c21f62c40fd5d6057a68253a588
     </table>
 
 {% endblock %}
-", "noticias/administrar.html.twig", "/home/futbolme/domains/futbolme.com/public_html/panel/templates/noticias/administrar.html.twig");
+", "noticias/administrar.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.eu/panel/templates/noticias/administrar.html.twig");
     }
 }

@@ -100,6 +100,6 @@ class __TwigTemplate_12dbc6df72f02ad52bc08d04e608a57cd7bc069443b70dfdc2127c60015
     <a href=\"{{ path('login') }}\">Iniciar sesión</a><br />
     <a href=\"{{ path('registration') }}\">Registrarse</a>
 </body>
-</html>", "index/index.html.twig", "/home/futbolme/domains/futbolme.com/public_html/panel/templates/index/index.html.twig");
+</html>", "index/index.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.eu/panel/templates/index/index.html.twig");
     }
 }

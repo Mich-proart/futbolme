@@ -1006,6 +1006,6 @@ class __TwigTemplate_19ebfe5d0c17779b5e28b5a6a1d92877a32ee9fbae5a9956a297d4cae12
         {% endif %}
     {% endfor %}
 {% endblock %}
-", "@Swiftmailer/Collector/swiftmailer.html.twig", "/home/futbolme/domains/futbolme.com/public_html/panel/vendor/symfony/swiftmailer-bundle/Resources/views/Collector/swiftmailer.html.twig");
+", "@Swiftmailer/Collector/swiftmailer.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.eu/panel/vendor/symfony/swiftmailer-bundle/Resources/views/Collector/swiftmailer.html.twig");
     }
 }

@@ -885,6 +885,6 @@ class SvgRenderer {
         return element;
     }
 }
-", "@WebProfiler/Collector/time.js", "/home/futbolme/domains/futbolme.com/public_html/panel/vendor/symfony/web-profiler-bundle/Resources/views/Collector/time.js");
+", "@WebProfiler/Collector/time.js", "/var/www/vhosts/futbolme.loading.net/futbolme.eu/panel/vendor/symfony/web-profiler-bundle/Resources/views/Collector/time.js");
     }
 }

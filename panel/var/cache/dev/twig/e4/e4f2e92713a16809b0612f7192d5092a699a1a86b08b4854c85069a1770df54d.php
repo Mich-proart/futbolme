@@ -318,6 +318,6 @@ class __TwigTemplate_55d1b3091005e411fda0b70ad657538d189df15421ea6cc369ad85153b4
 .timeline-graph .{{ classnames['controller.argument_value_resolver']|raw }} .timeline-period {
     fill: var(--color-controller-argument-value-resolver);
 }
-", "@WebProfiler/Collector/time.css.twig", "/home/futbolme/domains/futbolme.com/public_html/panel/vendor/symfony/web-profiler-bundle/Resources/views/Collector/time.css.twig");
+", "@WebProfiler/Collector/time.css.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.eu/panel/vendor/symfony/web-profiler-bundle/Resources/views/Collector/time.css.twig");
     }
 }
