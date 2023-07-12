@@ -7,8 +7,8 @@ require_once '../src/funciones.php';
 // definimos los valores iniciales para nuestro calendario
 $_GET['modo']=$_GET['modo']??'';
 if ('enviar_twit_equipo' == $_GET['modo']) {
-            $url = 'https://futbolme.com/equipo.php?id=';
-            $urlMi = 'http://futbolme.com/src/usuarios/anadirEquipoFavoritoUrl.php?equipo_id=';
+            $url = 'https://futbolme.eu/equipo.php?id=';
+            $urlMi = 'http://futbolme.eu/src/usuarios/anadirEquipoFavoritoUrl.php?equipo_id=';
             $hastags = '#futbolmeCalendarios';
             $msj = $_GET['mensaje'];
             $equipos = $_GET['equipos'];
@@ -153,7 +153,7 @@ if ($liga_visitante>0) {
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta property="og:image" content="https://futbolme.com/img/logo.png" />
+<meta property="og:image" content="https://futbolme.eu/img/logo.png" />
 <meta name="ga-site-verification" content="UPgOhn36Odw90H6CQqECMmTG" />
 <?php if (isset($metaDescripcion)) { ?>
 <meta name="description" content="<?php echo $metaDescripcion; ?>" />
