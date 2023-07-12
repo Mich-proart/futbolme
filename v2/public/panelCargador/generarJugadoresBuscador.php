@@ -24,17 +24,17 @@ foreach ($resultado as $key => $value) {
 	$agrupando[$value['id']]['nombre']=$value['nombre'];
 	$n=poner_guion($value['apodo']);
 	$n=utf8_encode($n);
-	$agrupando[$value['id']]['link'] = 'https://futbolme.com/resultados-directo/jugador/'.$n.'/'.$value['id'];
-	$agrupando[$value['id']]['imagenJugador']='https://futbolme.com/static/img/jugadores/jugador'.$value['id'].'.jpg';
+	$agrupando[$value['id']]['link'] = 'https://futbolme.eu/resultados-directo/jugador/'.$n.'/'.$value['id'];
+	$agrupando[$value['id']]['imagenJugador']='https://futbolme.eu/static/img/jugadores/jugador'.$value['id'].'.jpg';
 
 	$agrupando[$value['id']]['equipo_id']=$value['equipoActual_id'];
 	$agrupando[$value['id']]['equipo_nombre']=$value['nombreCorto'];	
-	$agrupando[$value['id']]['equipo_enlace']='https://futbolme.com/resultados-directo/equipo/'.poner_guion($value['nombreCorto']).'/'.$value['equipoActual_id'].'/';
+	$agrupando[$value['id']]['equipo_enlace']='https://futbolme.eu/resultados-directo/equipo/'.poner_guion($value['nombreCorto']).'/'.$value['equipoActual_id'].'/';
 	
 
 	$agrupando[$value['id']]['temporada_id']=$value['temporada_id'];
 	$agrupando[$value['id']]['temporada_nombre']=$value['nombreTemporada'];	
-	$agrupando[$value['id']]['temporada_enlace']='https://futbolme.com/resultados-directo/torneo/'.poner_guion($value['nombreTemporada']).'/'.$value['temporada_id'].'/';
+	$agrupando[$value['id']]['temporada_enlace']='https://futbolme.eu/resultados-directo/torneo/'.poner_guion($value['nombreTemporada']).'/'.$value['temporada_id'].'/';
 }
 
 
@@ -43,17 +43,17 @@ foreach ($resultado as $key => $value) {
 ['id']=$value['id'];
 ['title']=$value['apodo'];
 ['nombre']=$value['nombre'];
-['link'] = 'https://futbolme.com/resultados-directo/jugador/'.$n.'/'.$value['id'];
-['imagenJugador']='https://futbolme.com/static/img/jugadores/jugador'.$value['id'].'.jpg';
+['link'] = 'https://futbolme.eu/resultados-directo/jugador/'.$n.'/'.$value['id'];
+['imagenJugador']='https://futbolme.eu/static/img/jugadores/jugador'.$value['id'].'.jpg';
 
 ['equipo_id']=$value['equipoActual_id'];
 ['equipo_nombre']=$value['nombreCorto'];	
-['equipo_enlace']='https://futbolme.com/resultados-directo/equipo/'.poner_guion($value['nombreCorto']).'/'.$value['equipoActual_id'].'/';
+['equipo_enlace']='https://futbolme.eu/resultados-directo/equipo/'.poner_guion($value['nombreCorto']).'/'.$value['equipoActual_id'].'/';
 	
 
 ['temporada_id']=$value['temporada_id'];
 ['temporada_nombre']=$value['nombreTemporada'];	
-['temporada_enlace']='https://futbolme.com/resultados-directo/torneo/'.poner_guion($value['nombreTemporada']).'/'.$value['temporada_id'].'/';
+['temporada_enlace']='https://futbolme.eu/resultados-directo/torneo/'.poner_guion($value['nombreTemporada']).'/'.$value['temporada_id'].'/';
 
 foreach ($agrupando as $key => $value) {?>
 	

@@ -94,7 +94,7 @@ function desglosarTexto($texto)
 
 $temporada_id=$_POST['temporada_id'];
 
-    $tele='https://futbolme.com/partidos-televisados';
+    $tele='https://futbolme.eu/partidos-televisados';
 
     $f = "../../static/img/qr/televisados.png";
     if (!file_exists($f)) {
@@ -125,7 +125,7 @@ $temporada_id=$_POST['temporada_id'];
         if($v['jornada']==$activa){ $datosActiva[]=$v; }
     }
 
-    $url='https://futbolme.com/resultados-directo/torneo/'.poner_guion($nombre).'/'.$temporada_id.'/';
+    $url='https://futbolme.eu/resultados-directo/torneo/'.poner_guion($nombre).'/'.$temporada_id.'/';
         
     $f3 = "../../static/img/qr/torneo_".$temporada_id.".png";
 
@@ -138,7 +138,7 @@ $temporada_id=$_POST['temporada_id'];
     $equipos=$datos['equipos'];
 
     foreach ($equipos as $k => $v) {
-        $url='https://futbolme.com/resultados-directo/equipo/'.poner_guion($v['nombre']).'/'.$v['equipo_id'].'/calendario';
+        $url='https://futbolme.eu/resultados-directo/equipo/'.poner_guion($v['nombre']).'/'.$v['equipo_id'].'/calendario';
         $f4 = "../../static/img/qr/equipo_".$v['equipo_id'].".png";
         if (!file_exists($f4)) {
             QRcode::png($url, "../../static/img/qr/equipo_".$v['equipo_id'].".png", 'L', 10, 5);        

@@ -31,31 +31,31 @@ $clasificacion=$datos['clasificacion'];
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta property="og:image" content="https://futbolme.com/img/logo.png" />
+<meta property="og:image" content="img/logo.png" />
 <meta name="ga-site-verification" content="UPgOhn36Odw90H6CQqECMmTG" />
 <meta name="description" content="Calcular golaverage - futbolme.com" />
 <meta property="og:description" content="calcular, golaverage, futbolme" />
 
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Dosis:wght@200;300;400;500;523;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://futbolme.com/static/bs4.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://futbolme.com/static/css/fm.css?v=101">
-    <link rel="stylesheet" href="https://futbolme.com/static/css/comunidades.min.css?v=101">
-    <link rel="stylesheet" href="https://futbolme.com/static/css/paises.min.css?v=101">
-    <link rel="stylesheet" href="https://futbolme.com/static/fontawesome/css/all.css">
+    <link rel="stylesheet" href="static/bs4.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/fm.css?v=101">
+    <link rel="stylesheet" href="static/css/comunidades.min.css?v=101">
+    <link rel="stylesheet" href="static/css/paises.min.css?v=101">
+    <link rel="stylesheet" href="static/fontawesome/css/all.css">
     
     
-    <script type="text/javascript" src="https://futbolme.com/static/jquery/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="https://futbolme.com/static/popper/popper.js"></script>
-    <script async src="https://futbolme.com/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="static/jquery/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="static/popper/popper.js"></script>
+    <script async src="static/js/bootstrap.min.js"></script>
     <script async src="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></script>
-    <script async src="https://futbolme.com/static/js/bootstrap.bundle.min.js"></script>
-    <script async src="https://futbolme.com/static/js/comunsite.min.js?v=101"></script>
-    <script async src="https://futbolme.com/static/js/notificaciones.js?v=101"></script>
-    <script type='text/javascript' src="https://futbolme.com/static/js/highcharts.min.js"></script>
-    <script async src="https://futbolme.com/static/js/exporting.js"></script>
-    <script async src="https://futbolme.com/static/js/ajax.js?v=101"></script>
-    <script src="https://futbolme.com/static/js/global.js?v=101"></script>
-    <script async src="https://futbolme.com/static/js/hambuerguer-menu-multilevel-hayleyt.js?v=101"></script>
+    <script async src="static/js/bootstrap.bundle.min.js"></script>
+    <script async src="static/js/comunsite.min.js?v=101"></script>
+    <script async src="static/js/notificaciones.js?v=101"></script>
+    <script type='text/javascript' src="static/js/highcharts.min.js"></script>
+    <script async src="static/js/exporting.js"></script>
+    <script async src="static/js/ajax.js?v=101"></script>
+    <script src="static/js/global.js?v=101"></script>
+    <script async src="static/js/hambuerguer-menu-multilevel-hayleyt.js?v=101"></script>
 
 <script data-ad-client="ca-pub-2316935358389492" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
