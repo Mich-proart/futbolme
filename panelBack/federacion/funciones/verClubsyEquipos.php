@@ -16,7 +16,7 @@ $resultadoSQL = mysqli_query($mysqliFM, $sql);
 $c = mysqli_fetch_array($resultadoSQL, MYSQLI_ASSOC);
 $categoria_id=$c['categoria_id'];
 
-echo $categoria_id
+echo $categoria_id;
 
 
 $sql='SELECT e.id,e.nombre, e.federacion_club_id, e.federacion_eq_id, e.futbolme_id fm_equipo_id, c.federacion_ref, c.id_futbolme fm_club_id, c.id club_id 
