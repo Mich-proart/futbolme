@@ -19,8 +19,8 @@ foreach ($resultado as $key => $value) {
 	$agrupando[$value['id']]['nombre']=$value['nombre'];
 	$n=poner_guion($value['nombre']);
 	$n=utf8_encode($n);
-	$agrupando[$value['id']]['enlaceEquipo'] = 'https://futbolme.com/resultados-directo/equipo/'.$n.'/'.$value['id'];
-	$agrupando[$value['id']]['imagenEscudo']='https://futbolme.com/img/club/escudo'.$value['club_id'].'.png';
+	$agrupando[$value['id']]['enlaceEquipo'] = 'https://futbolme.eu/resultados-directo/equipo/'.$n.'/'.$value['id'];
+	$agrupando[$value['id']]['imagenEscudo']='https://futbolme.eu/img/club/escudo'.$value['club_id'].'.png';
 	
 
 	$agrupando[$value['id']]['nombreCategoria']=$value['nombreCategoria'];
@@ -31,7 +31,7 @@ foreach ($resultado as $key => $value) {
 	$agrupando[$value['id']]['nombreComunidad']=$value['nombreComunidad'];
 	$agrupando[$value['id']]['torneos'][$value['temporada_id']]['temporada_id']=$value['temporada_id'];
 	$agrupando[$value['id']]['torneos'][$value['temporada_id']]['nombreTemporada']=$value['nombreTemporada'];	
-	$agrupando[$value['id']]['torneos'][$value['temporada_id']]['enlace']='https://futbolme.com/resultados-directo/torneo/'.poner_guion($value['nombreTemporada']).'/'.$value['temporada_id'].'/';
+	$agrupando[$value['id']]['torneos'][$value['temporada_id']]['enlace']='https://futbolme.eu/resultados-directo/torneo/'.poner_guion($value['nombreTemporada']).'/'.$value['temporada_id'].'/';
 
 
 }

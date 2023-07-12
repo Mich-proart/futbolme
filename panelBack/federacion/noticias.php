@@ -1,6 +1,6 @@
 <?php 
 
-header('Location: https://futbolme.com/');
+header('Location: https://futbolme.eu/');
 
 die;
 

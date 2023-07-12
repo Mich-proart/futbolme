@@ -117,8 +117,8 @@ echo '<br />fallo='.$fallo.' bd utilizada...'.$bd.' proxi: <b>'.$proxi.'</b> <a 
     
 $message1='Partidos Json='.count($partidosJson).' - <a href="'.$url.'" target="_blank">Fed</a> - 
 <a href="/panelBack/crearCalendario.php?temporada_id='.$temporada_id.'&categoria_torneo='.$categoria_torneo_id.'&tipo_torneo=1" target="_blank">Edit</a>
-<a href="https://futbolme.com/panelBack/crearCalendario.php?temporada_id='.$temporada_id.'&categoria_torneo='.$categoria_torneo_id.'&tipo_torneo=1" target="_blank">Edit FM</a>
-<a href="https://futbolme.com/panelCargador/actasPendientes.php?modo=1&comunidad_id='.($comunidad_id+1).'&torneo_id='.$torneo_id.'" target="_blank">Reintentar</a><br />';
+<a href="https://futbolme.eu/panelBack/crearCalendario.php?temporada_id='.$temporada_id.'&categoria_torneo='.$categoria_torneo_id.'&tipo_torneo=1" target="_blank">Edit FM</a>
+<a href="https://futbolme.eu/panelCargador/actasPendientes.php?modo=1&comunidad_id='.($comunidad_id+1).'&torneo_id='.$torneo_id.'" target="_blank">Reintentar</a><br />';
 
 echo $message1;
 //imp($partidosJson);

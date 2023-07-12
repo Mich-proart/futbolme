@@ -179,7 +179,7 @@ foreach ($clasificacion['clasificacionFinal'] as $v) {
     <tbody class="whitebox">
     <?php
 
-    echo "Clasificación https://futbolme.com/temporada.php?id=".$valor['temporada_id']."<br />";
+    echo "Clasificación https://futbolme.eu/temporada.php?id=".$valor['temporada_id']."<br />";
         
     foreach ($clasificacion['clasificacionFinal'] as $fila) {
         $fila['css'] = '';

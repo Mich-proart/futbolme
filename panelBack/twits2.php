@@ -26,10 +26,10 @@ $cabecera=" Toda la información ";
     foreach ($equipos as $key => $value) {
 
 $tw="@".$value['slug'];
-$calendario="https://futbolme.com/equipo.php?id=".$value['equipo_id']."&modelo=Calendario";
-$clasificacion="https://futbolme.com/equipo.php?id=".$value['equipo_id']."&modelo=Clasificacion";
-$lt="https://futbolme.com/equipo.php?id=".$value['equipo_id']."&modelo=Historico";
-$tsp="https://futbolme.com/historico/liga/index.php?todos=1&division=".$division."&equipo_id=".$value['equipo_id'];
+$calendario="https://futbolme.eu/equipo.php?id=".$value['equipo_id']."&modelo=Calendario";
+$clasificacion="https://futbolme.eu/equipo.php?id=".$value['equipo_id']."&modelo=Clasificacion";
+$lt="https://futbolme.eu/equipo.php?id=".$value['equipo_id']."&modelo=Historico";
+$tsp="https://futbolme.eu/historico/liga/index.php?todos=1&division=".$division."&equipo_id=".$value['equipo_id'];
 
 $titulo=$cabecera." del ".$tw."<br />";
 

@@ -8,7 +8,7 @@ echo "</pre>";*/
 
 //imp(substr($_SERVER['HTTP_REFERER'],0,30));
 //var_dump($_SERVER['HTTP_REFERER']);
-//https://futbolme.com/panelBack/index.php
+//https://futbolme.eu/panelBack/index.php
 
 $tipo_torneo = $_POST['tipo_torneo'];
 $temporada = $_POST['temporada'];

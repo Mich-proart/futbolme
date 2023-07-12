@@ -32,7 +32,7 @@ foreach ($appuser as $value) {
             'visitante' => $visitante,
             'resultado' => $value['resultado'],
             'nombre_torneo' => $value['nombre_torneo'],
-            'enlace' => 'https://futbolme.com/'.$enlace,
+            'enlace' => 'https://futbolme.eu/'.$enlace,
         ];
 
         $tokens = array();
