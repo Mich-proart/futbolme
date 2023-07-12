@@ -1,0 +1,44 @@
+{% if partido.observaciones is defined %}
+
+    {% set cadena = cadena|merge({0: cadena.0|replace({'000000': ''})}) %}
+
+    {% if goles is not defined or goles is defined and goles|length == 0 %}
+
+        <div class="row observacionesGoles">
+
+            {% if cadena.1 is defined %}
+                <div class="col-6 nopadding">
+                    <p class="w100 text-right txt11">
+                        <i>
+                            {{ cadena.1|raw }}
+                        </i>
+                    </p>
+                </div>
+            {% endif %}
+
+            {% if cadena.2 is defined %}
+                <div class="col-6 nopadding">
+                    <p class="w100 text-left txt11">
+                        <i>
+                            {{ cadena.2|raw }}
+                        </i>
+                    </p>
+                </div>
+            {% endif %}
+
+        </div>
+
+    {% endif %}
+
+    {% if cadena.0|length > 10 %}
+        <div class="row observaciones">
+            <div class="col-12 text-right" style="font-size:13px;">
+                <i>
+                    {{ cadena.0|raw }}
+                </i>
+            </div>
+        </div>
+
+    {% endif %}
+
+{% endif %}

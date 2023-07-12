@@ -1,0 +1,325 @@
+<div class="col-12 contenedorBlancoBordesRedondeados" style="margin-top: 20px; padding-top: 10px;">
+    <h2 class="subtitulo">Puntos</h2>
+
+    {% if fila.equipo_id is not defined %}
+        {% if fila is not defined %}
+            {% set fila = [] %}
+        {% endif %}
+        {% set fila = anadirAArrayKey(fila, 'equipo_id', equipo_id) %}
+    {% endif %}
+
+    {% include 'graficos/_linea2.html.twig' %}
+
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div id='c{{ fila.equipo_id }}' style='float:left; width: 100%; height: 150px; margin: 0 auto'></div>
+        </div>
+        <div class="col-12 col-md-6">
+            {{ te_u_punto|raw }}
+            {{ te_u_victoria|raw }}
+            {{ te_u_empate|raw }}
+            {{ te_u_derrota|raw }}
+        </div>
+    </div>
+</div>
+
+
+{% if estadisticas is defined %}
+    <div class="col-12 contenedorBlancoBordesRedondeados" style="margin-top: 20px; padding-top: 10px;">
+        {% set estad = null %}
+        {% for key, value in estadisticas %}
+            {% if value.tipo_torneo == 1 and estad is null %}
+                {% set estad = value %}
+            {% endif %}
+        {% endfor %}
+
+        {% set maximo = 0 %}
+        {% set ar1 = '{y: ' ~ estad.galocal ~ ',
+        color: "green"},
+        {y: ' ~ estad.emlocal ~ ',
+        color: "orange"},
+        {y: ' ~ estad.pelocal ~ ',
+        color: "red"}' %}
+
+        {% set ar2 = '{y: ' ~ estad.gavisitante ~ ',
+        color: "#58FA82"},
+        {y: ' ~ estad.emvisitante ~ ',
+        color: "#F5DA81"},
+        {y: ' ~ estad.pevisitante ~ ',
+        color: "#F78181"}' %}
+
+        {% if estad.galocal + estad.gavisitante > maximo %}
+            {% set maximo = estad.galocal + estad.gavisitante %}
+        {% endif %}
+
+        {% if estad.emlocal + estad.emvisitante > maximo %}
+            {% set maximo = estad.emlocal + estad.emvisitante %}
+        {% endif %}
+
+        {% if estad.pelocal + estad.pevisitante > maximo %}
+            {% set maximo = estad.pelocal + estad.pevisitante %}
+        {% endif %}
+
+        {% set maximo = maximo + 1 %}
+        {% set contenedor = 'partidos' %}
+        {% set tipo = 'column' %}
+        {% set a = "'<b>Ganados</b>', '<b>Empatados</b>', '<b>Perdidos</b>'" %}
+
+        <h2 class="subtitulo">Partidos</h2>
+
+        {% include 'graficos/columnaGEP.html.twig' %}
+
+        <div class="row">
+            <div class="col-12 col-md-7">
+
+
+                {% if estad.galocal > 0 %}
+                    {% if estad.galocal > 1 %}
+                        <br /><b>Como local</b> el {{ equipotxt }} ha ganado {{ estad.galocal }} partidos,
+                    {% else %}
+                        <br /><b>Como local</b> el {{ equipotxt }} solo ha ganado un partido,
+                    {% endif %}
+                {% else %}
+                    <b>Como local</b> el {{ equipotxt }} no conoce la victoria,
+                {% endif %}
+
+                {% if estad.emlocal %}
+                    {% if estad.emlocal > 1 %}
+                        ha empatado {{ estad.emlocal }} partidos
+                    {% else %}
+                        ha empatado solo un partido
+                    {% endif %}
+                {% else %}
+                    no ha empatado ningún partido
+                {% endif %}
+
+
+                {% if estad.pelocal > 0 %}
+                    {% if estad.pelocal > 1 %}
+                        y ha perdido {{ estad.pelocal }} partidos,
+                    {% else %}
+                        y solo ha perdido un partido,
+                    {% endif %}
+                {% else %}
+                    y no ha perdido ninguno,
+                {% endif %}
+
+                {% set puntosL = (estad.galocal * 3) + estad.emlocal %}
+                por lo tanto ha conseguido en casa {{ puntosL }} puntos.
+
+
+                {% if estad.gavisitante > 0 %}
+                    {% if estad.gavisitante > 1 %}
+                        <br /><br /><b>Como visitante</b> el {{ equipotxt }} ha ganado {{ estad.gavisitante }} partidos,
+                    {% else %}
+                        <br /><br /><b>Como visitante</b> el {{ equipotxt }} solo ha ganado un partido,
+                    {% endif %}
+                {% else %}
+                    <br /><br /><b>Como visitante</b> el {{ equipotxt }} no conoce la victoria,
+                {% endif %}
+
+                {% if estad.emvisitante > 0 %}
+                    {% if estad.emvisitante > 1 %}
+                        ha empatado {{ estad.emvisitante }} partidos
+                    {% else %}
+                        ha empatado solo un partido
+                    {% endif %}
+                {% else %}
+                    no ha empatado ningún partido
+                {% endif %}
+
+
+                {% if estad.pevisitante > 0 %}
+                    {% if estad.pevisitante > 1 %}
+                        y ha perdido {{ estad.pevisitante}} partidos,
+                    {% else %}
+                        y solo ha perdido un partido,
+                    {% endif %}
+                {% else %}
+                    y no ha perdido ninguno,
+                {% endif %}
+
+                {% set puntosV = (estad.gavisitante * 3) + estad.emvisitante %}
+                por lo tanto ha conseguido fuera de casa {{ puntosV }} puntos.
+
+            </div>
+            <div class="col-12 col-md-5">
+                <div id="c-{{ contenedor }}" style="float:right; width: 230px; height: 200px; margin: 0 auto"></div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="col-12 contenedorBlancoBordesRedondeados" style="margin-top: 20px; padding-top: 10px;">
+
+        {% set maximo = 0 %}
+        {% set ar1 = '{y: ' ~ estad.gflocal ~ ',
+        color: "#0489B1"},
+        {y: ' ~ estad.gclocal ~ ',
+        color: "#A4A4A4"}' %}
+        {% set ar2 = '{y: ' ~ estad.gfvisitante ~ ',
+        color: "#0B4C5F"},
+        {y: ' ~ estad.gcvisitante ~ ',
+        color: "#585858"}' %}
+
+        {% if estad.gflocal + estad.gfvisitante > maximo %}
+            {% set maximo = estad.gflocal + estad.gfvisitante %}
+        {% endif %}
+
+        {% if estad.gclocal + estad.gcvisitante > maximo %}
+            {% set maximo = estad.gclocal + estad.gcvisitante %}
+        {% endif %}
+
+        {% set maximo = maximo + 1 %}
+        {% set contenedor = 'goles' %}
+        {% set tipo = 'column' %}
+        {% set a = "'<b>A favor</b>', '<b>En contra</b>'" %}
+
+
+        <div class="row">
+            <div class="col-12">
+                <h2 class="subtitulo">Goles</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 div col-md-5">
+                {% include 'graficos/columnaGEP.html.twig' %}
+                <div id="c-{{ contenedor }}" style="float:left; width: 200px; height: 200px; margin: 0 auto"></div>
+            </div>
+            <div class="col-12 div col-md-7">
+                {% if estad.gflocal < estad.gfvisitante %}
+                    {{ 'El ' ~ equipotxt ~ ' ha conseguido más goles como visitante (' ~ estad.gfvisitante ~ ') que como local (' ~ estad.gflocal ~ ').' }}
+                {% endif %}
+
+
+                 {% if liga < 25 %}
+
+                     <h3 class="subtitulo" style="margin-top: 10px; margin-bottom: 5px;">Los goles a favor como local</h3>
+
+                     Estos <b>{{ estad.gflocal }}</b> goles fueron conseguidos <b>{{ goles.fv_l_1t }}</b> en la primera parte y
+                     <b>{{ goles.fv_l_2t }}</b> en la segunda.
+
+                     {% if goles.propia_fv_l > 0 %}
+                         {% if goles.propia_fv_l > 1 %}
+                             Hay que añadir <b>{{ goles.propia_fv_l }}</b> goles que anotaron en propia puerta sus rivales.
+                         {% else %}
+                             Hay que añadir <b>1</b> gol que anotaron en propia puerta a su favor.
+                         {% endif %}
+                     {% endif %}
+
+                     {% if goles.penal_fv_l > 0 %}
+                         {% if goles.penal_fv_l > 1 %}
+                             De estos goles <b>{{ goles.penal_fv_l }}</b> fuerón de penalti.
+                         {% else %}
+                             De estos goles <b>1</b> fué de penalti.
+                         {% endif %}
+                     {% endif %}
+
+                     <h3 class="subtitulo" style="margin-top: 10px; margin-bottom: 5px;">Los goles a favor como visitante</h3>
+                     Estos <b>{{ estad.gfvisitante }}</b> goles fueron conseguidos <b>{{ goles.fv_v_1t }}</b> en la primera parte y
+                     <b>{{ goles.fv_v_2t }}</b> en la segunda.
+
+                     {% if goles.propia_fv_v > 0 %}
+                         {% if goles.propia_fv_v > 1 %}
+                             Hay que añadir <b>{{ goles.propia_fv_v }}</b> goles que anotaron en propia puerta sus rivales.
+                         {% else %}
+                             Hay que añadir <b>1</b> gol que anotaron en propia puerta a su favor.
+                         {% endif %}
+                     {% endif %}
+
+
+                     {% if goles.penal_fv_v > 0 %}
+                         {% if goles['penal_fv_v'] > 1 %}
+                             De estos goles <b>{{ goles.penal_fv_v }}</b> fuerón de penalti.
+                         {% else %}
+                             De estos goles <b>1</b> fué de penalti.
+                         {% endif %}
+                     {% endif %}
+
+
+                     <h3 class="subtitulo" style="margin-top: 10px; margin-bottom: 5px;">Los goles en contra como local</h3>
+                     Estos <b>{{ estad.gclocal }}</b> goles fueron encajados <b>{{ goles.ct_l_1t }}</b> en la primera parte y
+                     <b>{{ goles.ct_l_2t }}</b> en la segunda.
+
+
+                     {% if goles.propia_ct_l > 0 %}
+                         {% if goles.propia_ct_l > 1 %}
+                             Hay que añadir <b>{{ goles.propia_ct_l }}</b> goles que anotaron en propia puerta sus rivales.
+                         {% else %}
+                             Hay que añadir <b>1</b> gol que anotaron en propia puerta a su favor.
+                         {% endif %}
+                     {% endif %}
+
+
+                     {% if goles.penal_ct_l > 0 %}
+                         {% if goles.penal_ct_l > 1 %}
+                             De estos goles <b>{{ goles.penal_ct_l }}</b> fuerón de penalti.
+                         {% else %}
+                             De estos goles <b>1</b> fué de penalti.
+                         {% endif %}
+                     {% endif %}
+
+
+                     <h3 class="subtitulo" style="margin-top: 10px; margin-bottom: 5px;">Los goles en contra como visitante</h3>
+                     Estos <b>{{ estad.gcvisitante }}</b> goles fueron encajados <b>{{ goles.ct_v_1t }}</b> en la primera parte y
+                     <b>{{ goles.ct_v_2t }}</b> en la segunda.
+
+                     {% if goles.propia_ct_v > 0 %}
+                         {% if goles.propia_ct_v > 1 %}
+                             Hay que añadir <b>{{ goles.propia_ct_v }}</b> goles que anotaron en propia puerta sus rivales.
+                         {% else %}
+                             Hay que añadir <b>1</b> gol que anotaron en propia puerta a su favor.
+                         {% endif %}
+                     {% endif %}
+
+                     {% if goles.penal_ct_v > 0 %}
+                         {% if goles.penal_ct_v > 1 %}
+                             De estos goles <b>{{ goles.penal_ct_v }}</b> fuerón de penalti.
+                         {% else %}
+                             De estos goles <b>1</b> fué de penalti.
+                         {% endif %}
+                     {% endif %}
+
+                {% endif %}
+
+                {% set te_u_gol_favor = '' %}
+                {% set te_u_gol_contra = '' %}
+
+                {% if fila.u_gol_favor is defined %}
+                    {% set e_u_gol_favor = fila.u_gol_favor|split(',') %}
+                    {% if fila.u_gol_favor == 0 %}
+                        {% set te_u_gol_favor = '<br /><br />El ' ~ fila.nombre ~ ' todavía no ha conseguido ningún gol.' %}
+                    {% else %}
+                        {% set te_u_gol_favor = '<br /><br />Último gol a favor: <b>Jornada ' ~ e_u_gol_favor[1] ~ '</b>  ' ~ e_u_gol_favor[0] ~ '
+	<br />' ~ e_u_gol_favor[2] ~ '-' ~ e_u_gol_favor[3] ~ ' (<b>' ~ e_u_gol_favor[4] ~ '-' ~ e_u_gol_favor[5] ~ '</b>)' %}
+                    {% endif %}
+                {% endif %}
+
+
+                {% if fila.u_gol_contra is defined %}
+                    {% set e_u_gol_contra = fila.u_gol_contra|split(',') %}
+                    {% if fila.u_gol_contra == 0 %}
+                        {% set te_u_gol_favor = '<br />El ' ~ fila.nombre ~ ' todavía no ha encajado ningún gol.' %}
+                    {% else %}
+                        {% if e_u_gol_favor[8] is defined %}
+                            {% if e_u_gol_favor[8] == e_u_gol_contra[8] %}
+                                {% set te_u_gol_contra = ' y también en este partido recibió su último gol en contra.' %}
+                            {% else %}
+                                {% set te_u_gol_contra = '<br />Último gol en contra: <b>Jornada ' ~ e_u_gol_contra[1] ~ '</b> ' ~ e_u_gol_contra[0] ~ '
+			<br />' ~ e_u_gol_contra[2] ~ '-' ~ e_u_gol_contra[3] ~ ' (<b>' ~ e_u_gol_contra[4] ~ '-' ~ e_u_gol_contra[5] ~ '</b>)' %}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+
+
+
+                {{ te_u_gol_favor|raw }}
+                {{ te_u_gol_contra|raw }}
+
+            </div>
+        </div>
+
+    </div>
+{% endif %}

@@ -1,0 +1,60 @@
+{% extends "base_template/universal-panel.html.twig" %}
+{% block icon %}icon ion-ios-people{% endblock %}
+{% block title %}Gestión de usuarios{% endblock %}
+{% block description %}Gestión de usuarios{% endblock %}
+
+{% block css %}
+    <link href="{{ asset('css/admin/admin-users.css') }}" rel="stylesheet">
+{% endblock %}
+
+
+{% block js %}
+    <script type="text/javascript" src="{{ asset('js/admin/admin-users.js') }}"></script>
+{% endblock %}
+
+{% block mainBody %}
+    <div class="card bd-primary mg-t-20">
+        <div class="card-header bg-primary tx-white">Añadir usuario</div>
+        <div class="card-body pd-sm-30">
+            {{ form_start(form) }}
+                <div class="row">
+                    <label class="col-sm-4 form-control-label">Usuario: <span class="tx-danger">*</span></label>
+                    <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                        {{ form_row(form.username, {'label': ' '}) }}
+                    </div>
+                </div><!-- row -->
+                <div class="row mg-t-20">
+                    <label class="col-sm-4 form-control-label">Email: <span class="tx-danger">*</span></label>
+                    <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                        {{ form_row(form.email, {'label': ' '}) }}
+                    </div>
+                </div>
+                <div class="row mg-t-20">
+                    <label class="col-sm-4 form-control-label">Contraseña: <span class="tx-danger">*</span></label>
+                    <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                        {{ form_row(form.plainPassword, {'label': ' '}) }}
+                    </div>
+                </div>
+                <div class="row mg-t-20">
+                    <label class="col-sm-4 form-control-label">Permisos del usuario: <span class="tx-danger">*</span></label>
+                    <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                        <p>
+                            <label class="ckbox mg-b-0">
+                                <input id="permisAdministrador" name="permisAdministrador" type="checkbox" value="1"><span></span>
+                            </label> Administrador
+                        </p>
+                        <p>
+                            <label class="ckbox mg-b-0">
+                                <input id="permisGestorNoticias" name="permisGestorNoticias" type="checkbox" value="1"><span></span>
+                            </label> Gestor noticias
+                        </p>
+                        {{ form_row(form.roles, { 'attr': { 'style': 'display:none;' }, 'label': ' ' }) }}
+                    </div>
+                </div>
+                <div class="form-layout-footer mg-t-30">
+                    <button class="btn btn-success mg-r-5">Añadir usuario</button>
+                </div><!-- form-layout-footer -->
+            {{ form_end(form) }}
+        </div><!-- card-body -->
+    </div>
+{% endblock %}

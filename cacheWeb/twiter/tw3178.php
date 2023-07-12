@@ -1,0 +1,2 @@
+<a class="twitter-timeline" rel="nofollow" target="_blank" href="https://twitter.com/cf_lloret" data-widget-id="661435517934915588">Tweets por el @cf_lloret.</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>

@@ -1,0 +1,2 @@
+<a class="twitter-timeline" rel="nofollow" target="_blank" href="https://twitter.com/PaternaC" data-widget-id="661810615619596288">Tweets por el @PaternaC.</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>

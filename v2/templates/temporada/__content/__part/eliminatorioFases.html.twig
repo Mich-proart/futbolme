@@ -1,0 +1,11 @@
+<div class="row" style="margin-top: 20px;">
+    <div class="col-12" style="padding: 0px;">
+        <select id="fases" name="fases" class="form-control">
+            {% for id, fila in fases %}
+                <option value="{{ id }}" {% if id == valorJornada %} selected="selected" {% endif %}>
+                    {{ fila.nombre }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+</div>

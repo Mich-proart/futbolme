@@ -1,0 +1,94 @@
+
+
+<div class="row">
+    <div class="col-12" style="margin-top: 30px; padding: 0px;">
+        <div class="row">
+            <div class="col-12">
+                <div id="topLaTabla">
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+
+            </div>
+        </div>
+        <table id="latabla" class="table tablesorter">
+            <thead>
+            <tr class="darkgreenbox h40 nopadding">
+                <th style="padding: 1px;" class="text-center" title="Posición">P</th>
+                <th style="padding: 1px;min-width: 130px" class="text-center">Equipo</th>
+                <th style="padding: 1px;" class="text-center" title="Puntos">Pts</th>
+                <th style="padding: 1px;" class="text-center" title="Jugados">Ju</th>
+                <th style="padding: 1px;" class="text-center" title="Ganados">Ga</th>
+                <th style="padding: 1px;" class="text-center" title="Empatados">Em</th>
+                <th style="padding: 1px;" class="text-center" title="Perdidos">Pe</th>
+                <th style="padding: 1px;" class="text-center" title="Goles a favor">Fav</th>
+                <th style="padding: 1px;" class="text-center" title="Goles en contra">Con</th>
+                <th style="padding: 1px;" class="text-center hidden-xs" title="Diferencia de goles">Dif</th>
+            </tr>
+            </thead>
+
+            <tbody class="whitebox">
+
+            {% for key, fila in total.rows %}
+
+                {% set pgEquipo = full_url_for('equipo_index', {
+                    'slug' : ponerGuion(fila.team.name),
+                    'idEquipo' : 10000000 + fila.team.id,
+                }) ~ '/datos?temp_id=' ~ temp_id %}
+
+
+                <tr>
+
+                    <td class="text-center">
+                        {{ fila.pos }}
+                    </td>
+                    <td style="text-align:left; padding: 1px;min-width: 130px">
+                        <img src="https://assets.b365api.com/images/team/s/{{ fila.team.id }}.png">
+                        <a href="{{ pgEquipo }}">
+                            {{ fila.team.name }}
+                        </a>
+                    </td>
+                    <td class="text-center" style="padding: 1px;">
+                        <strong>{{ fila.points }}</strong>
+                    </td>
+                    <td class="text-center">
+                        {{ fila.win + fila.draw + fila.loss }}
+                    </td>
+                    <td class="text-center" style="padding: 1px;">
+                        {{ fila.win }}
+                    </td>
+                    <td class="text-center" style="padding: 1px;">
+                        {{ fila.draw }}
+                    </td>
+                    <td class="text-center" style="padding: 1px;">
+                        {{ fila.loss }}
+                    </td>
+                    <td class="text-center" style="padding: 1px;">
+                        {{ fila.goalsfor }}
+                    </td>
+                    <td class="text-center" style="padding: 1px;">
+                        {{ fila.goalsagainst }}
+                    </td>
+                    <td class="text-center" style="padding: 1px;">
+                        {{ fila.goalDiffTotal }}
+                    </td>
+
+                </tr>
+
+
+            {% endfor %}
+
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-12">
+                <div id="bottomLaTabla" class="{{ classFila }}">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

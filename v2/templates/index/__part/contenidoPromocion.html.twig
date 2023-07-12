@@ -1,0 +1,90 @@
+
+
+<div id="bloque-resto">
+    {% set temp_id = 0 %}
+    {% set contador = 0 %}
+    {% set equiposTw = [] %}
+
+    <div class="row">
+        <div class="col-12">
+            {% set espacio = 'cabeceraPartidos' %}
+            {% if getConstante('__ES_IOS__') %}
+                {% set espacio = 'cabeceraPartidosiOS' %}
+            {% endif %}
+            {% include 'publicidad/publiGestion.html.twig' %}
+        </div>
+    </div>
+
+    {% set f = '' %}
+
+    {% for kk, partido in partidosPromocion %}
+
+        {% set contador = contador + 1 %}
+
+        
+
+        {% set colorFondo = 'whitebox' %}
+
+        {% if partido.idPais != 60 and partido.idPais != 200 or 'España' == partido.local %}
+            {% set colorL = 'background-color:#F4FA58' %}
+        {% else %}
+            {% set colorL = 'background-color:white' %}
+        {% endif %}
+
+        {% if partido.idPais != 60 and partido.idPais != 200 or 'España' == partido.visitante %}
+            {% set colorV = 'background-color:#F4FA58' %}
+        {% else %}
+            {% set colorV = 'background-color:white' %}
+        {% endif %}
+
+
+        {% set hora_prevista = partido.hora_prevista %}
+        {% set colorFila = 'white' %}
+
+
+        {% if partido.temporada_id != temp_id %}
+            {% set fondoCabecera = 'greenbox' %}
+            {% set colorCabecera = 'black' %}
+
+            {% include 'index/__part/contenidoCabecera.html.twig' %}
+        {% endif %}
+
+        <div style="clear:both"></div>
+        <div>
+            {% include 'index/__part/partidoPromocion.html.twig' with {
+                'partido' : partido,
+                'pagina' : 'index',
+            } %}
+        </div>
+
+
+        {% set equiposTw = equiposTw|merge(
+            {
+                (kk ~ '_l'): {
+                    'id': partido.equipoLocal_id,
+                    'equipo': partido.local,
+                    'club_id': partido.club_local,
+                    'idPais': partido.idPais,
+                }
+            }
+        ) %}
+
+
+        {% set equiposTw = equiposTw|merge(
+            {
+                (kk ~ '_v'): {
+                'id': partido.equipoVisitante_id,
+                'equipo': partido.visitante,
+                'club_id': partido.club_visitante,
+                'idPais': partido.idPais,
+                }
+            }
+        ) %}
+
+        {% set temp_id = partido.temporada_id %}
+        {% set f = partido.fecha %}
+
+    {% endfor %}
+</div>
+
+

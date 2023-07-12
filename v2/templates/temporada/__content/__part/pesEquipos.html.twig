@@ -1,0 +1,89 @@
+{% if equipos is defined %}
+    <div id="contenedorLateralEquipos" class="col-12">
+
+        {% set twiterols = '' %}
+        {% for fila in equipos %}
+
+            <div class="row filaLateralEquiposEquipo">
+
+                {% if fila.es_seleccion %}
+                    {% set rutaEscudo = '/static/img/paises/banderas/ban' ~ fila.pais_id ~ '.png' %}
+                {% else %}
+                    {% set rutaEscudo = rutaEscudo(fila.club_id, fila.equipo_id) %}
+                {% endif %}
+
+                {% if not fileExists(rutaEscudo) %}
+                    {% set rutaEscudo = '/static/img/jugadores/NI.png' %}
+                {% endif %}
+
+                {% set rutaEquipacion = '/static/img/equipaciones/eq' ~ fila.equipacion_id ~ '.png' %}
+                {% if not fileExists(rutaEquipacion) %}
+                    {% set rutaEquipacion = '/static/img/jugadores/NI.png' %}
+                {% endif %}
+
+                {% set rutaEstadio = '/static/img/estadios/estadi' ~ fila.estadio_id ~ '.png' %}
+                {% if not fileExists(rutaEstadio) %}
+                    {% set rutaEstadio = '/static/img/jugadores/NI.png' %}
+                {% endif %}
+
+                {% set urlEquipo = full_url_for('equipo_index', {
+                    'idEquipo' : fila.equipo_id,
+                    'slug' : ponerGuion(fila.nombre),
+                }) %}
+
+
+                <div class="col-5">
+                    <div class="col-6 float-left">
+                        <a href="{{ urlEquipo }}">
+                            <img class="contenedorLateralEquiposEscudo" src="{{ full_url_for('home') }}{{ rutaEscudo }}" alt="">
+                        </a>
+                    </div>
+                    {% if fila.es_seleccion == 0 %}
+                        <div class="col-6 float-right">
+                            <a href="{{ urlEquipo }}">
+                                <img class="contenedorLateralEquiposEquipacion" src="{{ full_url_for('home') }}{{ rutaEquipacion }}" alt="">
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-6 filaLateralEquiposEquipoContenedorDatosEquipo">
+                    <div class="col-12">
+                        <h3 class="equiposLateralNombreEquipo">
+                            <a href="{{ urlEquipo }}">{{ fila.nombre }}</a>
+                        </h3>
+                    </div>
+                    {#
+                    <div class="col-12 contenedorLateralEquiposLocalidadProvincia">
+                        {% if fila.localidad != 'Sin localidad' %}
+                            <a href="/geolocalidad.php?m=1&id={{ fila.localidad_id }}" title="Equipos de la localidad {{ fila.localidad }}">
+                                {{ fila.localidad }}
+                            </a>
+                        {% endif %}
+                        {% if fila.provincia != 'sin provincia' %}
+                            - <a href="/geolocalidad.php?m=2&id={{ fila.provincia_id }}" title="Equipos de la provincia {{ fila.provincia }}">
+                            {{ fila.provincia }}
+                        </a>
+                        {% endif %}
+                    </div>
+                    #}
+                    <div class="col-12">
+                        <div class="comunidad flag{{ fila.comunidad_id }}"></div>
+                    </div>
+                </div>
+                <div class="col-1 filaLateralEquiposEquipoContenedorAnadirAMiFutbolme">
+                    {# MIFUTBOLME
+                    {% if tipoTorneo is defined and tipoTorneo == 1 %}
+                        <a href="" onclick="anadir_equipo({{ fila.equipo_id }})">
+                            <img src="{{ full_url_for('home') }}static/img/estrella-futbolme.svg" alt="">
+                        </a>
+                    {% endif %}
+                    #}
+                </div>
+
+                <div class="filaLateralEquiposEquipoSeparador"></div>
+
+            </div>
+
+        {% endfor %}
+    </div>
+{% endif %}

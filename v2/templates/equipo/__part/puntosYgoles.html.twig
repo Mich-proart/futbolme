@@ -1,0 +1,138 @@
+<script type='text/javascript'>
+    $(function () {
+        $('#c{{ contenedor }}').highcharts({
+            chart: {
+                zoomType: 'xy'
+            },
+            title: {
+                text: null
+            },
+            subtitle: {
+                text: '{{ subtitulo }}',
+                floating: true,
+                align: 'left',
+                verticalAlign: 'bottom',
+                y: 10
+            },
+
+        {% if titulo is not null %}
+            legend: {
+                layout: 'vertical',
+                    align: 'left',
+                    verticalAlign: 'top',
+                    x: 100,
+                    y: 10,
+                    floating: true,
+                    borderWidth: 1
+            },
+        {% else %}
+
+            legend: { enabled: false },
+
+        {% endif %}
+
+        xAxis: {
+            categories: [{{ a|raw }}]
+        },
+        yAxis: [{
+            labels: {
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                }
+            },
+            title: {
+                text: 'Total puntos',
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                }
+            },
+            min: {{ minimo }},
+        max: {{ maximo }},
+        startOnTick: false,
+            tickInterval: 1
+
+    }, { // Secondary yAxis
+            gridLineWidth: 0,
+                title: {
+                text: 'Goles',
+                    style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            },
+            labels: {
+                format: '{value}',
+                    style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            },
+            opposite: true
+
+        }],
+
+        tooltip: {
+            //shared: true,
+            dataLabels: {
+                formatter: function () {
+                    return '<b>'+ this.point.name +'</b><br/>{{ textoVY }}: '  + this.y ;
+                }
+            },
+        },
+
+        exporting: { enabled: false },
+
+
+
+
+        series: [{
+            type: 'spline',
+            name: 'Total puntos',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            },
+            data: {{ puntos }}
+    },
+
+        {
+            type: 'spline',
+                name: 'Goles a Favor',
+            color: 'green',
+            marker: {
+            enabled: false
+        },
+            dashStyle: 'shortdot',
+                yAxis: 1,
+            data: {{ golesF }}
+        },
+        {
+            type: 'spline',
+                name: 'Goles en contra',
+            color: 'red',
+            marker: {
+            enabled: false,
+        },
+            dashStyle: 'shortdot',
+                yAxis: 1,
+            data: {{ golesC }}
+        },
+
+
+        {
+            type: 'column',
+                name: 'Puntos partido',
+            data: {{ b|raw }},
+            cursor: 'pointer',
+                point: {
+            events: {
+                click: function () {
+                    location.href = '/partido.php?id=' + this.options.id;
+                }
+            }
+        }
+        }]
+    });
+    });
+</script>
+
+
+
+<div id='c{{ equipo_id }}' style='height: 300px; margin: 0 auto; margin-bottom: 10px;'></div>

@@ -1,0 +1,24 @@
+
+
+
+
+{% set fechaActual = hoyDateTime() %}
+{% set fechaActualFormatada = fechaActual|date('Y-m-d H:i:s') %}
+
+<div style="clear:both;display: block; margin-top: 15px;">
+    <div class="col-12 contenidoActualidadEnTwitter" style="padding:20px; background-color:#7bdb00">
+        <h5><span style="color:maroon">MUY IMPORTANTE</span> - Al unirse a un grupo de futbolme.com, tu número de teléfono será visible para todos los miembros del grupo (256 como máximo)</h5>
+       <form method="post" action="/whats.php" method="post"/>
+       <input type="hidden" name="temporada_id" value="{{ temporada_id }}" />
+
+       Unete a nuestro grupo de whatsapp para seguir los horarios, resultados y clasificaciones de este torneo.
+
+
+       <br />Introduce tu número de teléfono y recibirás una invitación para unirte al grupo.
+       <input type="tel" pattern="[0-9]{9}" name="telefono" />
+       <input type="submit" name="enviar" value="Solicitar enlace" /> 9 digitos. Sin espacios.
+
+       </form>
+       <b><span style="color:maroon">FUTBOLME.COM</span> no guarda el teléfono aquí introducido y por lo tanto garantiza que dicho número no va a ser objeto de ningún tipo de spam originado por el uso de este servicio.</b>
+    </div>
+</div>

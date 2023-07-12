@@ -1,0 +1,152 @@
+<div class="col-12" style="padding: 0px; margin-top: 10px;">
+
+    {% set jornadaActiva = 0 %}
+    {% if ePartidos is defined and e_racha is defined and tipoVista < 10 %}
+        {% set jornadaActiva = e_racha|length - 1 %}
+        {% include 'equipo/__part/puntosYgoles.html.twig' %}
+    {% endif %}
+
+    <div class="row">
+        <div class="col-12">
+            <ul class="nav nav-tabs menuListGrises" role="tablist" id="pestaTemporada">
+                <li class="text-center">
+                    <a style="padding-left: 8px; padding-right: 8px;" class="btn btn-secondary {{ pesPuntos }}" href="{{ full_url_for('equipo_clasificacion', {
+                        'slug' : ponerGuion(equipotxt),
+                        'idEquipo' : equipo_id,
+                        'vista': 'puntos'
+                    }) }}">Puntos</a>
+                </li>
+                <li class="text-center">
+                    <a style="padding-left: 8px; padding-right: 8px;" class="btn btn-secondary {{ pesJugados }}" href="{{ full_url_for('equipo_clasificacion', {
+                        'slug' : ponerGuion(equipotxt),
+                        'idEquipo' : equipo_id,
+                        'vista': 'jugados'
+                    }) }}">Jugados</a>
+                </li>
+                <li class="text-center">
+                    <a style="padding-left: 8px; padding-right: 8px;" class="btn btn-secondary {{ pesGanados }}" href="{{ full_url_for('equipo_clasificacion', {
+                        'slug' : ponerGuion(equipotxt),
+                        'idEquipo' : equipo_id,
+                        'vista': 'ganados'
+                    }) }}">Ganados</a>
+                </li>
+                <li class="text-center">
+                    <a style="padding-left: 8px; padding-right: 8px;" class="btn btn-secondary {{ pesEmpatados }}" href="{{ full_url_for('equipo_clasificacion', {
+                        'slug' : ponerGuion(equipotxt),
+                        'idEquipo' : equipo_id,
+                        'vista': 'empatados'
+                    }) }}">Empatados</a>
+                </li>
+                <li class="text-center">
+                    <a style="padding-left: 8px; padding-right: 8px;" class="btn btn-secondary {{ pesPerdidos }}" href="{{ full_url_for('equipo_clasificacion', {
+                        'slug' : ponerGuion(equipotxt),
+                        'idEquipo' : equipo_id,
+                        'vista': 'perdidos'
+                    }) }}">Perdidos</a>
+                </li>
+                <li class="text-center">
+                    <a style="padding-left: 8px; padding-right: 8px;" class="btn btn-secondary {{ pesFavor }}" href="{{ full_url_for('equipo_clasificacion', {
+                        'slug' : ponerGuion(equipotxt),
+                        'idEquipo' : equipo_id,
+                        'vista': 'favor'
+                    }) }}">G-Favor</a>
+                </li>
+                <li class="text-center">
+                    <a style="padding-left: 8px; padding-right: 8px;" class="btn btn-secondary {{ pesContra }}" href="{{ full_url_for('equipo_clasificacion', {
+                        'slug' : ponerGuion(equipotxt),
+                        'idEquipo' : equipo_id,
+                        'vista': 'contra'
+                    }) }}">G-Contra</a>
+                </li>
+                <li class="text-center">
+                    <a style="padding-left: 8px; padding-right: 8px;" class="btn btn-secondary {{ pesEstadisticas }}" href="{{ full_url_for('equipo_clasificacion', {
+                        'slug' : ponerGuion(equipotxt),
+                        'idEquipo' : equipo_id,
+                        'vista': 'estadisticas'
+                    }) }}">Estadísticas</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    {% if ePartidosFiltrados is not empty %}
+        <div class="contenedorBlancoBordesRedondeados">
+            <table class="col-12">
+                {% for partido in ePartidosFiltrados %}
+                    <tr>
+                        <td class="text-center">
+                            {{ partido.jornada }}
+                        </td>
+                        <td class="text-right">
+                            <a href="{{ partido.pgEnlace1 }}" style="{{ partido.Flocal }}">{{ partido.localCorto }}</a>
+                        </td>
+                        <td class="text-center">
+                            <strong>{{ partido.goles_local }} - {{ partido.goles_visitante }}</strong>
+                        </td>
+                        <td>
+                            <a href="{{ partido.pgEnlace2 }}" style="{{ partido.Fvisitante }}">{{ partido.visitanteCorto }}</a>
+                        </td>
+                        <td class="text-center" style="color:#FFFFFF;">
+                            {{ partido.icono|raw }}
+                        </td>
+                        <td class="text-center" style="color:#FFFFFF;">
+                            {{ partido.iconoGF|raw }}
+                        </td>
+                        <td class="text-center" style="color:#FFFFFF;">
+                            {{ partido.iconoGC|raw }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="8" style="background: rgb(74, 74, 74); padding: 5px 0px;">
+                        <div class="col-12">
+                            <div class="contenedorBlancoBordesRedondeados" style="float:left; padding: 3px 8px; margin-right: 5px;">
+                                G - {{ gcT + gfT }}
+                                <span class="badge" style="font-weight:300; background-color:#0B610B; color:#FFFFFF;">{{ gcT }}</span>
+                                <span class="badge" style="font-weight:300; background-color:#01DF01; color:#FFFFFF;">{{ gfT }}</span>
+                            </div>
+                            <div class="contenedorBlancoBordesRedondeados" style="float:left; padding: 3px 8px; margin-right: 5px;">
+                                E - {{ ecT + efT }}
+                                <span class="badge" style="font-weight:300; background-color:orange; color:#FFFFFF;">{{ ecT }}</span>
+                                <span class="badge" style="font-weight:300; background-color:#FACC2E; color:#FFFFFF;">{{ efT }}</span>
+                            </div>
+                            <div class="contenedorBlancoBordesRedondeados" style="float:left; padding: 3px 8px; margin-right: 5px;">
+                                P - {{ pcT + pfT }}
+                                <span class="badge" style="font-weight:300; background-color:#B40404; color:#FFFFFF;">{{ pcT }}</span>
+                                <span class="badge" style="font-weight:300; background-color:#FE642E; color:#FFFFFF;">{{ pfT }}</span>
+                            </div>
+                            <div class="contenedorBlancoBordesRedondeados" style="float:left; padding: 3px 8px; margin-right: 5px;">
+                                GF - {{ gfcT + gffT }}
+                                <span class="badge" style="font-weight:300; background-color:#0B2161; color:#FFFFFF;">{{ gfcT }}</span>
+                                <span class="badge" style="font-weight:300; background-color:#013ADF; color:#FFFFFF;">{{ gffT }}</span>
+                            </div>
+                            <div class="contenedorBlancoBordesRedondeados" style="float:left; padding: 3px 8px;">
+                                GC - {{ gccT + gcfT }}
+                                <span class="badge" style="font-weight:300; background-color:#424242; color:#FFFFFF;">{{ gccT }}</span>
+                                <span class="badge" style="font-weight:300; background-color:#A4A4A4; color:#FFFFFF;">{{ gcfT }}</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    {% endif %}
+
+
+            {% if ePartidos is defined and e_racha is defined and tipoVista < 10 %}
+                <div class="col-12" style="padding: 0px; margin-top: 10px;">
+                    <div class="row">
+                        {% set temporada_id = liga %}
+                        {% include 'temporada/__content/__part/pesClasificacion.html.twig' %}
+                    </div>
+                </div>
+            {% elseif (e_racha is defined) %}
+                <div class="col-12">
+                    <div class="row">
+                        {% include 'equipo/__part/clasificacionEstadisticas.html.twig' %}
+                    </div>
+                </div>
+            {% endif %}
+
+
+</div>

@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block contenedorIzquierda %}
+
+    {% include '__part/ultimosEventos.html.twig' %}
+
+{% endblock %}
+
+{% block contenedorCentral %}
+
+    <div class="col-12 contenedorBlancoBordesRedondeados" style="padding-bottom: 20px;">
+        <h1>Contacta con nosotros</h1>
+
+        <div class="col-12">
+            <em>Recuerda que futbolme no es la web oficial de ningún club de fútbol</em>
+        </div>
+
+        {% if formEnviado %}
+            {% if ok %}
+                <strong>Hemos recibido correctamente tu mensaje. te responderemos lo antes posible</strong>
+            {% endif %}
+
+        {% endif %}
+
+        <div class="col-12" style="margin-top: 30px;">
+
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    {% if error.nombre is defined %}
+                        {{ error.nombre }}
+                    {% endif %}
+                    <label for="tuNombre">Nombre</label>
+                    <input required="required" type="text" class="form-control" id="tuNombre" name="tuNombre" placeholder="Tu nombre" value="{{ nombre }}">
+                </div>
+                <div class="form-group">
+                    {% if error.email is defined %}
+                        {{ error.email }}
+                    {% endif %}
+                    <label for="tuEmail">Email</label>
+                    <input required="required" type="email" class="form-control" id="tuEmail" name="tuEmail" placeholder="Tu email" value="{{ email }}">
+                </div>
+                <div class="form-group">
+                    {% if error.mensaje is defined %}
+                        {{ error.mensaje }}
+                    {% endif %}
+                    <label for="tuMensaje">Mensaje</label>
+                    <textarea required="required" class="form-control" id="tuMensaje" name="tuMensaje" rows="5" placeholder="Escribe aquí el mensaje">{{ mensaje }}</textarea>
+                </div>
+                <div class="form-group">
+                    <div class="g-recaptcha" data-sitekey="6Lev054UAAAAABDShSaZyAkcz8Kb7MRbuM0lTwl5" data-callback="recaptchaCallback" ></div>
+                </div>
+                <div class="form-group">
+                    <button disabled="disabled" id="botonEnviar" type="submit" class="btn btn-block btn-success">Enviar mensaje</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block bloqueJs %}
+
+    <script type="text/javascript" async defer src='https://www.google.com/recaptcha/api.js?hl=es'></script>
+    <script type="text/javascript">
+        function recaptchaCallback() {
+            $('#botonEnviar').removeAttr('disabled');
+        };
+    </script>
+
+{% endblock %}
+
+{% block contenedorDerecha %}
+
+{% endblock %}

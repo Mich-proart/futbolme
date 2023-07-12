@@ -1,0 +1,223 @@
+{% extends 'base.html.twig' %}
+
+{% block contenedorIzquierda %}
+
+    {% include '__part/ultimosEventos.html.twig' %}
+
+{% endblock %}
+
+{% block contenedorCentral %}
+
+    <div class="col-12">
+        <div class="row">
+            <div class="col-12">
+                <h1>
+                    Partidos de fútbol televisados
+                </h1>
+                <h2 class="subtitulo">del {{ inicio }} al {{ final }}</h2>
+            </div>
+        </div>
+
+        {% if not footers %}
+        <div class="row contenedorGlobalSelectorFiltroTv ">
+
+            <div id="contenedorBotonFiltroTv" class="col-12">
+                <a id="botonFiltroTv" class="btn btn-danger" href="">Filtro TV</a>
+            </div>
+
+            <div class="col-12 contenedorBlancoBordesRedondeados">
+                <ul class="row" id="listadoCanalesTelevisados" style="display: none;">
+                    <li class="filtro-tv-xs col-12" data-valor="todos">
+                        <a>TODOS LOS CANALES</a>
+                        <div class="separadorOpcionesFiltroTV"></div>
+                    </li>
+                    {% for medio in medios %}
+                        <li class="col-12 col-md-6 filtro-tv-xs" data-valor="{{ medio.medio_id }}" style="color:black; cursor:pointer">
+                            <img alt="{{ medio.medio_id }}" src="{{ full_url_for('home') }}static/img/television/medio{{ medio.medio_id }}.png" height="30" style="margin-left: 10px;">
+                            <br />
+                            {{ medio.medio }} ({{ medio.nMedios }})
+
+                            <div class="separadorOpcionesFiltroTV"></div>
+
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-12">
+                {% if google == 1 %}
+
+
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+
+            {% set contador = 0 %}
+            {% set equiposTw = [] %}
+            {% set numDia = 0 %}
+
+
+            {% for fecha,partidoFecha in partidos %}
+                {% if contador > 0 %}
+                    <div class="separadorCajasFechas">
+
+                    </div>
+                {% endif %}
+
+                {% set numDia = numDia + 1 %}
+
+                {% if numDia > 1 and numDia % 2 == 0 and numDia < 5 %}
+
+                    
+
+                {% endif %}
+
+                <div class="row">
+                    <div class="col-12" style="padding: 0px;">
+                        <div class="row">
+                            <div class="col-12 contenedorNombreDia">
+                                <h4>{{ nombreDiaCompleto(fecha) }}</h4>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                                {% for parti in partidoFecha %}
+
+                                    {% if contador < 10 %}
+
+                                        {% set equipoTWLocal = {
+                                            id: parti.partido.equipoLocal_id,
+                                            equipo: parti.partido.local,
+                                            idPais: parti.partido.pais_local,
+                                        } %}
+                                        {% set equiposTw = anadirAArray(equiposTw, equipoTWLocal) %}
+
+                                        {% set equipoTWVisitante = {
+                                            id: parti.partido.equipoVisitante_id,
+                                            equipo: parti.partido.visitante,
+                                            idPais: parti.partido.pais_visitante,
+                                        } %}
+                                        {% set equiposTw = anadirAArray(equiposTw, equipoTWVisitante) %}
+
+
+                                    {% endif %}
+
+                                    {% set contador = contador + 1 %}
+
+                                    <a name="tv-{{ parti.partido.id }}" style="padding-top: 180px"></a>
+
+
+                                    {% if contador == 5 %}
+
+                                        {% include 'publicidad/cuerpo01.html.twig' %}
+
+                                    {% endif %}
+
+
+                                    <div class="col-12 patidosTelevisadosCajaPartido
+                                        {% for tv in parti.tvs %}
+                                            {{ tv.medio_id }}
+                                        {% endfor %}
+                                    ">
+
+
+                                        <div class="row">
+
+                                            <div class="col-7 nombreTemporada">
+                                                {#
+                                                {% set hora = parti.partido.hora_prevista %}
+                                                #}
+                                                <span>
+                                                {% if parti.partido.categoria_torneo_id == 17 %}
+                                                    <strong>Fútbol Sala</strong> -
+                                                {% endif %}
+
+                                                {{ parti.partido.nombreTemporada }}
+                                            </span>
+
+                                            </div>
+
+                                            <div class="col-5 contenedorIconosTv">
+
+                                                {% for tv in parti.tvs %}
+
+                                                    <div class="float-right">
+
+                                                        {% if tv.medio_id == 132 %}
+
+                                                            <span href="https://www.footters.com/register?ref=futbolmeoficial" target="_blank"><b>footters.com</b></span>
+
+                                                        {% endif %}
+
+                                                        <img alt="{{ tv.nombreMedio }}" src="{{ full_url_for('home') }}static/img/television/medio{{ tv.medio_id }}.png" style="max-height: 38px">
+
+                                                    </div>
+
+                                                {% endfor %}
+
+                                            </div>
+
+                                        </div>
+
+                                        {% set partido = parti.partido %}
+                                        {% set pagina = 'televisados' %}
+                                        {% set partido = partido|merge({
+                                            'partidoAPI' : 0
+                                        }) %}
+
+                                        {% include 'index/__part/filaPartido.html.twig' %}
+
+
+                                    </div>
+
+
+                                {% endfor %}
+                            </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+
+
+        </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block bloqueJs %}
+
+    <script type="text/javascript">
+
+        $(document).on('click', '#botonFiltroTv', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+
+            var capaListadoCanales = $('#listadoCanalesTelevisados');
+
+            if (!capaListadoCanales.is(':visible')) {
+                capaListadoCanales.fadeIn(300);
+            } else {
+                capaListadoCanales.fadeOut(300);
+            }
+        });
+
+    </script>
+
+{% endblock %}
+
+
+
+{% block contenedorDerecha %}
+
+
+{% endblock %}

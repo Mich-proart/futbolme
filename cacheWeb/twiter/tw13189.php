@@ -1,0 +1,2 @@
+<a class="twitter-timeline" rel="nofollow" target="_blank" href="https://twitter.com/dvo_Cordoba" data-widget-id="661854471606116352">Tweets por el @dvo_Cordoba.</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>

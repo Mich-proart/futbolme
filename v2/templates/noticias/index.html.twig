@@ -1,0 +1,203 @@
+{% extends 'base.html.twig' %}
+
+
+{% block contenedorIzquierda %}
+
+    {% include '__part/ultimosEventos.html.twig' %}
+
+{% endblock %}
+
+{% if jugador.posicion == '1' %}
+
+    {% set txt_jugador = 'Portero' %}
+    {% if liga is defined and liga == 214 %}
+        {% set txt_jugador = 'Portera' %}
+    {% endif %}
+
+{% elseif jugador.posicion == '2' %}
+
+    {% set txt_jugador = 'Defensa' %}
+
+{% elseif jugador.posicion == '3' %}
+
+    {% set txt_jugador = 'Centrocampista' %}
+
+{% elseif jugador.posicion == '4' %}
+
+    {% set txt_jugador = 'Delantero' %}
+
+{% elseif jugador.posicion == '5' %}
+
+    {% set txt_jugador = 'Entrenado' %}
+
+{% else %}
+
+    {% set txt_jugador = 'Sin demarcación' %}
+
+{% endif %}
+
+{% block contenedorCentral %}
+
+    <div class="col-12 contenedorBlancoBordesRedondeadosConPadding">
+        <div class="row">
+            <div class="col-12">
+                <h1>Las noticias de Fútbol en Futbolme.com</h1>
+            </div>
+            {% for noticia in noticias %}
+
+                {% set enlaceNoticia = full_url_for('noticia_individual', {
+                    'slug': ponerGuion(noticia.titulo),
+                    'idNoticia': noticia.id,
+                }) %}
+
+                <div class="col-12" style="border-top: 1px solid #E9E9E9; padding-top: 15px; padding-bottom: 15px;">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <h2 style="font-size: 21px; line-height: 25px; margin: 0px;" class="subtitulo text-left"><a style="color: #212529;" href="{{ enlaceNoticia }}">{{ noticia.titulo }}</a></h2>
+                        </div>
+
+                        <div class="col-12">
+                            <p class="text-right" style="font-family: Roboto;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-weight: bold;
+                        font-size: 12px;
+                        line-height: 24px;
+                        color: #B9BBBE; margin-bottom: 0px;">
+                                {{ noticia.fecha|date('d/m/Y') }}
+                            </p>
+                        </div>
+
+                        {% set palabras = noticia.descripcion|striptags|split(' ') %}
+                        {% set descripcionCorta = '' %}
+                        {% set largoDescripcionCorta = 0 %}
+
+                        {% for palabra in palabras %}
+                            {% if largoDescripcionCorta < 150 %}
+                                {% set descripcionCorta = descripcionCorta ~ palabra ~ ' ' %}
+                                {% set largoDescripcionCorta = descripcionCorta|length %}
+                            {% endif %}
+                        {% endfor %}
+
+                        <div class="col-12">
+                            {{ descripcionCorta|raw }}...
+                        </div>
+
+                        <div class="col-12">
+                            <p class="text-right">
+                                <a href="{{ enlaceNoticia }}" style="text-decoration: underline; color: #626262; font-weight: bold;">Leer noticia completa</a>
+                                <a href="{{ enlaceNoticia }}">
+                    <span style="background: #626262;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    display: inline-block;
+    text-align: center;
+border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;">
+                        <img src="/static/img/enlace-partido.svg" alt="">
+                    </span>
+                                </a>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+            {% endfor %}
+
+            <div class="col-12">
+
+                <h3 class="subtitulo text-right" style="padding: 10px 0px; font-size: 20px;">¿Quieres seguir viendo más noticias?</h3>
+
+                <ul style="float: right;" class="pagination pagination-basic mg-b-0">
+
+                    {% if paginaActualPaginacio > 1 %}
+                        <li class="page-item">
+                            <a class="page-link boto-paginacio" data-n-pagina="{{ paginaActualPaginacio - 1 }}" href="{{ full_url_for('noticias', {
+                                'pagina' : paginaActualPaginacio - 1
+                            }) }}" aria-label="Next">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% for i in 1..nPaginesPaginacio %}
+                        {% if i <= 10 or i == paginaActualPaginacio or i == nPaginesPaginacio %}
+                            <li class="page-item{% if paginaActualPaginacio == i %} active{% endif %}">
+                                <a class="page-link boto-paginacio" data-n-pagina="{{ i }}" href="{{ full_url_for('noticias', {
+                                    'pagina' : i
+                                }) }}">{{ i }}</a>
+                            </li>
+                        {% endif %}
+
+                        {% if (i == 10 and nPaginesPaginacio > 11) or (i == paginaActualPaginacio and i + 1 < nPaginesPaginacio and i > 10) %}
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:;">...</a>
+                            </li>
+                        {% endif %}
+
+                    {% endfor %}
+
+                    {% if nPaginesPaginacio > paginaActualPaginacio %}
+                        <li class="page-item">
+                            <a class="page-link boto-paginacio" data-n-pagina="{{ paginaActualPaginacio + 1 }}" href="{{ full_url_for('noticias', {
+                                'pagina' : paginaActualPaginacio + 1
+                            }) }}" aria-label="Next">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block bloqueJs %}
+
+    <style type="text/css">
+
+        .pagination > li > a
+        {
+            background-color: white;
+            color: #212529;
+        }
+
+        .pagination > li > a:focus,
+        .pagination > li > a:hover,
+        .pagination > li > span:focus,
+        .pagination > li > span:hover
+        {
+            color: #212529;
+            background-color: #eee;
+            border-color: #ddd;
+        }
+
+        .pagination > .active > a
+        {
+            color: white;
+            background-color: #7bdb00 !Important;
+            border: solid 1px #7bdb00 !Important;
+        }
+
+        .pagination > .active > a:hover
+        {
+            background-color: #7bdb00 !Important;
+            border: solid 1px #7bdb00;
+        }
+
+    </style>
+
+{% endblock %}
+
+
+
+{% block contenedorDerecha %}
+
+
+{% endblock %}

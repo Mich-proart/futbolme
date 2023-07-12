@@ -1,0 +1,94 @@
+<div class="col-12 table-responsive">
+
+    <div style="margin-top: 10px;" class="row">
+        <div class="col-12 small">
+
+            <strong>Nota de interés.</strong>
+            En caso de que algún partido sea anulado por alineación indebida, los goleadores de ese encuentro no serán contabilizados en la clasificación del pichichi.
+
+        </div>
+    </div>
+
+    <table style="margin-top: 10px;" id="goleadores" class="table table-condensed contenedorBlancoBordesRedondeadosConPadding">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Jugador</th>
+                <th>Equipo</th>
+                <th>Goles</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set golMax = 0 %}
+            {% set contador = 1 %}
+
+            {% for key,fila in goleadores %}
+                {% set continue = false %}
+
+                {% set fmJugador = fila.jugador_id %}
+                {% if fmJugador == 0 %}
+                    {% set fila = fila|merge({'jugador': fila.jugador|replace({
+                        '(pen.)': ''
+                    })}) %}
+
+                    {% if pos > 0 %}
+                        {% set continue = true %}
+                    {% endif %}
+                {% endif %}
+
+                {% if not continue %}
+
+                    {% if key == 10 %}
+                        <tr class="fila-goleadores">
+                            <td colspan="4">
+                                {% include 'publicidad/cuerpo04.html.twig' %}
+                            </td>
+                        </tr>
+
+                    {% endif %}
+
+
+                    {% if equipo_id is defined and equipo_id == fila.equipo_id %}
+                        <tr bgcolor='gainsboro'>
+                    {% else %}
+                        <tr>
+                    {% endif %}
+
+                    <td class="text-center">
+                        <strong>{{ contador }}</strong>
+                    </td>
+                    <td class="text-left boldfont">
+                        {% if fmJugador == 0 %}
+                            <a href="/jugadorint.php?j={{ fila.jugador }}&e={{ fila.equipo_id }}&eq={{ fila.equipoCorto }}">
+                                {{ fila.jugador }}
+                            </a>
+                        {% else %}
+                            <a href="{{ full_url_for('jugador_url_nombre', {
+                                'id' : fila.jugador_id,
+                                'slug' : ponerGuion(fila.jugador),
+                            }) }}">
+                                {{ fila.jugador }}
+                            </a>
+                        {% endif %}
+                    </td>
+                    <td class="text-left">
+                        <a href="{{ full_url_for('equipo_index', {
+                            'idEquipo' : fila.equipo_id,
+                            'slug' : ponerGuion(fila.equipo),
+                        }) }}">
+                            {{ fila.equipoCorto }}
+                        </a>
+                    </td>
+                    <td class="text-center boldfont">
+                        {{ fila.goles }}
+                    </td>
+
+
+                {% endif %}
+
+                {% set contador = contador + 1 %}
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

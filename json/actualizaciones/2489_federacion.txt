@@ -1,0 +1,2 @@
+<hr />
+JUVENIL PROVINCIAL - Grupo 3 - Jornada 20<br /><br />----proxi: 12038 uso: 14<br />878139: EFB Miguelturra B - Atlético Puerta Toledo<br /> - cambiamos la fecha a 2020-03-06<br /> - cambiamos la hora a 17:30:00<br /> - ponemos el id de acta 352640<br /> - ponemos el el resultado 2-0 --- <a href="http://www.ffcm.es/pnfg/NPcd/NFG_CmpJornada?cod_primaria=1000120&CodTemporada=15&cod_agrupacion=1&Sch_Codigo_Delegacion=&Sch_Tipo_Juego=&CodCompeticion=1440120&CodGrupo=1442868&CodJornada=20" target="_blank">Federacion</a><hr />

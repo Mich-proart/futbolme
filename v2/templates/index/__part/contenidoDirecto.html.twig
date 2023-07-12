@@ -1,0 +1,53 @@
+{% if partidosDirecto is not defined and directos is defined %}
+    {% set partidosDirecto = directos %}
+{% endif %}
+
+<div class="col-xs-12 nopadding">
+    {% set temp_id = 0 %}
+    {% set contador = 0 %}
+
+    <div class="row">
+        <div class="col-12">
+            {% set espacio = 'cabeceraDirectos' %}
+            {% if getConstante('__ES_IOS__') %}
+                {% set espacio = 'cabeceraDirectosiOS' %}
+            {% endif %}
+            {% include 'publicidad/publiGestion.html.twig' %}
+        </div>
+    </div>
+
+    {% for partido in partidosDirecto %}
+
+        {% if temp_id != partido.temporada_id and temporada_id is not defined %}
+
+            {% set fondoCabecera = 'celestebox' %}
+            {% set colorCabecera = 'white' %}
+
+            {% include 'index/__part/contenidoCabecera.html.twig' %}
+
+        {% endif %}
+
+        {% include 'index/__part/filaPartido.html.twig' %}
+
+        {% set contador = contador + 1 %}
+        {#
+        {% if contador == 1 %}
+            <div class="col-xs-12 text-center whitebox">
+                {% include 'publicidad/directos.html.twig' %}
+            </div>
+        {% endif %}
+        #}
+        {% if contador == 4 %}
+
+            <div class="row">
+                <div class="col-12">
+                    {% set espacio = 'entreDirectos' %}
+                    {% include 'publicidad/publiGestion.html.twig' %}
+                </div>
+            </div>
+
+        {% endif %}
+
+        {% set temp_id = partido.temporada_id %}
+    {% endfor %}
+</div>

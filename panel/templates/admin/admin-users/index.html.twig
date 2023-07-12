@@ -1,0 +1,53 @@
+{% extends "base_template/universal-panel.html.twig" %}
+{% block icon %}icon ion-ios-people{% endblock %}
+{% block title %}Gestión de usuarios{% endblock %}
+{% block description %}Gestión de usuarios{% endblock %}
+
+{% block css %}
+    <link href="{{ asset('css/admin/admin-users.css') }}" rel="stylesheet">
+{% endblock %}
+
+
+{% block js %}
+    <script type="text/javascript"></script>
+{% endblock %}
+
+{% block mainBody %}
+    <div class="card bd-primary mg-t-20">
+        <div class="card-header bg-primary tx-white">Gestión de usuarios</div>
+        <div class="card-body pd-sm-30">
+
+            <a href="{{ path('admin_users_add') }}" class="btn btn-success mg-r-5">Añadir usuario</a>
+
+            <div class="table-responsive">
+                <table class="table table-striped mg-b-0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre de usuario</th>
+                            <th>Email</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for u in users %}
+                        <tr>
+                            <td>{{ u.getId() }}</td>
+                            <td>{{ u.getUsername() }}</td>
+                            <td>{{ u.getEmail() }}</td>
+                            <td class="text-center">
+                                <a href="{{ url('admin_users_edit', { 'id' : u.getId() }) }}"><i class="icon ion-edit"></i></a>
+                                |
+                                <a href="{{ url('admin_users_activate_deactivate', { 'id' : u.getId() }) }}"><i {% if u.getIsActive() == 0 %}style="color: #FF4E50;" {% endif %}class="icon {% if u.getIsActive() %}ion-ios-checkmark{% else %}ion-android-hand{% endif %}"></i></a>
+                                {#
+                                <a href="{{ url('admin_users_delete', { 'id' : u.getId() }) }}"><i class="icon ion-android-delete"></i></a>
+                                #}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div><!-- table-responsive -->
+        </div><!-- card-body -->
+    </div>
+{% endblock %}

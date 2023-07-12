@@ -1,0 +1,65 @@
+{% if espacio is defined %}
+
+    
+    {% if espacio == 'enHead' %}
+
+         {% include 'publicidad/codigos/clickioConsent.html.twig' %}
+
+         {% include 'publicidad/codigos/clickioHead.html.twig' %}
+
+         {% include 'publicidad/codigos/clickioRotator.html.twig' %}
+       
+
+    {% elseif espacio == 'enHeadMobile' %}
+
+        {% include 'publicidad/codigos/clickioConsent.html.twig' %}
+
+        {% include 'publicidad/codigos/clickioHead.html.twig' %}        
+
+
+    {% elseif espacio == 'enHeadiOS' %}
+
+        {% include 'publicidad/codigos/clickioConsent.html.twig' %}
+
+    {% elseif espacio == 'cabecera' %}
+
+        {% include 'publicidad/codigos/clickioStickyTopHorizontal.html.twig' %}
+
+    {% elseif espacio == 'primerLateralIzquierdoPortada' %} 
+
+       {% include 'publicidad/codigos/clickio336.html.twig' %} 
+
+       {% include 'publicidad/codigos/clickioRotatorIzq.html.twig' %}
+
+
+     {% elseif espacio == 'primerLateralDerechoPortada' %}
+
+       {% include 'publicidad/codigos/clickio336.html.twig' %}  
+
+       {% include 'publicidad/codigos/clickioRotatorDer.html.twig' %}
+       
+
+    {% elseif espacio == 'contenedorCentral' %}
+
+         {% include 'publicidad/codigos/clickioStickyPc.html.twig' %} 
+         {% include 'publicidad/codigos/clickioSmartPc.html.twig' %} 
+
+    {% elseif espacio == 'contenedorCentralMobile' %}
+
+     {% include 'publicidad/codigos/clickioStickyMovil.html.twig' %} 
+     {% include 'publicidad/codigos/clickioSmartMovil.html.twig' %} 
+    
+    {% elseif espacio == 'pieLateralDerecho' %}
+
+         {% include 'publicidad/codigos/clickioMultiStickyDer.html.twig' %} 
+
+    {% elseif espacio == 'pieLateralIzquierdo' %}
+
+         {% include 'publicidad/codigos/clickioMultiStickyIzq.html.twig' %} 
+
+    {% endif %}
+
+
+{% endif %}
+
+

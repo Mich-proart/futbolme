@@ -1,0 +1,125 @@
+{% set adsense = 0 %}
+{% set clickio = 0 %}
+{% set themoneytizer = 0 %}
+{% set akcelo = 0 %}
+{% set amazon = 0 %}
+{% set adcash = 0 %}
+
+
+{% if adsense == 1 %}
+    {% include 'publicidad/anunciantes/cAdsense.html.twig' %}
+{% endif %}
+
+{% if clickio == 1 %}
+    {% include 'publicidad/anunciantes/cClickio.html.twig' %}
+{% endif %}
+
+{% if themoneytizer == 1 %}
+    {% include 'publicidad/anunciantes/cThemoneytizer.html.twig' %}
+{% endif %}
+
+{% if akcelo == 1 %}
+    {% include 'publicidad/anunciantes/cAkcelo.html.twig' %}
+{% endif %}
+
+{% if amazon == 1 %}
+    {% include 'publicidad/anunciantes/cAmazon.html.twig' %}
+{% endif %}
+
+{% if adcash == 1 %}
+    {% include 'publicidad/anunciantes/cAdcash.html.twig' %}
+{% endif %}
+
+
+{% if espacio is defined %}
+
+    {# <p>Este es el espacio {{ espacio }}</p> #}
+
+    {% if espacio == 'enHead' %}
+
+    {% elseif espacio == 'enHeadiOS' %}
+
+    {% elseif espacio == 'despuesDeAbrirBody' %}
+
+    {% elseif espacio == 'despuesDeAbrirBodyMobile' %}
+
+    {% elseif espacio == 'cabecera' %}
+
+    {% elseif espacio == 'contenedorCentral' %}
+
+    {% elseif espacio == 'contenedorCentralMobile' %}
+
+    {% elseif espacio == 'contenedorCentraliOS' %}
+
+    {% elseif espacio == 'primerLateralIzquierdo' %}
+
+    {% elseif espacio == 'primerLateralIzquierdoPortada' %}
+
+    {% elseif espacio == 'segundoLateralIzquierdo' %}
+       
+    {% elseif espacio == 'primerLateralDerecho' %}
+
+    {% elseif espacio == 'primerLateralDerechoPortada' %}
+       
+    {% elseif espacio == 'segundoLateralDerecho' %}
+       
+    {% elseif espacio == 'cabeceraDirectos' %}
+
+    {% elseif espacio == 'cabeceraDirectosiOS' %}
+
+    {% elseif espacio == 'entreDirectos' %}
+
+    {% elseif espacio == 'cabeceraPartidos' %}
+
+    {% elseif espacio == 'cabeceraPartidosiOS' %}
+
+    {% elseif espacio == 'entrePartidos' %}
+
+    {% elseif espacio == 'cabeceraTwitter' %}
+         
+    {% elseif espacio == 'entreTwitter' %}
+
+    {% elseif espacio == 'temporadaJornada' %}
+
+    {% elseif espacio == 'temporadaJornadaMobile' %}
+
+    {% elseif espacio == 'temporadaClasificacion' %}
+
+    {% elseif espacio == 'temporadaClasificacionMobile' %}
+
+    {% elseif espacio == 'equipoCabecera' %}
+
+    {% elseif espacio == 'equipoCabeceraMobile' %}
+
+    {% elseif espacio == 'equipoContenido' %}
+
+    {% elseif espacio == 'equipoContenidoMobile' %}
+
+    {% elseif espacio == 'partidoCabecera' %}
+
+    {% elseif espacio == 'partidoCabeceraMobile' %}
+
+    {% elseif espacio == 'partidoContenido' %}
+
+    {% elseif espacio == 'partidoContenidoMobile' %}
+
+    {% elseif espacio == 'jugadorCabecera' %}
+
+    {% elseif espacio == 'jugadorCabeceraMobile' %}
+
+    {% elseif espacio == 'jugadorContenido' %}
+
+    {% elseif espacio == 'jugadorContenidoMobile' %}
+
+    {% elseif espacio == 'pie' %}
+
+    {% elseif espacio == 'pieMobile' %}
+
+    {% elseif espacio == 'pieLateralIzquierdo' %}
+
+    {% elseif espacio == 'pieLateralDerecho' %}
+
+    {% endif %}
+
+
+{% endif %}

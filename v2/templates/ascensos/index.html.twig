@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+
+{% block contenedorIzquierda %}
+
+    {% include '__part/ultimosEventos.html.twig' %}
+
+{% endblock %}
+
+
+
+{% block contenedorCentral %}
+
+    <div class="col-12 contenedorBlancoBordesRedondeadosConPadding">
+        <div class="row">
+            <div class="col-12">
+                <h1>Ascensos y promociones para la temporada 2023-24</h1>
+            </div>
+        </div>        
+
+        <div class="row">
+            <div class="col-12" style="float:left">
+                
+                {% set categoria_id = 0 %}
+                {% set temporada_id = 0 %}
+                {% set ascenso_id = 0 %}
+
+                {% for key,ascenso in ascensos %}
+
+                    {% if ascenso.categoria_id != categoria_id %}
+
+                    {% if categoria_id !=0 %} 
+                    <div style="clear:both; height:20px"></div>
+                    </div> 
+                    {% endif %}
+
+                    <div class="col-12" style="float:left">
+
+                    <div class="col-12"><h2> {{ ascenso.categoria }} </h2></div>
+                    {% endif %}
+
+                    {% if ascenso.temporada_id != temporada_id %}
+
+                    {% if temporada_id !=0 %} 
+                    <div style="clear:both; height:20px"></div>
+                    </div> 
+                    {% endif %}
+
+                    <div class="col-lg-6 col-xs-12" style="float:left">
+
+                    {% set enlaceTorneo = full_url_for('torneo_index', {
+                            'idTorneo' : ascenso.temporada_id,
+                            'slug' : ponerGuion(ascenso.temporada)
+                        }) %}
+
+                    <a style="color:#7bdb00; font-weight:bold" href='{{ enlaceTorneo }}'>{{ ascenso.temporada }}</a>
+
+                    {% set ascenso_id = 0 %}
+                    {% endif %}
+
+                    {% if ascenso.ascenso_id != ascenso_id %}
+                    <br /><b>{{ ascenso.nombre }}</b>
+                    {% endif %}
+
+                    {% set enlaceEquipo = full_url_for('equipo_clasificacion', {
+                        'idEquipo' : ascenso.equipo_id,
+                        'slug' : ponerGuion(ascenso.equipo)
+                    }) %}
+
+
+                    {% set rutaEscudo = rutaEscudo(ascenso.club_id, ascenso.equipo_id) %}
+
+                    {% if not fileExists(rutaEscudo) %}
+                        {% set rutaEscudo = '/static/img/jugadores/NI.png' %}
+                    {% endif %}
+
+                    <br />
+                    <img src="{{ rutaEscudo }}" itemprop="logo" alt="escudo {{ ascenso.escudo }}" style="width:23px; height:25px; margin-right: 2px; margin-top: 2px; ">
+
+                    <a style="color:black;" href='{{ enlaceEquipo }}'>{{ ascenso.equipo }}</a> 
+
+                    
+                    
+
+
+                    {% set categoria_id = ascenso.categoria_id %}
+                    {% set temporada_id = ascenso.temporada_id %}
+                    {% set ascenso_id = ascenso.ascenso_id %}
+
+                {% endfor %}
+
+                </div>
+                </div>
+
+                
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+
+{% block bloqueJs %}
+
+{% endblock %}
+
+
+
+{% block contenedorDerecha %}
+
+
+{% endblock %}

@@ -1,0 +1,256 @@
+{% extends 'base.html.twig' %}
+
+
+{% block contenedorIzquierda %}
+
+    {% include '__part/ultimosEventos.html.twig' %}
+
+{% endblock %}
+
+{% if jugador.posicion == '1' %}
+
+    {% set txt_jugador = 'Portero' %}
+    {% if liga is defined and liga == 214 %}
+        {% set txt_jugador = 'Portera' %}
+    {% endif %}
+
+{% elseif jugador.posicion == '2' %}
+
+    {% set txt_jugador = 'Defensa' %}
+
+{% elseif jugador.posicion == '3' %}
+
+    {% set txt_jugador = 'Centrocampista' %}
+
+{% elseif jugador.posicion == '4' %}
+
+    {% set txt_jugador = 'Delantero' %}
+
+{% elseif jugador.posicion == '5' %}
+
+    {% set txt_jugador = 'Entrenado' %}
+
+{% else %}
+
+    {% set txt_jugador = 'Sin demarcación' %}
+
+{% endif %}
+
+{% block contenedorCentral %}
+
+    <div class="col-12 contenedorBlancoBordesRedondeadosConPadding">
+        <div class="row">
+            <div class="col-6 col-md-8 col-lg-8">
+                <h1>{{ jugador.nombre }}</h1>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-4 text-right">
+                <strong>Equipo actual</strong><br />
+                {% set enlace_equipo = full_url_for('equipo_datos', {
+                    'idEquipo' : jugador.equipoActual_id,
+                    'slug' : ponerGuion(jugador.equipoActual)
+                }) %}
+                <a class="pull-right" href="{{ enlace_equipo }}">
+                    {{ jugador.equipoActual }}
+                </a>
+            </div>
+        </div>
+
+        {% set rutaJugador = 'static/img/jugadores/jugador' ~ jugador.id ~ '.jpg' %}
+        {% if not fileExists(rutaJugador) %}
+            {% set rutaJugador = 'static/img/jugadores/NI.png' %}
+        {% endif %}
+
+        <div class="row">
+            <div class="col-5 col-md-3 col-lg-3">
+                <img width="100%" src="/{{ rutaJugador }}" alt="{{ jugador.nombre }}">
+            </div>
+            <div class="col-9">
+                <p><span style="font-weight: bold;">Nombre:</span> {{ jugador.nombre }}</p>
+                <p><span style="font-weight: bold;">Apodo:</span> {{ jugador.apodo }}</p>
+                <p><span style="font-weight: bold;">Nacimiento:</span>
+                    {% if jugador.fecha_nacimiento != '1900-01-01' %}
+                        {{ jugador.fecha_nacimiento }}
+                    {% endif %}
+                </p>
+                <p><span style="font-weight: bold;">Lugar de nacimiento:</span> {{ jugador.lugar_nacimiento }}</p>
+                <p><span style="font-weight: bold;">Peso:</span>
+                    {% if jugador.peso != 0 %}
+                        {{ jugador.peso }}
+                    {% endif %}
+                </p>
+                <p><span style="font-weight: bold;">Altura:</span>
+                    {% if jugador.altura != 0 %}
+                        {{ jugador.altura }}
+                    {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <strong>{{ txt_jugador }}</strong>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                {% if getConstante('__ES_MOBILE__') %}
+                    {% set espacio = 'jugadorCabeceraMobile' %}
+                {% else %}
+                    {% set espacio = 'jugadorCabecera' %}
+                {% endif %}
+                {% include 'publicidad/publiGestion.html.twig' %}
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px;">
+            <div class="col-12">
+                <h2 class="subtitulo">Palmarés</h2>
+                {{ jugador.palmares|nl2br }}
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px;">
+            <div class="col-12">
+                <h2 class="subtitulo">Características</h2>
+                {{ jugador.caracteristicas|nl2br }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                {% if getConstante('__ES_MOBILE__') %}
+                    {% set espacio = 'jugadorContenidoMobile' %}
+                {% else %}
+                    {% set espacio = 'jugadorContenido' %}
+                {% endif %}
+                {% include 'publicidad/publiGestion.html.twig' %}
+            </div>
+        </div>
+
+        {% if tarjetas|length > 0 %}
+
+            <table class="table">
+                <tr>
+                    Tarjetas
+                </tr>
+                {% for key, partido in tarjetas %}
+
+                    {% set enlace_partido = full_url_for('partido_index', {
+                        'idPartido' : partido.partido_id,
+                        'slug' : ponerGuion(partido.local) ~ '-' ~ ponerGuion(partido.visitante)
+                    }) %}
+
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <div class="col-6">
+                                    <a href="{{ enlace_partido }}">
+                <span class="glyphicon glyphicon-eye-open iconhover" style="cursor:pointer;
+                border: 1px solid black; padding:3px;" title="Partido entre {{ partido.local }} y {{ partido.visitante }}"></span></a>
+
+                                    {{ partido.local }}
+                                    <b>{{ partido.goles_local }}  - {{ partido.goles_visitante }}</b>
+                                    {{ partido.visitante }}<br />
+                                    <a href="/temporada.php?id={{ partido.temporada_id }}&jornada={{ partido.jornada }}">Jornada {{ partido.jornada }}</a>
+                                </div>
+                                <div class="col-6">
+
+                                    {% set minuto = partido.minuto|slice(-2) %}
+                                    {% set parte = partido.minuto|slice(0,1) %}
+
+                                    {% if parte == 1 %}
+                                        1ª parte
+                                    {% else %}
+                                        2ª parte
+                                    {% endif %}
+
+                                    {{ minuto }}
+
+                                    {% if partido.tipo == 0 %}
+                                        <img src="/static/img/ta.png" height="17" style="margin-bottom:3px"></span>
+                                    {% endif %}
+
+                                    {% if partido.tipo == 1 %}
+                                        <img src="/static/img/ta2.png" height="17" style="margin-bottom:3px"></span>
+                                    {% endif %}
+
+                                    {% if partido.tipo == 5 %}
+                                        <img src="/static/img/tr.png" height="17" style="margin-bottom:3px"></span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+
+                {% endfor %}
+            </table>
+
+        {% endif %}
+
+        {% if golesPartido|length > 0 %}
+
+            <table class="table">
+                <tr>
+                    Goles
+                </tr>
+                {% for key, partido in golesPartido %}
+
+                    {% set enlace_partido = full_url_for('partido_index', {
+                        'idPartido' : partido.partido_id,
+                        'slug' : ponerGuion(partido.local) ~ '-' ~ ponerGuion(partido.visitante)
+                    }) %}
+
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <div class="col-6">
+                                    <a style="color: #434343;" href="{{ enlace_partido }}" title="Partido entre {{ partido.local }} y {{ partido.visitante }}">{{ partido.local }}
+                                        <b>{{ partido.goles_local }}  - {{ partido.goles_visitante }}</b>
+                                        {{ partido.visitante }}</a>
+
+                                    <br />
+                                    <a style="color: #434343;" href="/temporada.php?id={{ partido.temporada_id }}&jornada={{ partido.jornada }}">Jornada {{ partido.jornada }}</a>
+                                </div>
+                                <div class="col-6">
+                                    {% set cadena = desglosarTexto(partido.observaciones) %}
+                                    {% set gl = cadena.1|split('<br />') %}
+                                    {% for vl in gl %}
+                                        {% if jugador.apodo|trim in vl %}
+                                            {{ vl|raw }}<br />
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% set gl = cadena.2|split('<br />') %}
+                                    {% for vl in gl %}
+                                        {% if jugador.apodo|trim in vl %}
+                                            {{ vl|raw }}<br />
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+
+                {% endfor %}
+            </table>
+
+        {% endif %}
+
+    </div>
+
+{% endblock %}
+
+{% block bloqueJs %}
+
+
+
+{% endblock %}
+
+
+
+{% block contenedorDerecha %}
+
+
+{% endblock %}

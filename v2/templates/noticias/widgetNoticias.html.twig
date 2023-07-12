@@ -1,0 +1,70 @@
+{% if longitudNoticiaWidget is not defined %}
+    {% set longitudNoticiaWidget = 150 %}
+{% endif %}
+
+<div class="col-12 contenedorBlancoBordesRedondeadosConPadding" style="padding-top: 10px; padding-bottom: 0px;">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h4 class="titularSidebar"><a style="color:#434343;" href="{{ full_url_for('noticias') }}">{{ tituloWidget }}</a></h4>
+        </div>
+        {% for noticia in noticiasWidget %}
+            <div class="col-12" style="border-top: 1px solid #E9E9E9; padding-top: 5px; padding-bottom: 5px;">
+                {% set enlaceNoticia = full_url_for('noticia_individual', {
+                    'slug': ponerGuion(noticia.titulo),
+                    'idNoticia': noticia.id,
+                }) %}
+
+                <a style="text-decoration: underline; color: #7bdb00; line-height: 25px; font-weight: bold;" href="{{ enlaceNoticia }}">{{ noticia.titulo }}</a>
+
+                {% set palabras = noticia.descripcion|striptags|split(' ') %}
+                {% set descripcionCorta = '' %}
+                {% set largoDescripcionCorta = 0 %}
+
+                {% for palabra in palabras %}
+                    {% if largoDescripcionCorta < longitudNoticiaWidget %}
+                        {% set descripcionCorta = descripcionCorta ~ palabra ~ ' ' %}
+                        {% set largoDescripcionCorta = descripcionCorta|length %}
+                    {% endif %}
+                {% endfor %}
+
+                <p style="margin-bottom: 3px;">
+                    {{ descripcionCorta|raw }}...
+                </p>
+
+
+                <div class="row">
+                    <div class="col-4">
+                        <p class="text-left" style="font-family: Roboto;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-weight: bold;
+                            font-size: 12px;
+                            line-height: 24px;
+                            color: #B9BBBE;">
+                            {{ noticia.fecha|date('d/m/Y') }}
+                        </p>
+                    </div>
+                    <div class="col-8">
+                        <p class="text-right">
+                            <a href="{{ enlaceNoticia }}" style="text-decoration: underline; color: #626262; font-weight: bold;">Leer noticia completa</a>
+                            <a href="{{ enlaceNoticia }}">
+                        <span style="background: #626262;
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        display: inline-block;
+        text-align: center;
+    border-radius: 3px 3px 3px 3px;
+        -moz-border-radius: 3px 3px 3px 3px;
+        -webkit-border-radius: 3px 3px 3px 3px;">
+                            <img src="/static/img/enlace-partido.svg" alt="">
+                        </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        {% endfor %}
+    </div>
+</div>

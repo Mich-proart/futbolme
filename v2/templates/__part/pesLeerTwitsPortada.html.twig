@@ -1,0 +1,292 @@
+{% if equiposTw is not defined %}
+    {% set equiposTw = [] %}
+{% endif %}
+
+{% if titol is not defined %}
+    {% set titol = 'Visto en twitter' %}
+{% endif %}
+
+{% set fechaActual = hoyDateTime() %}
+{% set fechaActualFormatada = fechaActual|date('Y-m-d H:i:s') %}
+
+{% if filtro is not defined %}
+    {% set filtro = 0 %}
+{% endif %}
+
+{% if tiempoAcorrer is not defined %}
+    {# {% set tiempoAcorrer = 3600 %} #}
+    {% set tiempoAcorrer = 86400 %}
+{% endif %}
+
+{% if nivel is not defined %}
+    {% set nivel = '..' %}
+{% endif %}
+
+{% set equiposTw = equiposTw|slice(0, 20) %}
+{% set equiposTw = shuffle(equiposTw) %}
+
+{% if getConstante('__APP__') == 1 %}
+
+{% endif %}
+
+{% if getConstante('__ES_MOBILE__') %}
+    <div id="myContainer1" style="width:100%;margin-left: auto;margin-right: auto; margin-bottom:10px;"> </div>
+{% endif %}
+
+<div id="r89-taboola" class="col-12"></div>
+<div class="{% if esPaginaTorneo is defined %}col-12{% else%}row{% endif %} contenedorActualidadEnTwitter" style="clear:both;display: block; margin-top: 15px;">
+    <div class="row" style="display:block;">
+        <div class="col-12">
+            <h4 class="contenedorActualidadEnTwitterTitulo">
+                {{ titol }} <img style="margin-left: 5px;" src="{{ full_url_for('home') }}static/img/icono-twitter-mini.svg" alt="">
+            </h4>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                {% set espacio = 'cabeceraTwitter' %}
+                {% include 'publicidad/publiGestion.html.twig' %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 contenidoActualidadEnTwitter">
+        {% set contador = 0 %}
+        {% if categoria_id is not defined %}
+            {% set categoria_id = 0 %}
+        {% endif %}
+
+        {% for key,value in equiposTw %}
+            {% if value.twitter is not defined %}
+                {% set value = value|merge({'twitter': 0}) %}
+            {% endif %}
+
+            {% if value.idPais is not defined %}
+                {% set value = value|merge({'idPais': 60}) %}
+            {% endif %}
+
+            {% if value.seleccion is defined %}
+                 {% set seleccion = value.seleccion %}
+            {% else %}
+                {% set seleccion = 0 %}
+            {% endif %}
+
+            {% if seleccion == 0 %}
+                {% set escudo = rutaEscudo(value.club_id, value.id) %}
+            {% else %}
+                {% set escudo = rutaEscudoPais(value.idPais) %}
+            {% endif %}
+
+            {% if not fileExists(escudo) %}
+                {% set escudo = '/static/img/jugadores/NI.png' %}
+            {% endif %}
+
+
+            {% set ficheroJsonTwits = nivel ~ '/json/twits/' ~ value.id ~ '_twits.json' %}
+
+            {% if not fileExists(ficheroJsonTwits) %}
+                {{ returnTweet(value.twitter, value.id) }}
+            {% endif %}
+
+
+
+            {% if fileExists(ficheroJsonTwits) %}
+
+                {% set tiempo1 = time() %}
+                {% set tiempo2 = filemtime(ficheroJsonTwits) %}
+
+                {% set segundos = tiempo1 - tiempo2 %}
+
+                {% if segundos > tiempoAcorrer %}
+                    {{ returnTweet(value.twitter, value.id) }}
+                {% endif %}
+
+                {% set json = fileGetContents(ficheroJsonTwits) %}
+                {% set twitterArray = jsonDecode(json, true) %}
+
+
+                {% if twitterArray|length > 2 %}
+
+                    {% set hay = 0 %}
+                    {% set break = false %}
+
+                    {% for k,txt in twitterArray %}
+                        {% set continuar = false %}
+
+                        {% if txt.created_at is defined %}
+
+                            {% if txt.retweeted_status.text is defined %}
+
+                                {% set fecha2 = stringToDateTime(txt.retweeted_status.created_at)|date('Y-m-d H:i:s') %}
+                                {% set tx = txt.retweeted_status.text %}
+                                {% set id_str = txt.retweeted_status.id_str %}
+
+                            {% else %}
+
+                                {% set fecha2 = stringToDateTime(txt.created_at)|date('Y-m-d H:i:s') %}
+                                {% set tx = txt.text %}
+                                {% set id_str = txt.id_str %}
+
+                            {% endif %}
+
+                            {% set d = diferenciaHoras(fechaActualFormatada, fecha2) %}
+
+                            {% if d.d < 2 and d.m == 0 %}
+
+                                {% if filtro == 1 %}
+
+                                    {% set buscamos = "traspas" %}
+                                    {% if buscamos not in tx %}
+
+                                        {% set buscamos = "cedido" %}
+                                        {% if buscamos not in tx %}
+
+                                            {% set buscamos = "fichaje" %}
+                                            {% if buscamos not in tx %}
+
+                                                {% set buscamos = "alta" %}
+                                                {% if buscamos not in tx %}
+
+                                                    {% set buscamos = "baja" %}
+                                                    {% if buscamos not in tx %}
+
+                                                        {% set buscamos = "abon" %}
+                                                        {% if buscamos not in tx %}
+
+                                                            {% set buscamos = "temporada" %}
+                                                            {% if buscamos not in tx %}
+                                                                {% set continuar = true %}
+                                                            {% endif %}
+
+                                                        {% endif %}
+
+
+                                                    {% endif %}
+
+
+
+                                                {% endif %}
+
+
+
+                                            {% endif %}
+
+
+                                        {% endif %}
+
+
+                                    {% endif %}
+
+
+
+                                {% endif %}
+
+
+                            {% endif %}
+
+
+                            {% if contador == 0 %}
+                                {% set hay = 1 %}
+                                {% set contador = contador + 1 %}
+                                {% set pgEquipo = '/resultados-directo/equipo/' ~ ponerGuion(value.equipo) ~ '/' ~ value.id %}
+
+
+                                <div class="row filaEquipoTwitter">
+
+                                    <div class="col-12 filaEquipoTwitterContenedorNombreEquipo">
+                                        <a href="{{ pgEquipo }}">
+                                            <h4 class="nombreEquipoTwitter">{{ value.equipo }}</h4>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-12 col-md-3 contenedorLateralTwitterEquipo">
+
+                                        <div class="d-none">
+                                            {{ value.idPais }}
+                                        </div>
+
+                                        <a class="twitterContenedorEscudoEquipo" href="{{ pgEquipo }}">
+                                            <img class="escudo_ind" src="{{ escudo }}" alt="escudo">
+                                        </a>
+
+                                        {% if value.club_id is defined %}
+
+                                            {% set enlaces = enlaceAleatorioAmazon(value.club_id) %}
+{#
+                                            {% if enlaces is not empty %}
+                                                {% set enlaces = shuffle(enlaces) %}
+                                                {% set enlace = enlaces.0.enlace %}
+
+                                                <div class="pull-right">
+                                                    {% include 'publicidad/amazon.html.twig' %}
+                                                </div>
+                                            {% endif %}
+
+#}
+                                        {% endif %}
+
+                                    </div>
+                                    <div class="col-12 col-md-9">
+
+
+                            {% endif %}
+
+                            {% if contador == 1 and k == 2 %}
+                                <div class="row">
+                                    <div class="col-12">
+                                        {% set espacio = 'entreTwitter' %}
+                                        {% include 'publicidad/publiGestion.html.twig' %}
+                                    </div>
+                                </div>
+                            {% endif %}
+
+
+                            {% if k == 5 %}
+                                {% set break = true %}
+                            {% endif %}
+
+
+                            {% set texto = convertirUrls(tx) %}
+
+
+                            {% if texto is not null and not break %}
+
+                                <div class="row">
+                                    <div class="col-12 filaMensajeTwitter">
+                                        <span class="horaPublicacionTwitter">
+                                            {{ fecha2|slice(-8) }}
+                                        </span>
+                                        <span style="color: #83ACAC;">-</span>
+                                        {{
+                                            texto|replace({
+                                                '<a': '<a target="_blank"',
+                                                '""': '"',
+                                                '" "': '"',
+                                            })
+                                            |raw
+                                        }}
+                                    </div>
+                                </div>
+
+                            {% endif %}
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                    {% if hay == 1 %}
+                            </div>
+                        </div>
+                        {% set hay = 0 %}
+                        {% set contador = 0 %}
+                    {% endif %}
+
+                {% endif %}
+
+
+            {% endif %}
+
+
+        {% endfor %}
+    </div>
+</div>

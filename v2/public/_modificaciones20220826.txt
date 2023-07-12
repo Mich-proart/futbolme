@@ -1,0 +1,22 @@
+Escudo Mirandilla - 117
+app/twigFunctions.php
+linea 174 - if ($equipo_id!=718 && $equipo_id!=672 && $equipo_id!=117){
+
+public/panelBack/includes/funciones.php
+linea 96 - if ($equipo_id!=718 && $equipo_id!=672 && $equipo_id!=117){
+
+cambiar TERCERA DIVISIÓN por TERCERA FEDERACION
+public/panelCargador/funcionesV2.php
+linea 1127 - if (substr($item['nombre'], 0, 19)=='TERCERA FEDERACIÓN'){
+
+Quitar FOOTTERS
+src/Application/Controllers/TemporadaControllers.php
+/*if (3055 == $temporada_id) {
+    //$nombreTorneo = 'PRIMERA DIVISIÓN RFEF Footters - GRUPO 1';
+    $nombreTorneo = 'PRIMERA FEDERACIÓN GRUPO 1';
+}
+
+if (3056 == $temporada_id) {
+    //$nombreTorneo = 'PRIMERA DIVISIÓN RFEF Footters - GRUPO 2';
+    $nombreTorneo = 'PRIMERA FEDERACIÓN GRUPO 2';
+}*/

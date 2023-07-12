@@ -1,0 +1,79 @@
+
+<script type='text/javascript'>
+    $(function () {
+        $('#c{{ contenedor }}').highcharts({
+            chart: {
+                type: '{{ tipo }}'
+            },
+            title: {
+                text: null
+            },
+            credits: {
+                enabled: false
+            },
+            subtitle: {
+                text: '{{ subtitulo }}',
+                floating: true,
+                align: 'left',
+                verticalAlign: 'bottom',
+                y: 10
+            },
+
+
+        {% if titulo is not null %}
+            legend: {
+                layout: 'vertical',
+                    align: 'left',
+                    verticalAlign: 'top',
+                    x: 100,
+                    y: 10,
+                    floating: true,
+                    borderWidth: 1
+            },
+        {% else %}
+
+            legend: { enabled: false },
+
+        {% endif %}
+
+        xAxis: {
+            categories: [{{ a|raw }}]
+        },
+        yAxis: {
+            title: {
+                text: null
+            },
+            min: {{ minimo }},
+            max: {{ maximo }},
+            startOnTick: false,
+                tickInterval: 1
+
+        },
+        tooltip: {
+            formatter: function () {
+                return '<b>'+ this.point.name +'</b><br/>{{ textoVY }}: '  + this.y ;
+            }
+        },
+
+        exporting: { enabled: false },
+
+
+        series: [{
+                name: '{{ textoSerie1 }}',
+                data: {{ b|raw }}
+            }
+
+        {% if c is defined %}
+            ,
+                {
+                    name: '{{ textoSerie2|raw }}',
+                    data: {{ c|raw }}
+                }
+
+        {% endif %}
+        ]
+        });
+    });
+</script>
+
+

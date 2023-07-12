@@ -1,0 +1,105 @@
+
+
+
+DESPLEGABLE DEBAJO DEL CAMPO DE TEXTO
+
+<!--FinderAnt -->
+<script>
+  var finderant={};
+  finderant.parameters={
+    se: '33fb4c8afabca8f590bc84f3c7b73286',
+    inputSelector: 'input#input_search',
+    layer: 'dropdown',
+    mtop: 0,
+    mleft: -250,
+    width: 500,
+  };
+</script>
+<script>
+  !function(t,n,r,a){e=n.createElement(r),j=n.getElementsByTagName(r)[0],e.async=1,e.src=a,j.parentNode.insertBefore(e,j)}(window,document,"script","https://finderant-static.s3-accelerate.amazonaws.com/js/finderant/v1.9.min.js");
+</script>
+<!-- End FinderAnt -->
+
+
+
+CAPA FLOTANTE
+
+<!--FinderAnt -->
+<script>
+  var finderant={};
+  finderant.parameters={
+    se: '33fb4c8afabca8f590bc84f3c7b73286',
+    inputSelector: 'input#input_search',
+    layer: 'float',
+    viewMode: 'list',
+    mtop: 0,
+    mleft: 0,
+    percentWidth: 75
+  };
+</script>
+<script>
+  !function(t,n,r,a){e=n.createElement(r),j=n.getElementsByTagName(r)[0],e.async=1,e.src=a,j.parentNode.insertBefore(e,j)}(window,document,"script","https://finderant-static.s3-accelerate.amazonaws.com/js/finderant/v1.9.min.js");
+</script>
+<!-- End FinderAnt -->
+
+
+<!--FinderAnt -->
+<script>
+  var finderant={};
+  finderant.parameters={
+    se: '33fb4c8afabca8f590bc84f3c7b73286',
+    inputSelector: 'input#input_search',
+    layer: 'float',
+    viewMode: 'grid',
+    mtop: 0,
+    mleft: 0,
+    percentWidth: 75
+  };
+</script>
+<script>
+  !function(t,n,r,a){e=n.createElement(r),j=n.getElementsByTagName(r)[0],e.async=1,e.src=a,j.parentNode.insertBefore(e,j)}(window,document,"script","https://finderant-static.s3-accelerate.amazonaws.com/js/finderant/v1.9.min.js");
+</script>
+<!-- End FinderAnt -->
+
+
+
+EMBEBIDO DENTRO DEL CONTENEDOR DE LA PAGINA
+
+<!--FinderAnt -->
+<script>
+  var finderant={};
+  finderant.parameters={
+    se: '33fb4c8afabca8f590bc84f3c7b73286',
+    inputSelector: 'input#input_search',
+    layer: 'embedded',
+    containerId: 'wrapper',
+    mtop: 0,
+    mleft: -250,
+    width: 500,
+  };
+</script>
+<script>
+  !function(t,n,r,a){e=n.createElement(r),j=n.getElementsByTagName(r)[0],e.async=1,e.src=a,j.parentNode.insertBefore(e,j)}(window,document,"script","https://finderant-static.s3-accelerate.amazonaws.com/js/finderant/v1.9.min.js");
+</script>
+<!-- End FinderAnt -->
+
+
+
+<!--FinderAnt -->
+<script>
+  var finderant={};
+  finderant.parameters={
+    se: '33fb4c8afabca8f590bc84f3c7b73286',
+    inputSelector: 'input#input_search',
+    layer: 'embedded',
+    containerId: 'content-wrapper',
+    viewMode: 'grid',
+    mtop: 0,
+    mleft: -250,
+    width: 500,
+  };
+</script>
+<script>
+  !function(t,n,r,a){e=n.createElement(r),j=n.getElementsByTagName(r)[0],e.async=1,e.src=a,j.parentNode.insertBefore(e,j)}(window,document,"script","https://finderant-static.s3-accelerate.amazonaws.com/js/finderant/v1.9.min.js");
+</script>
+<!-- End FinderAnt -->

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block titleTag %}{{ titleTag }}{% endblock %}
+{% block metaDescripcion %}{{ metaDescripcion }}{% endblock %}
+{% block metaDescripcionOG %}{{ metaDescripcion }}{% endblock %}
+
+{% block contenedorIzquierda %}
+
+    {% include '__part/ultimosEventos.html.twig' %}
+
+{% endblock %}
+
+{% block contenedorCentral %}
+
+
+    {% if es_seleccion == 0 and (es_nacional == 1 or visible > 4) %}
+
+        {% include 'equipo/equipo1.html.twig' %}
+
+    {% else %}
+
+        {% if es_seleccion > 0 %}
+
+            {% include 'equipo/equipoSeleccion.html.twig' %}
+
+        {% else %}
+
+            {% include 'equipo/equipoNonacional.html.twig' %}
+
+        {% endif %}
+
+    {% endif %}
+
+
+{% endblock %}
+
+{% block bloqueJs %}
+
+
+
+{% endblock %}
+
+
+
+{% block contenedorDerecha %}
+
+
+{% endblock %}

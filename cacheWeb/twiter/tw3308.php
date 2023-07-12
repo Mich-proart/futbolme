@@ -1,0 +1,2 @@
+<a class="twitter-timeline" rel="nofollow" target="_blank" href="https://twitter.com/Sentiment_Rojet" data-widget-id="661452946622783488">Tweets por el @Sentiment_Rojet.</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>

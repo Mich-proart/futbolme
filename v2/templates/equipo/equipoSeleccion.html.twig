@@ -1,0 +1,68 @@
+<div class="col-12">
+    <div class="row contenedorBlancoBordesRedondeadosConPadding">
+        <div class="col-3">
+            <img src="/static/img/paises/banderas/ban{{ pais_id }}.png" class="img-rounded">
+        </div>
+        <div class="col-9">
+            <h1>{{ equipotxt }}</h1>
+            <h2 class="subtitulo">{{ categoriatxt }}</h2>
+        </div>
+    </div>
+</div>
+
+{% set torneoDestacado = 238 %}
+{% set ePartidos = XequipoPartidos(equipo_id) %}
+
+{% set torneos = [] %}
+{% set porTorneos = [] %}
+
+{% if ePartidos|length > 0 %}
+
+    {% for key, value in ePartidos.partidos %}
+        {% set torneos = anadirAArrayKeyDoble(torneos, value.temporada_id, 'tipo_torneo', value.tipo_torneo) %}
+        {% set torneos = anadirAArrayKeyDoble(torneos, value.temporada_id, 'nombreTorneo', value.nombreTorneo) %}
+        {% set porTorneos = anadirAArrayKeyDoble(porTorneos, value.temporada_id, value.id, value) %}
+    {% endfor %}
+
+{% endif %}
+
+
+
+{% if torneos|length > 0 %}
+
+    <div class="tab-content">
+        {% set contador = 0 %}
+        {% for key1, value in torneos %}
+
+            {% if key1 != 231 %}
+                <div class="panel panel-default">
+
+                    {% set urlTorneo = full_url_for('torneo_index', {
+                        'slug' : ponerGuion(value.nombreTorneo.0),
+                        'idTorneo' : key1,
+                    }) %}
+
+                    <div class="row">
+                        <div class="col-12 nombreDiaPartido" style="line-height: 30px; clear: both;">
+                            <a style="color: #212529;" class="boldfont pull-right" href="{{ urlTorneo }}">Ir a {{ value.nombreTorneo.0 }}</a>
+                        </div>
+                    </div>
+
+                    {% for k, partidos in porTorneos[key1] %}
+                        {% set idt = key1 %}
+                        {% set pagina = 'seleccion' %}
+
+                        {% for partido in partidos %}
+                            {% set partido = prepararPartido(partido) %}
+                            {% include 'index/__part/filaPartido.html.twig' %}
+                        {% endfor %}
+
+                    {% endfor %}
+
+                </div>
+            {% endif %}
+
+        {% endfor %}
+    </div>
+
+{% endif %}

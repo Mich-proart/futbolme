@@ -1,0 +1,155 @@
+<div class="col-12">
+    <div class="row">
+        <div class="col-12" style="padding: 0px;">
+            {% set promocion = 0 %}
+
+            {% if c_directos > 0 %}
+                <div class="row">
+                    <div class="col-12">
+                    <span class="actua pull-right badge" style="font-weight:100;">
+                        Actualizado a las {{ hoyDateTime()|date('H:i:s') }}
+                    </span>
+
+                        {% include 'index/__part/contenidoDirecto.html.twig' %}
+
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {#
+    {% include 'temporada/__content/__part/eliminatorioFases.html.twig' %}
+    #}
+
+    {% include 'publicidad/cuerpo03.html.twig' %}
+
+    {% for value in fasesSQL %}
+        {% if partidos[value.fase_id]|length > 0 %}
+
+            <div class="row">
+                <div class="col-12 nombreDiaPartido">
+                    {{ value.nombre }}
+                </div>
+            </div>
+
+        {% endif %}
+
+        {% if value.tipo_eliminatoria != 3 %}
+
+            {% set f = '' %}
+            {% set colorFila = 'white' %}
+            {% set j = 0 %}
+
+            {% for key, partido in partidos[value.fase_id] %}
+                {% if partido.id is defined %}
+                    {% set colorL = '' %}
+                    {% if partido.local == 'España' %}
+                        {% set colorL = 'background-color:#F4FA58' %}
+                    {% endif %}
+
+                    {% set colorV = '' %}
+                    {% if partido.visitante == 'España' %}
+                        {% set colorV = 'background-color:#F4FA58' %}
+                    {% endif %}
+
+                    {% set coletilla = '' %}
+
+                    {% set enlace_partido = partido.pgPartido %}
+
+                    {% set enlace_local = partido.pgLocal %}
+                    {% set enlace_visitante = partido.pgVisitante %}
+
+                    {% set hora_prevista = partido.hora_prevista %}
+
+
+                    {% if valorJornada == 0 and partido.jornada != j %}
+                        <div class="row">
+                            <div class="col-12 nombreDiaPartido">
+                                {{ partido.fase }}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-12" style="padding: 0px;">
+                            {% include 'index/__part/filaPartido.html.twig' %}
+                        </div>
+                    </div>
+
+                    {% set f = partido.fecha %}
+                    {% set j = partido.jornada %}
+
+                {% endif %}
+            {% endfor %}
+
+        {% else %}
+
+            {% set p = [] %}
+
+            {% for key, partido in partidos[value.fase_id] %}
+                {% set p = anadirAArrayKeyDoble(p, partido.jornada, partido.grupo_id, partido) %}
+            {% endfor %}
+
+            {% for fase, gruposFase in grupos %}
+
+                {% for id, grupo in gruposFase %}
+                    <div class="row">
+                        <div class="col-12 nombreDiaPartido">
+                            {{ grupo.nombre }}
+                        </div>
+                    </div>
+
+                    {% if p[fase][id] is defined %}
+
+                        {% for key, partido in p[fase][id] %}
+                            {% set equipo_id = 10000 %}
+                            {% set partido = anadirAArrayKey(partido, 'nombreTorneo', '') %}
+                            <div class="row">
+                                <div class="col-12" style="padding: 0px;">
+                                    {% include 'index/__part/filaPartido.html.twig' %}
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        <div class="row">
+                            <div class="col-12" style="height: 35px;">
+
+                            </div>
+                        </div>
+
+                        {% set clasificacionGrupo = X2generarClasificacion(temporada_id, 2, fase, id) %}
+
+
+                        {% include 'temporada/__content/__part/eliminatorioClasificacion.html.twig' %}
+
+                    {% endif %}
+
+                {% endfor %}
+
+            {% endfor %}
+
+
+        {% endif %}
+    {% endfor %}
+
+
+    {% set equiposTw2 = [] %}
+
+    {% for key, value in equiposEnJuego %}
+        {% set break = 0 %}
+        {% for v in equiposTw %}
+            {% if v.id == value and not break %}
+                {% set equiposTw2 = anadirAArray(equiposTw2, v) %}
+                {% set break = 1 %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+
+    {% set equiposTw = equiposTw2 %}
+
+    {% if equiposTw is defined %}
+        {% set filtro = 0 %}
+        {% include '__part/pesLeerTwitsPortada.html.twig' %}
+    {% endif %}
+</div>

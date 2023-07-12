@@ -1,0 +1,213 @@
+<div class="col-12">
+
+    <ul class="nav nav-tabs nopadding celestebox row" role="tablist" id="menuEquipo">
+        {% if es_nacional == 1 %}
+            <li class="{% if modelo == 'Datos' %}activa{% endif %}">
+                <a class="btn btn-secondary" href="{{ full_url_for('equipo_datos', {
+                    'idEquipo' : idEquipo,
+                    'slug' : slug
+                }) }}">Datos</a>
+            </li>
+        {% endif %}
+
+        {% if totalPartidos > 0 %}
+            <li class="{% if modelo == 'Calendario' %}activa{% endif %}">
+                <a class="btn btn-secondary" href="{{ full_url_for('equipo_calendario', {
+                    'idEquipo' : idEquipo,
+                    'slug' : slug
+                }) }}">Calendario</a class="btn btn-secondary">
+            </li>
+        {% endif %}
+
+        {% if liga > 0 %}
+            <li class="{% if modelo == 'Clasificacion' %}activa{% endif %}">
+                <a class="btn btn-secondary" href="{{ full_url_for('equipo_clasificacion', {
+                    'idEquipo' : idEquipo,
+                    'slug' : slug
+                }) }}">Clasificación</a>
+            </li>
+        {% endif %}
+
+        
+
+
+        {% if (division >0 and division < 6) or liga == 214 %}
+            <li class="{% if modelo == 'Plantilla' %}activa{% endif %}">
+                <a class="btn btn-secondary" href="{{ full_url_for('equipo_plantilla', {
+                    'idEquipo' : idEquipo,
+                    'slug' : slug
+                }) }}">Plantilla</a>
+            </li>
+        {% endif %}
+
+        
+
+        {% if (division >0 and division < 4) or liga == 214 %}
+            <li class="{% if modelo == 'Fichajes' %}activa{% endif %}">
+                <a class="btn btn-secondary" href="{{ full_url_for('equipo_fichajes', {
+                    'idEquipo' : idEquipo,
+                    'slug' : slug
+                }) }}">Fichajes</a>
+            </li>
+        {% endif %}
+
+        {% if equipos is defined and equipos|length > 1 %}
+            <li class="{% if modelo == 'Equipos' %}activa{% endif %}">
+                <a class="btn btn-secondary" href="{{ full_url_for('equipo_equipos', {
+                    'idEquipo' : idEquipo,
+                    'slug' : slug
+                }) }}">Equipos</a>
+            </li>
+        {% endif %}
+
+
+
+        
+        {#
+        {% if posiciones|length > 0 %}
+            <li class="{% if modelo == 'Historico' %}activa{% endif %}">
+                <a class="btn btn-secondary" href="{{ full_url_for('equipo_historico', {
+                    'idEquipo' : idEquipo,
+                    'slug' : slug
+                }) }}">Histórico</a>
+            </li>
+        {% endif %}
+        #}
+
+
+        {% set miFutbolme = 0 %}
+        {% if liga > 0 %}
+
+        {% endif %}
+
+        {#
+        foreach ($_SESSION['equipos'] as $value) {
+            if (isset($value['equipo_id']) && $equipo_id==$value['equipo_id']){ $miFutbolme=1; }
+            }
+        #}
+
+        {#
+        {% if miFutbolme == 0 %}
+            <li class="text-center boldfont hide">
+                <a class="btn btn-secondary" href="/widgets.php?equipo_id=<?php echo $equipo_id; ?>">Widgets</a>
+            </li>
+            {# MIFUTBOLME
+            <li class="text-center boldfont">
+                <a class="btn btn-secondary" href="/src/usuarios/anadirEquipoFavoritoUrl.php?equipo_id=<?php echo $equipo_id; ?>">Agregar a Mi futbolme</a>
+            </li>
+            #}
+        {#
+        {% endif %}
+        #}
+    </ul>
+
+    <div id="contenedorSuperiorEquipo" class="row contenedorBlancoBordesRedondeados">
+        <div class="col-8">
+            <h1>{{ equipotxt }}</h1>
+            <h2 class="subtitulo">{{ categoriatxt }}</h2>
+        </div>
+
+        <div class="col-4 text-center">
+            {% set rutaEscudo = rutaEscudo(club_id, equipo_id) %}
+            <img src="{{ rutaEscudo }}" class="escudo_ind" alt="escudo">
+        </div>
+
+        <div class="col-12">
+
+            {% if getConstante('__ES_MOBILE__') %}
+                {% set espacio = 'equipoCabeceraMobile' %}
+            {% else %}
+                {% set espacio = 'equipoCabecera' %}
+            {% endif %}
+            {% include 'publicidad/publiGestion.html.twig' %}
+
+        </div>
+
+    </div>
+
+
+    <div class="clear"></div>
+
+    <div class="col-12">
+        {% if getConstante('__ES_MOBILE__') %}
+            {% set espacio = 'equipoContenidoMobile' %}
+        {% else %}
+            {% set espacio = 'equipoContenido' %}
+        {% endif %}
+        {% include 'publicidad/publiGestion.html.twig' %}
+    </div>
+
+    <div class="col-12 text-center hide">
+
+        {% if amazon|length > 0 %}
+
+            {#
+                CRISTIAN - A TERMINAR
+            #}
+
+            {% if modelo == 'Tienda' %}
+
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <span style="vertical-align: inherit;" class="boldfont">Pulsa para ver todas las categorías de la tienda</span>
+                </button>
+
+                <div class="dropdown-menu" x-placement="bottom-start">
+
+                    {% for key,value in amazon %}
+
+
+
+                    {% endfor %}
+
+                </div>
+
+
+            {% else %}
+
+
+
+            {% endif %}
+
+        {% endif %}
+
+    </div>
+
+    <div class="clear"></div>
+
+</div>
+
+{% if modelo == 'Datos' %}
+
+    {% include 'equipo/__part/pesDatos.html.twig' %}
+
+{% elseif modelo == 'Calendario' %}
+
+    {% include 'equipo/__part/pesCalendario.html.twig' %}
+
+{% elseif modelo == 'Clasificacion' %}
+
+    {% include 'equipo/__part/pesClasificacion.html.twig' %}
+
+{% elseif modelo == 'Plantilla' %}
+
+    {% include 'equipo/__part/pesPlantilla.html.twig' %}
+
+{% elseif modelo == 'Tienda' %}
+
+{% elseif modelo == 'Fichajes' %}
+
+    {% include 'equipo/__part/pesFichajes.html.twig' %}
+
+{% elseif modelo == 'Goleadores' %}
+
+{% elseif modelo == 'Equipos' %}
+
+    {% include 'equipo/__part/pesEquipos.html.twig' %}
+
+{% elseif modelo == 'Historico' %}
+
+{% elseif modelo == 'Anterior' %}
+
+{% elseif modelo == 'Twitter' %}
+
+{% endif %}

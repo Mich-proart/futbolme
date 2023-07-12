@@ -1,0 +1,155 @@
+
+<div class="row" style="width: 100%;">
+    <div class="col-12">
+        <table class="col-12">
+        {% set cambioTiempo = 0 %}
+        {% set contador = 0 %}
+
+        {% for k, GolT in todoOk %}
+            {% set txtMinuto = GolT.minuto|slice(1) %}
+
+            {% if txtMinuto|length < 2 %}
+                {% set txtMinuto = '&nbsp;&nbsp;' ~ txtMinuto %}
+            {% endif %}
+
+            {% set tiempo = GolT.minuto|slice(0, 1) %}
+
+            {% if contador == 0 %}
+                <tr style="height:40px;">
+                    <td colspan="2" class="text-center">
+                        <h3 class="subtitulo">
+                            Primer Tiempo
+                        </h3>
+                    </td>
+                </tr>
+            {% endif %}
+
+            {% if cambioTiempo == 0 and tiempo == 2 %}
+                <tr style="height:40px;">
+                    <td colspan="2" class="text-center">
+                        <h3 class="subtitulo">
+                            Segundo Tiempo
+                        </h3>
+                    </td>
+                </tr>
+                {% set cambioTiempo = 1 %}
+            {% endif %}
+
+            {% set txtGol = '' %}
+            {% set balon = '/static/img/balon.png' %}
+
+            {% set golTipo = GolT.esLocal %}
+
+            {% if GolT.tipo == 10 %}
+                {% set balon = '/static/img/balonR.png' %}
+                {% if GolT.esLocal == 1 %}
+                    {% set golTipo = 0 %}
+                {% endif %}
+                {% if GolT.esLocal == 0 %}
+                    {% set golTipo = 1 %}
+                {% endif %}
+            {% endif %}
+
+            {% if GolT.tipo == 11 %}
+                {% set balon = '/static/img/balonG.png' %}
+            {% endif %}
+
+            {% if GolT.minuto > 200 %}
+                {% set txtTiempo = '2ºT' %}
+                {% if txtMinuto > 90 %}
+                    {% set txtMinuto = '90+' ~ (txtMinuto - 90) %}
+                {% endif %}
+            {% else %}
+                {% set txtTiempo = '1ºT' %}
+                {% if txtMinuto > 45 %}
+                    {% set txtMinuto = '45+' ~ (txtMinuto - 45) %}
+                {% endif %}
+            {% endif %}
+
+            <tr>
+            {% if golTipo == 1 %}
+                <td class="text-right" style="width: 50%; height:25px;">
+                    {% if GolT.gol == 1 %}
+                        {{ txtGol }} <a style="color: #434343;" href="/jugador.php?id={{ GolT.jugador_id }}">{{ GolT.nombreJugador }}</a>
+
+                        {% if GolT.tipo == 11 %}
+                            <span style="background-color:red; font-size:7px; padding: 2px 5px" class="badge" title="Penalti fallado">F</span>
+                        {% endif %}
+
+                        {% if GolT.tipo == 1 %}
+                            <span style="background-color:green; font-size:7px; padding: 2px 5px" class="badge" title="Gol de penalti">P</span>
+                        {% endif %}
+
+                        <img src="{{ balon }}" height="17" style="margin-bottom:3px">
+
+                        <span class="label label-info">{{ txtMinuto|raw }}</span>
+                    {% else %}
+                        {{ txtGol }} <a style="color: #434343;" href="/jugador.php?id={{ GolT.jugador_id }}">{{ GolT.nombreJugador }}</a>
+
+                        {% if GolT.tipo == 0 %}
+                            <span class="iconseparate"><img src="/static/img/ta.png" height="17" style="margin-bottom:3px"></span>
+                        {% elseif GolT.tipo == 1 %}
+                            <span class="iconseparate"><img src="/static/img/ta2.png" height="17" style="margin-bottom:3px"></span>
+                        {% elseif GolT.tipo == 5 %}
+                            <span class="iconseparate"><img src="/img/tr.png" height="17" style="margin-bottom:3px"></span>
+                        {% elseif GolT.tipo == 3 or GolT.tipo == 4 and (GolT.jugador_id2 is defined) %}
+                            <span style='color:maroon;' class='glyphicon glyphicon-arrow-right'></span><span style='color:green;' class='iconseparate glyphicon glyphicon-arrow-left'></span>
+                            <a href="/jugador.php?id={{ GolT.jugador_id2 }}">{{ GolT.nombreJugador2 }}</a>
+                        {% elseif GolT.tipo == 25 %}
+                            <span><img src="/static/img/ta.png" height="17" style="margin-bottom:3px"></span>
+                            <span><img src="/static/img/tr.png" height="17" style="margin-bottom:3px"></span>
+                        {% endif %}
+                        <span class="label label-info">{{ txtMinuto|raw }}</span>
+                    {% endif %}
+                </td>
+                <td style="width: 50%; height:25px"></td>
+            {% else %}
+                <td style="width: 50%; height:25px"></td>
+                <td style="width: 50%; height:25px;">
+                    {% if GolT.gol == 1 %}
+                        {% if GolT.gol == 11 %}
+                            <span style="background-color:red; font-size:7px; padding: 2px 5px" class="badge" title="Penalti fallado">F</span>
+                        {% endif %}
+
+                        {% if GolT.gol == 1 %}
+                            <span class="label label-info">{{ txtMinuto|raw }}</span>
+                            <span class="iconseparate"><img src="{{ balon }}" height="17" style="margin-bottom:3px"></span>
+                        {% endif %}
+
+                        <a style="color: #434343;" href="/jugador.php?id={{ GolT.jugador_id }}">{{ GolT.nombreJugador }}</a>
+                        {{ txtGol }}
+
+                    {% else %}
+
+                        <span class="label label-info">{{ txtMinuto|raw }}</span>
+                        {% if GolT.tipo == 0 %}
+                            <span class="iconseparate"><img src="/img/ta.png" height="17" style="margin-bottom:3px"></span>
+                        {% elseif GolT.tipo == 1 %}
+                            <span class="iconseparate"><img src="/img/ta2.png" height="17" style="margin-bottom:3px"></span>
+                        {% elseif GolT.tipo == 5 %}
+                            <span class="iconseparate"><img src="/img/tr.png" height="17" style="margin-bottom:3px"></span>
+                        {% elseif GolT.tipo == 3 or GolT.tipo == 4 and (GolT.jugador_id2 is defined) %}
+                            <a style="color: #434343;"href="/jugador.php?id={{ GolT.jugador_id2 }}">{{ GolT.nombreJugador2 }}</a>
+
+                            <span style='color:green;' class='iconseparate glyphicon glyphicon-arrow-right'></span><span style='color:maroon;' class='glyphicon glyphicon-arrow-left'></span>
+
+                        {% elseif GolT.tipo == 25 %}
+                            <span><img src="/img/ta.png" height="17" style="margin-bottom:3px"></span> <span><img src="/img/ta.png" height="17" style="margin-bottom:3px"></span>
+                        {% endif %}
+
+                        <a style="color: #434343;" href="/jugador.php?id={{ GolT.jugador_id }}">{{ GolT.nombreJugador }}</a>
+
+                    {% endif %}
+
+                </td>
+
+            {% endif %}
+
+            </tr>
+
+            {% set contador = contador + 1 %}
+
+        {% endfor %}
+        </table>
+    </div>
+</div>

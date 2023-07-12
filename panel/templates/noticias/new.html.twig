@@ -1,0 +1,19 @@
+{% extends "base_template/universal-panel.html.twig" %}
+{% block title %}Nueva Noticia{% endblock %}
+
+{% block mainBody %}
+
+    {{ include('noticias/_form.html.twig') }}
+
+     {# <a href="{{ path('noticias_index') }}">Volver al listado</a> #}
+{% endblock %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('css/panel/noticias.css') }}">
+{% endblock %}
+
+
+{% block js %}
+    <script type="text/javascript" src="{{ asset('js/panel/noticias.js') }}"></script>
+{% endblock %}

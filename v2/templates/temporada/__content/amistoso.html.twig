@@ -1,0 +1,118 @@
+<div class="col-12">
+
+    <div class="contenedorBlancoBordesRedondeados">
+
+        <div class="row">
+            <div class="col-12">
+
+                <ul id="tabsAmistosos" class="nav nav-tabs" role="tablist" style="background: #E8E8E8;">
+                    {% if pa|length > 0 %}
+                        <li class="nav-item">
+                            <a style="color: #434343;" class="nav-link" id="ayer-tab" data-toggle="tab" href="#ayer" role="tab" aria-controls="ayer" aria-selected="false">Ayer</a>
+                        </li>
+                    {% endif %}
+
+                    {% if ph|length > 0 %}
+                        <li class="nav-item">
+                            <a style="color: #434343;" class="nav-link {{ phAc }}" id="hoy-tab" data-toggle="tab" href="#hoy" role="tab" aria-controls="hoy" aria-selected="{% if phAc != '' %}true{% else %}false{% endif %}">Hoy</a>
+                        </li>
+                    {% endif %}
+
+                    {% if pm|length > 0 %}
+                        <li class="nav-item">
+                            <a style="color: #434343;" class="nav-link {{ pmAc }}" id="manana-tab" data-toggle="tab" href="#manana" role="tab" aria-controls="manana" aria-selected="{% if pmAc != '' %}true{% else %}false{% endif %}">Mañana</a>
+                        </li>
+                    {% endif %}
+
+                    {% if pr|length > 0 %}
+                        {% set pRev = pr|reverse %}
+                        <li class="nav-item">
+                            <a style="color: #434343;" class="nav-link {{ prAc }}" id="proximos-dias-tab" data-toggle="tab" href="#proximos-dias" role="tab" aria-controls="proximos-dias" aria-selected="{% if prAc != '' %}true{% else %}false{% endif %}">Próximos días</a>
+                        </li>
+                    {% endif %}
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-12">
+
+                <div id="tabsAmistososContent" class="tab-content">
+
+                    <div class="tab-pane fade" id="ayer" role="tabpanel" aria-labelledby="ayer-tab">
+                        {% for key, partido in pa %}
+                            {% if j != partido.jornada %}
+                                <h4 class="titularContenido">{{ partido.fase }}</h4>
+                            {% endif %}
+
+                            {% include 'index/__part/filaPartido.html.twig' %}
+
+                            {% set j = partido.jornada %}
+                        {% endfor %}
+                    </div>
+                    <div class="tab-pane fade{% if phAc != '' %} show active{% endif %}" id="hoy" role="tabpanel" aria-labelledby="hoy-tab">
+                        {% for key, partido in ph %}
+                            {% if j != partido.jornada %}
+                                <h4 class="titularContenido">{{ partido.fase }}</h4>
+                            {% endif %}
+
+                            {% include 'index/__part/filaPartido.html.twig' %}
+
+                            {% set j = partido.jornada %}
+                        {% endfor %}
+                    </div>
+                    <div class="tab-pane fade{% if pmAc != '' %} show active{% endif %}" id="manana" role="tabpanel" aria-labelledby="manana-tab">
+                        {% for key, partido in pm %}
+                            {% if j != partido.jornada %}
+                                <h4 class="titularContenido">{{ partido.fase }}</h4>
+                            {% endif %}
+
+                            {% include 'index/__part/filaPartido.html.twig' %}
+
+                            {% set j = partido.jornada %}
+                        {% endfor %}
+                    </div>
+                    <div class="tab-pane fade{% if prAc != '' %} show active{% endif %}" id="proximos-dias" role="tabpanel" aria-labelledby="proximos-dias-tab">
+
+                        {% set f = '' %}
+                        {% set colorFondo = '' %}
+                        {% set j = 0 %}
+
+                        {% for key, partido in pRev %}
+                            {% if partido.jornada is defined %}
+                                {% if j != partido.jornada %}
+                                    <h4 class="titularContenido">{{ partido.fase }}</h4>
+                                {% endif %}
+
+                                {% if f != partido.fecha %}
+                                    {% if colorFondo == 'whitebox' %}
+                                        {% set colorFondo = 'cajagrisclaro' %}
+                                    {% else %}
+                                        {% set colorFondo = 'whitebox' %}
+                                    {% endif %}
+
+                                    <div class="row">
+                                        <div class="col-12 nombreDiaPartido" style="line-height: 30px; clear: both;">
+                                            {{ nombreDiaCompleto(partido.fecha) }}
+                                        </div>
+                                    </div>
+
+                                {% endif %}
+
+                                {% include 'index/__part/filaPartido.html.twig' %}
+
+                                {% set f = partido.fecha %}
+                                {% set j = partido.jornada %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

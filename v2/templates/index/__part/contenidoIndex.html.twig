@@ -1,0 +1,384 @@
+{# {% include 'publicidad/cuerpo01.html.twig' %} #}
+
+<div id="bloque-resto">
+    {% set temp_id = 0 %}
+    {% set contador = 0 %}
+    {% set contadorAUX = 0 %}
+    {% set esAnuncioGrande = false %}
+    {% set equiposTw = [] %}
+
+    <div class="row">
+        <div class="col-12">
+            {% set espacio = 'cabeceraPartidos' %}
+            {% if getConstante('__ES_IOS__') %}
+                {% set espacio = 'cabeceraPartidosiOS' %}
+            {% endif %}
+            {% include 'publicidad/publiGestion.html.twig' %}
+        </div>
+    </div>
+
+    {% for kk, partido in partidosIndex %}
+
+
+        {% set contador = contador + 1 %}
+        {% if contador == 4 %}
+            <div class="row">
+                <div class="col-12">
+                    {% set espacio = 'entrePartidos' %}
+                    {% include 'publicidad/publiGestion.html.twig' %}
+                </div>
+            </div>
+        {% endif %}
+
+        {% set colorFondo = 'whitebox' %}
+
+        {% if partido.idPais != 60 and partido.idPais != 200 or 'España' == partido.local %}
+            {% set colorL = 'background-color:#F4FA58' %}
+        {% else %}
+            {% set colorL = 'background-color:white' %}
+        {% endif %}
+
+        {% if partido.idPais != 60 and partido.idPais != 200 or 'España' == partido.visitante %}
+            {% set colorV = 'background-color:#F4FA58' %}
+        {% else %}
+            {% set colorV = 'background-color:white' %}
+        {% endif %}
+
+
+        {% set hora_prevista = partido.hora_prevista %}
+        {% set colorFila = 'white' %}
+
+
+        {% if partido.temporada_id != temp_id %}
+            {% if contadorAUX != 0 %}
+                {% if getConstante('__ES_MOBILE__') %}
+                    {% if esAnuncioGrande %}
+                        <div class="col-12">
+                            <div id="mobile-rectangle-mid-300x600-wrapper" style="margin-top: 135px; margin-bottom: 25px;"></div>
+                        </div>
+                        {% set esAnuncioGrande = false %}
+                    {% else %}
+                        <div class="col-12">
+                            <div id="mobile-rectangle-infinite-fallback-wrapper" style="margin-top: 135px; margin-bottom: 25px;"></div>
+                        </div>
+                        {% set esAnuncioGrande = true %}
+                    {% endif %}
+                {% else %}
+                    {% if esAnuncioGrande %}
+                        <div class="col-12">
+                            <div id="desktop-leaderboard-atf-fallback-wrapper" style="margin-top: 135px; margin-bottom: 25px;"></div>
+                        </div>
+                        {% set esAnuncioGrande = false %}
+                    {% else %}
+                        <div class="col-12">
+                            <div id="desktop-leaderboard-btf-fallback-wrapper" style="margin-top: 135px; margin-bottom: 25px;"></div>
+                        </div>
+                        {% set esAnuncioGrande = true %}
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+            {% set fondoCabecera = 'greenbox' %}
+            {% set colorCabecera = 'black' %}
+
+            {% include 'index/__part/contenidoCabecera.html.twig' %}
+            {% set contadorAUX = contadorAUX + 1 %}
+        {% endif %}
+
+        <div style="clear:both"></div>
+        <div>
+            {% include 'index/__part/filaPartido.html.twig' with {
+                'partido' : partido,
+                'pagina' : 'index',
+            } %}
+        </div>
+
+        {% set equiposTw = equiposTw|merge(
+            {
+                (kk ~ '_l'): {
+                    'id': partido.equipoLocal_id,
+                    'equipo': partido.local,
+                    'club_id': partido.club_local,
+                    'idPais': partido.idPais,
+                }
+            }
+        ) %}
+
+
+        {% set equiposTw = equiposTw|merge(
+            {
+                (kk ~ '_v'): {
+                'id': partido.equipoVisitante_id,
+                'equipo': partido.visitante,
+                'club_id': partido.club_visitante,
+                'idPais': partido.idPais,
+                }
+            }
+        ) %}
+
+        {% set temp_id = partido.temporada_id %}
+
+    {% endfor %}
+    
+        
+</div>
+
+<div class="row" style="height: 50px !important"></div>
+
+
+
+{% if esPortada is defined and nTotalPartidosHoy<30 %}
+
+
+    {% for k, torNavidad in navidad %}
+    <div class="col-12 cajaGlobalPartidos" style="background-color:white">
+
+    <h5 class="text-center">{{ torNavidad.torneo }}</h5>
+    
+    {% if getConstante('__ES_MOBILE__') %}
+
+        <table>
+        
+
+            <tr>
+            <td valign="top" style="width: 100%">
+            <div class="col-12 contenedorLeyendaClasificacion" style="float: left; background: white; -webkit-border-radius: 5px;
+            -moz-border-radius: 5px; border-radius: 5px; width: 100%">
+            <h6 class="text-center">CLASIFICACIÓN</h6>
+            <table>
+                <tr bgcolor="DarkGreen" style="color:white">
+                   <td style="padding: 2px; width: 30px;" class="text-center">POS</td>
+                   <td style="padding: 2px; width: 150px;" class="text-center">Equipo</td>
+                   <td style="padding: 2px; width: 30px;" class="text-center">Ptos</td>
+                   <td style="padding: 2px; width: 30px;" class="text-center">ju</td>
+                   <td style="padding: 2px; width: 30px;" class="text-center">ga</td>
+                   <td style="padding: 2px; width: 30px;" class="text-center">em</td>
+                   <td style="padding: 2px; width: 30px;" class="text-center">pe</td>
+                   <td style="padding: 2px; width: 30px;" class="text-center">gf</td>
+                   <td style="padding: 2px; width: 30px;" class="text-center">gc</td>
+                </tr>
+                {% for kk, clasi in torNavidad.clasificacion %}
+
+                {% set pgEnlace = '/resultados-directo/equipo/' ~ ponerGuion(clasi.nombre) ~ '/' ~ clasi.equipo_id %}
+                {% set rutaEscudo = rutaEscudo(clasi.club_id, clasi.equipo_id) %}
+
+                {% if not fileExists(rutaEscudo) %}
+                    {% set rutaEscudo = '/static/img/jugadores/NI.png' %}
+                {% endif %}
+
+
+                <tr><td style="{{ clasi.css }}; padding: 2px; text-align:right;">{{ clasi.posicion }}&nbsp;&nbsp;</td>
+                   <td style="padding: 2px;">
+
+                        <a href="{{ pgEnlace }}&modelo=Calendario" title="Calendario del {{ clasi.nombreCorto }}">
+                            <img src="{{ rutaEscudo }}" itemprop="logo" alt="escudo {{ clasi.nombre }}" style="width:18px; height:20px; margin-right: 2px">
+                            <strong itemprop="name">
+                               <span style="color:black"> {{ clasi.nombreCorto }} </span>
+                            </strong>
+                            <meta itemprop="url" content="{{ pgEnlace }}">
+                        </a>
+
+                   </td>
+                   <td style="padding: 2px;" class="text-center"><b>{{ clasi.puntos }}</b></td>
+                   <td style="padding: 2px;" class="text-center">{{ clasi.jugados }}</td>
+                   <td style="padding: 2px;" class="text-center">{{ clasi.ganados }}</td>
+                   <td style="padding: 2px;" class="text-center">{{ clasi.empatados }}</td>
+                   <td style="padding: 2px;" class="text-center">{{ clasi.perdidos }}</td>
+                   <td style="padding: 2px;" class="text-center">{{ clasi.gFavor }}</td>
+                   <td style="padding: 2px;" class="text-center">{{ clasi.gContra }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            </div>
+
+
+            
+              <div style="background-color:white;">
+
+              
+             
+
+                <div class="col-12 contenedorLeyendaClasificacion" style="float: left; background: #4A4A4A; -webkit-border-radius: 5px;
+            -moz-border-radius: 5px; border-radius: 5px; width: 100%">
+
+                    {% for fila in torNavidad.leyenda %}                    
+                        <div class="text-left" style="float: left; margin-right: 20px; color:{{ fila.fondo|replace(
+                            {
+                                'white': '#000000',
+                                'gold': '#F1C422',
+                                'orange': '#E38800',
+                                'indianred': '#E80000',
+                            }
+                        ) }}">
+                            {{ fila.leyenda }}
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+            <h4 class="text-center">___</h4>
+            
+            <h6 class="text-center">GOLEADORES</h6>
+            
+            
+                <table style="border-spacing: 0px">
+                {% for kk, jugador in torNavidad.goleadores %}
+                <tr><td style="padding: 2px; text-align:center">{{ jugador.goles }}</td>
+                   <td style="padding: 2px">
+                        <a href="{{ full_url_for('jugador_url_nombre', {
+                            'id' : jugador.jugador_id,
+                            'slug' : ponerGuion(jugador.jugador),
+                        }) }}">
+                            {{ jugador.jugador }}
+                        </a>
+                   </td>
+                   <td style="padding: 2px">{{ jugador.equipoCorto }}</tr>
+                {% endfor %}
+                </table>
+                
+          
+
+            </td>
+            </tr>
+        </table> 
+
+
+    {% else %}
+    <table>
+        
+
+        <tr>
+        <td valign="top" style="width: 60%">
+        <div class="col-12 contenedorLeyendaClasificacion" style="float: left; background: white; -webkit-border-radius: 5px;
+        -moz-border-radius: 5px; border-radius: 5px; width: 100%">
+        <h6 class="text-center">CLASIFICACIÓN</h6>
+        <table>
+            <tr bgcolor="DarkGreen" style="color:white">
+               <td style="padding: 2px; width: 30px;" class="text-center">POS</td>
+               <td style="padding: 2px; width: 150px;" class="text-center">Equipo</td>
+               <td style="padding: 2px; width: 30px;" class="text-center">Ptos</td>
+               <td style="padding: 2px; width: 30px;" class="text-center">ju</td>
+               <td style="padding: 2px; width: 30px;" class="text-center">ga</td>
+               <td style="padding: 2px; width: 30px;" class="text-center">em</td>
+               <td style="padding: 2px; width: 30px;" class="text-center">pe</td>
+               <td style="padding: 2px; width: 30px;" class="text-center">gf</td>
+               <td style="padding: 2px; width: 30px;" class="text-center">gc</td>
+            </tr>
+            {% for kk, clasi in torNavidad.clasificacion %}
+
+            {% set pgEnlace = '/resultados-directo/equipo/' ~ ponerGuion(clasi.nombre) ~ '/' ~ clasi.equipo_id %}
+            {% set rutaEscudo = rutaEscudo(clasi.club_id, clasi.equipo_id) %}
+
+            {% if not fileExists(rutaEscudo) %}
+                {% set rutaEscudo = '/static/img/jugadores/NI.png' %}
+            {% endif %}
+
+
+            <tr><td style="{{ clasi.css }}; padding: 2px; text-align:right;">{{ clasi.posicion }}&nbsp;&nbsp;</td>
+               <td style="padding: 2px;">
+
+                    <a href="{{ pgEnlace }}&modelo=Calendario" title="Calendario del {{ clasi.nombreCorto }}">
+                        <img src="{{ rutaEscudo }}" itemprop="logo" alt="escudo {{ clasi.nombre }}" style="width:18px; height:20px; margin-right: 2px">
+                        <strong itemprop="name">
+                           <span style="color:black"> {{ clasi.nombreCorto }} </span>
+                        </strong>
+                        <meta itemprop="url" content="{{ pgEnlace }}">
+                    </a>
+
+               </td>
+               <td style="padding: 2px;" class="text-center"><b>{{ clasi.puntos }}</b></td>
+               <td style="padding: 2px;" class="text-center">{{ clasi.jugados }}</td>
+               <td style="padding: 2px;" class="text-center">{{ clasi.ganados }}</td>
+               <td style="padding: 2px;" class="text-center">{{ clasi.empatados }}</td>
+               <td style="padding: 2px;" class="text-center">{{ clasi.perdidos }}</td>
+               <td style="padding: 2px;" class="text-center">{{ clasi.gFavor }}</td>
+               <td style="padding: 2px;" class="text-center">{{ clasi.gContra }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        </div>
+
+        
+
+
+        </td>
+        <td valign="top" style="width: 40%">
+        <h6 class="text-center">GOLEADORES</h6>
+        
+        
+            <table style="border-spacing: 0px">
+            {% for kk, jugador in torNavidad.goleadores %}
+            <tr><td style="padding: 2px; text-align:center">{{ jugador.goles }}</td>
+               <td style="padding: 2px">
+                    <a href="{{ full_url_for('jugador_url_nombre', {
+                        'id' : jugador.jugador_id,
+                        'slug' : ponerGuion(jugador.jugador),
+                    }) }}">
+                        {{ jugador.jugador }}
+                    </a>
+               </td>
+               <td style="padding: 2px">{{ jugador.equipoCorto }}</tr>
+            {% endfor %}
+            </table>
+            
+         
+        
+        <h4 class="text-center">__________________</h4>
+         <h6 class="text-center">LEYENDA</h6>
+         <div style="background-color:white;">
+
+          
+         
+
+            <div class="col-12 contenedorLeyendaClasificacion" style="float: left; background: #4A4A4A; -webkit-border-radius: 5px;
+        -moz-border-radius: 5px; border-radius: 5px; width: 100%">
+
+                {% for fila in torNavidad.leyenda %}                    
+                    <div class="text-left" style="float: left; margin-right: 20px; color:{{ fila.fondo|replace(
+                        {
+                            'white': '#000000',
+                            'gold': '#F1C422',
+                            'orange': '#E38800',
+                            'indianred': '#E80000',
+                        }
+                    ) }}">
+                        {{ fila.leyenda }}
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+        </td>
+        </tr>
+    </table> 
+    {% endif %}
+
+    <div style="clear:both"></div>
+    </div>
+
+    <div class="row" style="height: 50px !important"></div>
+    
+    {% endfor %}
+
+{% endif %}
+
+
+
+<div class="col-12">
+    {% include '__part/pesLeerTwitsPortada.html.twig' %}
+
+</div>
+
+
+
+{#
+{% for partido in partidosIndex %}
+
+    {% include 'index/__part/filaPartido.html.twig' with {
+        'partido' : partido,
+        'pagina' : 'index',
+    } %}
+
+{% endfor %}
+ #}

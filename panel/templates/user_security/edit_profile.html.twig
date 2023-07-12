@@ -1,0 +1,13 @@
+{% extends "base_template/universal-panel.html.twig" %}
+{% block title %}Editar perfil{% endblock %}
+
+{% block mainBody %}
+    {{ form_start(form) }}
+        {{ form_row(form.username) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.plainPassword.first) }}
+        {{ form_row(form.plainPassword.second) }}
+
+    <button type="submit">Editar perfil!</button>
+    {{ form_end(form) }}
+{% endblock %}

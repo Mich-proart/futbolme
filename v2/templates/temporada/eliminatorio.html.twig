@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block contenedorIzquierda %}
+
+    {% include '__part/ultimosEventos.html.twig' %}
+
+{% endblock %}
+
+{% block contenedorCentral %}
+
+    <div class="col-12">
+        <div class="row">
+            <div class="col-12" style="padding: 0px;">
+                {% set promocion = 0 %}
+
+                {% if c_directos > 0 %}
+                    <div class="row">
+                        <div class="col-12">
+                        <span class="actua pull-right badge" style="font-weight:100;">
+                            Actualizado a las {{ hoyDateTime()|date('H:i:s') }}
+                        </span>
+
+                            {% include 'index/__part/contenidoDirecto.html.twig' %}
+
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12" style="padding: 0px;">
+                <select id="fases" name="fases" class="form-control">
+                    {% for id, fila in fases %}
+                        <option value="{{ id }}" {% if id == valorJornada %} selected="selected" {% endif %}>
+                            {{ fila.nombre }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        {% include 'publicidad/cuerpo03.html.twig' %}
+
+        {% if tipo_eliminatoria == 3 %}
+
+
+            {% for fase, gruposFase in grupos %}
+
+                {% if fase == valorJornada %}
+
+                    <div class="row">
+                        <div id="gruposFase{{ fase }}" class="col-12" style="padding: 0px;">
+                            {% set conta = 0 %}
+
+                            {% set nombreprimerGrupo = '' %}
+
+                            {% for id, grupo in gruposFase %}
+                                {% set conta = conta + 1 %}
+
+                                {% if conta == 1 and primerGrupo == 0 %}
+                                    {% set primerGrupo = id %}
+                                    {% set nombreprimerGrupo = grupo.nombre %}
+                                {% endif %}
+
+                                {% if grupo_id == id %}
+                                    {% set primerGrupo = id %}
+                                    {% set nombreprimerGrupo = grupo.nombre %}
+                                {% endif %}
+
+                                <a class="btn btn-secondary" href="
+                                {{ full_url_for('torneo_jornada', {
+                                    'idTorneo' : temporada_id,
+                                    'slug' : slug,
+                                    'jornada' : valorJornada,
+                                })~ '?grupo_id=' ~ id }}">
+                                    {{ grupo.nombre }}
+                                </a>
+
+                            {% endfor %}
+                        </div>
+                        <h4>
+                            <span class="boldfont" id="nombreprimerGrupo">
+                                {{ nombreprimerGrupo }}
+                            </span>
+                        </h4>
+                    </div>
+
+                {% endif %}
+
+            {% endfor %}
+
+
+        {% endif %}
+    </div>
+
+
+{% endblock %}
+
+{% block bloqueJs %}
+
+
+{% endblock %}
+
+
+{% block contenedorDerecha %}
+
+
+{% endblock %}

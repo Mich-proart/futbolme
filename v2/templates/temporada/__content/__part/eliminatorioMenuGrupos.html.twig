@@ -1,0 +1,54 @@
+{% if tipo_eliminatoria == 3 %}
+
+    {% for fase, gruposFase in grupos %}
+
+        {% if fase == valorJornada %}
+
+            <div class="row" style="margin-top: 20px;">
+                <ul id="gruposFase{{ fase }}" class="col-12 menuListGrises" style="padding: 0px;">
+                    {% set conta = 0 %}
+                    {# {% set nombreprimerGrupo = '' %} #}
+
+                    {% for id, grupo in gruposFase %}
+                        {% set conta = conta + 1 %}
+
+                        {% if conta == 1 and primerGrupo == 0 %}
+                            {% set primerGrupo = id %}
+                            {% set nombreprimerGrupo = grupo.nombre %}
+                        {% endif %}
+
+                        {% if grupo_id == id %}
+                            {% set primerGrupo = id %}
+                            {% set nombreprimerGrupo = grupo.nombre %}
+                        {% endif %}
+
+                        <li class="{% if grupo_id == id or primerGrupo == id %}activa{% endif %}">
+                            <a class="btn btn-secondary" href="
+                                {{ full_url_for('torneo_jornada_grupo_id', {
+                                'idTorneo' : temporada_id,
+                                'slug' : slug,
+                                'jornada' : valorJornada,
+                                'grupo_id' : id,
+                            }) }}">
+                                {{ grupo.nombre }}
+                            </a>
+                        </li>
+
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-12">
+                    <h2 class="subtitulo" id="nombreprimerGrupo">
+                        {{ nombreprimerGrupo }}
+                    </h2>
+                </div>
+            </div>
+
+        {% endif %}
+
+    {% endfor %}
+
+
+{% endif %}

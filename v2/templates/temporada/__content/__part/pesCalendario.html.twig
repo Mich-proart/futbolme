@@ -1,0 +1,20 @@
+{% if datos.partidos is defined %}
+    {% set j = 0 %}
+    {% for key,partido in datos.partidos %}
+
+        {% if j != partido.jornada %}
+            {% set j = partido.jornada %}
+            <div class="col-12 contenedorTitularTorneoCalendario">
+                <h4>
+                    Jornada {{ partido.jornada }} - {{ nombreDiaCompleto(partido.fecha) }}
+                </h4>
+            </div>
+        {% endif %}
+
+        <div class="col-12">
+            {% include 'index/__part/filaPartido.html.twig' %}
+        </div>
+
+    {% endfor %}
+
+{% endif %}

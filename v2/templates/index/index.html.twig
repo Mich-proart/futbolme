@@ -1,0 +1,239 @@
+{% extends 'base.html.twig' %}
+{% block contenedorCentral %}
+
+    <div class="row" style="margin: 0px;">
+        <div id="contenedorLiveScore" class="col-12">
+            <div class="contenedorSelectorFechaLiveScore">
+                <a {% if categoriaArg != '' and ctArg != '' %} rel="nofollow" {% endif %} href="{% if categoriaArg != '' and ctArg != '' %}{{ full_url_for('home_fecha_categoria', { fecha: diaAnterior|date('Y-m-d'), categoria: categoriaArg, ct:ctArg }) }}{% else %}{{ full_url_for('home_fecha', { fecha: diaAnterior|date('Y-m-d') }) }}{% endif %}" class="boldfont cajasLiveScore selectorFechaLiveScore selectorFechaLiveScoreIzquierda">
+                    &lt; {{ diaAnterior|date('d/m') }}
+                </a>
+            </div>
+
+            <div class="contenedorCajaCentralLiveScore">
+                <div class="cajasLiveScore cajaCentralLiveScore text-center">
+                    {% if viendoHoy %}
+                        LIVESCORE
+                    {% else %}
+                        {{ diaVer|date('d') }} de {{ diaVer|date('F') }} - <a href="{{ full_url_for('home') }}">Ver hoy</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="contenedorSelectorFechaLiveScore">
+                <a {% if categoriaArg != '' and ctArg != '' %} rel="nofollow" {% endif %} href="{% if categoriaArg != '' and ctArg != '' %}{{ full_url_for('home_fecha_categoria', { fecha: diaSiguiente|date('Y-m-d'), categoria: categoriaArg, ct:ctArg }) }}{% else %}{{ full_url_for('home_fecha', { fecha: diaSiguiente|date('Y-m-d') }) }}{% endif %}" class="boldfont cajasLiveScore selectorFechaLiveScore selectorFechaLiveScoreDerecha">
+                    {{ diaSiguiente|date('d/m') }} &gt;
+                </a>
+            </div>
+        </div>
+
+        <div id="contenedorSubCabeceraLivescore" class="col-12">
+            <div id="contenedorBotonesFiltroLivescore" class="col-12">
+                {% if categorias|length > 1 %}
+
+                    {% for key, value in categorias %}
+
+                        {% if value == 1 %}
+
+                            {% set txtCat = 'Principal' %}
+                            {% set titolCat = 'Partidos de Primera y Segunda División, FIFA, UEFA y Amistosos' %}
+
+                        {% elseif value == 2 %}
+
+                            {% set txtCat = 'Primera RFEF' %}
+                            {% set titolCat = 'Partidos de Primera RFEF' %}
+
+                        {% elseif value == 3 %}
+
+                            {% set txtCat = 'Copa RFEF' %}
+                            {% set titolCat = 'Partidos de la COPA RFEF' %}
+
+                        {% elseif value == 4 %}
+
+                            {% set txtCat = 'Segunda Fed.' %}
+                            {% set titolCat = 'Partidos de Segunda Federación' %}
+
+                        {% elseif value == 5 %}
+
+                            {% set txtCat = 'Tercera Fed.' %}
+                            {% set titolCat = 'Partidos de Tercera Federación' %}
+
+                        {% elseif value == 7 %}
+
+                            {% set txtCat = 'Autonómica' %}
+                            {% set titolCat = 'Partidos de los torneos de ámbito regional' %}
+
+                        {% elseif value == 8 %}
+
+                            {% set txtCat = 'Juveniles' %}
+                            {% set titolCat = 'Partidos para hoy de los equipos de DHJ y LNJ' %}
+
+                        {% elseif value == 9 %}
+
+                            {% set txtCat = 'Femenino' %}
+                            {% set titolCat = 'Partidos para hoy de las ligas femeninas de categoría nacional' %}
+
+                        {% elseif value == 10 %}
+
+                            {% set txtCat = 'Europa' %}
+                            {% set titolCat = 'Partidos para hoy de las ligas europeas' %}
+
+                        {% elseif value == 22 %}
+
+                            {% set txtCat = 'Fútbol Sala' %}
+                            {% set titolCat = 'Partidos para hoy de Fútbol Sala' %}
+
+                        {% endif %}
+
+                        <a href="{% if viendoHoy %}{{ full_url_for('partidosHoy', { categoria: ponerGuion(txtCat), ct:value }) }}{% else %}{{ full_url_for('home_fecha_categoria', { fecha: diaVer|date('Y-m-d'), categoria: ponerGuion(txtCat), ct:value }) }}{% endif %}" class="botonFiltroLivescore{% if ctArg == value %} activa{% endif %}" title="{{ txtCat }}" style="margin-bottom: 5px;">
+                            {{ txtCat }}
+
+                            {% if enJuegoCat[value] is defined %}
+                                <span class="nPartidos badge badge-danger">
+                                    {{ enJuegoCat[value]|length }}
+                                </span>
+                            {% endif %}
+                        </a>
+
+                    {% endfor %}
+
+                {% endif %}
+            </div>
+             <span class="float-right col-md-4 fechaActualizado">
+                Actualizado a las {{ horaActual }}
+            </span> 
+        </div>
+
+        <div class="row"></div>
+
+        <div class="cajasPartidosHoy" style="padding: 0px;">
+            <p>
+                <span style="color:black;">Partidos para hoy: {{ nTotalPartidosHoy }}</span> -
+                <span style="color:red;">En juego: {{ nPartidosDirecto }}</span>  -
+                <span style="color:green;">Finalizados: {{ c_finales }}</span> -
+                <span style="color:dimgray;">Sin resultado: {{ c_resto }}</span>
+            </p>
+
+            {#
+            <p>
+                * No se contabilizan en estos datos los partidos de regional (excepto preferentes), ni los partidos de fútbol base y femenino que no tengan categoría nacional</p>
+            #}
+
+        </div>
+        
+    </div>
+
+    <div>
+
+        {% if partidosDirecto|length > 0 %}
+            {% include 'index/__part/contenidoDirecto.html.twig' %}
+        {% endif %}
+
+        {% if partidosPromocion|length > 0 %}
+           {# {% include 'index/__part/contenidoPromocion.html.twig' %} #}
+        {% endif %}
+
+        {% if current_url == 'https://futbolme.com/' %}
+            {% if partidosSueltos|length > 0 %}
+                {% include 'index/__part/contenidoSueltos.html.twig' %}
+                <div class="col-12">
+                    {% if getConstante('__ES_MOBILE__') %}
+                        <div id="mobile-rectangle-infinite-fallback-wrapper"></div>
+                    {% else %}
+                        <div id="desktop-leaderboard-atf-fallback-wrapper" style="margin-top: 135px; margin-bottom: 25px;"></div>
+                    {% endif %}
+                </div> 
+            {% endif %}
+        {% endif %}
+
+        {#
+        {% if esPortada is defined and "now"|date("d/m/Y") == '21/12/2020' %}
+            {% set tituloWidget = 'Las noticias de Futbolme' %}
+            {% set longitudNoticiaWidget = 800 %}
+            {% set noticiasWidget = obtenerNoticiasPortadaPosiciones([1, 3]) %}
+
+            {% if noticiasWidget|length > 0 %}
+                <div class="row" style="display:block; clear:both; margin-bottom: 15px; padding-top: 15px;">
+                    <div class="col-12">
+                        {% include 'noticias/widgetNoticias.html.twig' %}
+                    </div>
+                </div>
+            {% endif %}
+
+            {% set longitudNoticiaWidget = 150 %}
+
+        {% else %}
+            {% set tituloWidget = 'Las noticias de Futbolme' %}
+            {% set noticiasWidget = obtenerNoticiasPortadaPosiciones([3]) %}
+
+            {% if noticiasWidget|length > 0 %}
+                <div class="row" style="display:block; clear:both; margin-bottom: 15px; padding-top: 15px;">
+                    <div class="col-12">
+                        {% include 'noticias/widgetNoticias.html.twig' %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+        #}
+
+        
+
+
+        {% include 'index/__part/contenidoIndex.html.twig' %}
+
+
+        {# {% if 'now'|date('N') < 6 %} #}
+            {% include 'index/__part/fichajes.html.twig' %}
+        {# {% endif %} #}
+
+    </div>
+
+{% endblock %}
+
+{% block contenedorDerecha %}
+    {# {% include 'index/__part/fichajes.html.twig' %} #}
+{% endblock %}
+
+{% block contenedorIzquierda %}
+
+    {% include '__part/ultimosEventos.html.twig' %}
+
+{% endblock %}
+
+{% block bloqueJs %}
+    {% if viendoHoy %}
+        <script type="text/javascript">
+            $(function () {
+
+                setInterval(function () {
+
+                    refrescarHomeAjax();
+
+                },60000);
+            });
+
+            function refrescarHomeAjax() {
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ current_url|raw }}',
+                    cache: false,
+                })
+                .done(function (data) {
+                    $('#contenedorCentral').html($(data).find('#contenedorCentral').html());
+                    $('#ultimosEventos').html($(data).find('#ultimosEventos').html());      
+
+                    {% if getConstante('__ES_MOBILE__') %}
+                    var script = document.createElement('script');
+                            
+                    script.src = "https://video.onnetwork.tv/widget/widget_scrolllist.php?widget=903&cId=myContainer1";
+                            
+                    document.head.appendChild(script);
+                    {% endif %}
+
+
+                });
+            }
+        </script>
+    {% endif %}
+{% endblock %}
+
+

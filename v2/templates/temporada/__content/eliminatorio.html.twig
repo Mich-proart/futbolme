@@ -1,0 +1,59 @@
+<div class="col-12">
+    <div class="row">
+        <div class="col-12" style="padding: 0px;">
+            {% set promocion = 0 %}
+
+            {% if c_directos > 0 %}
+                <div class="row">
+                    <div class="col-12">
+                    <span class="actua pull-right badge" style="font-weight:100;">
+                        Actualizado a las {{ hoyDateTime()|date('H:i:s') }}
+                    </span>
+
+                        {% include 'index/__part/contenidoDirecto.html.twig' %}
+
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% include 'temporada/__content/__part/eliminatorioFases.html.twig' %}
+
+    {% include 'publicidad/cuerpo03.html.twig' %}
+
+    {% include 'temporada/__content/__part/eliminatorioMenuGrupos.html.twig' %}
+
+    {% set clasificacionGrupo = X2generarClasificacion(temporada_id, tipoTorneo, valorJornada, primerGrupo, 0) %}
+
+    {% include 'temporada/__content/__part/eliminatorioPartidos.html.twig' %}
+
+    <div class="row">
+        <div class="col-12" style="height: 35px;">
+
+        </div>
+    </div>
+
+    {% if tipo_eliminatoria != 1 and temporada_id != 3014  and temporada_id != 3039 and temporada_id != 3040 %}
+        {% include 'temporada/__content/__part/eliminatorioClasificacionGrupos.html.twig' %}
+    {% endif %}
+
+    {% set equiposTw2 = [] %}
+
+    {% for key, value in equiposEnJuego %}
+        {% set break = 0 %}
+        {% for v in equiposTw %}
+            {% if v.id == value and not break %}
+                {% set equiposTw2 = anadirAArray(equiposTw2, v) %}
+                {% set break = 1 %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+
+    {% set equiposTw = equiposTw2 %}
+
+    {% if equiposTw is defined %}
+        {% set filtro = 0 %}
+        {% include '__part/pesLeerTwitsPortada.html.twig' %}
+    {% endif %}
+</div>

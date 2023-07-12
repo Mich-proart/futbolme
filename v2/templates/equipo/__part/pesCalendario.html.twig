@@ -1,0 +1,249 @@
+<div class="col-12">
+
+    {% if retirado > 0 %}
+        <h3>{{ ret.motivo }}</h3>
+    {% else %}
+
+        {% if partido is defined %}
+            {% set partido = proximoPartido %}
+
+            {% if partido.estado_partido != 1 %}
+                <h4 class="boldfont text-center">Próximo partido</h4>
+            {% else %}
+                <h4 class="boldfont text-center">Último partido</h4>
+            {% endif %}
+
+            {% set colorFila = 'white' %}
+            {% set hora_prevista = partido.hora_prevista %}
+            {% set enlace_partido = full_url_for('partido_index', {
+                'idPartido' : partido.id,
+                'slug' : ponerGuion(partido.local) ~ '-' ~ ponerGuion(partido.visitante)
+            }) %}
+
+            {% set proxPart = partido.id %}
+            {% include 'index/__part/filaPartido.html.twig' %}
+        {% endif %}
+
+    {% endif %}
+
+
+    <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
+        <div class="col-12" style="padding: 0px">
+            <ul class="nav nav-tabs" role="tablist" id="menuEquipoTorneos">
+                {#
+                {% if vista is defined %}
+                    {% set temporada_id = vista %}
+                {% else %}
+                    {% set temporada_id = liga %}
+                {% endif %}
+                #}
+
+                {% if temporada_id is null %}
+                    {% set temporada_id = liga %}
+                {% endif %}
+
+                {% set nt = '' %}
+                {% set tt = 0 %}
+                {% set active = '' %}
+                {% set pgTemporada2 = '' %}
+                {% set urlTorneoCalendario = '' %}
+
+                {% for key,value in torneos %}
+                    {% set nombreTorneo = value.nombreTorneo|replace({
+                        'CAMPEONATO' : 'CTO.'
+                    }) %}
+
+                    {% if key == temporada_id %}
+                        {% set active = 'activa' %}
+                        {% set nt = value.nombreTorneo %}
+                        {% set tt = value.tipo_torneo %}
+                        {% set pgTemporada2 = full_url_for('equipo_index', {
+                            'idEquipo' : idEquipo,
+                            'slug' : slug
+                        }) %}
+                        {% set urlTorneoCalendario = full_url_for('torneo_index', {
+                            'idTorneo' : key,
+                            'slug' : ponerGuion(value.nombreTorneo)
+                        }) %}
+                    {% else %}
+                        {% set active = '' %}
+                    {% endif %}
+
+                    <li class="{{ active }}">
+                        <a class="btn btn-secondary" href="{{ full_url_for('equipo_calendario_torneo', {
+                            'slug' : slug,
+                            'idEquipo' : idEquipo,
+                            'idTorneo' : key,
+                            'nombreTorneo' : ponerGuion(value.nombreTorneo),
+                        }) }}">
+                            {{ nombreTorneo }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        {% if porTorneos[temporada_id] is defined %}
+            {% set partidosLiga = porTorneos[temporada_id]|reverse %}
+        {% else %}
+            {% set partidosLiga = [] %}
+        {% endif %}
+
+        <div class="col-12" style="padding: 0px">
+            <h2 class="nombreTorneoCalendario">
+                {# <a href="{{ pgTemporada2 }}"> #}
+                <a href="{{ urlTorneoCalendario }}">
+                    {{ nt }}
+                </a>
+            </h2>
+
+            {% for partido in partidosLiga %}
+                {% if partido.equipoLocal_id is null or partido.equipoVisitante_id is null %}
+                    <div>
+                        <div style="float:left; width:30px; text-align:center;">
+                            {% if partido.temporada_id == 598 %}
+                                J {{ partido.jornada }}
+                            {% endif %}
+                        </div>
+
+                        <div style="float:left; margin-left:10px; height:auto; text-align:right">
+                            <span>{{ nombreDiaCompleto(partido.fecha) }}</span>
+                            <span class="boldfont" style="margin-left: 20px;">
+                            Descansa
+                            {% if partido.equipoLocal_id is null %}
+                                {{ partido.visitante }}
+                            {% else %}
+                                {{ partido.local }}
+                            {% endif %}
+                        </span>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                {% else %}
+
+                    {% set enlace_partido = full_url_for('partido_index', {
+                        'idPartido' : partido.id,
+                        'slug' : ponerGuion(partido.local) ~ '-' ~ ponerGuion(partido.visitante)
+                    }) %}
+
+                    {% set enlace_local = full_url_for('equipo_datos', {
+                        'idEquipo' : partido.equipoLocal_id,
+                        'slug' : partido.local
+                    }) %}
+
+                    {% set enlace_visitante = full_url_for('equipo_datos', {
+                        'idEquipo' : partido.equipoVisitante_id,
+                        'slug' : partido.visitante
+                    }) %}
+
+                    {% set puntos = null %}
+
+                    {% if partido.goles_local != '' and partido.goles_visitante != '' and partido.tipo_torneo == 1 and partido.estado_partido == 1 %}
+
+                        {% set puntos = 0 %}
+                        {% set class = 'colores_fondo_resultados_perdido' %}
+
+                        {% if partido.goles_local == partido.goles_visitante %}
+
+                            {% set puntos = 1 %}
+                            {% set class = 'colores_fondo_resultados_empatado' %}
+
+                        {% elseif equipo_id == partido.equipoLocal_id %}
+
+                            {% if partido.goles_local > partido.goles_visitante %}
+                                {% set puntos = 3 %}
+                                {% set class = 'colores_fondo_resultados_ganado' %}
+                            {% endif %}
+
+                        {% else %}
+
+                            {% if partido.goles_visitante > partido.goles_local %}
+                                {% set puntos = 3 %}
+                                {% set class = 'colores_fondo_resultados_ganado' %}
+                            {% endif %}
+
+                        {% endif %}
+
+                    {% endif %}
+
+                    {% set hora_prevista = partido.hora_prevista %}
+                    {% set colorFila = 'white' %}
+                    {% set colorL = 'background-color:white' %}
+                    {% set colorV = 'background-color:white' %}
+
+                    <div class="" style="background-color: {{ colorFila }}">
+
+                        {% set icono = '' %}
+
+                        {% if partido.estado_partido == 1 %}
+
+                            {% if
+                                (equipo_id == partido.equipoLocal_id and partido.goles_local < partido.goles_visitante)
+                                or
+                                (equipo_id == partido.equipoVisitante_id and partido.goles_local > partido.goles_visitante)
+                            %}
+
+                                {% if equipo_id == partido.equipoLocal_id %}
+                                    {% set colorI = '#B40404' %}
+                                {% else %}
+                                    {% set colorI = '#FE642E' %}
+                                {% endif %}
+
+                                {% set icono='<span class="badge" style="font-weight:300; background-color:' ~ colorI ~ '">D</span>' %}
+
+                            {% endif %}
+
+
+                            {% if
+                                (equipo_id == partido.equipoLocal_id and partido.goles_local > partido.goles_visitante)
+                                or
+                                (equipo_id == partido.equipoVisitante_id and partido.goles_local < partido.goles_visitante)
+                            %}
+                                {% if equipo_id == partido.equipoLocal_id %}
+                                    {% set colorI = '#0B610B' %}
+                                {% else %}
+                                    {% set colorI = '#01DF01' %}
+                                {% endif %}
+
+                                {% set icono = '<span class="badge" style="font-weight:300; background-color:' ~ colorI ~ '">V</span>' %}
+
+                            {% endif %}
+
+
+                            {% if partido.goles_local == partido.goles_visitante %}
+                                {% if equipo_id == partido.equipoLocal_id %}
+                                    {% set colorI = 'orange' %}
+                                {% else %}
+                                    {% set colorI = '#FACC2E' %}
+                                {% endif %}
+
+                                {% set icono = '<span class="badge" style="font-weight:300; background-color:' ~ colorI ~ ';">E</span>' %}
+                            {% endif %}
+
+                            {% if equipo_id == partido.equipoLocal_id %}
+                                {% set iconoGF = '<span class="badge" style="font-weight:300; background-color:#0B2161">' ~ partido.goles_local ~ '</span>' %}
+                                {% set iconoGC = '<span class="badge" style="font-weight:300; background-color:#424242">' ~ partido.goles_visitante ~ '</span>' %}
+                            {% endif %}
+
+                            {% if equipo_id == partido.equipoVisitante_id %}
+                                {% set iconoGF = '<span class="badge" style="font-weight:300; background-color:#013ADF">' ~ partido.goles_visitante ~ '</span>' %}
+                                {% set iconoGC = '<span class="badge" style="font-weight:300; background-color:#A4A4A4">' ~ partido['goles_local'] ~ '</span>' %}
+                            {% endif %}
+
+
+                        {% endif %}
+
+                        {% include 'index/__part/filaPartido.html.twig' %}
+
+                        <div id="youtube-{{ partido.id }}" class="col-xs-12 nopadding text-center"></div>
+
+                    </div>
+
+                {% endif %}
+
+            {% endfor %}
+        </div>
+    </div>
+
+
+</div>

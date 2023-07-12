@@ -1,0 +1,95 @@
+<div class="col-12">
+    {% include 'publicidad/cuerpo03.html.twig' %}
+</div>
+<div style="margin-top: 10px" class="col-12 contenedorBlancoBordesRedondeadosConPadding">
+    <div class="row">
+        <div class="col-6">
+            <h3>{{ equipoClub.nombreEstadio }}</h3>
+            <span>
+                    {% if equipoClub.direccionEstadio|length > 5 %}
+                        {{ equipoClub.direccionEstadio }} -
+                    {% endif %}
+
+                {{ equipoClub.localidadEstadio }}
+                </span>
+
+            <hr>
+
+            <div>
+                Año de inauguración: {{ equipoClub.inaguracion }}
+            </div>
+            <div>
+                Capacidad: {{ equipoClub.capacidad }}
+            </div>
+        </div>
+
+        {% set rutaEstadio = 'static/img/estadios/estadi' ~ equipoClub.estadio_id ~ '.png' %}
+        {% if not fileExists(rutaEstadio) %}
+            {% set rutaEstadio = 'static/img/jugadores/NI.png' %}
+        {% endif %}
+        <div class="col-6">
+            <img style='max-width:100%' src='{{ full_url_for('home') }}{{ rutaEstadio }}' alt="campo de futbol">
+        </div>
+
+        <div class="col-12 text-right">
+            <span class="small">Puedes enviar fotos y datos de estadios a jugadores@futbolme.net</span>
+        </div>
+    </div>
+</div>
+
+<div style="margin-top: 10px;" class="col-12 contenedorBlancoBordesRedondeadosConPadding">
+    <div class="row">
+        <div class="col-7">
+            <h3>Datos del club</h3>
+            <div><strong>{{ equipoClub.nombre_completo }}</strong></div>
+            {% set fundado = 0 %}
+            {% if equipoClub.fundado > 0 or equipoClub.efundado > 0 %}
+
+                <div>Fundado en
+                    {% if equipoClub.efundado > 0 %}
+                        {{ equipoClub.efundado }}
+                    {% else %}
+                        {{ equipoClub.fundado }}
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {% if desaparecido == 0 %}
+                
+                {#
+
+                <div><strong>Presidente:</strong> {{ equipoClub.presidente }}</div>
+                <div class="hide"><strong>Socios:</strong> {{ equipoClub.socios }}</div>
+                <div class="hide"><strong>Presupuesto:</strong> {{ equipoClub.presupuesto }}</div>
+                <div class="hide"><strong>Patrocinador:</strong> {{ equipoClub.patrocinador }}</div>
+
+                #}
+
+                <div><strong>Web:</strong> <a href='http://{{ equipoClub.web }}'
+                                              target='_blank'>{{ equipoClub.web }}</a></div>
+            {% else %}
+                <div>Desaparecido en {{ desaparecido }}</div>
+            {% endif %}
+        </div>
+
+        <div class="col-5">
+
+            {% set rutaEquipacion = 'static/img/equipaciones/eq' ~ equipoClub.equipacion_id ~ '.png' %}
+            {% if not fileExists(rutaEquipacion) %}
+                {% set rutaEquipacion = 'static/img/jugadores/NI.png' %}
+            {% endif %}
+
+            <img width='60' src='{{ full_url_for('home') }}{{ rutaEquipacion }}'
+                 alt="equipacion {{ equipoClub.nombre_completo }}">
+            Equipación: Camiseta {{ equipoClub.camiseta }},
+            pantalón {{ equipoClub.pantalon }} y medias {{ equipoClub.media }}.
+        </div>
+    </div>
+</div>
+<!-- OnnetWork newPubli-->
+<script type="text/javascript" src="https://video.onnetwork.tv/embed.php?sid=M2d3LDVUYXgsMA=="></script>
+{# <div id="13939-2" style="height: 255px !important"> #}
+<div id="13939-2">
+    <script src="//ads.themoneytizer.com/s/gen.js?type=2"></script>
+    <script src="//ads.themoneytizer.com/s/requestform.js?siteId=13939&formatId=2" ></script>
+</div>

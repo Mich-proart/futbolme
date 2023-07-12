@@ -1,0 +1,192 @@
+{% if partidosIndexFeed|length > 0 %}
+    <div class="row">
+        <div class="col-12">
+            {% for partido in partidosIndexFeed %}
+                {% include 'index/__part/filaPartido.html.twig' %}
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+<div class="col-12">
+
+
+        <div id="selector-jornadas" class="row">
+
+            {% if valorJornada > 1 %}
+                <div class="contenedorSelectorFechaLiveScore">
+                    <a href="{{ pgTemporadaJornadaBase }}jornada/{{ valorJornada - 1 }}" class="boldfont cajasLiveScore selectorFechaLiveScore selectorFechaLiveScoreIzquierda">
+                        <span id="jornada-previa" data-val="{{ valorJornada - 1 }}" class="iconseparate glyphicon glyphicon-chevron-left">
+                        <
+                    </span>
+                    </a>
+                </div>
+
+                {#
+
+                <a class="col-2 btn btn-success " href="{{ pgTemporada }}{{ valorJornada - 1 }}">
+                    <span id="jornada-previa" data-val="{{ valorJornada - 1 }}" class="iconseparate glyphicon glyphicon-chevron-left">
+                        <
+                    </span>
+                </a>
+
+                #}
+
+            {% endif %}
+
+            <div class="contenedorCajaCentralLiveScore">
+                <div class="cajasLiveScore cajaCentralLiveScore text-center">
+
+                    <button type="button" class="col-12 btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Jornada {{ valorJornada }}/{{ jornadas }}
+                    </button>
+
+                    <div class="dropdown-menu" x-placement="bottom-start">
+                        <div class='menu_16 text-center'>
+                            {% for i in 1..jornadas %}
+                                <div class='text-center opcionJornada'>
+                                    <a href='{{ pgTemporadaJornadaBase }}jornada/{{ i }}'>
+                                        {{ i }}
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            {% if valorJornada < jornadas and valorJornada > 0 %}
+
+                <div class="contenedorSelectorFechaLiveScore">
+                    <a href="{{ pgTemporadaJornadaBase }}jornada/{{ valorJornada + 1 }}" class="boldfont cajasLiveScore selectorFechaLiveScore selectorFechaLiveScoreDerecha">
+                        <span id="jornada-posterior" data-val="{{ valorJornada + 1 }}" class="iconseparate glyphicon glyphicon-chevron-right">
+                            >
+                        </span>
+                    </a>
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+
+</div>
+
+
+<div class="row">
+
+    <div class="col-12" id="mostrar-calendario">
+
+    </div>
+
+</div>
+
+
+{% if c_directos > 0 %}
+    <div class="col-12">
+        <div id="contenedor-jornada-clasificacion">
+
+            <span class="actua pull-right badge" style="font-weight:100;">
+            Actualizado a las {{ hoyDateTime()|date('H:i:s') }}
+            </span>
+
+            {% include 'index/__part/contenidoDirecto.html.twig' %}
+
+        </div>
+    </div>
+
+{% endif %}
+
+{% if valorJornada > 0 %}
+    <div class="col-12">
+
+        {% set i = 1 %}
+        {% set fecha = '' %}
+        {% for key,partido in partidosConFecha %}
+
+            {#
+            {% if key == 7 %}
+                {% set partido = partido|merge({equipoLocal_id: null}) %}
+            {% endif %}
+            #}
+
+            {% if not (partido.estado_partido == 2 or partido.estado_partido > 4) %}
+
+                {% if i == 4 %}
+                    <div class="col-12">
+                        {% set espacio = 'entrePartidos' %}
+                        {% include 'publicidad/publiGestion.html.twig' %}
+                    </div>
+
+                {% endif %}
+
+                {% if fecha != partido.fecha %}
+                    {% set fecha = partido.fecha %}
+
+                    {# <div class="row"> #}
+                        <div class="col-12 nombreDiaPartido" style="padding:0px; line-height: 30px; clear: both;">
+                            {{ nombreDiaCompleto(partido.fecha) }}
+                        </div>
+                    {# </div> #}
+
+                {% endif %}
+
+                {% if partido.equipoLocal_id is null or partido.equipoVisitante_id is null %}
+                    <div class="row">
+                        <div class="col-12 equipoDescansa">
+                            Descansa
+                            {% if partido.equipoLocal_id is null %}
+                                {{ partido.visitante }}
+                            {% else %}
+                                {{ partido.local }}
+                            {% endif %}
+                        </div>
+                    </div>
+
+                {% else %}
+
+                    {% include 'index/__part/filaPartido.html.twig' %}
+
+                {% endif %}
+
+                {% set i = i + 1 %}
+
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+    {% if partidosSinFecha|length > 0 %}
+        <div class="col-12">
+            <div class="col-xs-12 txt11 cajanaranja text-center">Sin fecha definida</div>
+            {% for key,partido in partidosSinFecha %}
+
+                {% include 'index/__part/filaPartido.html.twig' %}
+
+            {% endfor %}
+
+        </div>
+    {% endif %}
+
+    <div class="col-12">
+        {% if getConstante('__ES_MOBILE__') %}
+            {% set espacio = 'temporadaClasificacionMobile' %}
+        {% else %}
+            {% set espacio = 'temporadaClasificacion' %}
+        {% endif %}
+        {% include 'publicidad/publiGestion.html.twig' %}
+    </div>
+
+
+    {% if clasificacion is defined %}
+
+        {% include 'temporada/__content/__part/pesClasificacion.html.twig' %}
+
+
+    {% endif %}
+
+
+{% endif %}

@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block subject %}Esta es la plantilla del mail{% endblock %}</title>
+</head>
+<body style="background: #161616;">
+    <div style="background: #161616; padding:10px; color: #FFFFFF;">
+        <a href="https://finderant.com"><img class="g-img" src="http://finderant.com/joseba/img/logo-finderant-white.png" alt="FinderAnt Solutions S.L." style="height: 100px; width: auto;"></a>
+        {% block body %}
+            <br />
+        {% endblock %}
+    </div>
+</body>
+</html>

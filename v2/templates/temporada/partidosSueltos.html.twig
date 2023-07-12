@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block contenedorIzquierda %}
+
+    {% include '__part/ultimosEventos.html.twig' %}
+
+{% endblock %}
+
+{% block contenedorCentral %}
+
+    <div class="col-12 nopadding whitebox clear">
+        <div class="col-12 nopadding whitebox clear">
+                <h1>{{ nombreTorneo }}</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                {% set espacio = 'temporadaJornada' %}
+                {% include 'publicidad/publiGestion.html.twig' %}
+            </div>
+        </div>
+
+        {% set f='---' %}
+        {% for key,partido in partidos %}
+            {% set status = partido.time_status %}
+
+            {% if key == 3 %}
+
+                <div class="row">
+                    <div class="col-12">
+                        {% set espacio = 'entrePartidos' %}
+                        {% include 'publicidad/publiGestion.html.twig' %}
+                    </div>
+                </div>
+
+            {% endif %}
+
+            {% if not (partido.extra.round is defined and partido.extra.round > jornadaActiva + 1) %}
+
+                {% include 'index/__part/partidoDirectoSueltos.html.twig' %}
+
+                {% set f = partido.fecha %}
+            {% endif %}
+        {% endfor %}
+
+
+        {% if tipo_torneo == 1 %}
+
+            <div class="col-12">
+                {% set total = clas.overall.tables.0 %}
+
+                <div class="row"></div>
+
+                {% include 'temporada/__content/__part_sueltos/clasificacion.html.twig' %}
+
+                {% set local = clas.home.tables.0 %}
+                {% set visitante = clas.away.tables.0 %}
+            </div>
+
+        {% else %}
+
+            <div class="col-12">
+                <h2 class="subtitulo">Últimos partidos</h2>
+            </div>
+
+            <div class="col-12">
+                {% set f='---' %}
+                {% set contador = 0 %}
+
+                {% for key, partido in terminados.results %}
+
+                    {% set contador = contador + 1 %}
+
+                    {% if contador == 3 %}
+                        <div class="row">
+                            <div class="col-12">
+                                {% set espacio = 'entrePartidos' %}
+                                {% include 'publicidad/publiGestion.html.twig' %}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if contador <= 20 %}
+                        {% set status = partido.time_status %}
+                        {% if not (status != 3) %}
+
+                            {% include 'index/__part/partidoDirectoSueltos.html.twig' %}
+                            {% set f = partido.fecha %}
+
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+{% endblock %}
+
+{% block bloqueJs %}
+
+
+{% endblock %}
+
+
+{% block contenedorDerecha %}
+
+
+{% endblock %}

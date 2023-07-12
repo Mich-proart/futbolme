@@ -1,0 +1,94 @@
+<div class="col-12">
+    <div class="col-12 contenedorBlancoBordesRedondeados" style="padding-top: 15px;">
+        {% set id_equipo = 0 %}
+        {% set contador = 0 %}
+
+        {% for jugador in fichajes %}
+
+            {% set enlace_jugador = full_url_for('jugador_url_nombre', {
+                'id' : jugador.id,
+                'slug' : ponerGuion(jugador.apodo)
+            }) %}
+
+            {% set enlace_equipo = full_url_for('equipo_datos', {
+                'idEquipo' : jugador.equipoActual_id,
+                'slug' : ponerGuion(jugador.apodo)
+            }) %}
+
+            {% if jugador.posicion == '1' %}
+
+                {% set txt_jugador = 'Porteros' %}
+                {% if liga is defined and liga == 214 %}
+                    {% set txt_jugador = 'Porteras' %}
+                {% endif %}
+
+            {% elseif jugador.posicion == '2' %}
+
+                {% set txt_jugador = 'Defensas' %}
+
+            {% elseif jugador.posicion == '3' %}
+
+                {% set txt_jugador = 'Centrocampistas' %}
+
+            {% elseif jugador.posicion == '4' %}
+
+                {% set txt_jugador = 'Delanteros' %}
+
+            {% elseif jugador.posicion == '5' %}
+
+                {% set txt_jugador = 'Entrenador' %}
+
+            {% else %}
+
+                {% set txt_jugador = 'Sin demarcación' %}
+
+            {% endif %}
+
+            {% set rutaJugador = 'static/img/jugadores/jugador' ~ jugador.id ~ '.jpg' %}
+            {% if not fileExists(rutaJugador) %}
+                {% set rutaJugador = 'static/img/jugadores/NI.png' %}
+            {% endif %}
+
+            {% set rutaEscudo = rutaEscudo(jugador.club_id, jugador.equipoActual_id) %}
+
+            {% if jugador.equipoActual_id != id_equipo and temporada_id is defined %}
+                {% set contador = contador + 1 %}
+                {% set id_equipo = jugador.equipoActual_id %}
+
+                <div class="row" style="margin-top: 10px; margin-bottom: 15px;">
+                    <div class="col-3">
+                        <a href="{{ enlace_equipo }}"><img src="{{ rutaEscudo }}" alt="{{ jugador.equipo }}" class="img-rounded" width="60"></a>
+                    </div>
+                    <div class="col-9">
+                        <h4><span><a href="{{ enlace_equipo }}" style="line-height: 60px; color: #434343;">{{ jugador.equipo }}</a></span>
+                        </h4>
+                    </div>
+                </div>
+
+                {% if contador == 2 %}
+                    <div class="row">
+                        <div class="col-12">
+                            {% include 'publicidad/cuerpo04.html.twig' %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-2">
+
+                </div>
+                <div class="col-3">
+                    <a href="{{ enlace_jugador }}"><img src="/{{ rutaJugador }}" class="img-rounded" width="64"  height="96" alt="jugador"></a>
+                </div>
+                <div class="col-7">
+                    <span><a href="{{ enlace_jugador }}" style="font-weight: bold; color: #434343;">{{ jugador.apodo }}</a></span>
+                    <br /><span>Procedencia: {{ jugador.slug }}</span>
+                    <br /><span><b>{{ txtPosicion }}</b></span>
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div>
+</div>

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+
+{% block contenedorIzquierda %}
+
+    {% include '__part/ultimosEventos.html.twig' %}
+
+{% endblock %}
+
+{% block contenedorCentral %}
+
+    <div class="col-12 contenedorBlancoBordesRedondeadosConPadding">
+        <div class="row">
+            <div class="col-12">
+                <h1>Historico!!</h1>
+            </div>
+
+            <div class="col-12">
+                <strong>Partidos</strong><br />
+                {#
+                {% set enlace_equipo = full_url_for('equipo_datos', {
+                    'idEquipo' : jugador.equipoActual_id,
+                    'slug' : ponerGuion(jugador.equipoActual)
+                }) %}
+                #}
+
+                <table>
+                    {% for partido in partidos %}
+                        <tr>
+                            <td>{{ partido.id }}</td>
+                            <td>{{ partido.local }}</td>
+                            <td>{{ partido.visitante }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block bloqueJs %}
+
+
+
+{% endblock %}
+
+
+
+{% block contenedorDerecha %}
+
+
+{% endblock %}

@@ -1,0 +1,340 @@
+{% extends 'base.html.twig' %}
+
+{% block contenedorIzquierda %}
+
+    {% include '__part/ultimosEventos.html.twig' %}
+
+{% endblock %}
+
+{% block contenedorCentral %}
+
+    {% if categorias is defined %}
+        {% if categorias is not null %}
+            <div class="row">
+                <ul id="menuCategorias" class="col-12">
+                    {% for key, value in categorias %}
+                        {% if value|length > 0 %}
+                            {% set sumaPartidos = 0 %}
+
+                            <li>
+                                <a class="btn btn-secondary opcionCategoria" data-categoria="{{ key }}" href="">{{ key }}</a>
+                            </li>
+
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="row">
+                {% for key, value in categorias %}
+                    {% if value|length > 0 %}
+                        <div id="menuTorneosCategoria{{ key }}" class="col-12 menuTorneosCategoria" style="display: none; margin-bottom: 20px;">
+                            <div class="col-12 contenedorBlancoBordesRedondeados" style="padding-top: 10px;">
+                                <h2 class="subtitulo">{{ key }}</h2>
+
+                                <a class="enlaceCerrarMenuTorneosCategoria" style="position:absolute; top: 0px; right: 0px; color: #333333; font-size: 12px;" href="">CERRAR [X]</a>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        {% set tTitulo = '' %}
+                                        {% set contador = 0 %}
+
+                                        {% for k, torneo in value %}
+
+                                            {% set t = torneo.torneo_nombre|split('-') %}
+
+                                            {% if t|length > 1 %}
+                                                {% set tN = t.0|trim %}
+                                                {% set tG = t.1 %}
+                                            {% else %}
+                                                {% set tN = torneo.torneo_nombre %}
+                                                {% set tG = torneo.torneo_nombre %}
+                                            {% endif %}
+
+
+                                            {% if tN != tTitulo %}
+                                                <h3 class="subtitulo" style="margin: 10px 0px;">{{ tN }}</h3>
+                                            {% endif %}
+
+                                            {% set enlaceTorneo = full_url_for('torneo_index', {
+                                                'slug': ponerGuion(torneo.torneo_nombre),
+                                                'idTorneo': ponerGuion(torneo.temporada_id)
+                                            }) %}
+
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <a class="enlaceTorneo" href="{{ enlaceTorneo }}">
+                                                        {{ tG }}
+
+                                                        {% if cabecera[torneo.temporada_id].partidos is defined %}
+                                                            {% set partidosTor = cabecera[torneo.temporada_id].partidos %}
+                                                        {% else %}
+                                                            {% set partidosTor = 0 %}
+                                                        {% endif %}
+
+                                                        {% if partidosTor > 0 %}
+                                                            {% set sumaPartidos = sumaPartidos + partidosTor %}
+                                                            <span class="badge pull-right">
+                                                                {{ partidosTor }}
+                                                            </span>
+                                                        {% endif %}
+
+                                                    </a>
+                                                </div>
+                                            </div>
+
+
+                                            {% set tTitulo = tN %}
+
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+
+        {% endif %}
+    {% endif %}
+
+    <div id="cabeceraTorneo" class="row">
+
+        <div class="col-12">
+            <h1>
+                {{ nombreTorneo }}
+            </h1>
+            <span class="contenedorBandera">
+                {% if comunidad_id > 1 %}
+
+                    {% set nombrePais = nombreComunidad %}
+
+                    {% if comunidad_id == 10 and categoria_torneo_id == 1 %}
+                        {% set comunidad_id = 55 %}
+                        {% set nombrePais = nombrePais ~ ' y Melilla' %}
+                    {% elseif comunidad_id == 11 and categoria_torneo_id == 1 %}
+                        {% set comunidad_id = 56 %}
+                        {% set nombrePais = nombrePais ~ ' y Ceuta' %}
+                    {% endif %}
+
+                    {% if temporada_id ==3093 %}
+                        {% set comunidad_id = 22 %}
+                        {% set nombrePais = 'Ceuta' %}
+                    {% endif %}
+
+                    {% if temporada_id ==3096 %}
+                        {% set comunidad_id = 21 %}
+                        {% set nombrePais = 'Melilla' %}
+                    {% endif %}
+
+                    <div class="comunidad flag{{ comunidad_id }}"></div>
+                {% else %}
+                    <div class="pais flag{{ idPais }}b"></div>
+                {% endif %}
+            </span>
+            <span><h2 class="subtitulo">{{ nombrePais }}</h2></span>
+        </div>
+
+        <div class="col-12 text-center contenedorDescripcionTorneo">
+            <p>{{ textoLiga }}</p>
+            {% if getConstante('__ES_MOBILE__') %}
+                {% set espacio = 'temporadaJornadaMobile' %}
+            {% else %}
+                {% set espacio = 'temporadaJornada' %}
+            {% endif %}
+            {% include 'publicidad/publiGestion.html.twig' %}
+        </div>
+
+    </div>
+
+
+    {% if tipoTorneo == 1 %}
+        {% include 'temporada/__content/liga.html.twig' %}
+    {% elseif tipoTorneo == 2 %}
+        {% include 'temporada/__content/eliminatorio.html.twig' %}
+    {% elseif tipoTorneo == 3 %}
+        {% include 'temporada/__content/eliminatorio.html.twig' %}
+    {% elseif tipoTorneo == 4 %}
+        {% include 'temporada/__content/eliminatorioCorto.html.twig' %}
+    {% elseif tipoTorneo == 5 %}
+        {% include 'temporada/__content/amistoso.html.twig' %}
+    {% elseif tipoTorneo == 6 %}
+
+    {% elseif tipoTorneo == 7 %}
+
+    {% elseif tipoTorneo == 8 %}
+
+    {% endif %}
+
+
+{% endblock %}
+
+{% block bloqueJs %}
+
+<script type="text/javascript">
+
+    function mostrarPestanaAmistosos(pestanaMostrar) {
+        console.log(pestanaMostrar);
+
+        $('#tabsAmistosos .nav-link').each(function(i, el) {
+            var jEl = $(el);
+            jEl.removeClass('active');
+        });
+        $('#tabsAmistosos #' + pestanaMostrar + '-tab').addClass('active');
+        $('#tabsAmistososContent .tab-pane').removeClass('show active');
+        $('#tabsAmistososContent #' + pestanaMostrar).addClass('show active');
+    }
+
+    $(document).on('click', '#ayer-tab, #hoy-tab, #manana-tab, #proximos-dias-tab', function (e) {
+        var jThis = $(this);
+        var pestana = jThis.attr('aria-controls');
+
+        mostrarPestanaAmistosos(pestana);
+    });
+
+    $(document).on('click', '#menuCategorias a.opcionCategoria', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+
+        var jThis = $(this);
+        var nombreCategoria = jThis.data('categoria');
+
+        $('.menuTorneosCategoria').fadeOut(500);
+        $('#menuTorneosCategoria' + nombreCategoria).fadeIn(500);
+    });
+
+    $(document).on('click', '.enlaceCerrarMenuTorneosCategoria', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        $('.menuTorneosCategoria').fadeOut(500);
+
+    });
+
+
+    function refrescaPaginaTemporada()
+    {
+        var dt = new Date();
+        var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+        $.ajax({
+            type: 'GET',
+            url: '{{ pgTemporada }}',
+            ajax: false,
+        })
+        .done(function(data) {
+            console.log($(data).find('#contenedorCentral').html());
+            $('#contenedorCentral').html($(data).find('#contenedorCentral').html());
+        });
+        $('.actua').html('Actualizado a las '+time);
+    }
+
+    {% if directos|length > 0 %}
+
+        setInterval(function(){
+            refrescaPaginaTemporada();
+        },30000);
+
+        /*
+        setInterval(function(){
+            $.ajax({
+                type: 'GET',
+                url: "/srcPagajax/clasificacion.php",
+                data: "id=" + {{ temporada_id }},
+        })
+        .done(function( data ) {
+                $('.bloque-clasificacion').html(data);
+            });
+        },30000);
+        */
+    {% endif %}
+
+
+    {% if desarrollo == 1 %}
+        cuadro_honor({{ temporada_id }});
+    {% endif %}
+
+
+    {% if tipoTorneo == 7 %}
+        $('#fasesh').on('change', function (event) {
+            var fase = $('#fasesh').val();
+            console.log(fase);
+
+            window.location.href = "/resultados-directo/torneo/{{ ponerGuion(nombreTorneo) }}/{{ temporada_original }}/" + fase + "&idH7={{ htid }}";
+        })
+
+        $( document ).ready(function(){
+            // $('.faseEliminatorio').not('#fase<?php echo $jornadaActiva; ?>').hide();
+            $('.clasificacionFase').not('#clasificacionFase{{ jornadaActiva }}').hide();
+        })
+
+        $('.grupo').on('click', function (event) {
+            var grupo = $(this).attr('data-id');
+            var ngrupo = $(this).text();
+            console.log(ngrupo);
+            $('#grupo_id').val(grupo);
+            $('#nombreprimerGrupo').html(ngrupo);
+            $('.grupoEliminatorio').show();
+            $('.grupoEliminatorio').not('.grupo' + grupo).hide();
+            $('.grupoEliminatorio .grupo' + grupo).show();
+            $('.clasificacionGrupo').show();
+            $('.clasificacionGrupo').not('#clasificacionGrupo' + grupo).hide();
+            $('.clasificacionGrupo #clasificacionGrupo' + grupo).show();
+        })
+    {% endif %}
+
+    {% if tipoTorneo == 2 or tipoTorneo == 8 %}
+        $( document ).ready(function(){
+            // $('.faseEliminatorio').not('#fase<?php echo $jornadaActiva; ?>').hide();
+            $('.clasificacionFase').not('#clasificacionFase{{ jornadaActiva }}').hide();
+        })
+
+        $(document).on('change', '#fases', function (event) {
+            var fase = $('#fases').val();
+
+            var urlBaseJornada = '{{ full_url_for('torneo_jornada', {
+                'idTorneo': temporada_id,
+                'slug': slug,
+                'slug': slug,
+                'jornada': '-AA-JORNADA-AA-'
+            }) }}'
+
+            var urlJornada = urlBaseJornada.replace('-AA-JORNADA-AA-', fase);
+
+            window.location.href = urlJornada;
+        })
+
+        $('.grupo').on('click', function (event) {
+            var grupo = $(this).attr('data-id');
+            var ngrupo = $(this).text();
+            console.log(ngrupo);
+            $('#grupo_id').val(grupo);
+            $('#nombreprimerGrupo').html(ngrupo);
+            $('.grupoEliminatorio').show();
+            $('.grupoEliminatorio').not('.grupo' + grupo).hide();
+            $('.grupoEliminatorio .grupo' + grupo).show();
+            $('.clasificacionGrupo').show();
+            $('.clasificacionGrupo').not('#clasificacionGrupo' + grupo).hide();
+            $('.clasificacionGrupo #clasificacionGrupo' + grupo).show();
+        })
+    {% endif %}
+</script>
+
+<script src="{{ full_url_for('home') }}static/js/tablesorter/jquery.tablesorter.js"></script>
+<script>
+    if ($('#latabla').length == 1) {
+        $(function(){
+            $('#latabla').tablesorter();
+        });
+    }
+</script>
+
+{% endblock %}
+
+
+
+{% block contenedorDerecha %}
+
+    {% include 'temporada/__content/__part/pesEquipos.html.twig' %}
+
+{% endblock %}

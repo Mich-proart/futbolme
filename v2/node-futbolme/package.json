@@ -1,0 +1,9 @@
+{
+  "name": "node-futbolme",
+  "version": "1.0.0",
+  "description": "Sistema de refresco de datos de la home",
+  "dependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0"
+  }
+}

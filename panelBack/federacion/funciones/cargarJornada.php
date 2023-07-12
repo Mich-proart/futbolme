@@ -1,0 +1,50 @@
+<?php
+$static_v = 1; 
+define('_FUTBOLME_', 1);
+
+require_once '../consultas.php';
+require_once '../funciones.php';
+$tiempo_inicio = microtime_float(); 
+
+$temporada_id=$_POST['temporada_id'];
+$grupo_id=$_POST['grupo_id'];
+$jornada=$_POST['jornada'];
+
+$partidos=calendario($temporada_id,$jornada); ?>
+
+<table border="1" bgcolor="dimgray">
+	<tr bgcolor="gainsboro">
+		<td align="center">id</td>
+		<td align="center">estado</td>
+		<td align="center">Jda</td>
+		<td align="center">local</td>
+		<td align="center">resultado</td>
+		<td align="center">visitante</td>
+	</tr>
+<?php 
+
+foreach ($partidos as $key => $value) { ?>
+	<tr bgcolor="white">
+		<td align="center"><?php echo $value['id']?></td>
+		<td align="center"><?php echo $value['estado_partido']?></td>
+		<td align="center"><?php echo $value['jornada']?> - <?php echo $value['nombre_jornada']?></td>		
+		<td align="center"><?php echo $value['local']?></td>
+		<td align="center"><?php echo $value['goles_local']?> - <?php echo $value['goles_visitante']?></td>
+		<td align="center"><?php echo $value['visitante']?></td>
+	</tr>
+<?php 
+}
+
+echo '</table>';
+
+
+$tiempo_fin = microtime_float();
+$tiempo = $tiempo_fin - $tiempo_inicio;
+echo '<hr />Tiempo empleado: '.($tiempo_fin - $tiempo_inicio);
+
+
+$time = time();
+echo '<br />La hora actual en el servidor es: '.date('H:i:s', $time);
+
+?>
+

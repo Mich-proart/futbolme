@@ -1,0 +1,98 @@
+{% set torneos = [] %}
+
+{% for key,value in partidosSueltos %}
+    {% set torneos = anadirAArrayKey(torneos, key, {
+        'partidos' : value
+    }) %}
+{% endfor %}
+
+{% set temp_id = 0 %}
+{% set contador = 0 %}
+
+{% if torneos|length == 0 %}
+    <div class="row">
+        <div class="col-12">
+            {% set espacio = 'cabeceraDirectos' %}
+            {% if getConstante('__ES_IOS__') %}
+                {% set espacio = 'cabeceraDirectosiOS' %}
+            {% endif %}
+            {% include 'publicidad/publiGestion.html.twig' %}
+        </div>
+    </div>
+{% endif %}
+
+<div class="row">
+    {% for key, p in torneos %}
+
+        {% for k, partido in p.partidos %}
+            {% set leagueName = partido.league.name %}
+            {% set buscamos = "mins play" %}
+
+            {% if not (buscamos in leagueName) %}
+
+                {% set status = partido.time_status %}
+
+                {# {% if status == 1 and partido.timer.tm != 0 %} #}
+                {#
+                {{ dump(status) }}
+                {{ dump(partido.timer.tm) }}
+                #}
+
+                {% if status == 1 and partido.timer.tm != 0 %}
+
+                    <div class="col-12">
+
+                        {% if temp_id != key %}
+
+                            {% set fondoCabecera = 'celestebox' %}
+                            {% set colorCabecera = 'white !important' %}
+                            {% set enlaceTorneo = full_url_for('torneo_index', {
+                                'slug' : ponerGuion(partido.league.name),
+                                'idTorneo' : 1000000 + partido.league.id,
+                            }) %}
+
+                            <div class="cabeceraTorneo">
+
+                                <div class="nombreTorneo">
+
+                                    <a href="{{ enlaceTorneo }}" style="color: black;">
+
+                                        <h2 class="tname visible-xs txt11">
+                                            {{ partido.league.name }}
+                                        </h2>
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        {% endif %}
+
+                        {% set temp_id = key %}
+
+
+                        {% include 'index/__part/partidoDirectoSueltos.html.twig' %}
+
+                        {% set contador = contador + 1 %}
+
+
+                        {% if contador == 3 %}
+                            <div class="row">
+                                <div class="col-12">
+                                    {% set espacio = 'entreDirectos' %}
+                                    {% include 'publicidad/publiGestion.html.twig' %}
+                                </div>
+                            </div>
+                        {% endif %}
+
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+        
+
+
+    {% endfor %}
+</div>
+

@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+
+{% block contenedorIzquierda %}
+
+    {% include '__part/ultimosEventos.html.twig' %}
+
+{% endblock %}
+
+{% if jugador.posicion == '1' %}
+
+    {% set txt_jugador = 'Portero' %}
+    {% if liga is defined and liga == 214 %}
+        {% set txt_jugador = 'Portera' %}
+    {% endif %}
+
+{% elseif jugador.posicion == '2' %}
+
+    {% set txt_jugador = 'Defensa' %}
+
+{% elseif jugador.posicion == '3' %}
+
+    {% set txt_jugador = 'Centrocampista' %}
+
+{% elseif jugador.posicion == '4' %}
+
+    {% set txt_jugador = 'Delantero' %}
+
+{% elseif jugador.posicion == '5' %}
+
+    {% set txt_jugador = 'Entrenado' %}
+
+{% else %}
+
+    {% set txt_jugador = 'Sin demarcación' %}
+
+{% endif %}
+
+{% block contenedorCentral %}
+
+    <div class="col-12 contenedorBlancoBordesRedondeadosConPadding">
+        <div class="row">
+            <div class="col-12">
+                <h1>{{ noticia.titulo }}</h1>
+            </div>
+            <div class="col-12">
+                <p class="text-right" style="font-family: Roboto;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-weight: bold;
+                            font-size: 12px;
+                            line-height: 24px;
+                            color: #B9BBBE;">
+                    {{ noticia.fecha|date('d/m/Y') }}
+                </p>
+            </div>
+            <div class="col-12">
+                {{ noticia.descripcion|raw }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 30px;">
+        <div class="col-12">
+            <div class="outbrain-tm" id="13939-16"><script src="//ads.themoneytizer.com/s/gen.js?type=16"></script><script src="//ads.themoneytizer.com/s/requestform.js?siteId=13939&formatId=16"></script></div>
+        </div>
+    </div>
+
+
+    <div class="row" style="margin-top: 30px;">
+        <div class="col-12">
+            {% set tituloWidget = 'Más noticias de Futbolme' %}
+            {% set noticiasWidget = otrasNoticias %}
+            {% include 'noticias/widgetNoticias.html.twig' %}
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block bloqueJs %}
+
+
+
+{% endblock %}
+
+
+
+{% block contenedorDerecha %}
+
+
+{% endblock %}

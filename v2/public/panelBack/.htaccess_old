@@ -1,0 +1,6 @@
+AuthGroupFile /dev/null
+AuthType Basic
+AuthUserFile /home/futbolme/domains/futbolme.com/.htpasswd/public_html/v2/public/panelBack/.htpasswd
+AuthName "Iniciar sesion"
+require valid-user
+ErrorDocument 401 "Unauthorized Access"

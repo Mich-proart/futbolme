@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.tiny.cloud/1/19zd7p7vtknhuabp6t9luepr21o7okuaowymhu163mtaelsk/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+
+    <form>
+        <div class="form-group">
+            <label for="titular">Titular</label>
+            <input type="text" class="form-control" name="titular" id="titular" placeholder="Titular">
+        </div>
+        <div class="form-group">
+            <label for="contenidoNoticia">Contenido noticia</label>
+            <textarea name="contenidoNoticia" id="contenidoNoticia">
+                Welcome to TinyMCE!
+            </textarea>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-block btn-success">Publicar noticia</button>
+        </div>
+    </form>
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: '     autolink lists  media     table    image',
+        toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table image undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | outdent indent',
+        toolbar_mode: 'floating',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name'
+    });
+</script>
+</body>
+</html>

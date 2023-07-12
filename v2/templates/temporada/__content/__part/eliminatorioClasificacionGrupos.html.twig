@@ -1,0 +1,177 @@
+<div class="row">
+    <div class="col-12" style="padding: 0px;">
+        {% if clasificacionGrupo is defined %}
+
+            <div class="row">
+                <div class="col-12">
+                    <div id="topLaTabla">
+
+                    </div>
+                </div>
+            </div>
+            <table id="latabla" class="table tablesorter table-condensed">
+                <thead>
+                <tr>
+                    <th class="text-center" title="Posición">
+                        <strong>P</strong>
+                    </th>
+                    <th style="min-width: 130px" class="text-center">
+                        <strong>Equipo</strong>
+                    </th>
+                    <th class="text-center" title="Puntos">
+                        <strong>Pts</strong>
+                    </th>
+                    <th class="text-center" title="Jugados">
+                        Ju
+                    </th>
+                    <th class="text-center" title="Ganados">
+                        Ga
+                    </th>
+                    <th class="text-center" title="Empatados">
+                        Em
+                    </th>
+                    <th class="text-center" title="Perdidos">
+                        Pe
+                    </th>
+                    <th class="text-center" title="Goles a favor">
+                        Fv
+                    </th>
+                    <th class="text-center" title="Goles en contra">
+                        Cn
+                    </th>
+                    <th class="text-center" title="Diferencia de goles">
+                        Di
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                {% for key, fila in clasificacionGrupo.clasificacionFinal %}
+
+                    {#
+                    {% set pgEquipo = full_url_for('equipo_index', {
+                        'slug' : ponerGuion(fila.nombre),
+                        'idEquipo' : fila.equipo_id,
+                    }) ~ '/datos?temp_id=' ~ temp_id %}
+                    #}
+
+                    {% set pgEquipo = full_url_for('equipo_index', {
+                        'slug' : ponerGuion(fila.nombre),
+                        'idEquipo' : fila.equipo_id,
+                    }) ~ '/datos' %}
+
+
+                    {% set color_fondo = 'white' %}
+                    {% set filaEnJuego = false %}
+                    {% if fila.preferente is defined %}
+                        {% if fila.preferente %}
+                            {% set color_fondo = 'yellow' %}
+                            {% set filaEnJuego = true %}
+                        {% endif %}
+                    {% endif %}
+
+                    {% if key % 2 == 0 %}
+                        {% set classFila = 'fila-par' %}
+                    {% else %}
+                        {% set classFila = 'fila-impar' %}
+                    {% endif %}
+
+                    <tr class="{{ classFila }}" {% if filaEnJuego %}style="background: #FDDE02;"{% endif %}>
+
+                        <td class="text-center" style="{{ fila.css|replace(
+                            {
+                                'background-color': 'color',
+                                'white': '#000000',
+                                'gold': '#F1C422',
+                                '#FFEE00': '#F1C422',
+                                'orange': '#E38800',
+                                'indianred': '#E80000',
+                            }
+                        ) }}">
+                            {{ fila.posicion }}
+                        </td>
+
+                        <td>
+                            <a href="{{ pgEquipo }}">
+                                {% if seleccion is defined %}
+
+                                    {% if seleccion == 1 %}
+                                        {% set bandera = XsacarBandera(fila.equipo_id) %}
+                                        {% set urlBandera = '/static/img/paises/banderas/ban' ~ bandera ~ 'b.png' %}
+                                        {% set anchoBandera = 34 %}
+                                        {% set altoBandera = 20 %}
+
+                                    {% else %}
+
+                                        {% set urlBandera = '/static/img/equipos/escudo' ~ fila.equipo_id ~ '.png' %}
+                                        {% set anchoBandera = 18 %}
+                                        {% set altoBandera = 20 %}
+
+                                    {% endif %}
+
+                                {% else %}
+
+                                    {% set urlBandera = '/static/img/equipos/escudo' ~ fila.equipo_id ~ '.png' %}
+                                    {% set anchoBandera = 18 %}
+                                    {% set altoBandera = 20 %}
+
+                                {% endif %}
+
+                                {% if not fileExists('../public' ~ urlBandera) %}
+                                    {% set urlBandera = '/static/img/equipos/NI.png' %}
+                                {% endif %}
+
+                                <img src="{{ urlBandera }}" alt="escudo"  style="width:{{ anchoBandera }}px; height:{{ altoBandera }}px">
+
+                                <strong>{{ fila.nombre }}</strong>
+                            </a>
+                        </td>
+
+                        <td class="text-center">{{ fila.puntos }}</td>
+                        <td class="text-center">{{ fila.jugados }}</td>
+                        <td class="text-center">{{ fila.ganados }}</td>
+                        <td class="text-center">{{ fila.empatados }}</td>
+                        <td class="text-center">{{ fila.perdidos }}</td>
+                        <td class="text-center">{{ fila.gFavor }}</td>
+                        <td class="text-center">{{ fila.gContra }}</td>
+                        <td class="text-center">{{ fila.gFavor - fila.gContra }}</td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-12">
+                    <div id="bottomLaTabla" class="{{ classFila }}">
+
+                    </div>
+                </div>
+            </div>
+
+        {% endif %}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12" style="padding: 0px;">
+        <div class="col-12 contenedorLeyendaClasificacion" style="float: left; background: #4A4A4A; -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;">
+            {% for fila in clasificacionGrupo.leyenda %}
+                <div class="text-left" style="float: left; margin-right: 20px; color:{{ fila.fondo|replace(
+                    {
+                        'white': '#000000',
+                        'gold': '#F1C422',
+                        'orange': '#E38800',
+                        'indianred': '#E80000',
+                    }
+                ) }}">
+                    {{ fila.leyenda }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,475 @@
+<link href="/css/tablesorter/blue/style.css" rel="stylesheet">
+
+{% if themoneytizer == 1 %}
+    <div class="clear"></div>
+
+    <div class="col-12">
+        <div id="13939-19" style="height: 255px !important">
+            <script src="//ads.themoneytizer.com/s/gen.js?type=19"></script><script src="//ads.themoneytizer.com/s/requestform.js?siteId=13939&formatId=19" ></script>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+{% endif %}
+
+<div id="playClasi" class="col-12 whitebox nopadding bloque-clasificacion">
+    <div class="row">
+        <div class="col-12" id="menuOpcionesClasificacion">
+                <a class="btn btn-secondary" onclick="play_clasi({{ temporada_id }},-3)">General</a>
+                <a class="btn btn-secondary" onclick="play_clasi({{ temporada_id }},-1)">Local</a>
+                <a class="btn btn-secondary" onclick="play_clasi({{ temporada_id }},-2)">Visitante</a>
+
+            {% if mitadJornada is defined and jornadaActiva > mitadJornada %}
+                <a class="btn btn-secondary" onclick="play_clasi({{ temporada_id }},-4)">1ª Vuel</a>
+                <a class="btn btn-secondary" onclick="play_clasi({{ temporada_id }},-5)">2ª Vuel</a>
+            {% endif %}
+
+            <div class="btn btn-secondary">
+                Últimas Jor.
+                <select onchange="play_clasi({{ temporada_id }},this.value)">
+                    <option value="0">-</option>
+                    {% if jornadaActiva > 10 %}<option value="-15">10</option>{% endif %}
+                    {% if jornadaActiva > 9 %}<option value="-14">9</option>{% endif %}
+                    {% if jornadaActiva > 8 %}<option value="-13">8</option>{% endif %}
+                    {% if jornadaActiva > 7 %}<option value="-12">7</option>{% endif %}
+                    {% if jornadaActiva > 6 %}<option value="-11">6</option>{% endif %}
+                    {% if jornadaActiva > 5 %}<option value="-10">5</option>{% endif %}
+                    {% if jornadaActiva > 4 %}<option value="-9">4</option>{% endif %}
+                    {% if jornadaActiva > 3 %}<option value="-8">3</option>{% endif %}
+                    {% if jornadaActiva > 2 %}<option value="-7">2</option>{% endif %}
+                    {% if jornadaActiva > 1 %}<option value="-6">1</option>{% endif %}
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div id="topLaTabla">
+
+            </div>
+        </div>
+    </div>
+    <table id="latabla" class="table tablesorter table-condensed">
+        <thead>
+            <tr>
+                <th class="text-center" title="Posición">
+                    <strong>P</strong>
+                </th>
+                <th style="min-width: 130px" class="text-center">
+                    <strong>Equipo</strong>
+                </th>
+                <th class="text-center" title="Puntos">
+                    <strong>Pts</strong>
+                </th>
+                <th class="text-center" title="Jugados">
+                    Ju
+                </th>
+                <th class="text-center" title="Ganados">
+                    Ga
+                </th>
+                <th class="text-center" title="Empatados">
+                    Em
+                </th>
+                <th class="text-center" title="Perdidos">
+                    Pe
+                </th>
+                <th class="text-center" title="Goles a favor">
+                    Fv
+                </th>
+                <th class="text-center" title="Goles en contra">
+                    Cn
+                </th>
+                <th class="text-center" title="Diferencia de goles">
+                    Di
+                </th>
+                {% if visible in [6,86] %}
+                <th class="text-center" title="Puntos por partido">
+                    %
+                </th>
+                {% endif %}
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {#
+        {% if temporada_id == 364 %}
+
+            $clasificacion['clasificacionFinal'][12]['posicion']=14;
+            $clasificacion['clasificacionFinal'][13]['posicion']=13;
+            $array1=$clasificacion['clasificacionFinal'][12];
+            $array2=$clasificacion['clasificacionFinal'][13];
+            $clasificacion['clasificacionFinal'][12]=$array2;
+            $clasificacion['clasificacionFinal'][13]=$array1;
+
+        {% endif %}
+        #}
+
+            {% set equiposTw = [] %}
+            {% set classFila = '' %}
+
+            {% for key,fila in clasificacion.clasificacionFinal %}
+
+                {% if key < 30 %}
+
+                    {% set equipoTW = {
+                        id: fila.equipo_id,
+                        equipo: fila.nombreCorto,
+                        idPais: 60,
+                    } %}
+
+                    {% set equiposTw = anadirAArray(equiposTw, equipoTW) %}
+
+                {% endif %}
+
+                {% set pgEnlace = '/resultados-directo/equipo/' ~ ponerGuion(fila.nombre) ~ '/' ~ fila.equipo_id %}
+
+                {% set pgEnlaceClasificacionBase = full_url_for('equipo_clasificacion', {
+                    'slug' : ponerGuion(fila.nombre),
+                    'idEquipo' : fila.equipo_id,
+                }) %}
+
+                {% set color_fondo = 'white' %}
+                {% set filaEnJuego = false %}
+                {% if fila.preferente is defined %}
+                    {% if fila.preferente %}
+                        {% set color_fondo = 'yellow' %}
+                        {% set filaEnJuego = true %}
+                    {% endif %}
+                {% endif %}
+
+                {% set color_fila = '' %}
+                {% if equipo_id is defined and fila.equipo_id == equipo_id %}
+                    {% set color_fila = "style='background-color:#BCF5A9'" %}
+                {% endif %}
+
+                {% if equipo_rival_id is defined and equipo_rival_id == fila.equipo_id %}
+                    {% set color_fila = "style='background-color:#F8E6E0'" %}
+                {% endif %}
+
+                {% set rutaEscudo = rutaEscudo(fila.club_id, fila.equipo_id) %}
+
+                {% if not fileExists(rutaEscudo) %}
+                    {% set rutaEscudo = '/static/img/jugadores/NI.png' %}
+                {% endif %}
+
+                {% if key % 2 == 0 %}
+                    {% set classFila = 'fila-par' %}
+                {% else %}
+                    {% set classFila = 'fila-impar' %}
+                {% endif %}
+
+                {# <tr {{ color_fila }}> #}
+                <tr data-bk="{{ color_fondo }}" class="{{ classFila }}" {% if equipo_id is defined and equipo_id == fila.equipo_id %} style="{% if not filaEnJuego %}background: #8AE813;{% else %}background: #FDDE02;{% endif %}" {% else %} {% if filaEnJuego %}style="background: #FDDE02;"{% endif%} {% endif %}>
+                    {% if trt is defined %}
+
+                        <td class="text-center" style="padding: 0px;">
+                            {{ key + 1 }}
+                        </td>
+                        <td class="text-center">
+                            <a href='/temporada.php?id={{ fila.temporada_id }}'>
+                            {% if fila.temporada_id == 1 %}
+                                1
+                            {% endif %}
+
+                            {% if fila.temporada_id == 2 %}
+                                2
+                            {% endif %}
+
+                            {% if fila.temporada_id > 2 and fila.temporada_id < 7 %}
+                                2BG{{ fila.temporada_id - 2 }}
+                            {% endif %}
+
+                            {% if fila.temporada_id > 6 %}
+                                {% set d = fila.temporada_id - 6 %}
+
+                                {% if d < 10 %}
+                                    {% set d = '0' ~ d %}
+                                {% endif %}
+
+                            {% endif %}
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            {{ (fila.puntos / fila.jugados)|number_format(2) }}
+                        </td>
+
+                    {% endif %}
+                    <td class="text-left celda-posicion" style="{{ fila.css|replace(
+                        {
+                            'background-color': 'color',
+                            'white': '#000000',
+                            'gold': '#F1C422',
+                            'orange': '#E38800',
+                            'indianred': '#E80000',
+                        }
+                    ) }};">
+                        {% if fila.resultadoPartidoEnJuego is not defined %}
+                            {{ fila.posicion }}
+                        {% else %}
+                            <span class="badge" style="color:#000000; background: {{ fila.resultadoPartidoEnJuegoColor }};">{{ fila.resultadoPartidoEnJuego }}</span>
+                        {% endif %}
+                    </td>
+                    <td style="text-align:left;min-width: 130px" itemscope itemtype="http://schema.org/SportsTeam">
+                        <a href="{{ pgEnlace }}&modelo=Calendario" title="Calendario del {{ fila.nombreCorto }}">
+                            <img src="{{ rutaEscudo }}" itemprop="logo" alt="escudo {{ fila.nombre }}" style="width:18px; height:20px; margin-right: 2px">
+                            <strong itemprop="name">
+                                <span class="d-inline-block d-sm-none">{{ fila.nombreCorto }}</span>
+                                <span class="d-none d-sm-inline-block">{{ fila.nombre }}</span>
+                            </strong>
+
+                            <meta itemprop="url" content="{{ pgEnlace }}">
+                        </a>
+                    </td>
+                    <td class="text-center" style="{# background-color:{{ color_fondo }} #}">
+                        <a style="color:black" href="{{ pgEnlaceClasificacionBase }}puntos" title="{{ fila.nombreCorto }} - Puntos conseguidos">
+                            <b>{{ fila.puntos }}</b>
+                        </a> 
+                    </td>
+                    <td class="text-center">
+                        <a style="color:black" href="{{ pgEnlaceClasificacionBase }}jugados" title="{{ fila.nombreCorto }} - Partidos jugados">
+                            {{ fila.jugados }}
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <a style="color:black" href="{{ pgEnlaceClasificacionBase }}ganados" title="{{ fila.nombreCorto }} - Partidos ganados">
+                            {{ fila.ganados }}
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <a style="color:black" href="{{ pgEnlaceClasificacionBase }}empatados" title="{{ fila.nombreCorto }} - Partidos empatados">
+                            {{ fila.empatados }}
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <a style="color:black" href="{{ pgEnlaceClasificacionBase }}perdidos" title="{{ fila.nombreCorto }} - Partidos perdidos">
+                            {{ fila.perdidos }}
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <a style="color:black" href="{{ pgEnlaceClasificacionBase }}favor" title="{{ fila.nombreCorto }} - Goles a favor">
+                            {{ fila.gFavor }}
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <a style="color:black" href="{{ pgEnlaceClasificacionBase }}contra" title="{{ fila.nombreCorto }} - Goles en contra">
+                            {{ fila.gContra }}
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        {{ fila.gFavor - fila.gContra }}
+                    </td>
+                    
+                    {% if visible in [6,86] %}
+                    <td class="text-center" title="puntos por partido">
+                        {% if fila.jugados > 0 %}
+                        
+                        <span style="font-size:12px; color:green; font-weight:bold" >{{ (fila.puntos / fila.jugados)|number_format(2) }}</span>
+
+                        {% endif %}
+                    </td>
+                    {% endif %}
+
+                </tr>
+
+            {% endfor %}
+
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-12">
+            <div id="bottomLaTabla" class="{{ classFila }}">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% if clasificacion.sanciones is defined %}
+    <div class="col-12">
+        {% for fila in clasificacion.sanciones %}
+
+            {% if fila.nombre is defined%}
+                
+                {% if fila.puntos<0 %}
+
+                <strong>{{ fila.nombre }}</strong> cuenta con <span style='color:red'><strong>{{ fila.puntos }}</strong></span> puntos por sanción federativa<br />
+
+                 {% else %}
+
+                 <strong>{{ fila.nombre }}</strong> cuenta con <span style='color:red'><strong>{{ fila.puntos }}</strong></span> puntos de la primera fase
+
+                 {% if temporada_id==2860 %}
+
+                 ({{ fila.jugados }} partidos)
+
+                 {% endif %}
+                 <br />
+
+                 {% endif %}
+
+            {% endif %}
+
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+{% if trt is not defined %}
+<div class="col-12">
+    <div class="col-12 contenedorLeyendaClasificacion" style="float: left; background: #4A4A4A; -webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;">
+        {#
+        {% set nLeyendas = clasificacion.leyenda|length %}
+        {% set anchoLeyenda = 100 / nLeyendas %}
+        #}
+        {% for fila in clasificacion.leyenda %}
+            {#
+            <div class="text-left" style="float: left; width: {{ anchoLeyenda }}%; color:{{ fila.fondo|replace(
+                {
+                    'white': '#000000',
+                    'gold': '#F1C422',
+                    'orange': '#E38800',
+                    'indianred': '#E80000',
+                }
+            ) }}">
+            #}
+            <div class="text-left" style="float: left; margin-right: 20px; color:{{ fila.fondo|replace(
+                {
+                    'white': '#000000',
+                    'gold': '#F1C422',
+                    'orange': '#E38800',
+                    'indianred': '#E80000',
+                }
+            ) }}">
+                {{ fila.leyenda }}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<div class="col-12">
+    {% set espacio = 'temporadaAplazados' %}
+    {% include 'publicidad/publiGestion.html.twig' %}
+</div>
+
+{% if aplazados|length > 0 %}
+<div class="col-12" style="margin-top: 25px;">
+    <div class="contenedorBlancoBordesRedondeados">
+        <h2 class="subtitulo">Partidos aplazados</h2>
+
+        {#
+        <table class="table" style="background-color: gainsboro;{% if getConstante('__ES_MOBILE__') %} font-size: 11px; {% endif %}">
+            {% for partido in aplazados %}
+                <tr bgcolor="white">
+                    <td class="text-center boldfont">Jda. {{ partido.jornada }}</td>
+                    <td class="text-center">{{ partido.fecha|date('d/m/Y') }}</td>
+                    <td class="text-center">
+                        {% if partido.hora_prevista[-2:] == '11' %}
+                            {% set hora = ':' %}
+                        {% else %}
+                            {% set hora = partido.hora_prevista[:5] %}
+                        {% endif %}
+                        {{ hora }}
+                    </td>
+                    <td align="right" class="boldfont">{{ partido.local }}</td><td>-</td>
+                    <td align="left" class="boldfont">{{ partido.visitante }}</td>
+                </tr>
+                <tr bgcolor="white">
+                    <td colspan="6" align="right">
+                        <em style="{% if not getConstante('__ES_MOBILE__') %} font-size: 14px; {% endif %}">{{ partido.observaciones }}</em>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        #}
+        <div class="col-12" style="font-size: 15px;">
+            {% for partido in aplazados %}
+                <div class="row">
+                    <div class="col-3 col-md-1 text-center">
+                        J{{ partido.jornada }}
+                    </div>
+                    <div class="col-5 col-md-2 text-center">
+                        {{ partido.fecha|date('d/m/Y') }}
+                    </div>
+                    <div class="col-4 col-md-1 text-center">
+                        {% if partido.hora_prevista[-2:] == '11' %}
+                            {% set hora = ':' %}
+                        {% else %}
+                            {% set hora = partido.hora_prevista[:5] %}
+                        {% endif %}
+                        {{ hora }}
+                    </div>
+                    <div class="col-6 col-md-4 text-right">
+                        <strong class="d-block d-md-none">{{ partido.localCorto }}</strong>
+                        <strong class="d-none d-md-block">{{ partido.local }}</strong>
+                    </div>
+                    <div class="col-6 col-md-4 text-left">
+                        <strong class="d-block d-md-none">{{ partido.visitanteCorto }}</strong>
+                        <strong class="d-none d-md-block">{{ partido.visitante }}</strong>
+                    </div>
+                    <div class="col-12" style="font-size: 13px; margin-bottom: 10px; padding-bottom: 10px; border-bottom: solid 1px #212529;">
+                        <em style="{% if not getConstante('__ES_MOBILE__') %} font-size: 14px; {% endif %}">{{ partido.observaciones }}</em>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{#
+COMO EN DISEÑO
+{% if trt is not defined %}
+<div class="col-12 col-md-7 contenedorLeyendaClasificacion">
+    {% for fila in clasificacion.leyenda %}
+        <span class="text-center" style="color:{{ fila.fondo|replace(
+            {
+                'white': '#000000',
+                'gold': '#F1C422',
+                'orange': '#E38800',
+                'indianred': '#E80000',
+            }
+        ) }}">
+            {{ fila.leyenda }}
+        </span>
+    {% endfor %}
+</div>
+
+
+<div class="col-12 col-md-5 contenedorExplicacionMasInfoClasifiacion">
+    <span class="d-none d-sm-block">* Pulsando en cualquier número de la tabla ampliarás información</span>
+    <span class="d-block d-sm-none">* Pulsa en un número para +info</span>
+</div>
+
+
+{% endif %}
+#}
+
+{#
+COMO EN DISEÑO
+<div class="col-12 text-center contenedorClasificacionesGenerales">
+    <h2 class="text-center">Clasificaciones generales</h2>
+
+    <div class="row">
+
+        <div class="col-4 text-center">
+            <a href="/generalClas.php?fm=0">Nacional</a>
+        </div>
+        <div class="col-4 text-center">
+            <a href="/generalClas.php?t=1&fm=0">Segunda B</a>
+        </div>
+        <div class="col-4 text-center">
+            <a href="/generalClas.php?t=2&fm=0">Tercera</a>
+        </div>
+
+    </div>
+
+</div>
+#}

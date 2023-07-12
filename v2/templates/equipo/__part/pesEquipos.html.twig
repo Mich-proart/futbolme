@@ -1,0 +1,55 @@
+
+<div style="margin-top:20px; padding: 15px;" class="col-12 contenedorBlancoBordesRedondeadosConPadding">
+ <div>*Solo se muestran los equipos que pertenecen a las categorías tratadas en futbolme.com (Categoría nacional, autonómicas preferentes, juveniles en División de Honor o Liga
+                Nacional y femeninos en Primera o Segunda División)</div> <hr /> 
+    {% for eq in equipos %}
+
+    {% if 1 == eq.categoria_id %}
+    
+        {% set color = '#000000' %}
+        
+    {% elseif 1 == eq.categoria_id %}
+
+        {% set color = '#0B610B' %}
+
+    {% elseif 3 == eq.categoria_id %}
+
+        {% set color = '#0B4C5F' %}
+
+
+    {% elseif 2 == eq.categoria_id %}
+
+        {% set color = '#A901DB' %}
+
+    {% endif %} 
+
+
+
+    <div style="color:{{ color }}">
+
+    {{ eq.equipo }} - <b>{{ eq.categoria }}</b>
+
+    {% for liga in eq.valoresLiga %}
+
+       - <a style="color:black" href="{{ full_url_for('torneo_jornada', {
+                    'idTorneo' : eq.torneo,
+                    'slug' : liga.slug,
+                    'jornada' : liga.valorJornada
+                }) }}">{{ liga.nombre }}</a>
+
+
+       
+
+    {% endfor %}
+
+    </div>
+        
+    
+
+        <hr />
+    {% endfor %}
+</div>
+
+
+
+            

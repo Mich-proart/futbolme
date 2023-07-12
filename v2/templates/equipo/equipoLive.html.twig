@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block contenedorIzquierda %}
+
+    {% include '__part/ultimosEventos.html.twig' %}
+
+{% endblock %}
+
+{% block contenedorCentral %}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="col-12">
+                <h1>{{ nombreEquipo }}</h1>
+                <h2 class="subtitulo">{{ nombreTorneo }}</h2>
+            </div>
+
+            {% set f = '---' %}
+            {% for key, partido in partidos %}
+
+                {% set status = partido.time_status %}
+                {% set f = partido.fecha %}
+
+                {% include 'index/__part/partidoDirectoSueltos.html.twig' %}
+
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            {% if tipo_torneo == 1 %}
+
+                <div class="col-12">
+                    {% set total = clas.overall.tables.0 %}
+
+                    {% include 'temporada/__content/__part_sueltos/clasificacion.html.twig' %}
+
+                    {% set local = clas.home.tables.0 %}
+                    {% set visitante = clas.away.tables.0 %}
+                </div>
+
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block bloqueJs %}
+
+
+{% endblock %}
+
+
+{% block contenedorDerecha %}
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% if espacio is defined %}
+
+    {% if espacio == 'enHead' %}
+
+    {% elseif espacio == 'cabecera' %}
+
+    	
+    	{% include 'publicidad/codigos/adcash/banner468.html.twig' %}
+    	
+    {% elseif espacio == 'contenedorCentral' %}
+    	
+    	<div class="col-12 text-center">
+    	{% include 'publicidad/codigos/adcash/banner728.html.twig' %}
+    	</div>
+
+    {% elseif espacio == 'segundoLateralDerecho' %}
+
+    	<div class="col-12 text-center">
+    	{% include 'publicidad/codigos/adcash/banner300.html.twig' %}
+    	</div>
+    
+    
+
+    {% elseif espacio == 'pie' %}
+
+    	{% include 'publicidad/codigos/adcash/popunder.html.twig' %}
+
+    {% elseif espacio == 'pieMobile' %} 
+
+    	{% include 'publicidad/codigos/adcash/popunder.html.twig' %}
+     
+    {% endif %}
+
+
+{% endif %}

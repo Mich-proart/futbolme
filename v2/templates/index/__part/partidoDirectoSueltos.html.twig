@@ -1,0 +1,361 @@
+{% if f is defined and f != partido.fecha %}
+    {% if partido.colorFondo == 'whitebox' %}
+        {% set partido = partido|merge({
+            colorFondo : 'cajagrisclaro'
+        }) %}
+    {% else %}
+        {% set partido = partido|merge({
+            colorFondo : 'whitebox'
+        }) %}
+    {% endif %}
+
+    <div class="row">
+        <div class="col-12 nombreDiaPartido" style="line-height: 30px; clear: both;">
+            {{ nombreDiaCompleto(partido.fecha) }}
+        </div>
+    </div>
+
+{% endif %}
+
+
+
+<div class="col-12 cajaGlobalPartidos {% if partido.enJuego %} partidosEnJuego{% endif %}">
+    <div class="cajaPartido row {{ partido.colorfondo }} " itemscope
+         itemtype="http://schema.org/SportsEvent" style="padding:5px !important">
+
+        <meta itemprop="name" content="{{ partido.localCorto }} - {{ partido.visitanteCorto }}">
+        <meta itemprop="description" content="Partido entre {{ partido.localCorto }} y {{ partido.visitanteCorto }}">
+        <span itemprop="location" itemscope itemtype="http://schema.org/Place">
+            <meta itemprop="name" content="{% if partido.estadio_nombre %}{{ partido.estadio_nombre }}{% else %}Campo de fútbol{% endif %}">
+            <meta itemprop="address" content="{% if partido.estadio_localidad %}{{ partido.estadio_localidad }}{% else %}Campo de fútbol{% endif %}">
+        </span>
+
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12 contenedorPrimeraLinea">
+                    <div class="col-12">
+                        <div class="row">
+
+                        <div class="nopadding col-3 h25 {{ partido.colorFondo }}">
+                            {% if partido.estado_partido == 2 or partido.estado_partido == 6 or partido.estado_partido == 1 %}
+                                <div class="horaPrevistaPartido">
+                                    {% if partido.hora_prevista[-2:] == '11' %}
+                                        {% set hora = ':' %}
+                                    {% else %}
+                                        {% set hora = partido.hora_prevista[:5] %}
+                                    {% endif %}
+
+                                    {{ hora }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-6 h25 text-center">
+                            {% if jornadaActiva is defined and jornadaActiva > 0 %}
+                                <i style='color:dimgray'>
+                                    &nbsp;&nbsp;{{ jornadaTxt }}
+                                </i>
+                            {% endif %}
+
+                            {% if partido.estado_partido > 1 and pagina!= 'televisados' %}
+
+                                {% set colorTexto="white" %}
+
+                                {% if partido.comentarios|length > 2 %}
+                                    {% set t = null %}
+
+                                    {% set t = partido.comentarios|split('-') %}
+
+                                    {% if t.3 is defined %}
+                                        {% set ev = t.3 %}
+                                    {% endif %}
+
+                                    {% if t is defined %}
+
+                                        {% set t = t|merge({
+                                            'color' : '#f07474'
+                                        }) %}
+
+                                        {% if t.0 == 1 %}
+                                            {% set t = t|merge({
+                                                'color' : '#f07474'
+                                            }) %}
+                                        {% endif %}
+
+                                        {% if t.0 == 2 %}
+                                            {% set t = t|merge({
+                                                'color' : '#7cc002'
+                                            }) %}
+                                        {% endif %}
+
+                                        {% if t.0 == 3 %}
+                                            {% set t = t|merge({
+                                                'color' : '#610B0B'
+                                            }) %}
+                                        {% endif %}
+
+                                        {% if t.0 == 4 %}
+                                            {% set t = t|merge({
+                                                'color' : '#0B3B0B'
+                                            }) %}
+                                        {% endif %}
+
+                                        {% set parte = '' %}
+
+                                        {% if t.0 == 1 %}
+                                            {% set parte = '1T - ' %}
+                                        {% elseif t.0 == 2 %}
+                                            {% set parte = '2T - ' %}
+                                        {% endif %}
+
+                                        {% set t = t|merge({
+                                            'tiempo' : parte ~ 'Minuto ' ~ t.1
+                                        }) %}
+
+                                        {% if t.2 is defined and t.2 > 0 %}
+                                            {% set t = t|merge({
+                                                'tiempo' : parte ~ 'Minuto ' ~ t.1 ~ ' + ' ~ t.2
+                                            }) %}
+                                        {% endif %}
+
+
+                                        {% if partido.estado_partido == 6 %}
+                                            {% set t = t|merge({
+                                                'color' : '#ffe400',
+                                                'tiempo' : 'Descanso'
+                                            }) %}
+
+                                            {% set colorTexto = 'maroon' %}
+                                        {% endif %}
+
+                                        {% if partido.estado_partido == 7 %}
+                                            {% set t = t|merge({
+                                                'color' : '#2E2E2E',
+                                                'tiempo' : 'Penaltis'
+                                            }) %}
+                                        {% endif %}
+
+                                        {% if partido.estado_partido == 8 %}
+                                            {% set t = t|merge({
+                                                'color' : 'blue',
+                                                'tiempo' : 'Prórroga'
+                                            }) %}
+                                        {% endif %}
+
+                                    {% endif %}
+                                {% endif %}
+
+
+                                <div class="infopwhitebox">
+                                    {% if t is defined %}
+
+                                    {% if partido.categoria_torneo_id is defined and partido.categoria_torneo_id == 17 %}
+                                        {% if t.0 == 2 %}
+                                            {% set t = t|merge({
+                                                'tiempo' : '2ª parte'
+                                            }) %}
+                                        {% endif %}
+
+                                        {% if t.0 == 1 %}
+                                            {% set t = t|merge({
+                                                'tiempo' : '1ª parte'
+                                            }) %}
+                                        {% endif %}
+                                    {% endif %}
+
+                                    {% if partido.estado_partido == 6 %}
+                                        <p class="timeresult" style=" color: orange !important">Descanso</p>
+                                    {% elseif partido.estado_partido == 7 %}
+                                        <p class="timeresult" style="color: #E81346;">Penaltis</p>
+                                    {% elseif partido.estado_partido == 8 %}
+                                        <p class="timeresult" style="color: dodgerblue;">Prórroga</p>
+                                    {% elseif partido.estado_partido == 9 %}
+                                        <p class="timeresult" style="color: #9EFF23;">{{ t.tiempo|raw }}</p>
+                                    {% elseif partido.estado_partido == 10 %}
+                                        <p class="timeresult" style="color: #9EFF23;">{{ t.tiempo }}</p>
+                                    {% elseif partido.estado_partido == 11 %}
+                                        <p class="timeresult" style="color: orange;">Desc.Prórr.</p>
+                                    {% elseif partido.estado_partido == 2 %}
+                                        <p class="timeresult" style="color: #9EFF23; !important">{{ t.tiempo }}</p>
+                                    {% endif %}
+
+                                    {% endif %}
+                                </div>
+                    {% endif %}
+                        </div>
+
+
+                        <div class="contenedorIconosPartido col-3 nopadding h25">
+                            <div class="pull-right" style="margin-right: 4px !important">
+
+                                {{ icono|raw }}
+
+                                <a class="simboloMasPartido" href="javascript:mostrarColor({{ partido.id }});">
+                                    {% if partido.enJuego %}
+                                        <img src="/static/img/simbolo-mas-blanco.svg" title="Partido entre {{ partido.local }} y {{ partido.visitante }}" alt="Partido entre {{ partido.local }} y {{ partido.visitante }}">
+                                    {% else %}
+                                        <img src="/static/img/simbolo-mas.svg" title="Partido entre {{ partido.local }} y {{ partido.visitante }}" alt="Partido entre {{ partido.local }} y {{ partido.visitante }}">
+                                    {% endif %}
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="row">
+
+                        <div class="col-5 equipoPartido equipoPartidoLocal">
+                            <p class="pull-right boldfont lead txt11" style="padding-right: 10px; color:{{ partido.colorL }};  background-color:{{ partido.fondocolorL }}; cursor:pointer;"  onclick="mostrarColor({{ partido.id }})">
+                                <span itemprop="name" class="txt11">
+                                    {{ partido.localCorto }}
+                                </span>
+                            </p>
+                        </div>
+
+                        {% set aplazadoOSuspendido = 0 %}
+                        <div class="col-2 resultadoPartido">
+                            {% if partido.estado_partido == 1 %}
+
+                                <span
+                                        {% if partido.goles_local > 1 %}
+                                    style='padding: 1px 1px;'
+                                        {% endif %}>
+
+                                    {{ partido.goles_local }}
+                                </span>
+                                -
+                                <span
+                                        {% if partido.goles_visitante > 1 %}
+                                            style='padding: 1px 1px;'
+                                        {% endif %}
+                                >
+                                    {{ partido.goles_visitante }}
+                                </span>
+
+                            {% elseif partido.estado_partido > 2 %}
+
+                                {% if partido.estado_partido == 3 or partido.estado_partido == 4 %}
+                                    <div class="horaPartido" style="color:tomato; font-size:12px; margin-top: -20px;">
+                                        {% if partido.estado_partido == 3 %}
+                                            {% set aplazadoOSuspendido = 1 %}
+                                            SUSP.
+                                        {% elseif partido.estado_partido == 4 %}
+                                            {% set aplazadoOSuspendido = 1 %}
+                                            APLZ.
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+
+                            {% endif %}
+
+
+                            {% if partido.estado_partido == 2 or partido.estado_partido > 5 %}
+                                <span class="
+                                    {% if ev == 5 %}
+                                        parpadea
+                                    {% endif %}">
+                                    {{ partido.goles_local }}
+                                </span>
+
+                                -
+
+                                <span class="
+                                    {% if ev == 6 %}
+                                        parpadea
+                                    {% endif %}">
+                                    {{ partido.goles_visitante }}
+                                </span>
+                            {% endif %}
+
+                            {% if partido.estado_partido == 0 or (partido.estado_partido > 2 and partido.estado_partido < 6) %}
+                                <div class="text-center">
+                                    {#
+                                    {% if pagina != 'index' and temporada_id is not defined %}
+                                        <span class="text-center boldfont" style="font-size:12px">
+                                    {{ partido.fecha|slice(-2) }}/{{ partido.fecha|slice(5, 2) }}
+                                        </span>
+                                        <br/>
+                                    {% endif %}
+
+                                    {% if tipoTorneo is defined and tipoTorneo == 4 %}
+                                        <span class="text-center boldfont" style="font-size:12px">
+                                            {{ partido.fecha|slice(-2) }}/{{ partido.fecha|slice(5, 2) }}
+                                        </span>
+                                    {% endif %}
+                                    #}
+                                    {% if not aplazadoOSuspendido %}
+                                        <div class="horaPartido">
+
+                                            {% if partido.hora_prevista[-2:] == '11' %}
+                                                {% set hora = ':' %}
+                                            {% else %}
+                                                {% set hora = partido.hora_prevista[:5] %}
+                                            {% endif %}
+
+                                            {{ hora }}
+                                        </div>
+                                    {% else %}
+                                        <div class="text-center" style="margin-top:-10px; font-size:12px">
+                                            {{ partido.fecha|slice(-2) }}/{{ partido.fecha|slice(5, 2) }}
+                                        </div>
+                                        <div class="text-center" style="margin-top:-25px; font-size:12px">
+                                            {% if partido.hora_prevista[-2:] == '11' %}
+                                                {% set hora = ':' %}
+                                            {% else %}
+                                                {% set hora = partido.hora_prevista[:5] %}
+                                            {% endif %}
+
+                                            {{ hora }}
+
+                                        </div>
+
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+
+
+                        <div class="col-5 equipoPartido equipoPartidoVisitante">
+                            <p class="pull-left boldfont lead txt11" style="padding-left: 10px; color:{{ partido.colorV }};  background-color:{{ partido.fondocolorV }}; cursor:pointer;" onclick="mostrarColor({{ partido.id }})">
+                                <span itemprop="name" class="txt11">
+                                    {{ partido.visitanteCorto }}
+                                </span>
+                            </p>
+                        </div>
+
+                        <div class="col-12" id="posicion{{ partido.id }}" style="display: none">
+                            <div class="enlacesDeInteres">
+
+                                <span class="float-right" onclick="mostrarColor({{ partido.id }})" style="cursor:pointer;">Cerrar enlaces</span>
+                                <br />
+                                <h4 class="text-center">ENLACES DE INTERES</h4>
+
+                                <div class="row">
+
+                                    <div class="enlacesDeInteresColumnaEquipo col-6 text-center">
+                                        <h6>{{ partido.localCorto }}</h6>
+                                        <a href="{{ partido.pgLocal }}/datos?temp_id={{ temp_id }}">Calendario</a><br />
+                                    </div>
+
+                                    <div class="enlacesDeInteresColumnaEquipo col-6 text-center">
+                                        <h6>{{ partido.visitanteCorto }}</h6>
+                                        <a href="{{ partido.pgVisitante }}/datos?temp_id={{ temp_id }}">Calendario</a><br />
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

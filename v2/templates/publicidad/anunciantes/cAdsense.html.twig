@@ -1,0 +1,48 @@
+{% if espacio is defined %}
+     
+
+    {% if espacio == 'enHead' %}      
+      
+       {# {% include 'publicidad/codigos/ads-Pub.html.twig' %} #}
+
+    {% elseif espacio == 'enHeadMobile' %}
+
+       {# {% include 'publicidad/codigos/ads-Pub.html.twig' %} #}
+
+    {% elseif espacio == 'cabecera' %}
+
+    {% elseif espacio == 'primerLateralIzquierdoPortada' %}        
+
+        {% include 'publicidad/codigos/ads-2016-automatic.html.twig' %}
+
+    {% elseif espacio == 'primerLateralDerechoPortada' %}
+        
+        
+
+    {% elseif espacio == 'cabeceraDirectos' %}
+
+        
+    {% elseif espacio == 'cabeceraDirectosiOS' %}
+
+       
+
+    {% elseif espacio == 'entreDirectos' %}
+
+        
+
+    {% elseif espacio == 'cabeceraPartidos' %}
+
+       
+
+    {% elseif espacio == 'cabeceraPartidosiOS' %}
+
+        
+
+    {% elseif espacio == 'entrePartidos' %}
+
+        
+          
+   
+    {% endif %}
+
+{% endif %}

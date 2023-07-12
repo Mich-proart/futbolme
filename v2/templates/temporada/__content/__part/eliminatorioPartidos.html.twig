@@ -1,0 +1,111 @@
+<div class="row">
+    <div class="col-12" style="padding: 0px;">
+        {% set f = '' %}
+        {% set colorFondo = '' %}
+        {% set j = '' %}
+
+        {% set equiposEnJuego = [] %}
+
+        {% for key, partido in partidos %}
+
+        {% if partido.id is defined %}
+        {% if partido.estado_partido != 2 %}
+
+        {% set colorL = '' %}
+        {% if partido.local == 'España' %}
+            {% set colorL = 'background-color:#F4FA58' %}
+        {% endif %}
+
+        {% set colorV = '' %}
+        {% if partido.visitante == 'España' %}
+            {% set colorV = 'background-color:#F4FA58' %}
+        {% endif %}
+
+
+        {% if getConstante('__APP__') > 0 and directos|length == 0 and key > 1 and key < 3 %}
+            {% include 'publicidad/cuerpo04.html.twig' %}
+        {% endif %}
+
+        {% set enlace_partido = partido.pgPartido %}
+
+        {% set enlace_local = partido.pgLocal %}
+        {% set enlace_visitante = partido.pgVisitante %}
+
+        {% set hora_prevista = partido.hora_prevista %}
+
+
+        {% if (valorJornada == 0 and partido.jornada != j) or porFecha == 1 %}
+            <div class="row">
+                <div class="col-12 nombreDiaPartido" style="line-height: 30px; clear: both;">
+                    {{ partido.fase }}
+                </div>
+            </div>
+        {% endif %}
+
+        {% if porFecha == 0 %}
+
+        <div class="row">
+            <div class="col-12 grupoEliminatorio
+                                    {% if partido.grupo_id %}
+                                        grupo{{ partido.grupo_id }}
+                                    {% endif %}
+                                "
+
+                    {% if primerGrupo != partido.grupo_id %}
+                        style="display: none;"
+                    {% endif %}
+            >
+
+                {% else %}
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12">
+                                {% if grupos[valorJornada][partido.grupo_id] is defined %}
+                                    {{ grupos[valorJornada][partido.grupo_id].nombre }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if f != partido.fecha %}
+                            {% if colorFondo == 'whitebox' %}
+                                {% set colorFondo = 'cajagrisclaro' %}
+                            {% else %}
+                                {% set colorFondo = 'whitebox' %}
+                            {% endif %}
+
+                            <div class="row">
+                                <div class="col-12 nombreDiaPartido" style="line-height: 30px; clear: both;">
+                                    {{ nombreDiaCompleto(partido.fecha) }}
+                                </div>
+                            </div>
+
+                        {% endif %}
+
+
+                        {% if key == 3 %}
+
+                            {% include 'publicidad/cuerpo01.html.twig' %}
+
+                        {% endif %}
+
+                        {% if primerGrupo is defined and primerGrupo == partido.grupo_id %}
+                            {% set equiposEnJuego = anadirAArrayKey(equiposEnJuego, partido.equipoLocal_id, partido.equipoLocal_id) %}
+                            {% set equiposEnJuego = anadirAArrayKey(equiposEnJuego, partido.equipoVisitante_id, partido.equipoVisitante_id) %}
+
+                            {% include 'index/__part/filaPartido.html.twig' %}
+                        {% endif %}
+
+
+                        {% set f = partido.fecha %}
+                        {% set j = partido.jornada %}
+
+                    </div>
+                </div>
+
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>

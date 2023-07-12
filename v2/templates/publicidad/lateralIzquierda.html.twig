@@ -1,0 +1,19 @@
+
+
+{% set espacio = 'lprimerLateralizquierdo' %}
+
+{% if getConstante('__ADSENSE__') == 1 %}
+    {% include 'publicidad/anunciantes/publiAdsense.html.twig' %}
+{% endif %}
+
+{% if getConstante('__CLICKIO__') == 1 %}
+    {% include 'publicidad/anunciantes/publiClickio.html.twig' %}
+{% endif %}
+
+{% if getConstante('__THEMONEYTIZER__') == 1 %}
+    {% include 'publicidad/anunciantes/publiThemoneytizer.html.twig' %}
+{% endif %}
+
+{% if getConstante('__AKCELO__') == 1 %}
+    {% include 'publicidad/anunciantes/publiAkcelo.html.twig' %}
+{% endif %}

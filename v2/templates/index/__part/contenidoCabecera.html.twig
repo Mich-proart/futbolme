@@ -1,0 +1,120 @@
+{% set nC = partido.nombreComunidad %}
+{% set nP = partido.nombrePais %}
+{% set enlace = '/resultados-directo/torneo/' %}
+
+{% if nC != 'SIN COMUNIDAD' %}
+    {% set nC = nc ~ '-' %}
+{% else %}
+    {% set nC = '' %}
+{% endif %}
+
+{% if nP != 'España' %}
+    {% set nP = '' %}
+{% else %}
+    {% set nP = nP ~ '-' %}
+{% endif %}
+
+{% set enlace_torneo = enlace ~ ponerGuion(nC ~ nP ~ partido.nombreTorneo) ~ '/' ~ partido.temporada_id~'/' %}
+
+
+{#
+<div class="col-xs-12 <?php echo $fondoCabecera; ?> one-bordergrey-vert h40">
+#}
+<div class="cabeceraTorneo">
+
+    <div class="row">
+        <div class="col-1">
+            <div  
+
+                    {% if partido.idComunidad > 1 %}
+                    {% set imagen = partido.idComunidad %}
+                    {% set nombreCom = '' %}
+
+                    {% if
+                        partido.temporada_id < 25 or
+                        partido.temporada_id == 266 or
+                        partido.temporada_id == 267 or
+                        partido.temporada_id == 34 or
+                        partido.temporada_id == 35
+                    %}
+
+                        {% if partido.idComunidad == 10 %}
+                            {% set nombreCom = nombreCom ~ ' Y MELILLA' %}
+                            {% set imagen = 55 %}
+                        {% endif %}
+
+                        {% if partido.idComunidad == 11  %}
+                            {% set nombreCom = nombreCom ~ '  Y CEUTA' %}
+                            {% set imagen = 56 %}
+                        {% endif %}
+
+                    {% endif %}
+
+                    {% if partido.temporada_id == 85 or partido.temporada_id == 291 or partido.temporada_id == 3093 %}
+                            {% set imagen = 22 %}
+                    {% elseif partido.temporada_id == 76 or partido.temporada_id == 3096 %}
+                        {% set imagen = 21 %}
+                    {% endif %}
+
+                    class="bandera flagbox comunidad flag{{ imagen }}"></div>
+            {% else %}
+            class="bandera flagbox pais flag{{ partido.idPais }}b"></div>
+        {% endif %}
+
+        
+
+        </div>
+
+        <div class="col-11">
+            <div class="nombreTorneo" style="margin-left:10px">
+
+                {#  style="color: {{ colorCabecera }};" #}
+                <a href="{{ enlace_torneo }}" style="color: black;">
+                    {% set txtnombreTorneo = partido.nombreTorneo %}
+                    {% set txttraduccion = partido.traduccion %}
+
+                    {% if partido.idPais != 60 and partido.idPais != 199 and partido.idPais != 200 and partido.idPais != 201 %}
+                        {% set txttraduccion = partido.nombrePais %}
+                    {% endif %}
+                    <h2 class="tname visible-xs txt11">
+                        {{ partido.torneoCorto }}
+
+                        {% if txttraduccion is not empty %}
+                            - {{ txttraduccion }}
+                        {% endif %}
+                    </h2>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+{# if (0 != $partido['apuesta_torneo']) {
+            $enlace_bwin = 'https://sports.bwin.es/es/sports#eventId=&leagueIds='.$partido['apuesta_torneo'].'&marketGroupId=&page=0&sportId=4&zoneId=1789262';
+
+            $enlace_bwin2 = 'https://sports.m.bwin.es/es/sports/sport/4/region/'.$partido['id_bwin'].'/league/'.$partido['apuesta_torneo'].'?zoneId=1651972'; ?>
+<div style="float:right;">
+                    <span style="font-size:14px;">
+                    <a href="<?php echo $enlace_bwin; ?>" rel="nofollow" target="blank"
+                       title="Apuesta a los partidos de <?php echo $txtnombreTorneo; ?> en BWIN">
+                        <img alt="Proovedor Apuestas" src="/img/partners/bwinpq.png" class="pull-right visible-xs"  style=" margin-right:-14px">
+                    </a>
+                </span>
+</div>
+<?php
+        }
+#}
+
+
+{#
+    if ($partido['temporada_id']<7) {
+    ?>
+<div class="pull-right badge txt11" style="background-color: black; padding: 8px; margin-top: 5px; margin-right: 4px !important">
+    <a href="https://online.codere.es/promoRedirect?key=ej0xMzUzMDA0NiZsPTEzNTI5NTE5JnA9OTQ5MjE%3D" target="_blank" style="color:gold;" class="boldfont">Apuesta YA</a>
+</div>
+<?php
+    }
+#}
+
+</div>
+

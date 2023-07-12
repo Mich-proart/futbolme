@@ -1,0 +1,154 @@
+<div class="row">
+
+    {# {% if whatsapp|default %}
+
+        {% if division|default or temporada_id==214 %}
+
+        {% endif %}
+
+        <div class="col-12">
+        
+        {% set titolWhats = 'Unete a nuestro grupo' %}
+        {% include '__part/pesLeerWhatsPortada.html.twig' %}
+
+        </div>
+
+        
+
+    {% endif %} #}
+
+    <div class="col-12">
+        <ul id="menuTorneo" class="nav nav-tabs nopadding celestebox" role="tablist" id="pestaTemporada">
+
+        {% if partidosJornada > 0 %}
+            <li class="text-center {% if modelo == 'Jornada' %}activa{% endif %}">
+                <a class="btn btn-secondary" href="{{ full_url_for('torneo_jornada', {
+                    'idTorneo' : temporada_id,
+                    'slug' : slug,
+                    'jornada' : jornadaActiva,
+                }) }}">Jornada</a>
+            </li>
+
+            
+            {% if (division > 0 and division < 4) or temporada_id == 214 %}
+                <li class="text-center {% if modelo == 'Goleadores' %}activa{% endif %}">
+                    <a class="btn btn-secondary" href="{{ full_url_for('torneo_goleadores', {
+                        'idTorneo' : temporada_id,
+                        'slug' : slug,
+                    }) }}">Goleadores</a>
+                </li>
+                
+            {% endif %}
+            <li class="text-center {% if modelo == 'Calendario' %}activa{% endif %}">
+                <a class="btn btn-secondary" href="{{ full_url_for('torneo_calendario', {
+                    'idTorneo' : temporada_id,
+                    'slug' : slug,
+                }) }}">Calendario</a>
+            </li>
+        {% endif %}
+
+        <li class="text-center {% if modelo == 'Equipos' %}activa{% endif %}">
+            <a class="btn btn-secondary" href="{{ full_url_for('torneo_equipos', {
+                'idTorneo' : temporada_id,
+                'slug' : slug,
+            }) }}">Equipos</a>
+        </li>
+
+        <li class="text-center {% if modelo == 'Noticias' %}activa{% endif %}">
+            <a class="btn btn-secondary" href="{{ full_url_for('torneo_noticias', {
+                'idTorneo' : temporada_id,
+                'slug' : slug,
+            }) }}">Noticias</a> 
+        </li>
+
+        
+
+        {% if (division > 0 and division < 4) or temporada_id == 214 %}
+        <li class="text-center {% if modelo == 'Fichajes' %}activa{% endif %}">
+            <a class="btn btn-secondary" href="{{ full_url_for('torneo_fichajes', {
+                'idTorneo' : temporada_id,
+                'slug' : slug,
+            }) }}">Fichajes</a>
+        </li>
+        {% endif %}
+
+
+        {% if visible < 100 %}
+            {#
+            {% if temporada_id != 158 %}
+                <li class="text-center">
+                    <a class="btn btn-secondary" href="/historico/2018-19/index.php?modo=t&id={{ temporada_id }}">2018-19</a>
+                </li>
+            {% endif %}
+
+            <li class="text-center">
+                <a class="btn btn-secondary" href="/ascensosydescensos.php?pest={{ pest_ascenso }}">Ascensos y descensos</a>
+            </li>
+
+            <li class="text-center hide <?php echo $pesHistorico; ?>">
+                <a class="btn btn-secondary" href="{{ pgTemporada }}?modelo=Historico">Histórico</a>
+            </li>
+            #}
+        {% endif %}
+
+        {#
+        
+
+        <li class="text-center">
+            <a class="btn btn-secondary" href="/golaverage.php?id={{ temporada_id }}">Calcular Golaverage</a>
+        </li>
+        #}
+
+        <li class="text-center">
+            <a class="btn btn-secondary" href="/ascensosydescensos.php?pest={{ pest_ascenso }}">Ascensos y descensos</a>
+        </li>
+
+        
+        <li class="text-center">
+            <a class="btn btn-secondary" href="/golaverage2.php?id={{ temporada_id }}" target="_blank">Calcular Golaverage</a>
+        </li>
+        
+
+    </ul>
+    </div>
+
+
+    {% if modelo == 'Fichajes' %}
+
+        {% include 'temporada/__content/__part/pesFichajes.html.twig' %}
+
+    {% elseif modelo == 'Jornada' %}
+
+        {% include 'temporada/__content/__part/pesJornada.html.twig' %}
+
+    {% elseif modelo == 'Calendario' %}
+
+        {% include 'temporada/__content/__part/pesCalendario.html.twig' %}
+
+    {% elseif modelo == 'Goleadores' %}
+
+        {% include 'temporada/__content/__part/pesGoleadores.html.twig' %}
+
+    {% elseif modelo == 'Equipos' %}
+
+        <div class="col-12">
+            {% include 'temporada/__content/__part/pesEquipos.html.twig' %}
+        </div>
+
+    {% endif %}
+
+    
+
+
+
+    {% if equiposTw is defined %}
+
+        {% set titol = 'actualidad en twitter' %}
+        {% set filtro = 0 %}
+        {% set esPaginaTorneo = 1 %}
+
+        {% include '__part/pesLeerTwitsPortada.html.twig' %}
+
+    {% endif %}
+
+</div>
