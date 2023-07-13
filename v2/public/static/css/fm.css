@@ -1228,8 +1228,8 @@ closelevel>i {
 }
 
 .cajaGlobalPartidos.partidosEnJuego {
-    background: #404040;
-    background: linear-gradient(180deg, #6A6A6A 0%, rgba(64, 64, 64, 0) 100%), #404040;
+    background: #025325;/* 
+    background: linear-gradient(180deg, #6A6A6A 0%, rgba(64, 64, 64, 0) 100%), #404040; */
 }
 
 .cajaGlobalPartidos.partidosEnJuego .cajaPartido .equipoPartido p span {
