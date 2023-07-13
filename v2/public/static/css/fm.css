@@ -2,7 +2,7 @@
 body {
     font-family: 'Roboto', sans-serif !important;
     padding-top: 75px !important;
-    background: #E5E5E5;
+    background: #ffffff;
 }
 
 html, body {
@@ -766,20 +766,14 @@ ul.pushNav {
 }
 
 .cajasPartidosHoy {
-    text-align: center;
+    text-align: left;
     font-family: Dosis;
     font-style: normal;
     font-weight: 600;
     line-height: 26px;
     font-size: 12px;
     /* line-height: 18px; */
-    height: 27px;
-    background: linear-gradient(180deg, #b7b7b7 0%, rgba(96, 96, 96, 0) 86.98%), #a5a5a5;
-    float: left;
-    width: 100%;
     text-transform: uppercase;
-    box-shadow: 0px 4px 34px rgb(0 0 0 / 6%);
-    border-radius: 4px;
 }
 
 .selectorFechaLiveScore {
@@ -974,7 +968,7 @@ ul.pushNav {
 .cajaGlobalPartidos {
     float: left;
     width: 100%;
-    background: #FFFFFF;
+    background: #F4F2F2;
     padding: 0px;
     border-radius: 4px 4px 4px 4px;
     -moz-border-radius: 4px 4px 4px 4px;
