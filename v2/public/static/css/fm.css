@@ -1232,6 +1232,10 @@ closelevel>i {
     background: linear-gradient(180deg, #6A6A6A 0%, rgba(64, 64, 64, 0) 100%), #404040; */
 }
 
+#contenedorCentral .col-12.cajaGlobalPartidos.partidosEnJuego.border{
+    background: #025325 !important;
+}
+
 .cajaGlobalPartidos.partidosEnJuego .cajaPartido .equipoPartido p span {
     color: #FFFFFF;
 }
