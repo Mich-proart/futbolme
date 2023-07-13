@@ -567,12 +567,31 @@ window.__tcfapi('getTCData', null, function (consentData, consentDataSuccess) {
     {% endif %}
 
     {% if getConstante('__ES_MOBILE__') %}
-        <nav id="menuTop">            
+        <nav id="menuTop" class="px-4">            
     {% else %}
-        <nav id="menuTop">
+        <nav id="menuTop" class="px-5">
     {% endif %}
         
-        <ul id="ulMenuDe">
+        <div id="menuTopContenido">
+            <ul id="ulMenuIz" class="col-xs-12 nav nav-pills">
+                <li id="liLogoFutbolme">
+                    <a href="{{ full_url_for('home') }}">
+                        <img src="{{ full_url_for('home') }}static/img/logo.svg" alt="Logo Futbolme.com" class="loading" data-was-processed="true">
+                    </a>
+                </li>
+                <li class="dropdown h40 visible-xs text-center">
+                    {% if not getConstante('__ES_MOBILE__') %}
+            
+                        <!-- <div class="col-12 text-center" style="margin-left: 100px"> 
+                        <script data-cfasync="false" type="text/javascript" src="https://www.linkonclick.com/a/display.php?r=4366455"></script>
+                        </div>-->
+
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+
+        <ul id="ulMenuDe" class="mb-0">
             <li class="d-none d-md-block">
                 <a href="{{ full_url_for('partidosTelevisados') }}">
                     <img src="{{ full_url_for('home') }}static/img/icono-tv.svg" alt="" class="loading" data-was-processed="true" title="Partidos televisados">
@@ -614,24 +633,7 @@ window.__tcfapi('getTCData', null, function (consentData, consentDataSuccess) {
             </li>
         </ul>
 
-        <div id="menuTopContenido">
-            <ul id="ulMenuIz" class="col-xs-12 nav nav-pills">
-                <li id="liLogoFutbolme">
-                    <a href="{{ full_url_for('home') }}">
-                        <img src="{{ full_url_for('home') }}static/img/logo.svg" alt="Logo Futbolme.com" class="loading" data-was-processed="true">
-                    </a>
-                </li>
-                <li class="dropdown h40 visible-xs text-center">
-                    {% if not getConstante('__ES_MOBILE__') %}
-            
-                        <!-- <div class="col-12 text-center" style="margin-left: 100px"> 
-                        <script data-cfasync="false" type="text/javascript" src="https://www.linkonclick.com/a/display.php?r=4366455"></script>
-                        </div>-->
-
-                    {% endif %}
-                </li>
-            </ul>
-        </div>
+        
     </nav>
 
     <nav id="menuBottom" class="d-none d-md-block" style="text-align:center;">
