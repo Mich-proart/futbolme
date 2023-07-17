@@ -1215,41 +1215,19 @@ const obtenerAlineacion = (btnIdLiga) => {
     {
     if (xmlhttp.readyState==4 && xmlhttp.status==200)
       {
-          if (modo==1){
-          document.getElementById('betsapi-'+id).innerHTML=xmlhttp.responseText;            
-          } else {
-          document.getElementById('apifootball-'+id).innerHTML=xmlhttp.responseText; 
-          }
+
+        console.log(xmlhttp.responseText)
+          // if (modo==1){
+          // document.getElementById('betsapi-'+id).innerHTML=xmlhttp.responseText;            
+          // } else {
+          // document.getElementById('apifootball-'+id).innerHTML=xmlhttp.responseText; 
+          // }
       }
     }
-  xmlhttp.open("GET","https://api.b365api.com/v1/event/lineup?token=153716-4djEyj4e6JZVou&event_id"+jQuery(btnIdLiga).text(),true); //str3 es la carpeta donde va a leer el script
+  xmlhttp.open("POST","/src/funciones/verPartido.php",true); //str3 es la carpeta donde va a leer el script
   xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  xmlhttp.send("id=" + jQuery(btnIdLiga).text());
-
-  // const csrfToken = $('meta[name="csrf-token"]').attr('content');
-    
-  // jQuery.ajax({
-  //     url: "="+ // AJAX handler,
-  //     type: 'GET',
-  //     data: {
-  //         valorId: jQuery(btnIdLiga).text(),
-  //     },
-  //     headers: {
-  //          'X-CSRF-TOKEN': csrfToken
-  //     },
-  //     beforeSend: function() {
-
-  //     },
-  //     complete: function () {
-
-  //         //jQuery('.content-spiner-resultados-feed').addClass('ocultar-icon').removeClass('d-flex')
-  //     },
-  //     success: function (data) {
-
-  //       console.log(data)
-         
-  //     }
-  // })
+  xmlhttp.send("id=" + id + "&modo=" + modo);
+  
 };
 
 jQuery(document).on('click', '.span-id-torneo-alineacion', function(){
