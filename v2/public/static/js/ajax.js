@@ -1267,7 +1267,7 @@ const obtenerAlineacion = (btnIdLiga) => {
             console.log(xmlhttp.responseText)
         }
     }
-  xmlhttp.open("POST","../../../../src/funciones/apiBetsapi.php",true); //str3 es la carpeta donde va a leer el script
+  xmlhttp.open("POST","./apiBetsapi.php",true); //str3 es la carpeta donde va a leer el script
   xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   xmlhttp.send("temporada_id="+btnIdLiga);
 };
