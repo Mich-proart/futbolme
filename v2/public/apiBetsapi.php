@@ -23,7 +23,28 @@ if (curl_errno($ch)) {
     echo 'Error en la solicitud: ' . curl_error($ch);
 } else {
     // Procesar la respuesta
-    echo json_encode($response);
+    //echo json_encode($response);
+
+    $objResponse = array();
+
+        $objResponse = [
+            'local' => '',
+            'visitante' => ''
+        ];
+
+        if($response->json()['results']){
+
+            $datosLocal = $response->json()['results']['home']['startinglineup'];
+
+            $datosVisitante = $response->json()['results']['away']['startinglineup'];
+
+            $objResponse = [
+                'local' => $datosLocal,
+                'visitante' => $datosVisitante
+            ];         
+        }
+
+        return json_encode($objResponse);
 }
 
 // Cerrar la conexión cURL

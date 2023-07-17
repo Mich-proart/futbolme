@@ -1250,7 +1250,9 @@ function obtenerAlineacion(btnIdLiga){
     },
     success: function (data) {
 
-      console.log(data)          
+      console.log(data)    
+      
+      let result = JSON.parse(data)
     }
 })
   
