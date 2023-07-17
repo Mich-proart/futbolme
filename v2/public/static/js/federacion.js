@@ -906,5 +906,3 @@ function verPartido(id,modo) {
         xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
         xmlhttp.send("id=" + id + "&modo=" + modo);
 } 
-
-
