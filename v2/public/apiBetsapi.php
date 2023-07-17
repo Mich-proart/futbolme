@@ -1,10 +1,10 @@
-<?php echo "test confirmada bbbbbb".$_POST['id'];?>
+<?php //echo "test confirmada bbbbbb".$_POST['id'];?>
 
-<?php echo "https://api.b365api.com/v1/event/lineup?token=153716-4djEyj4e6JZVou&event_id=".$_POST['id'];?>
+<?php //echo "https://api.b365api.com/v1/event/lineup?token=153716-4djEyj4e6JZVou&event_id=".$_POST['id'];?>
 
 <?php
 // URL del endpoint
-$url = 'https://api.b365api.com/v1/event/lineup?token=153716-4djEyj4e6JZVou&event_id='.$_POST['id'];
+$url = 'https://api.b365api.com/v1/event/lineup?token=153716-4djEyj4e6JZVou&LNG_ID=3&event_id'.$_POST['id'];
 
 // Inicializar la solicitud cURL
 $ch = curl_init();
@@ -23,7 +23,7 @@ if (curl_errno($ch)) {
     echo 'Error en la solicitud: ' . curl_error($ch);
 } else {
     // Procesar la respuesta
-    echo $response;
+    echo json_encode($response);
 }
 
 // Cerrar la conexión cURL
