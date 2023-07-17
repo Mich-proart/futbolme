@@ -1199,11 +1199,65 @@ function visor_hoy(temporada_id,comunidad_id) {
     xmlhttp.send("temporada_id="+temporada_id+'&comunidad_id='+comunidad_id);
 }
 
+const obtenerAlineacion = (btnIdLiga) => {  
+    
+  jQuery.ajax({
+      url: `/src/funciones/verPartido.php`, // AJAX handler,
+      type: 'POST',
+      data: {
+          valorId: jQuery(btnIdLiga).text(),
+      },
+      headers: {
+           'X-CSRF-TOKEN': csrfToken
+      },
+      beforeSend: function() {
 
+      },
+      complete: function () {
 
-alert('eject')
+          //jQuery('.content-spiner-resultados-feed').addClass('ocultar-icon').removeClass('d-flex')
+      },
+      success: function (data) {
 
-//span-id-torneo-alineacion
+        console.log(data)
 
+          // // // let result = JSON.parse(data)  
+          
+          // // // jQuery('.lista-locales').empty()
+          // // // jQuery('.lista-visitantes').empty()
 
+          
+          // // // // condicon para alineacion locales
+          // // // if (result.local != '') {
+              
+          // // //     for (const iterator of result.local) {
+               
+          // // //         console.log(iterator)
+          // // //         jQuery('.lista-locales').append(`<a href="#" class="list-group-item list-group-item-action">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</a>`)
+          // // //     }                
 
+          // // // }else{
+          // // //     console.log("VACIO LOCALES")
+          // // // }
+
+          // // // // condicion para alineacion visitantes
+          // // // if(result.visitante != ''){
+
+          // // //     for (const iterator of result.visitante) {
+
+          // // //         jQuery('.lista-visitantes').append(`<a href="#" class="list-group-item list-group-item-action">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</a>`)
+                  
+          // // //     }
+
+          // // // }else{
+          // // //     console.log("VACIO VISITANTES")
+          // // // }            
+      }
+  })
+};
+
+jQuery(document).on('click', '.span-id-torneo-alineacion', function(){
+
+  obtenerAlineacion(jQuery(this))
+
+})
