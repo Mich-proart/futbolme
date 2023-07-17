@@ -1227,7 +1227,7 @@ function obtenerAlineacion(btnIdLiga){
       console.log(xmlhttp.status)
         }
     }
-  xmlhttp.open("POST","/src/funciones/verPartido.php",true); //str3 es la carpeta donde va a leer el script
+  xmlhttp.open("POST","../../src/funciones/verPartido.php",true); //str3 es la carpeta donde va a leer el script
   xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   xmlhttp.send("id=" + jQuery(btnIdLiga).text());
   
