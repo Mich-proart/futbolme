@@ -2,10 +2,11 @@
 body {
     font-family: 'Roboto', sans-serif !important;
     padding-top: 75px !important;
-    background: #E5E5E5;
+    background: #ffffff;
 }
 
-html, body {
+html,
+body {
     max-width: 100%;
     overflow-x: hidden;
 }
@@ -20,6 +21,7 @@ h1 {
     text-transform: uppercase;
     margin-bottom: 20px;
 }
+
 h2.subtitulo {
     font-family: Dosis;
     font-style: normal;
@@ -91,7 +93,10 @@ button:focus {
     outline: none;
 }
 
-#campoBusquedaEquipos, #campoBusquedaEquiposMobile, #campoBusquedaJugadores, #campoBusquedaJugadoresMobile {
+#campoBusquedaEquipos,
+#campoBusquedaEquiposMobile,
+#campoBusquedaJugadores,
+#campoBusquedaJugadoresMobile {
     height: 26px !important;
     width: 200px !important;
     margin-top: 10px !important;
@@ -102,20 +107,28 @@ button:focus {
     padding: 0px 10px;
     font-size: 14px;
 }
-#campoBusquedaEquipos::placeholder, #campoBusquedaEquiposMobile::placeholder, #campoBusquedaJugadores::placeholder, #campoBusquedaJugadoresMobile::placeholder {
+
+#campoBusquedaEquipos::placeholder,
+#campoBusquedaEquiposMobile::placeholder,
+#campoBusquedaJugadores::placeholder,
+#campoBusquedaJugadoresMobile::placeholder {
     font-size: 14px;
 }
 
-#campoBusquedaEquiposMobile, #campoBusquedaJugadoresMobile {
+#campoBusquedaEquiposMobile,
+#campoBusquedaJugadoresMobile {
     margin-top: 0px !important;
 }
 
-#FinderAntViewMode #list-button, #FinderAntViewMode #grid-button {
+#FinderAntViewMode #list-button,
+#FinderAntViewMode #grid-button {
     display: none;
 }
+
 #finderAntMainLayer #finderAntResultsContainer .txt-content div.description {
     height: 16px !important;
 }
+
 #finderAntMainLayer #finderAntResultsContainer .txt-content {
     position: static !important;
     width: 259px !important;
@@ -123,9 +136,11 @@ button:focus {
     overflow: hidden !important;
     margin-left: 10px !important;
 }
+
 #finderAntMainLayer .categoria {
     font-style: italic;
 }
+
 #finderAntMainLayer .torneos .enlace-torneo {
     display: inline-block;
     width: 100%;
@@ -161,9 +176,11 @@ button:focus {
 #finderAntMainLayer #finderAntResultsContainer .txt-content h1 {
     height: 24px !important;
 }
+
 #finderAntMainLayer #finderAntResultsContainer .txt-content div.description {
     height: 20px !important;
 }
+
 #finderAntMainLayer #finderAntResultsContainer .item-product-individual .enlace-torneo {
     color: #333 !important;
 }
@@ -173,70 +190,79 @@ button:focus {
 }
 
 #contenedorMenuSuperior {
-    position:fixed;
-    width:100%;
+    position: fixed;
+    width: 100%;
     z-index: 10000000;
     top: 0px;
 }
 
 #menuTop {
-    width:100%;
-    height: 50px;
-    left:0;
-    top:0;
-    z-index:999;
-    /* background: #A1F339; */
-    background: linear-gradient(90deg, #008036 50%, #2F2F2F 50%);
+    width: 100%;
+    height: 60px;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    background: #025325;
+    /* background: linear-gradient(90deg, #008036 50%, #2F2F2F 50%); */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
+
 #menuTop .navbar-brand {
     color: #FFFFFF;
     font-weight: 500;
 }
+
 #menuTop .navbar-toggler {
     border: none;
 }
+
 #menuTopInferior {
     width: 100%;
     background: #085f00;
 }
+
 #menuTopContenido {
-    height: 44px;
-    background: #2F2F2F;
-    margin: 0 auto;
+    /* height: 44px; */
+    background: #025325;
+    /* margin: 0 auto;
     max-width: 1340px;
-    min-width: 315px;
+    min-width: 315px; */
 }
+
 #ulMenuIz {
-    float: left;
+    /*  float: left;
     width: auto;
-    margin: 0px;
+    margin: 0px; */
 }
-    #liLogoFutbolme {
-        padding: 0px;
-    }
-        #liLogoFutbolme > a {
-            margin: 0px;
-            padding: 0px;
-        }
 
-        #liLogoFutbolme {
-            margin-left: -3px;
-        }
+#liLogoFutbolme {
+    padding: 0px;
+}
 
-        #liLogoFutbolme > a {
-            border: 0px;
-            margin-left: -1px;
-        }
+#liLogoFutbolme>a {
+    margin: 0px;
+    padding: 0px;
+}
 
-            #liLogoFutbolme > a img {
+#liLogoFutbolme {
+    margin-left: -3px;
+}
 
-            }
+#liLogoFutbolme>a {
+    border: 0px;
+    margin-left: -1px;
+}
+
+#liLogoFutbolme>a img {}
 
 #ulMenuDe {
     float: right;
     width: auto;
     margin: 0px;
 }
+
 #ulMenuDe li {
     float: left;
     height: 44px;
@@ -244,109 +270,114 @@ button:focus {
     list-style: none;
     bottom: 0px;
 }
+
 #ulMenuDe li a {
     float: left;
     height: 44px;
     width: 100%;
 }
+
 #ulMenuDe li a img {
     position: absolute;
     bottom: 18px;
     margin-left: 7px;
 }
-    #ulMenuDe #liIconoUsuario {
-        width: 57px;
-    }
-    #ulMenuDe #liIconoUsuario div {
-        position: relative;
-        left: 23px;
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 12px;
-        line-height: 14px;
-        color: #8AE813;
-        top: 14px;
-    }
+
+#ulMenuDe #liIconoUsuario {
+    width: 57px;
+}
+
+#ulMenuDe #liIconoUsuario div {
+    position: relative;
+    left: 23px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+    color: #8AE813;
+    top: 14px;
+}
+
 #ulMenuDe li a:hover {
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
     box-shadow: none;
 }
+
 #menuBottom {
     position: fixed;
-    width: 100%;
-    height: 44px;
     background: #FFFFFF;
     -moz-box-shadow: 0px 0px 44px rgba(0, 0, 0, 0.05);
     -webkit-box-shadow: 0px 0px 44px rgba(0, 0, 0, 0.05);
     box-shadow: 0px 0px 44px rgba(0, 0, 0, 0.05);
 }
-    #menuBottom ul {
-        display: inline-block;
-        margin-right: 20px;
-    }
 
-    #menuBottom ul li {
-        float: left;
-        list-style: none;
-        height: 44px;
-        line-height: 44px;
-        font-size: 14px;
-        margin-right: 5px;
-        margin-top: 2px;
-    }
-        #menuBottom ul li a {
-            float: left;
-            border: none;
-            width: 100%;
-            height: 100%;
-            padding: 0px 10px;
-            text-transform: none !important;
-            font-size: 12px;
-            color: #000000;
-            text-decoration: none;
-        }
+#menuBottom ul {
+    display: inline-block;
+    margin-right: 20px;
+}
 
-        #menuBottom ul li a:hover {
-            -moz-box-shadow: none;
-            -webkit-box-shadow: none;
-            box-shadow: none;
-        }
+#menuBottom ul li {
+    float: left;
+    list-style: none;
+    height: 44px;
+    line-height: 44px;
+    font-size: 14px;
+    margin-right: 5px;
+    margin-top: 2px;
+}
 
-        #menuBottom ul li#liContactoMenu {
-        }
+#menuBottom ul li a {
+    float: left;
+    border: none;
+    width: 100%;
+    height: 100%;
+    padding: 0px 10px;
+    text-transform: none !important;
+    font-size: 12px;
+    color: #000000;
+    text-decoration: none;
+}
 
-            #menuBottom ul li a#enlaceContactoMenu {
-                font-weight: 500;
-                color: #252525;
-            }
+#menuBottom ul li a:hover {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
 
-            #menuBottom ul li a#enlaceSegundaBMenu {
-                font-weight: 500;
-                color: #000000;
-            }
+#menuBottom ul li#liContactoMenu {}
 
-            #menuBottom .fondoContactoMenu {
-                position: relative;
-                top: 7px;
-                width: 100%;
-                height: 30px;
-                background: #ECECEC;
-                -webkit-border-radius: 2px;
-                -moz-border-radius: 2px;
-                border-radius: 2px;
-                z-index: -1;
-            }
+#menuBottom ul li a#enlaceContactoMenu {
+    font-weight: 500;
+    color: #252525;
+}
 
-    #menuBottom ul li.torneosPrincipales {
-        color: #252525;
-    }
+#menuBottom ul li a#enlaceSegundaBMenu {
+    font-weight: 500;
+    color: #000000;
+}
 
-    #menuBottom ul li.torneosSecundarios {
-        color: #252525;
-        opacity: 0.5;
-    }
+#menuBottom .fondoContactoMenu {
+    position: relative;
+    top: 7px;
+    width: 100%;
+    height: 30px;
+    background: #ECECEC;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    z-index: -1;
+}
+
+#menuBottom ul li.torneosPrincipales {
+    color: #252525;
+}
+
+#menuBottom ul li.torneosSecundarios {
+    color: #252525;
+    opacity: 0.5;
+}
 
 
 .menuDesplegable {
@@ -354,7 +385,19 @@ button:focus {
     max-height: 80%;
 }
 
-#menuPrimeraRFEF,#menuSegundaRFEF,#menupromocion2RFEF,#menuTerceraRFEF,#menuSegundaB, #menuTercera, #menuPromo, #menuAutonomica, #menuTorneos, #menuEuropa, #menuJuvenil, #menuFemenino, #menuFutbolSala {
+#menuPrimeraRFEF,
+#menuSegundaRFEF,
+#menupromocion2RFEF,
+#menuTerceraRFEF,
+#menuSegundaB,
+#menuTercera,
+#menuPromo,
+#menuAutonomica,
+#menuTorneos,
+#menuEuropa,
+#menuJuvenil,
+#menuFemenino,
+#menuFutbolSala {
     display: none;
     position: fixed;
     top: 81px;
@@ -367,35 +410,35 @@ button:focus {
     background: linear-gradient(180deg, #6A6A6A 0%, #40404000 100%), #404040;
 }
 
-    .menuTorneosTituloListado {
-        color: #EBEBEB ;
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 14px;
-        margin-bottom: 12px;
-    }
+.menuTorneosTituloListado {
+    color: #EBEBEB;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
 
-    .menuTorneosUL {
-        padding: 0px;
-    }
+.menuTorneosUL {
+    padding: 0px;
+}
 
-        .menuTorneosUL li {
-            list-style: none;
-            margin-bottom: -5px;
-        }
+.menuTorneosUL li {
+    list-style: none;
+    margin-bottom: -5px;
+}
 
-            .menuTorneosUL li a {
-                float: left;
-                width: 100%;
-                box-sizing: border-box;
-                color: #AFAFAF;
-                font-family: Roboto;
-                font-style: normal;
-                font-weight: normal;
-                font-size: 13px;
-                padding: 5px 0px;
-            }
+.menuTorneosUL li a {
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+    color: #AFAFAF;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    padding: 5px 0px;
+}
 
 .flechaTorneos {
     display: none;
@@ -417,12 +460,14 @@ button:focus {
         right: -75%;
     }
 }
+
 @media screen and (min-width: 601px) {
     .pushNav {
         width: 350px;
         right: -350px;
     }
 }
+
 ul.pushNav {
     padding: 0;
     margin: 0;
@@ -439,13 +484,15 @@ ul.pushNav {
     -webkit-transition: ease-in-out 0.5s;
     transition: ease-in-out 0.5s;
 }
+
 .pushNav hr {
     border: 1px solid #555;
 }
 
-.pushNav, .pushNav a {
+.pushNav,
+.pushNav a {
     font-size: 14px;
-    font-family:Roboto, sans-serif;
+    font-family: Roboto, sans-serif;
     color: #fff;
     text-decoration: none;
 }
@@ -455,24 +502,32 @@ ul.pushNav {
     height: 100%;
 }
 
-.js-topPushNav.isOpen, .pushNav_level.isOpen {
+.js-topPushNav.isOpen,
+.pushNav_level.isOpen {
     right: 0;
 }
 
-.closeLevel, .openLevel {
+.closeLevel,
+.openLevel {
     cursor: pointer;
 }
 
-.openLevel, .closeLevel, .pushNav a {
+.openLevel,
+.closeLevel,
+.pushNav a {
     padding: 10px 0px;
     display: block;
     text-indent: 20px;
     -webkit-transition: background 0.4s ease-in-out;
     transition: background 0.4s ease-in-out;
 }
-.openLevel:hover, .closeLevel:hover, .pushNav a:hover {
+
+.openLevel:hover,
+.closeLevel:hover,
+.pushNav a:hover {
     background: #494a50;
 }
+
 .pushNav a i.comunidad {
     margin-left: 10px;
     margin-right: -10px;
@@ -484,7 +539,8 @@ ul.pushNav {
     background-color: #1e1e24;
 }
 
-.closeLevel, closelevel > i {
+.closeLevel,
+closelevel>i {
     font-size: 1em;
     color: #a5a5a4;
 }
@@ -494,6 +550,7 @@ ul.pushNav {
     top: 24px;
     right: 48px;
 }
+
 .burger i {
     font-size: 3em;
 }
@@ -526,10 +583,12 @@ ul.pushNav {
     font-size: 1.1em;
     line-height: 1.4em;
 }
+
 .wrapper a {
     color: #20c270;
     text-decoration: none;
 }
+
 .wrapper button {
     background-color: #20c270;
     margin: 50px auto;
@@ -537,9 +596,11 @@ ul.pushNav {
     padding: 10px 40px;
     border: none;
 }
+
 .wrapper button:hover {
     background-color: #18a960;
 }
+
 .wrapper button a {
     color: #fff;
     font-size: 2em;
@@ -566,6 +627,7 @@ ul.pushNav {
     -moz-border-radius: 4px 4px 4px 4px;
     -webkit-border-radius: 4px 4px 4px 4px;
 }
+
 .contenedorBlancoBordesRedondeadosConPadding {
     background: #FFFFFF;
     box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.06);
@@ -581,7 +643,8 @@ ul.pushNav {
 #ultimosEventos {
     padding: 0px;
 }
-#ultimosEventos .titularSidebar  {
+
+#ultimosEventos .titularSidebar {
     padding: 10px 0px 0px 20px;
 }
 
@@ -594,6 +657,7 @@ ul.pushNav {
     text-transform: uppercase;
     color: #434343;
 }
+
 .titularContenido {
     font-family: Dosis;
     font-style: normal;
@@ -603,6 +667,7 @@ ul.pushNav {
     text-transform: uppercase;
     color: #434343;
 }
+
 .titularContenidoPeque {
     font-family: Dosis;
     font-style: normal;
@@ -612,87 +677,89 @@ ul.pushNav {
     text-transform: uppercase;
     color: #434343;
 }
+
 .cajaPartidoInformacionALaUltima {
     border-top: 1px solid #E9E9E9;
     padding: 12px 20px;
 }
-    .cajaPartidoInformacionALaUltima .hora {
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: 500;
-        font-weight: bold;
-        font-size: 12px;
-        line-height: 14px;
-        color: #B9BBBE;
-    }
 
-    .cajaPartidoInformacionALaUltima .estado {
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: 500;
-        font-weight: bold;
-        font-size: 12px;
-        line-height: 14px;
-        color: #7bdb00;
-        text-transform: uppercase;
-    }
+.cajaPartidoInformacionALaUltima .hora {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+    color: #B9BBBE;
+}
+
+.cajaPartidoInformacionALaUltima .estado {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+    color: #7bdb00;
+    text-transform: uppercase;
+}
 
 
-    .cajaPartidoInformacionALaUltima .contenedorNombreTorneo .nombreTorneo {
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 13px;
-        line-height: 15px;
-        text-transform: capitalize;
-        color: #434343;
-    }
+.cajaPartidoInformacionALaUltima .contenedorNombreTorneo .nombreTorneo {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    text-transform: capitalize;
+    color: #434343;
+}
 
-    .cajaPartidoInformacionALaUltima .equiposPartido {
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 14px;
-        line-height: 16px;
-        text-transform: capitalize;
-        color: #434343;
-    }
+.cajaPartidoInformacionALaUltima .equiposPartido {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: capitalize;
+    color: #434343;
+}
 
-    .cajaPartidoInformacionALaUltima .contenedorResultadoYEnlacePartido {
-        display: inline-block;
-    }
+.cajaPartidoInformacionALaUltima .contenedorResultadoYEnlacePartido {
+    display: inline-block;
+}
 
-    .cajaPartidoInformacionALaUltima .resultado {
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 14px;
-        line-height: 16px;
-        text-transform: capitalize;
-        color: #434343;
-        background: #E8E8E8;
-        border-radius: 3px 3px 3px 3px;
-        -moz-border-radius: 3px 3px 3px 3px;
-        -webkit-border-radius: 3px 3px 3px 3px;
-        display: inline-block;
-        padding: 4px;
-    }
+.cajaPartidoInformacionALaUltima .resultado {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: capitalize;
+    color: #434343;
+    background: #E8E8E8;
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    display: inline-block;
+    padding: 4px;
+}
 
-    .cajaPartidoInformacionALaUltima .enlacePartido {
-        background: #626262;
-        width: 24px;
-        height: 24px;
-        line-height: 24px;
-        display: inline-block;
-        text-align: center;
-        border-radius: 3px 3px 3px 3px;
-        -moz-border-radius: 3px 3px 3px 3px;
-        -webkit-border-radius: 3px 3px 3px 3px;
-    }
+.cajaPartidoInformacionALaUltima .enlacePartido {
+    background: #626262;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+}
 
-    .cajaPartidoInformacionALaUltima .evento {
-        font-size: 14px;
-    }
+.cajaPartidoInformacionALaUltima .evento {
+    font-size: 14px;
+}
 
 
 
@@ -702,7 +769,7 @@ ul.pushNav {
     box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.06);
     background: #6A6A6A;
     background: linear-gradient(180deg, #6A6A6A 0%, rgba(64, 64, 64, 0) 100%), #404040;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6A6A6A",endColorstr="#404040",GradientType=1);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6A6A6A", endColorstr="#404040", GradientType=1);
 }
 
 .cajaPartidoInformacionALaUltima.cajaEnJuego .nombreTorneo {
@@ -712,6 +779,7 @@ ul.pushNav {
 .cajaPartidoInformacionALaUltima.cajaEnJuego .equiposPartido {
     color: #FFFFFF;
 }
+
 .cajaPartidoInformacionALaUltima.cajaEnJuego .evento {
     color: #FFFFFF;
 }
@@ -743,57 +811,50 @@ ul.pushNav {
 
 .contenedorSelectorFechaLiveScore {
     text-align: center;
-    display:table-cell;
+    display: table-cell;
     width: 83px;
 }
 
 .contenedorCajaCentralLiveScore {
     text-align: center;
-    display:table-cell;
+    display: table-cell;
 }
 
 .cajasLiveScore {
-    background: #404040;
-    background: linear-gradient(180deg, #2C2C2C 0%, rgba(96, 96, 96, 0) 86.98%), #404040;
-    -moz-box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.06);
-    -webkit-box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.06);
-    box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.06);
-    border-radius: 4px;
-    color: rgba(255, 255, 255, 0.5);
+    background: #ECECEC;
+    border-radius: 0px;
+    color: #000;
 }
 
 .cajasPartidosHoy {
-    text-align: center;
+    text-align: left;
     font-family: Dosis;
     font-style: normal;
     font-weight: 600;
     line-height: 26px;
     font-size: 12px;
     /* line-height: 18px; */
-    height: 27px;
-    background: linear-gradient(180deg, #b7b7b7 0%, rgba(96, 96, 96, 0) 86.98%), #a5a5a5;
-    float: left;
-    width: 100%;
     text-transform: uppercase;
-    box-shadow: 0px 4px 34px rgb(0 0 0 / 6%);
-    border-radius: 4px;
 }
 
 .selectorFechaLiveScore {
     width: 77px;
     height: 35px;
     line-height: 35px;
-    color: rgba(255, 255, 255, 0.5) !important;
+    color: #000 !important;
     text-decoration: none !important;
 }
+
 .selectorFechaLiveScoreIzquierda {
     float: left;
     padding-right: 5px;
 }
+
 .selectorFechaLiveScoreDerecha {
     float: right;
     padding-left: 5px;
 }
+
 .cajaCentralLiveScore {
     float: left;
     width: 100%;
@@ -801,10 +862,12 @@ ul.pushNav {
     line-height: 35px;
     text-transform: uppercase;
 }
-    .cajaCentralLiveScore a {
-        text-decoration: none;
-        color: rgba(255, 255, 255, 0.5);
-    }
+
+.cajaCentralLiveScore a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+}
+
 .selectorFechaLiveScore:hover {
     color: rgba(255, 255, 255, 0.5);
     text-decoration: none;
@@ -834,20 +897,21 @@ ul.pushNav {
     text-transform: capitalize;
     color: #AFAFAF !important;
     text-decoration: none !important;
-    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
     filter: alpha(opacity=50);
     opacity: 0.5;
 }
+
 .botonFiltroLivescore:hover {
     text-decoration: none;
     color: #AFAFAF;
-    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
     filter: alpha(opacity=100);
     opacity: 1;
 }
 
 .botonFiltroLivescore.activa {
-    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
     filter: alpha(opacity=100);
     opacity: 1;
 }
@@ -870,17 +934,18 @@ ul.pushNav {
 #asideIzquierda {
     width: 315px;
 }
-    #asideIzquierda > div {
-        padding-left: 0px;
-    }
+
+#asideIzquierda>div {
+    padding-left: 0px;
+}
 
 #asideDerecha {
     width: 315px;
 }
 
-    #asideDerecha > div {
-        padding: 0px 0px 0px 15px;
-    }
+#asideDerecha>div {
+    padding: 0px 0px 0px 15px;
+}
 
 /* FIN ASIDES */
 
@@ -890,39 +955,43 @@ ul.pushNav {
     width: 100%;
     margin-bottom: 20px;
 }
-    #contenedorGooglePlay {
-        float: right;
-        width: 132px;
-        text-align: left;
-    }
-    #contenedorTwitter {
-        float: left;
-        width: 160px;
-    }
 
-    .botonTwitter {
-        float: left;
-        width: 40px;
-        height: 40px;
-        background: #03A9F4;
-        color: #FFFFFF;
-        border-radius: 5px 5px 5px 5px;
-        -moz-border-radius: 5px 5px 5px 5px;
-        -webkit-border-radius: 5px 5px 5px 5px;
-        color: #FFFFFF !important;
-        text-decoration: none !important;
-    }
-        .iconoTwitter {
-            float: left;
-            height: 40px;
-            line-height: 40px;
-            margin-left: 9px;
-        }
-        .textoTwitter {
-            font-size: 12px;
-            height: 40px;
-            line-height: 40px;
-        }
+#contenedorGooglePlay {
+    float: right;
+    width: 132px;
+    text-align: left;
+}
+
+#contenedorTwitter {
+    float: left;
+    width: 160px;
+}
+
+.botonTwitter {
+    float: left;
+    width: 40px;
+    height: 40px;
+    background: #03A9F4;
+    color: #FFFFFF;
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+}
+
+.iconoTwitter {
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 9px;
+}
+
+.textoTwitter {
+    font-size: 12px;
+    height: 40px;
+    line-height: 40px;
+}
 
 
 #textoLegalbet {
@@ -930,14 +999,16 @@ ul.pushNav {
     color: #A0A0A0;
     margin-bottom: 20px;
 }
-    #textoLegalbet a {
-        color: #000000;
-    }
+
+#textoLegalbet a {
+    color: #000000;
+}
 
 #contenedorBannerFootersGrande {
     float: left;
     width: 100%;
 }
+
 /* FIN CONTENIDO DERECHA */
 
 /* CENTRO PORTADA */
@@ -947,31 +1018,32 @@ ul.pushNav {
     margin-top: 40px;
     margin-bottom: 10px;
 }
-    .cabeceraTorneo .nombreTorneo {
-        float:left;
-        margin-right: 18px;
-    }
 
-    .cabeceraTorneo .nombreTorneo .tname {
-        font-weight: 500;
-        font-size: 13px;
-        text-transform: uppercase;
-        margin: 0px;
-        line-height: 20px;
-        min-height: 20px;
-    }
+.cabeceraTorneo .nombreTorneo {
+    float: left;
+    margin-right: 18px;
+}
 
-    .cabeceraTorneo .bandera {
-        float:left;
-        width:40px;
-        height: 20px;
-        top: 0px;
-    }
+.cabeceraTorneo .nombreTorneo .tname {
+    font-weight: 500;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin: 0px;
+    line-height: 20px;
+    min-height: 20px;
+}
+
+.cabeceraTorneo .bandera {
+    float: left;
+    width: 40px;
+    height: 20px;
+    top: 0px;
+}
 
 .cajaGlobalPartidos {
     float: left;
     width: 100%;
-    background: #FFFFFF;
+    background: #F4F2F2;
     padding: 0px;
     border-radius: 4px 4px 4px 4px;
     -moz-border-radius: 4px 4px 4px 4px;
@@ -979,221 +1051,233 @@ ul.pushNav {
     -moz-box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.06);
     -webkit-box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.06);
     box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.06);
+    border-radius: 0px;
 }
 
-    .cajaGlobalPartidos .cajaPartido {
+.cajaGlobalPartidos .cajaPartido {}
 
-    }
+.cajaGlobalPartidos .cajaPartido .contenedorPrimeraLinea {
+    float: left;
+    width: 100%;
+    padding: 0px;
+}
 
-    .cajaGlobalPartidos .cajaPartido .contenedorPrimeraLinea {
-        float: left;
-        width: 100%;
-        padding: 0px;
-    }
+.cajaGlobalPartidos .cajaPartido .contenedorPrimeraLinea .timeresult {
+    font-size: 14px !important;
+    font-weight: 500;
+}
 
-    .cajaGlobalPartidos .cajaPartido .contenedorPrimeraLinea .timeresult {
-        font-size: 14px !important;
-        font-weight: 500;
-    }
+.cajaGlobalPartidos .cajaPartido .horaPrevistaPartido {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #ACACAC;
+}
 
-    .cajaGlobalPartidos .cajaPartido .horaPrevistaPartido {
-        font-weight: 500;
+.cajaGlobalPartidos .cajaPartido .contenedorIconosPartido {
+    text-align: right;
+}
+
+.cajaGlobalPartidos .cajaPartido .contenedorIconosPartido a {
+    text-decoration: none !important;
+    vertical-align: bottom;
+    text-align: center;
+    padding: 0px 1px;
+}
+
+.cajaGlobalPartidos .cajaPartido .simboloMasPartido {
+    cursor: pointer;
+}
+
+.cajaGlobalPartidos .cajaPartido .nombreJornada {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    text-transform: capitalize;
+    color: #ACACAC;
+}
+
+.cajaGlobalPartidos .cajaPartido .horaPartido {
+    color: #434343;
+    font-size: 14px;
+    line-height: 29px;
+    width: 43px;
+    height: 29px;
+    background: #E8E8E8;
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.cajaGlobalPartidos .cajaPartido .horaPartido .suspendido,
+.cajaGlobalPartidos .cajaPartido .horaPartido .aplazado {
+    font-size: 12px;
+    color: #E81346;
+}
+
+.cajaGlobalPartidos .cajaPartido .equipoPartido {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.cajaGlobalPartidos .cajaPartido .equipoPartido p span {
+    height: 40px;
+    font-size: 17px;
+    line-height: 40px;
+    color: #2F2F2F;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cajaGlobalPartidos .cajaPartido .equipoPartidoLocal p span {
+    float: left;
+    width: 100%;
+    text-align: right;
+}
+
+.cajaGlobalPartidos .cajaPartido .equipoPartidoVisitante p span {
+    float: left;
+    width: 100%;
+    text-align: left;
+}
+
+.cajaGlobalPartidos .cajaPartido .resultadoPartido {
+    height: 40px;
+    font-size: 22px;
+    line-height: 40px;
+    color: #2F2F2F;
+    text-align: center;
+    font-weight: bold;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+@media screen and (max-width: 768px) {
+    .cajaGlobalPartidos .cajaPartido .equipoPartido p span {
         font-size: 14px;
-        line-height: 16px;
-        color: #ACACAC;
+        line-height: 20px;
     }
-
-    .cajaGlobalPartidos .cajaPartido  .contenedorIconosPartido {
-        text-align: right;
-    }
-
-    .cajaGlobalPartidos .cajaPartido  .contenedorIconosPartido a {
-        text-decoration: none !important;
-        vertical-align: bottom;
-        text-align: center;
-        padding: 0px 1px;
-    }
-
-    .cajaGlobalPartidos .cajaPartido .simboloMasPartido {
-        cursor:pointer;
-    }
-
-    .cajaGlobalPartidos .cajaPartido .nombreJornada {
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 16px;
-        text-align: center;
-        text-transform: capitalize;
-        color: #ACACAC;
-    }
-
-    .cajaGlobalPartidos .cajaPartido .horaPartido {
-        color: #434343;
-        font-size: 14px;
-        line-height: 29px;
-        width: 43px;
-        height: 29px;
-        background: #E8E8E8;
-        border-radius: 3px 3px 3px 3px;
-        -moz-border-radius: 3px 3px 3px 3px;
-        -webkit-border-radius: 3px 3px 3px 3px;
-        text-align: center;
-        margin: 0 auto;
-    }
-
-        .cajaGlobalPartidos .cajaPartido .horaPartido .suspendido,
-        .cajaGlobalPartidos .cajaPartido .horaPartido .aplazado {
-            font-size: 12px;
-            color: #E81346;
-        }
 
     .cajaGlobalPartidos .cajaPartido .equipoPartido {
         padding-left: 0px;
         padding-right: 0px;
     }
 
-    .cajaGlobalPartidos .cajaPartido .equipoPartido p span {
-        height: 40px;
-        font-size: 17px;
-        line-height: 40px;
-        color: #2F2F2F;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    .cajaGlobalPartidos .cajaPartido .equipoPartidoLocal p span {
-        float: left;
-        width: 100%;
-        text-align: right;
-    }
-
-    .cajaGlobalPartidos .cajaPartido .equipoPartidoVisitante p span {
-        float: left;
-        width: 100%;
-        text-align: left;
-    }
-
     .cajaGlobalPartidos .cajaPartido .resultadoPartido {
-        height: 40px;
-        font-size: 22px;
-        line-height: 40px;
-        color: #2F2F2F;
-        text-align: center;
-        font-weight: bold;
+        font-size: 18px;
+        line-height: 20px;
         padding-left: 0px;
         padding-right: 0px;
     }
+}
 
-    @media screen and (max-width: 768px) {
-        .cajaGlobalPartidos .cajaPartido .equipoPartido p span {
-            font-size: 14px;
-            line-height: 20px;
-        }
-        .cajaGlobalPartidos .cajaPartido .equipoPartido {
-            padding-left: 0px;
-            padding-right: 0px;
-        }
-        .cajaGlobalPartidos .cajaPartido .resultadoPartido {
-            font-size: 18px;
-            line-height: 20px;
-            padding-left: 0px;
-            padding-right: 0px;
-        }
-    }
+.cajaGlobalPartidos .cajaPartido .textoIda {
+    font-size: 11px;
+    color: #434343;
+    text-align: center;
+    margin-top: 10px;
+}
 
-    .cajaGlobalPartidos .cajaPartido .textoIda {
-        font-size: 11px;
-        color: #434343;
-        text-align: center;
-        margin-top: 10px;
-    }
+.cajaGlobalPartidos .cajaPartido .enlacesDeInteres {
+    background: #EFEFEF;
+    padding-bottom: 30px;
+}
 
-    .cajaGlobalPartidos .cajaPartido .enlacesDeInteres {
-        background: #EFEFEF;
-        padding-bottom: 30px;
-    }
+.cajaGlobalPartidos .cajaPartido .enlacesDeInteres>h4 {
+    font-family: Dosis;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    color: #ACACAC;
+    margin-bottom: 30px;
+}
 
-        .cajaGlobalPartidos .cajaPartido .enlacesDeInteres > h4 {
-            font-family: Dosis;
-            font-style: normal;
-            font-weight: 600;
-            font-size: 14px;
-            line-height: 18px;
-            text-align: center;
-            color: #ACACAC;
-            margin-bottom: 30px;
-        }
+.cajaGlobalPartidos .cajaPartido .enlacesDeInteres .enlacesDeInteresColumnaCampeonato {
+    font-size: 15px;
+    color: #585858;
+}
 
-        .cajaGlobalPartidos .cajaPartido .enlacesDeInteres .enlacesDeInteresColumnaCampeonato {
-            font-size: 15px;
-            color: #585858;
-        }
-            .cajaGlobalPartidos .cajaPartido .enlacesDeInteres .enlacesDeInteresColumnaCampeonato h5 {
-                color: #585858;
-                margin: 0px;
-                margin-bottom: 5px;
-            }
-            .cajaGlobalPartidos .cajaPartido .enlacesDeInteres .enlacesDeInteresColumnaCampeonato a {
-                color: #585858;
-                font-size: 13px;
-            }
+.cajaGlobalPartidos .cajaPartido .enlacesDeInteres .enlacesDeInteresColumnaCampeonato h5 {
+    color: #585858;
+    margin: 0px;
+    margin-bottom: 5px;
+}
 
-        .cajaGlobalPartidos .cajaPartido .enlacesDeInteres .enlacesDeInteresColumnaEquipo {
+.cajaGlobalPartidos .cajaPartido .enlacesDeInteres .enlacesDeInteresColumnaCampeonato a {
+    color: #585858;
+    font-size: 13px;
+}
 
-        }
-            .cajaGlobalPartidos .cajaPartido .enlacesDeInteres .enlacesDeInteresColumnaEquipo h6 {
-                font-size: 15px;
-                color: #939393;
-                margin: 0px;
-                margin-bottom: 5px;
-            }
-            .cajaGlobalPartidos .cajaPartido .enlacesDeInteres .enlacesDeInteresColumnaEquipo a {
-                font-size: 13px;
-                color: #939393;
-            }
+.cajaGlobalPartidos .cajaPartido .enlacesDeInteres .enlacesDeInteresColumnaEquipo {}
+
+.cajaGlobalPartidos .cajaPartido .enlacesDeInteres .enlacesDeInteresColumnaEquipo h6 {
+    font-size: 15px;
+    color: #939393;
+    margin: 0px;
+    margin-bottom: 5px;
+}
+
+.cajaGlobalPartidos .cajaPartido .enlacesDeInteres .enlacesDeInteresColumnaEquipo a {
+    font-size: 13px;
+    color: #939393;
+}
 
 .cajaGlobalPartidos.partidosEnJuego {
-    background: #404040;
-    background: linear-gradient(180deg, #6A6A6A 0%, rgba(64, 64, 64, 0) 100%), #404040;
+    background: #025325;/* 
+    background: linear-gradient(180deg, #6A6A6A 0%, rgba(64, 64, 64, 0) 100%), #404040; */
 }
-    .cajaGlobalPartidos.partidosEnJuego .cajaPartido .equipoPartido p span {
-        color: #FFFFFF;
-    }
 
-    .cajaGlobalPartidos.partidosEnJuego .cajaPartido .resultadoPartido {
-        color: #FFFFFF;
-    }
+#contenedorCentral .col-12.cajaGlobalPartidos.partidosEnJuego.border{
+    background: #025325 !important;
+}
 
-    .cajaGlobalPartidos.partidosEnJuego .cajaPartido .horaPrevistaPartido {
-        color: #FFFFFF;
-    }
+.cajaGlobalPartidos.partidosEnJuego .cajaPartido .equipoPartido p span {
+    color: #FFFFFF;
+}
+
+.cajaGlobalPartidos.partidosEnJuego .cajaPartido .resultadoPartido {
+    color: #FFFFFF;
+}
+
+.cajaGlobalPartidos.partidosEnJuego .cajaPartido .horaPrevistaPartido {
+    color: #FFFFFF;
+}
 
 
-    .cajaGlobalPartidos.partidosEnJuego .cajaPartido .observacionesGoles {
-        color: #dedede;
-    }
+.cajaGlobalPartidos.partidosEnJuego .cajaPartido .observacionesGoles {
+    color: #dedede;
+}
 
-    .cajaGlobalPartidos.partidosEnJuego .cajaPartido .observaciones {
-        color: #dedede;
-    }
+.cajaGlobalPartidos.partidosEnJuego .cajaPartido .observaciones {
+    color: #dedede;
+}
 
-    .cajaGlobalPartidos.partidosEnJuego .cajaPartido .observacionesGoles {
-        color: #dedede;
-    }
+.cajaGlobalPartidos.partidosEnJuego .cajaPartido .observacionesGoles {
+    color: #dedede;
+}
 
-    .cajaGlobalPartidos.partidosEnJuego .cajaPartido .observacionesGoles a {
-        color: #dedede;
-    }
+.cajaGlobalPartidos.partidosEnJuego .cajaPartido .observacionesGoles a {
+    color: #dedede;
+}
 
-.observacionesGoles, .observacionesGoles a {
+.observacionesGoles,
+.observacionesGoles a {
     font-size: 15px;
     color: #838383;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
 }
+
 @media (min-width:300px) and (max-width:700px) {
-    .observacionesGoles, .observacionesGoles a {
+
+    .observacionesGoles,
+    .observacionesGoles a {
         font-size: 13px;
     }
 }
@@ -1215,7 +1299,8 @@ ul.pushNav {
     font-size: 13px;
 }
 
-#menuTorneo li a:hover, #menuTorneo li.activa a {
+#menuTorneo li a:hover,
+#menuTorneo li.activa a {
     background: linear-gradient(180deg, #2C2C2C 0%, rgba(96, 96, 96, 0) 86.98%), #404040;
     color: #C5C5C5;
 }
@@ -1237,7 +1322,8 @@ ul.pushNav {
     font-size: 13px;
 }
 
-.menuListGrises li a:hover, .menuListGrises li.activa a {
+.menuListGrises li a:hover,
+.menuListGrises li.activa a {
     background: linear-gradient(180deg, #2C2C2C 0%, rgba(96, 96, 96, 0) 86.98%), #404040;
     color: #C5C5C5;
 }
@@ -1260,14 +1346,15 @@ ul.pushNav {
     font-weight: bold;
 }
 
-#menuCategorias li a:hover, #menuCategorias li.activa a {
+#menuCategorias li a:hover,
+#menuCategorias li.activa a {
     background: #FFFFFF;
     color: #000000;
 }
 
 
 .menuTorneosCategoria .enlaceTorneo {
-    float:left;
+    float: left;
     width: 100%;
     padding: 2px 0px;
     color: #333333;
@@ -1301,7 +1388,8 @@ ul.pushNav {
     font-size: 14px;
 }
 
-#menuOpcionesClasificacion .btn:hover, #menuOpcionesClasificacion .btn.activa {
+#menuOpcionesClasificacion .btn:hover,
+#menuOpcionesClasificacion .btn.activa {
     background: #C8C8C8;
     color: #727272;
 }
@@ -1348,6 +1436,7 @@ ul.pushNav {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
+
 #bottomLaTabla {
     width: 100%;
     height: 5px;
@@ -1362,9 +1451,11 @@ ul.pushNav {
 
     margin-bottom: 15px;
 }
+
 #bottomLaTabla.fila-par {
     background: #F8F8F8;
 }
+
 #latabla {
     color: #434343;
     font-weight: 300 !important;
@@ -1372,18 +1463,22 @@ ul.pushNav {
     font-size: 15px !important;
     margin-bottom: 0px !important;
 }
+
 #latabla tr {
     border: none !important;
 }
+
 #latabla thead {
     background: #4A4A4A;
     color: #FFFFFF;
 }
+
 #latabla th {
     padding: 1px;
     font-weight: 300 !important;
     border: none !important;
 }
+
 #latabla td {
     padding: 1px;
     height: 31px;
@@ -1391,9 +1486,11 @@ ul.pushNav {
     font-weight: 300 !important;
     border: none !important;
     overflow: hidden;
-    white-space: nowrap; /* Don't forget this one */
+    white-space: nowrap;
+    /* Don't forget this one */
     text-overflow: ellipsis;
 }
+
 #latabla .fila-par {
     background: #F8F8F8;
 }
@@ -1473,6 +1570,7 @@ ul.pushNav {
     letter-spacing: 0.03em;
     text-transform: uppercase;
 }
+
 .contenidoActualidadEnTwitter {
     background: #D3ECF1;
     box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.06);
@@ -1486,13 +1584,13 @@ ul.pushNav {
     margin-top: 40px;
     margin-bottom: 20px;
 }
+
 .filaEquipoTwitter .filaEquipoTwitterContenedorNombreEquipo a {
     text-decoration-color: #2F2F2F;
 }
 
-.filaEquipoTwitter .contenedorLateralTwitterEquipo {
+.filaEquipoTwitter .contenedorLateralTwitterEquipo {}
 
-}
 .filaEquipoTwitter .twitterContenedorEscudoEquipo {
     float: left;
     width: 100%;
@@ -1505,6 +1603,7 @@ ul.pushNav {
     border-radius: 5px;
     margin-bottom: 20px;
 }
+
 .filaEquipoTwitter .escudo_ind {
     width: 75px;
 }
@@ -1570,7 +1669,8 @@ ul.pushNav {
     margin-top: 10px !important;
 }
 
-#contenedorLateralEquipos .equiposLateralNombreEquipo, #contenedorLateralEquipos .equiposLateralNombreEquipo a {
+#contenedorLateralEquipos .equiposLateralNombreEquipo,
+#contenedorLateralEquipos .equiposLateralNombreEquipo a {
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
@@ -1652,15 +1752,13 @@ ul.pushNav {
 }
 
 #selector-jornadas .cajaCentralLiveScore .dropdown-menu .opcionJornada {
-    float:left;
-    min-width:40px;
-    height:40px;
-    font-size:20px;
+    float: left;
+    min-width: 40px;
+    height: 40px;
+    font-size: 20px;
 }
 
-#cabeceraTorneo {
-
-}
+#cabeceraTorneo {}
 
 #cabeceraTorneo h1 {
     font-family: Dosis;
@@ -1788,9 +1886,7 @@ body.partidosTelevisados .separadorCajasFechas {
     margin-bottom: 10px;
 }
 
-body.partidosTelevisados .contenedorIconosTv {
-
-}
+body.partidosTelevisados .contenedorIconosTv {}
 
 body.partidosTelevisados .contenedorIconosTv a {
     color: #2F2F2F;
@@ -1814,7 +1910,8 @@ body.partidosTelevisados .contenedorIconosTv a {
     font-size: 13px;
 }
 
-#menuEquipo li a:hover, #menuEquipo li.activa a {
+#menuEquipo li a:hover,
+#menuEquipo li.activa a {
     background: linear-gradient(180deg, #2C2C2C 0%, rgba(96, 96, 96, 0) 86.98%), #404040;
     color: #C5C5C5;
 }
@@ -1827,6 +1924,7 @@ body.partidosTelevisados .contenedorIconosTv a {
 #contenedorSuperiorEquipo h1 {
     text-align: left;
 }
+
 #contenedorSuperiorEquipo h2.subtitulo {
     text-align: left;
     font-weight: 600;
@@ -1848,7 +1946,8 @@ body.partidosTelevisados .contenedorIconosTv a {
     font-size: 13px;
 }
 
-#menuEquipoTorneos li a:hover, #menuEquipoTorneos li.activa a {
+#menuEquipoTorneos li a:hover,
+#menuEquipoTorneos li.activa a {
     background: linear-gradient(180deg, #2C2C2C 0%, rgba(96, 96, 96, 0) 86.98%), #404040;
     color: #C5C5C5;
 }
@@ -1868,35 +1967,146 @@ body.partidosTelevisados .contenedorIconosTv a {
 
 
 /* PARTIDOS SUELTOS */
-.boxpartido p{margin-top:2px;margin-bottom:0;}
-.blackbox{color:white !important;background:black;}
-.reboxL{background:black;border-radius:6px;font-weight:700;font-size:1.4em;color:white;font-family:"Open Sans", sans-serif;color:white !important;padding:1px 5px;margin-left:4px;margin-right:0;height:28px;text-align:center;width:42%;}
-.reboxR{background:black;border-radius:6px;font-weight:700;font-size:1.4em;color:white;font-family:"Open Sans", sans-serif;color:white !important;padding:1px 5px;margin-left:0;margin-right:4px;height:28px;text-align:center;width:42%;}
-@media (min-width:300px) and (max-width:700px){.reboxL{border-radius:4px;font-size:1.1em;width:40%;margin-left:2px;margin-right:2px;height:23px;}
-    .reboxR{border-radius:4px;font-size:1.1em;width:40%;margin-left:2px;margin-right:2px;height:23px;}
+.boxpartido p {
+    margin-top: 2px;
+    margin-bottom: 0;
+}
+
+.blackbox {
+    color: white !important;
+    background: black;
+}
+
+.reboxL {
+    background: black;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 1.4em;
+    color: white;
+    font-family: "Open Sans", sans-serif;
+    color: white !important;
+    padding: 1px 5px;
+    margin-left: 4px;
+    margin-right: 0;
+    height: 28px;
+    text-align: center;
+    width: 42%;
+}
+
+.reboxR {
+    background: black;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 1.4em;
+    color: white;
+    font-family: "Open Sans", sans-serif;
+    color: white !important;
+    padding: 1px 5px;
+    margin-left: 0;
+    margin-right: 4px;
+    height: 28px;
+    text-align: center;
+    width: 42%;
+}
+
+@media (min-width:300px) and (max-width:700px) {
+    .reboxL {
+        border-radius: 4px;
+        font-size: 1.1em;
+        width: 40%;
+        margin-left: 2px;
+        margin-right: 2px;
+        height: 23px;
+    }
+
+    .reboxR {
+        border-radius: 4px;
+        font-size: 1.1em;
+        width: 40%;
+        margin-left: 2px;
+        margin-right: 2px;
+        height: 23px;
+    }
 }
 
 
 
 
-.parpadea{animation-name:parpadeo;animation-duration:1s;animation-timing-function:linear;animation-iteration-count:60;-webkit-animation-name:parpadeo;-webkit-animation-duration:1s;-webkit-animation-timing-function:linear;-webkit-animation-iteration-count:60;}
-@-moz-keyframes parpadeo{0%{opacity:1.0;}
-    25%{opacity:1.0;}
-    50%{opacity:0.0;}
-    75%{opacity:1.0;}
-    100%{opacity:1.0;}
+.parpadea {
+    animation-name: parpadeo;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: 60;
+    -webkit-animation-name: parpadeo;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: 60;
 }
-@-webkit-keyframes parpadeo{0%{opacity:1.0;}
-    25%{opacity:1.0;}
-    50%{opacity:0.0;}
-    75%{opacity:1.0;}
-    100%{opacity:1.0;}
+
+@-moz-keyframes parpadeo {
+    0% {
+        opacity: 1.0;
+    }
+
+    25% {
+        opacity: 1.0;
+    }
+
+    50% {
+        opacity: 0.0;
+    }
+
+    75% {
+        opacity: 1.0;
+    }
+
+    100% {
+        opacity: 1.0;
+    }
 }
-@keyframes parpadeo{0%{opacity:1.0;}
-    25%{opacity:1.0;}
-    50%{opacity:0.0;}
-    75%{opacity:1.0;}
-    100%{opacity:1.0;}
+
+@-webkit-keyframes parpadeo {
+    0% {
+        opacity: 1.0;
+    }
+
+    25% {
+        opacity: 1.0;
+    }
+
+    50% {
+        opacity: 0.0;
+    }
+
+    75% {
+        opacity: 1.0;
+    }
+
+    100% {
+        opacity: 1.0;
+    }
+}
+
+@keyframes parpadeo {
+    0% {
+        opacity: 1.0;
+    }
+
+    25% {
+        opacity: 1.0;
+    }
+
+    50% {
+        opacity: 0.0;
+    }
+
+    75% {
+        opacity: 1.0;
+    }
+
+    100% {
+        opacity: 1.0;
+    }
 }
 
 
@@ -1910,5 +2120,6 @@ body.partidosTelevisados .contenedorIconosTv a {
     z-index: 19999999;
 }
 
-#contenedorIconosDerecha {float: none !important;}
-
+#contenedorIconosDerecha {
+    float: none !important;
+}
