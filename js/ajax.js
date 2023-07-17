@@ -1195,3 +1195,5 @@ function visor_hoy(temporada_id,comunidad_id) {
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xmlhttp.send("temporada_id="+temporada_id+'&comunidad_id='+comunidad_id);
 }
+
+alert('rais')
