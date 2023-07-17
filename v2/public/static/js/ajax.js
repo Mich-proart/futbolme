@@ -1252,7 +1252,9 @@ function obtenerAlineacion(btnIdLiga){
 
       console.log(data)    
       
-      //let result = JSON.parse(data)
+      let result = JSON.parse(data)
+
+      console.log(result)
     }
 })
   
