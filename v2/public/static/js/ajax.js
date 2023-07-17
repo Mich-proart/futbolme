@@ -1204,8 +1204,8 @@ const obtenerAlineacion = (btnIdLiga) => {
   const csrfToken = $('meta[name="csrf-token"]').attr('content');
     
   jQuery.ajax({
-      url: "https://api.b365api.com/v1/event/lineup?token=153716-4djEyj4e6JZVou&event_id="+btnIdLiga, // AJAX handler,
-      type: 'POST',
+      url: "https://api.b365api.com/v1/event/lineup?token=153716-4djEyj4e6JZVou&event_id="+jQuery(btnIdLiga).text(), // AJAX handler,
+      type: 'GET',
       data: {
           valorId: jQuery(btnIdLiga).text(),
       },
@@ -1222,38 +1222,7 @@ const obtenerAlineacion = (btnIdLiga) => {
       success: function (data) {
 
         console.log(data)
-
-          // // // let result = JSON.parse(data)  
-          
-          // // // jQuery('.lista-locales').empty()
-          // // // jQuery('.lista-visitantes').empty()
-
-          
-          // // // // condicon para alineacion locales
-          // // // if (result.local != '') {
-              
-          // // //     for (const iterator of result.local) {
-               
-          // // //         console.log(iterator)
-          // // //         jQuery('.lista-locales').append(`<a href="#" class="list-group-item list-group-item-action">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</a>`)
-          // // //     }                
-
-          // // // }else{
-          // // //     console.log("VACIO LOCALES")
-          // // // }
-
-          // // // // condicion para alineacion visitantes
-          // // // if(result.visitante != ''){
-
-          // // //     for (const iterator of result.visitante) {
-
-          // // //         jQuery('.lista-visitantes').append(`<a href="#" class="list-group-item list-group-item-action">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</a>`)
-                  
-          // // //     }
-
-          // // // }else{
-          // // //     console.log("VACIO VISITANTES")
-          // // // }            
+         
       }
   })
 };
