@@ -44,7 +44,7 @@ if (curl_errno($ch)) {
         //     ];         
         // }
 
-        return $response->json();
+        echo json_encode($response);
 }
 
 // Cerrar la conexión cURL
