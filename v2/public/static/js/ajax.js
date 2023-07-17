@@ -1201,21 +1201,61 @@ function visor_hoy(temporada_id,comunidad_id) {
 
 const obtenerAlineacion = (btnIdLiga) => {  
 
-    var xmlhttp;
-    if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-    } else{// code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange=function() {
-      if (xmlhttp.readyState==4 && xmlhttp.status==200) {                
-            //document.getElementById("visorHoy-"+temporada_id).innerHTML=xmlhttp.responseText;
-            console.log(xmlhttp.responseText)
-        }
-    }
-  xmlhttp.open("GET","https://api.b365api.com/v1/event/lineup?token=153716-4djEyj4e6JZVou&event_id="+btnIdLiga ,true); //str3 es la carpeta donde va a leer el script
-  xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  xmlhttp.send("temporada_id="+btnIdLiga);
+  const csrfToken = $('meta[name="csrf-token"]').attr('content');
+    
+  jQuery.ajax({
+      url: "https://api.b365api.com/v1/event/lineup?token=153716-4djEyj4e6JZVou&event_id="+btnIdLiga, // AJAX handler,
+      type: 'POST',
+      data: {
+          valorId: jQuery(btnIdLiga).text(),
+      },
+      headers: {
+           'X-CSRF-TOKEN': csrfToken
+      },
+      beforeSend: function() {
+
+      },
+      complete: function () {
+
+          //jQuery('.content-spiner-resultados-feed').addClass('ocultar-icon').removeClass('d-flex')
+      },
+      success: function (data) {
+
+        console.log(data)
+
+          // // // let result = JSON.parse(data)  
+          
+          // // // jQuery('.lista-locales').empty()
+          // // // jQuery('.lista-visitantes').empty()
+
+          
+          // // // // condicon para alineacion locales
+          // // // if (result.local != '') {
+              
+          // // //     for (const iterator of result.local) {
+               
+          // // //         console.log(iterator)
+          // // //         jQuery('.lista-locales').append(`<a href="#" class="list-group-item list-group-item-action">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</a>`)
+          // // //     }                
+
+          // // // }else{
+          // // //     console.log("VACIO LOCALES")
+          // // // }
+
+          // // // // condicion para alineacion visitantes
+          // // // if(result.visitante != ''){
+
+          // // //     for (const iterator of result.visitante) {
+
+          // // //         jQuery('.lista-visitantes').append(`<a href="#" class="list-group-item list-group-item-action">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</a>`)
+                  
+          // // //     }
+
+          // // // }else{
+          // // //     console.log("VACIO VISITANTES")
+          // // // }            
+      }
+  })
 };
 
 jQuery(document).on('click', '.span-id-torneo-alineacion', function(){
