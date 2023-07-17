@@ -1233,8 +1233,8 @@ function obtenerAlineacion(btnIdLiga){
   
 };
 
-// jQuery(document).on('click', '.span-id-torneo-alineacion', function(){
+jQuery(document).on('click', '.span-id-torneo-alineacion', function(){
 
-//   obtenerAlineacion(jQuery(this))
+  obtenerAlineacion(jQuery(this))
 
-// })
+})
