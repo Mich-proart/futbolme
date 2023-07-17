@@ -25,26 +25,26 @@ if (curl_errno($ch)) {
     // Procesar la respuesta
     //echo json_encode($response);
 
-    $objResponse = array();
+    //$objResponse = array();
 
-        $objResponse = [
-            'local' => '',
-            'visitante' => ''
-        ];
+        // // $objResponse = [
+        // //     'local' => '',
+        // //     'visitante' => ''
+        // // ];
 
-        if($response->json()['results']){
+        // if($response->json()['results']){
 
-            $datosLocal = $response->json()['results']['home']['startinglineup'];
+        //     $datosLocal = $response->json()['results']['home']['startinglineup'];
 
-            $datosVisitante = $response->json()['results']['away']['startinglineup'];
+        //     $datosVisitante = $response->json()['results']['away']['startinglineup'];
 
-            $objResponse = [
-                'local' => $datosLocal,
-                'visitante' => $datosVisitante
-            ];         
-        }
+        //     $objResponse = [
+        //         'local' => $datosLocal,
+        //         'visitante' => $datosVisitante
+        //     ];         
+        // }
 
-        return json_encode($objResponse);
+        return $response->json();
 }
 
 // Cerrar la conexión cURL
