@@ -1201,3 +1201,9 @@ function visor_hoy(temporada_id,comunidad_id) {
 
 
 
+alert('eject')
+
+//span-id-torneo-alineacion
+
+
+
