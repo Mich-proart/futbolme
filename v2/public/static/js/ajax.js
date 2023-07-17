@@ -1202,7 +1202,7 @@ function visor_hoy(temporada_id,comunidad_id) {
 const obtenerAlineacion = (btnIdLiga) => {  
     
   jQuery.ajax({
-      url: `/src/funciones/verPartido.php`, // AJAX handler,
+      url: `/src/funciones/apiBetsapi.php`, // AJAX handler,
       type: 'POST',
       data: {
           valorId: jQuery(btnIdLiga).text(),
