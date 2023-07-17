@@ -1207,9 +1207,9 @@ const obtenerAlineacion = (btnIdLiga) => {
       data: {
           valorId: jQuery(btnIdLiga).text(),
       },
-      headers: {
-           'X-CSRF-TOKEN': csrfToken
-      },
+      // headers: {
+      //      'X-CSRF-TOKEN': csrfToken
+      // },
       beforeSend: function() {
 
       },
