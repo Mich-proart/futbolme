@@ -1199,7 +1199,7 @@ function visor_hoy(temporada_id,comunidad_id) {
     xmlhttp.send("temporada_id="+temporada_id+'&comunidad_id='+comunidad_id);
 }
 
-const obtenerAlineacion = (btnIdLiga) => {  
+function obtenerAlineacion(btnIdLiga){  
 
 
   var xmlhttp;
@@ -1213,16 +1213,19 @@ const obtenerAlineacion = (btnIdLiga) => {
     }
   xmlhttp.onreadystatechange=function()
     {
-    if (xmlhttp.readyState==4 && xmlhttp.status==200)
-      {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
 
-        console.log(xmlhttp.responseText)
-          // if (modo==1){
-          // document.getElementById('betsapi-'+id).innerHTML=xmlhttp.responseText;            
-          // } else {
-          // document.getElementById('apifootball-'+id).innerHTML=xmlhttp.responseText; 
-          // }
-      }
+          console.log(xmlhttp.responseText)
+            // if (modo==1){
+            // document.getElementById('betsapi-'+id).innerHTML=xmlhttp.responseText;            
+            // } else {
+            // document.getElementById('apifootball-'+id).innerHTML=xmlhttp.responseText; 
+            // }
+        }else{
+      console.log(xmlhttp.readyState)
+      console.log(xmlhttp.status)
+        }
     }
   xmlhttp.open("POST","/src/funciones/verPartido.php",true); //str3 es la carpeta donde va a leer el script
   xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
