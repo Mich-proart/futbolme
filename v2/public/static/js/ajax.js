@@ -1254,7 +1254,7 @@ function obtenerAlineacion(btnIdLiga){
       
       let result = JSON.parse(data)
 
-      console.log(result)
+      console.log(result.results)
     }
 })
   
