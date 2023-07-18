@@ -1219,7 +1219,7 @@ function obtenerAlineacion(btnIdLiga){
     },
     success: function (data) {
 
-      console.log(data)  
+      console.log(data)        
       
       jQuery('.listado-locales').empty()
 
@@ -1253,6 +1253,7 @@ function obtenerAlineacion(btnIdLiga){
           console.log(iterator)          
         }
       }
+      jQuery(btnIdLiga).closest('.nombreTorneo').find('.content-alineaciones').removeClass('d-none').addClass('d-flex')
     }
 })
   
