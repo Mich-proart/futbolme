@@ -1225,7 +1225,7 @@ function obtenerAlineacion(btnIdLiga){
 
       jQuery('.listado-visitantes').empty()
 
-      jQuery('.span-id-torneo-alineacion').closest('.nombreTorneo').find('.content-alineaciones').removeClass('d-flex').addClass('d-none')
+      jQuery('.span-id-torneo-alineacion').closest('.pull-right').find('.content-alineaciones').removeClass('d-flex').addClass('d-none')
 
       jQuery('.title-alineacion').addClass('d-none')
       
@@ -1235,15 +1235,15 @@ function obtenerAlineacion(btnIdLiga){
 
         jQuery('.title-alineacion').addClass('d-none')
         
-        jQuery(btnIdLiga).closest('.nombreTorneo').find('.content-alineaciones').append('<p>No disponible</p>')
+        jQuery(btnIdLiga).closest('.pull-right').find('.content-alineaciones').append('<p>No disponible</p>')
 
-        jQuery(btnIdLiga).closest('.nombreTorneo').find('.content-alineaciones').removeClass('d-none').addClass('d-flex')
+        jQuery(btnIdLiga).closest('.pull-right').find('.content-alineaciones').removeClass('d-none').addClass('d-flex')
         
       }else{
 
         for (const iterator of result.results.home.startinglineup) {
 
-          jQuery(btnIdLiga).closest('.nombreTorneo').find('.listado-locales').append(
+          jQuery(btnIdLiga).closest('.pull-right').find('.listado-locales').append(
           `<li class="item-alineacion item-local">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</li>`)
 
           console.log(iterator)          
@@ -1251,15 +1251,15 @@ function obtenerAlineacion(btnIdLiga){
 
         for (const iterator of result.results.away.startinglineup) {
 
-          jQuery(btnIdLiga).closest('.nombreTorneo').find('.listado-visitantes').append(
+          jQuery(btnIdLiga).closest('.pull-right').find('.listado-visitantes').append(
           `<li class="item-alineacion item-visitantes">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</li>`)
 
           console.log(iterator)          
         }
 
-        jQuery(btnIdLiga).closest('.nombreTorneo').find('.content-alineaciones').removeClass('d-none').addClass('d-flex')
+        jQuery(btnIdLiga).closest('.pull-right').find('.content-alineaciones').removeClass('d-none').addClass('d-flex')
 
-        jQuery(btnIdLiga).closest('.nombreTorneo').find('.title-alineacion').removeClass('d-none')
+        jQuery(btnIdLiga).closest('.pull-right').find('.title-alineacion').removeClass('d-none')
       }      
     }
 })
