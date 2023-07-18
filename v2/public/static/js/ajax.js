@@ -1201,37 +1201,6 @@ function visor_hoy(temporada_id,comunidad_id) {
 
 function obtenerAlineacion(btnIdLiga){  
 
-
-  // var xmlhttp;
-  // if (window.XMLHttpRequest)
-  //   {// code for IE7+, Firefox, Chrome, Opera, Safari
-  //   xmlhttp=new XMLHttpRequest();
-  //   }
-  // else
-  //   {// code for IE6, IE5
-  //   xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  //   }
-  // xmlhttp.onreadystatechange=function()
-  //   {
-  //     if (xmlhttp.readyState==4 && xmlhttp.status==200)
-  //       {
-
-  //         console.log(xmlhttp.responseText)
-  //           // if (modo==1){
-  //           // document.getElementById('betsapi-'+id).innerHTML=xmlhttp.responseText;            
-  //           // } else {
-  //           // document.getElementById('apifootball-'+id).innerHTML=xmlhttp.responseText; 
-  //           // }
-  //       }else{
-  //     console.log(xmlhttp.readyState)
-  //     console.log(xmlhttp.status)
-  //       }
-  //   }
-  // xmlhttp.open("POST","./apiBetsapi.php",true); //str3 es la carpeta donde va a leer el script
-  // xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  // xmlhttp.send("id=" + jQuery(btnIdLiga).text());
-
-
   jQuery.ajax({
     url: `./apiBetsapi.php`, // AJAX handler,
     type: 'POST',
@@ -1266,7 +1235,7 @@ function obtenerAlineacion(btnIdLiga){
 
         for (const iterator of result.results.home.startinglineup) {
 
-          jQuery('.listado-locales').append(
+          jQuery(btnIdLiga).closest('.nombreTorneo').find('.listado-locales').append(
           `<li class="item-alineacion item-local">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</li>`)
 
           console.log(iterator)          
@@ -1274,7 +1243,7 @@ function obtenerAlineacion(btnIdLiga){
 
         for (const iterator of result.results.away.startinglineup) {
 
-          jQuery('.listado-visitantes').append(
+          jQuery(btnIdLiga).closest('.nombreTorneo').find('.listado-visitantes').append(
           `<li class="item-alineacion item-visitantes">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</li>`)
 
           console.log(iterator)          
