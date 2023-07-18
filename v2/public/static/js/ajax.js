@@ -1232,6 +1232,8 @@ function obtenerAlineacion(btnIdLiga){
       if (result.results.length == 0) {     
 
         jQuery(btnIdLiga).closest('.nombreTorneo').find('.content-alineaciones').append('<p>No disponible</p>')
+
+        jQuery(btnIdLiga).closest('.nombreTorneo').find('.content-alineaciones').removeClass('d-none').addClass('d-flex')
         
       }else{
 
