@@ -1262,7 +1262,7 @@ function obtenerAlineacion(btnIdLiga){
         
       }else{
 
-        for (const iterator of result) {
+        for (const iterator of result.results) {
 
           console.log(iterator)          
         }
