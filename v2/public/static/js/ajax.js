@@ -1256,7 +1256,7 @@ function obtenerAlineacion(btnIdLiga){
 
       console.log(result.results)
 
-      if (result.length == 0) {
+      if (result.results.length == 0) {
 
         console.log("alineaciones no disponibles")
         
