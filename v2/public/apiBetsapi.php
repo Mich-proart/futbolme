@@ -50,3 +50,27 @@ if (curl_errno($ch)) {
 // Cerrar la conexión cURL
 curl_close($ch);
 ?>
+
+
+<!-- $data = $_POST['id'];
+
+$objResponse = [
+    'local' => '',
+    'visitante' => ''
+];
+
+$response = Http::get('https://api.b365api.com/v1/event/lineup?token=153716-4djEyj4e6JZVou&LNG_ID=3&event_id='.$data);
+
+if($response->json()['results']){
+
+    $datosLocal = $response->json()['results']['home']['startinglineup'];
+
+    $datosVisitante = $response->json()['results']['away']['startinglineup'];
+
+    $objResponse = [
+        'local' => $datosLocal,
+        'visitante' => $datosVisitante
+    ];         
+}
+
+return \json_encode($objResponse); -->
