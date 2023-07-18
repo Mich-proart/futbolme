@@ -1230,6 +1230,10 @@ function obtenerAlineacion(btnIdLiga){
       if (result.results.length == 0) {
 
         console.log("alineaciones no disponibles")
+
+        jQuery(btnIdLiga).closest('.nombreTorneo').find('.content-alineaciones').empty()
+
+        jQuery(btnIdLiga).closest('.nombreTorneo').find('.content-alineaciones').append('<p>No disponible</p>')
         
       }else{
 
