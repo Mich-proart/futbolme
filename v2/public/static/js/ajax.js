@@ -1271,3 +1271,8 @@ jQuery(document).on('click', '.span-id-torneo-alineacion', function(){
   obtenerAlineacion(jQuery(this))
 
 })
+
+jQuery(document).on('click', '.cerrar-alineacion', function(){
+
+  jQuery(this).closest('.content-alineaciones').removeClass('d-flex').addClass('d-none')
+})
