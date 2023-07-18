@@ -1253,6 +1253,8 @@ function obtenerAlineacion(btnIdLiga){
       console.log(data)  
       
       jQuery('.listado-locales').empty()
+
+      jQuery('.listado-visitantes').empty()
       
       let result = JSON.parse(data)
 
@@ -1265,7 +1267,15 @@ function obtenerAlineacion(btnIdLiga){
         for (const iterator of result.results.home.startinglineup) {
 
           jQuery('.listado-locales').append(
-          `<li class="item-alineacion item-local">${iterator.player.name} - ${iterator.player.pos} - ${iterator.player.shirtnumber}</li>`)
+          `<li class="item-alineacion item-local">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</li>`)
+
+          console.log(iterator)          
+        }
+
+        for (const iterator of result.results.away.startinglineup) {
+
+          jQuery('.listado-visitantes').append(
+          `<li class="item-alineacion item-visitantes">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</li>`)
 
           console.log(iterator)          
         }
