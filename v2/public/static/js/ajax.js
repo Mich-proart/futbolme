@@ -1227,13 +1227,13 @@ function obtenerAlineacion(btnIdLiga){
 
       jQuery('.span-id-torneo-alineacion').closest('.nombreTorneo').find('.content-alineaciones').removeClass('d-flex').addClass('d-none')
 
-      jQuery('.title-alineacion-locales').addClass('d-none')
+      jQuery('.title-alineacion').addClass('d-none')
       
       let result = JSON.parse(data)
 
       if (result.results.length == 0) {     
 
-        jQuery('.title-alineacion-locales').addClass('d-none')
+        jQuery('.title-alineacion').addClass('d-none')
         
         jQuery(btnIdLiga).closest('.nombreTorneo').find('.content-alineaciones').append('<p>No disponible</p>')
 
@@ -1259,7 +1259,7 @@ function obtenerAlineacion(btnIdLiga){
 
         jQuery(btnIdLiga).closest('.nombreTorneo').find('.content-alineaciones').removeClass('d-none').addClass('d-flex')
 
-        jQuery(btnIdLiga).closest('.nombreTorneo').find('.title-alineacion-locales').removeClass('d-none')
+        jQuery(btnIdLiga).closest('.nombreTorneo').find('.title-alineacion').removeClass('d-none')
       }      
     }
 })
