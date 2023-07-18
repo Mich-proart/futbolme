@@ -1205,7 +1205,7 @@ function obtenerAlineacion(btnIdLiga){
     url: `./apiBetsapi.php`, // AJAX handler,
     type: 'POST',
     data: {
-        id: jQuery(btnIdLiga).text(),
+        id: jQuery(btnIdLiga).attr('attr-id-evento'),
     },
     // headers: {
     //      'X-CSRF-TOKEN': csrfToken
