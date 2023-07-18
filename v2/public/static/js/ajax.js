@@ -1250,11 +1250,11 @@ function obtenerAlineacion(btnIdLiga){
     },
     success: function (data) {
 
-      console.log(data)    
+      console.log(data)  
+      
+      jQuery('.listado-locales').empty()
       
       let result = JSON.parse(data)
-
-      console.log(result.results)
 
       if (result.results.length == 0) {
 
@@ -1263,6 +1263,9 @@ function obtenerAlineacion(btnIdLiga){
       }else{
 
         for (const iterator of result.results.home.startinglineup) {
+
+          jQuery('.listado-locales').append(
+          `<li class="item-alineacion item-local">${iterator.player.name} - ${iterator.player.pos} - ${iterator.player.shirtnumber}</li>`)
 
           console.log(iterator)          
         }
