@@ -13,7 +13,7 @@
 
             <div class="cajaPartidoInformacionALaUltima{% if ultimoEvento.enJuevo %}cajaEnJuego{% endif %}">
 
-                <div>
+               {# <div>
                         <span class="hora">
                             {{ ultimoEvento. momento[11:] }} ·
                         </span>
@@ -37,11 +37,12 @@
                         </a>
                     </span>
                 </div>
+                #}
                 {#
                 <div class="evento">
                     {{ ultimoEvento.eventoText }}
                 </div>
-                #}
+                
                 <div>
                     {% if ultimoEvento.evento == 3 or true %}
                         <a href="/arbitro.php?id={{ arbitro.0 }}" target="blank" style="color:orange">
@@ -55,6 +56,7 @@
                         </a>
                     {% endif %}
                 </div>
+                #}
 
             </div>
 
