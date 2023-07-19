@@ -1205,7 +1205,7 @@ function obtenerAlineacion(btnIdLiga){
     url: `./apiBetsapi.php`, // AJAX handler,
     type: 'POST',
     data: {
-        id: jQuery(btnIdLiga).text(),
+        id: jQuery(btnIdLiga).attr('attr-id-evento'),
     },
     // headers: {
     //      'X-CSRF-TOKEN': csrfToken
@@ -1225,21 +1225,25 @@ function obtenerAlineacion(btnIdLiga){
 
       jQuery('.listado-visitantes').empty()
 
-      jQuery('.span-id-torneo-alineacion').closest('.nombreTorneo').find('.content-alineaciones').removeClass('d-flex').addClass('d-none')
+      jQuery('.span-id-torneo-alineacion').closest('.pull-right').find('.content-alineaciones').removeClass('d-flex').addClass('d-none')
+
+      jQuery('.title-alineacion').addClass('d-none')
       
       let result = JSON.parse(data)
 
       if (result.results.length == 0) {     
 
-        jQuery(btnIdLiga).closest('.nombreTorneo').find('.content-alineaciones').append('<p>No disponible</p>')
+        jQuery('.title-alineacion').addClass('d-none')
+        
+        jQuery(btnIdLiga).closest('.pull-right').find('.content-alineaciones').append('<p>No disponible</p>')
 
-        jQuery(btnIdLiga).closest('.nombreTorneo').find('.content-alineaciones').removeClass('d-none').addClass('d-flex')
+        jQuery(btnIdLiga).closest('.pull-right').find('.content-alineaciones').removeClass('d-none').addClass('d-flex')
         
       }else{
 
         for (const iterator of result.results.home.startinglineup) {
 
-          jQuery(btnIdLiga).closest('.nombreTorneo').find('.listado-locales').append(
+          jQuery(btnIdLiga).closest('.pull-right').find('.listado-locales').append(
           `<li class="item-alineacion item-local">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</li>`)
 
           console.log(iterator)          
@@ -1247,13 +1251,15 @@ function obtenerAlineacion(btnIdLiga){
 
         for (const iterator of result.results.away.startinglineup) {
 
-          jQuery(btnIdLiga).closest('.nombreTorneo').find('.listado-visitantes').append(
+          jQuery(btnIdLiga).closest('.pull-right').find('.listado-visitantes').append(
           `<li class="item-alineacion item-visitantes">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</li>`)
 
           console.log(iterator)          
         }
 
-        jQuery(btnIdLiga).closest('.nombreTorneo').find('.content-alineaciones').removeClass('d-none').addClass('d-flex')
+        jQuery(btnIdLiga).closest('.pull-right').find('.content-alineaciones').removeClass('d-none').addClass('d-flex')
+
+        jQuery(btnIdLiga).closest('.pull-right').find('.title-alineacion').removeClass('d-none')
       }      
     }
 })
@@ -1264,4 +1270,9 @@ jQuery(document).on('click', '.span-id-torneo-alineacion', function(){
 
   obtenerAlineacion(jQuery(this))
 
+})
+
+jQuery(document).on('click', '.cerrar-alineacion', function(){
+
+  jQuery(this).closest('.content-alineaciones').removeClass('d-flex').addClass('d-none')
 })
