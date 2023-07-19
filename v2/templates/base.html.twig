@@ -2422,7 +2422,7 @@ window.__tcfapi('getTCData', null, function (consentData, consentDataSuccess) {
 
     <div class="col-12 text-center" style="font-size: 14px; color: #333333; margin-bottom: 90px;">
         {% set tiempoTotal = microtime(true) - getConstante('__INICIO_MICROTIME__') %}
-        Página generada en {{ tiempoTotal|round(3) }} segundos
+        Página generada en {{ tiempoTotal|round(1) }} segundos
     </div>
 
     {# {% include 'publicidad/codigos/adcash/popunder.html.twig' %} #}
