@@ -7,23 +7,23 @@
     <meta name="description" content="Fútbol en directo de Primera, Segunda, Segunda B y Tercera División. Si no esta en Futbolme, no se ha jugado." />
     <meta property="og:description" content="Fútbol en directo de Primera, Segunda, Segunda B y Tercera División. Si no esta en Futbolme, no se ha jugado." />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Dosis:wght@200;300;400;500;523;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://futbolme.eu/static/bs4.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://futbolme.eu/static/css/fm.css?v=78">
-    <link rel="stylesheet" href="https://futbolme.eu/static/css/comunidades.min.css?v=78">
-    <link rel="stylesheet" href="https://futbolme.eu/static/css/paises.min.css?v=78">
-    <link rel="stylesheet" href="https://futbolme.eu/static/fontawesome/css/all.css">
-    <script type="text/javascript" src="https://futbolme.eu/static/jquery/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="https://futbolme.eu/static/popper/popper.js"></script>
-    <script async src="https://futbolme.eu/static/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://futbolme.com/static/bs4.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://futbolme.com/static/css/fm.css?v=78">
+    <link rel="stylesheet" href="https://futbolme.com/static/css/comunidades.min.css?v=78">
+    <link rel="stylesheet" href="https://futbolme.com/static/css/paises.min.css?v=78">
+    <link rel="stylesheet" href="https://futbolme.com/static/fontawesome/css/all.css">
+    <script type="text/javascript" src="https://futbolme.com/static/jquery/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="https://futbolme.com/static/popper/popper.js"></script>
+    <script async src="https://futbolme.com/static/js/bootstrap.min.js"></script>
     <script async src="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></script>
-    <script async src="https://futbolme.eu/static/js/bootstrap.bundle.min.js"></script>
-    <script async src="https://futbolme.eu/static/js/comunsite.min.js?v=78"></script>
-    <script async src="https://futbolme.eu/static/js/notificaciones.js?v=78"></script>
-    <script type='text/javascript' src="https://futbolme.eu/static/js/highcharts.min.js"></script>
-    <script async src="https://futbolme.eu/static/js/exporting.js"></script>
-    <script async src="https://futbolme.eu/static/js/ajax.js?v=78"></script>
-    <script src="https://futbolme.eu/static/js/global.js?v=78"></script>
-    <script async src="https://futbolme.eu/static/js/hambuerguer-menu-multilevel-hayleyt.js?v=78"></script>
+    <script async src="https://futbolme.com/static/js/bootstrap.bundle.min.js"></script>
+    <script async src="https://futbolme.com/static/js/comunsite.min.js?v=78"></script>
+    <script async src="https://futbolme.com/static/js/notificaciones.js?v=78"></script>
+    <script type='text/javascript' src="https://futbolme.com/static/js/highcharts.min.js"></script>
+    <script async src="https://futbolme.com/static/js/exporting.js"></script>
+    <script async src="https://futbolme.com/static/js/ajax.js?v=78"></script>
+    <script src="https://futbolme.com/static/js/global.js?v=78"></script>
+    <script async src="https://futbolme.com/static/js/hambuerguer-menu-multilevel-hayleyt.js?v=78"></script>
     <script type="text/javascript">
         var finderant={};
         finderant.parameters={
@@ -466,25 +466,25 @@
             </li>
             <li class="d-none d-md-block">
                 <a id="enlaceFinderant" title="FinderAnt" href="https://finderant.com/">
-                    <img src="https://futbolme.eu/static/img/icono-busqueda.svg" alt="FinderAnt" class="loading" data-was-processed="true">
+                    <img src="https://futbolme.com/static/img/icono-busqueda.svg" alt="FinderAnt" class="loading" data-was-processed="true">
                 </a>
             </li>
             <li class="d-none d-md-block">
-                <a href="https://futbolme.eu/partidos-televisados">
-                    <img src="https://futbolme.eu/static/img/icono-tv.svg" alt="" class="loading" data-was-processed="true">
+                <a href="https://futbolme.com/partidos-televisados">
+                    <img src="https://futbolme.com/static/img/icono-tv.svg" alt="" class="loading" data-was-processed="true">
                 </a>
             </li>
             <li id="hamburgerMenu" class="d-block d-md-none">
                 <a class="js-menuToggle" href="javascript:;" title="Menú móvil">
-                    <img src="https://futbolme.eu/static/img/hamburger-menu.svg" alt="Menú móvil" title="Menú móvil">
+                    <img src="https://futbolme.com/static/img/hamburger-menu.svg" alt="Menú móvil" title="Menú móvil">
                 </a>
             </li>
         </ul>
         <div id="menuTopContenido">
             <ul id="ulMenuIz" class="col-xs-12 nav nav-pills">
                 <li id="liLogoFutbolme">
-                    <a href="https://futbolme.eu/">
-                        <img src="https://futbolme.eu/static/img/logo-futbolme.svg" alt="Logo Futbolme.com" class="loading" data-was-processed="true">
+                    <a href="https://futbolme.com/">
+                        <img src="https://futbolme.com/static/img/logo-futbolme.svg" alt="Logo Futbolme.com" class="loading" data-was-processed="true">
                     </a>
                 </li>
                 <li class="dropdown h40 visible-xs text-center">
@@ -530,7 +530,7 @@
                 <div class="flechaTorneos"></div>
             </li>
             <li id="liContactoMenu" class="torneosSecundarios">
-                <a id="enlaceContactoMenu" href="https://futbolme.eu/contacto">
+                <a id="enlaceContactoMenu" href="https://futbolme.com/contacto">
                     Contacto
                 </a>
                 <div class="fondoContactoMenu"></div>
@@ -548,12 +548,12 @@
                 </a>
             </li>
             <li>
-                <a href="https://futbolme.eu/partidos-televisados">
+                <a href="https://futbolme.com/partidos-televisados">
                     Televisados
                 </a>
             </li>
             <li>
-                <img style="margin-left: 18px; margin-right: 5px;" src="https://futbolme.eu/static/img/icono-busqueda.svg" alt="" class="loading" data-was-processed="true">
+                <img style="margin-left: 18px; margin-right: 5px;" src="https://futbolme.com/static/img/icono-busqueda.svg" alt="" class="loading" data-was-processed="true">
                 <input type="text" id="campoBusquedaEquiposMobile" placeholder="Busca aquí tu equipo">
             </li>
             <li>
@@ -3018,7 +3018,7 @@
             </li>
             <hr />
             <li>
-                <a href="https://futbolme.eu/contacto">Contacto</a>
+                <a href="https://futbolme.com/contacto">Contacto</a>
             </li>
         </ul>
     </nav>
@@ -3039,7 +3039,7 @@
 
                 <script type="text/javascript">
                     setTimeout(function() {
-                        document.location.href = 'https://futbolme.eu/';
+                        document.location.href = 'https://futbolme.com/';
                     }, 10000);
                 </script>
             </div>

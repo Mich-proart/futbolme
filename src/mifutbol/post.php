@@ -102,7 +102,7 @@ if (isset($_POST['cuenta'])){
 if(isset($_POST['p'])){
     if ($_POST['p']==1){ 
       //header('Location: /panelBack/federacion/_mifutbol/_02selects.php?comunidad_id='.$_POST['comunidad_id'].'&competicion='.$_POST['competicion'].'&grupo='.$_POST['grupo'].'&modo=1');
-      $url = 'https://futbolme.eu/panelBack/federacion/_mifutbol/_02selects.php?comunidad_id='.$_POST['comunidad_id'].'&competicion='.$_POST['competicion'].'&grupo='.$_POST['grupo'].'&modo=1'; 
+      $url = 'https://futbolme.com/panelBack/federacion/_mifutbol/_02selects.php?comunidad_id='.$_POST['comunidad_id'].'&competicion='.$_POST['competicion'].'&grupo='.$_POST['grupo'].'&modo=1'; 
       $username = 'vicent';
       $password = '1vsc965ONTI';     
       $context = stream_context_create(array (
@@ -120,7 +120,7 @@ if(isset($_POST['p'])){
       //header('Location: /panelBack/federacion/_mifutbol/_03tablas.php?comunidad_id='.$_POST['comunidad_id'].'&competicion='.$_POST['competicion'].'&grupo='.$_POST['grupo'].'&modo=1');
       //header('Location: /panelBack/federacion/_mifutbol/_05tablas.php?comunidad_id='.$_POST['comunidad_id'].'&competicion='.$_POST['competicion'].'&grupo='.$_POST['grupo'].'&modo=1');
 
-      $url = 'https://futbolme.eu/panelBack/federacion/_mifutbol/_05tablas.php?comunidad_id='.$_POST['comunidad_id'].'&competicion='.$_POST['competicion'].'&grupo='.$_POST['grupo'].'&modo=1'; 
+      $url = 'https://futbolme.com/panelBack/federacion/_mifutbol/_05tablas.php?comunidad_id='.$_POST['comunidad_id'].'&competicion='.$_POST['competicion'].'&grupo='.$_POST['grupo'].'&modo=1'; 
       $username = 'vicent';
       $password = '1vsc965ONTI';     
       $context = stream_context_create(array (
@@ -135,7 +135,7 @@ if(isset($_POST['p'])){
     if ($_POST['p']==3){ 
       //header('Location: /panelBack/federacion/_mifutbol/_04tablas.php?comunidad_id='.$_POST['comunidad_id'].'&competicion='.$_POST['competicion'].'&grupo='.$_POST['grupo'].'&modo=1');
 
-      $url = 'https://futbolme.eu/panelBack/federacion/_mifutbol/_04tablas.php?comunidad_id='.$_POST['comunidad_id'].'&competicion='.$_POST['competicion'].'&grupo='.$_POST['grupo'].'&modo=1'; 
+      $url = 'https://futbolme.com/panelBack/federacion/_mifutbol/_04tablas.php?comunidad_id='.$_POST['comunidad_id'].'&competicion='.$_POST['competicion'].'&grupo='.$_POST['grupo'].'&modo=1'; 
       $username = 'vicent';
       $password = '1vsc965ONTI';     
       $context = stream_context_create(array (

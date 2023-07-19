@@ -16,7 +16,7 @@ $equipo = mysqli_real_escape_string($mysqli, $_GET['equipo_id']);
     $r = mysqli_fetch_array($resultadoSQL, MYSQLI_ASSOC);
     if (count($r)==0){
         //no existe el equipo-
-        header('Location: https://futbolme.eu/');
+        header('Location: https://futbolme.com/');
     } else {
 
 

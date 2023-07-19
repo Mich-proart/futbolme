@@ -287,7 +287,7 @@ if ($temporada_id==442){
             if (!empty($whatsapp)){ 
 
 
-                $txtWhats.='<br />Todos los datos en https://futbolme.eu/temporada.php?id='.$temporada_id."\n";
+                $txtWhats.='<br />Todos los datos en https://futbolme.com/temporada.php?id='.$temporada_id."\n";
                 $txtWhats=str_replace("\n",'<br />',$txtWhats);
                 $whatsapp=str_replace("@g.us",'',$whatsapp);
                 

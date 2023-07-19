@@ -279,9 +279,9 @@ if (isset($_GET['twits'])){
     $partidosJornada = mysqli_fetch_all($resultadoSQL, MYSQLI_ASSOC);
 
 	foreach ($partidosJornada as $key => $value) {
-		$url = 'https://futbolme.eu/partido.php?id='.$value['id'];
-    	$urlLocal = 'http://futbolme.eu/src/usuarios/anadirEquipoFavoritoUrl.php?equipo_id='.$value['equipoLocal_id'];
-    	$urlVisitante = 'http://futbolme.eu/src/usuarios/anadirEquipoFavoritoUrl.php?equipo_id='.$value['equipoVisitante_id'];
+		$url = 'https://futbolme.com/partido.php?id='.$value['id'];
+    	$urlLocal = 'http://futbolme.com/src/usuarios/anadirEquipoFavoritoUrl.php?equipo_id='.$value['equipoLocal_id'];
+    	$urlVisitante = 'http://futbolme.com/src/usuarios/anadirEquipoFavoritoUrl.php?equipo_id='.$value['equipoVisitante_id'];
     	$twLocal="@".$value['twitterLocal'];
     	$twVisitante="@".$value['twitterVisitante'];
 

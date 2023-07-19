@@ -217,6 +217,6 @@ class __TwigTemplate_d0122b6a6267661c4896fd5fac8c5286288dbbc8a0c7f64273270bea304
 <script src=\"../js/shamcey.js\"></script>
 </body>
 </html>
-", "user_security/login.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.eu/panel/templates/user_security/login.html.twig");
+", "user_security/login.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.com/panel/templates/user_security/login.html.twig");
     }
 }

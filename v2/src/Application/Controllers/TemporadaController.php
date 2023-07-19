@@ -291,7 +291,7 @@ de '.number_format($golesPorPartido,2).' goles por partido, que materializan '.$
         if ($visible < 4) {
             echo "<div class='text-center'>";
             echo 'Este torneo ya no esta gestionado en futbolme.com... ';
-            header ('Location: https://futbolme.eu/');
+            header ('Location: https://futbolme.com/');
             die;
         }
 

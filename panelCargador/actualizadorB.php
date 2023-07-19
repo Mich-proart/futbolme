@@ -265,7 +265,7 @@ while ($archivo = readdir($directorio)) //obtenemos un archivo y luego otro suce
 
                                 echo ' - Error en partido ';
 
-                                /*$message=' - <a href="'.$url.'" target="_blank">Fed</a> - <a href="https://futbolme.eu/panelBack/crearCalendario.php?temporada_id='.$temporada_id.'&categoria_torneo='.$categoria_torneo_id.'&tipo_torneo=1" target="_blank">Edit FM</a> ('.$value['local'].' - '.$value['visitante'].')';
+                                /*$message=' - <a href="'.$url.'" target="_blank">Fed</a> - <a href="https://futbolme.com/panelBack/crearCalendario.php?temporada_id='.$temporada_id.'&categoria_torneo='.$categoria_torneo_id.'&tipo_torneo=1" target="_blank">Edit FM</a> ('.$value['local'].' - '.$value['visitante'].')';
                                 $from = "futbolme@futbolme.com";
                                 $to = "futbolme@gmail.com";
                                 $subject = "Error en partido. Temporada: $temporada_id";

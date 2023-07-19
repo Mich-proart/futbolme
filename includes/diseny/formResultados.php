@@ -15,7 +15,7 @@
     <a href="partidosTorneo.php?temporada_id=<?php echo $temporada_id?>" target="_blank">Crear partidos</a>    
     <?php } ?>
     </td>
-    <?php  if (isset($_SERVER['HTTP_REFERER']) && substr($_SERVER['HTTP_REFERER'],0,30)=='https://futbolme.eu/panelBack') { ?>
+    <?php  if (isset($_SERVER['HTTP_REFERER']) && substr($_SERVER['HTTP_REFERER'],0,30)=='https://futbolme.com/panelBack') { ?>
     <td>
     <input id="boton-apuestaMA-<?php echo $temporada_id; ?>" type="hidden" name="apuestaMA" value="0">
     <input class="resultado" id="boton-betsapi-<?php echo $temporada_id; ?>" type="text" size="4" name="betsapi" value="<?php echo $betsapi; ?>" style="font-size:12px; width:20; background-color: yellow; text-align: center">
@@ -237,7 +237,7 @@ if ($temporada_id==442){
 
 <tr><td>
     <?php 
-    if (isset($_SERVER['HTTP_REFERER']) && substr($_SERVER['HTTP_REFERER'],0,29)=='https://futbolme.eu/panelBFS') { ?>
+    if (isset($_SERVER['HTTP_REFERER']) && substr($_SERVER['HTTP_REFERER'],0,29)=='https://futbolme.com/panelBFS') { ?>
 
     <div  style="float:left; width:100%; background-color: orange; padding:2px; ">
 
@@ -340,7 +340,7 @@ if ($temporada_id==442){
     <?php 
 
     
-    if (isset($_SERVER['HTTP_REFERER']) && substr($_SERVER['HTTP_REFERER'],0,30)=='https://futbolme.eu/panelBack' || $_SERVER['HTTP_REFERER']=='http://fm18.com/panelBack/') { ?>
+    if (isset($_SERVER['HTTP_REFERER']) && substr($_SERVER['HTTP_REFERER'],0,30)=='https://futbolme.com/panelBack' || $_SERVER['HTTP_REFERER']=='http://fm18.com/panelBack/') { ?>
     <div  style="float:left; width:100%; background-color: orange; padding:2px; ">
 
          <table width="100%" bgcolor="orange" border="1">

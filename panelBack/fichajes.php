@@ -65,7 +65,7 @@ require_once '../src/funciones.php';
         }
 
         if ('enviar_twit_grupo' == $_GET['modo']) {
-            $url = 'https://futbolme.eu/resultados-directo/torneo/xxx/'.$_GET['temporada_id'].'/';
+            $url = 'https://futbolme.com/resultados-directo/torneo/xxx/'.$_GET['temporada_id'].'/';
             $hastags = '#futbolmeResultados';
             $msj = $_GET['mensaje'];
             $mensaje = $msj.'. Toda la info en '.$url.' '.$hastags;
@@ -76,7 +76,7 @@ require_once '../src/funciones.php';
         }
 
         if ('enviar_twit_equipo' == $_GET['modo']) {
-            $url = 'https://futbolme.eu/equipo.php?id=';
+            $url = 'https://futbolme.com/equipo.php?id=';
             $urlMi = 'http://futbolme.com/src/usuarios/anadirEquipoFavoritoUrl.php?equipo_id=';
             $hastags = '#futbolmeCalendarios';
             $msj = $_GET['mensaje'];
@@ -102,7 +102,7 @@ require_once '../src/funciones.php';
         }
 
         if ('enviar_twit_widgets' == $_GET['modo']) {
-            $url = 'https://futbolme.eu/widgets.php?equipo_id=';
+            $url = 'https://futbolme.com/widgets.php?equipo_id=';
             $hastags = '#futbolmeWidgets';
             $msj = $_GET['mensaje'];
             $equipos = $_GET['equipos'];

@@ -111,6 +111,6 @@ class __TwigTemplate_7c16171b8e08616dc8d17589320efcced5ce33b685096432d486d4fef3e
         Sfjs.loadToolbar('{{ token }}');
     })();
 /*]]>*/</script>
-", "@WebProfiler/Profiler/toolbar_js.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.eu/panel/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/toolbar_js.html.twig");
+", "@WebProfiler/Profiler/toolbar_js.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.com/panel/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/toolbar_js.html.twig");
     }
 }

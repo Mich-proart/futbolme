@@ -221,16 +221,16 @@ AND (p.equipoLocal_id=".$equipo_id.' OR p.equipoVisitante_id='.$equipo_id.') ORD
     $enlace1 = $servidor.'/resultados-directo/equipo/'.poner_guion($resultado['local']).'/'.$resultado['equipoLocal_id'];
     $enlace2 = $servidor.'/resultados-directo/equipo/'.poner_guion($resultado['visitante']).'/'.$resultado['equipoVisitante_id'];
     $html .= '<tr style="background-color:silver;"><td colspan="2" width="50%" align="left" style="font-size:16px; font-weight:bold">'.$resultado['local'].'</td><td colspan="2" width="50%" align="right" style="font-size:16px; font-weight:bold">'.$resultado['visitante'].'</td></tr>';
-    $html .= '<tr><td align="center" style="width:33%"><img src="https://futbolme.eu/img/equipos/escudo'.$resultado['equipoLocal_id'].'.png" style="width:100%; max-width:75px;"></td>';
+    $html .= '<tr><td align="center" style="width:33%"><img src="https://futbolme.com/img/equipos/escudo'.$resultado['equipoLocal_id'].'.png" style="width:100%; max-width:75px;"></td>';
     $html .= '<td align="center" colspan="2" style="width:34%"><span style="font-size:40px;font-weight:bold; color:'.$color.';">'.$rl.'</span><span style="font-size:40px;font-weight:bold; color:navy;">-</span><span style="font-size:40px;font-weight:bold; color:'.$color.';">'.$rv.'</span></td>';
-    $html .= '<td align="center" style="width:33%"><img src="https://futbolme.eu/img/equipos/escudo'.$resultado['equipoVisitante_id'].'.png" style="width:100%; max-width:75px;"></td></tr>';
+    $html .= '<td align="center" style="width:33%"><img src="https://futbolme.com/img/equipos/escudo'.$resultado['equipoVisitante_id'].'.png" style="width:100%; max-width:75px;"></td></tr>';
     if ($resultado['arbitro_id'] > 1) {
         $html .= '<tr><td colspan="4" align="center">Árbitro: '.$resultado['nombreArbitro'].' '.$resultado['apellidosArbitro'].'</td></tr>';
     }
     if ($resultado['estadio_imagen'] > 0) {
         $html .= '<tr><td colspan="4" align="center">Estadio: '.$resultado['estadioNombre'].' ('.$resultado['localidad'].')</td></tr>';
     }
-    $html .= '<tr><td colspan="4" align="center">'.utf8_encode(nombreDia($resultado['fecha'])).' '.$hora.' <a href="https://futbolme.eu/partido.php?id='.$resultado['id'].'" target="blank">+Info</a></td></tr>';
+    $html .= '<tr><td colspan="4" align="center">'.utf8_encode(nombreDia($resultado['fecha'])).' '.$hora.' <a href="https://futbolme.com/partido.php?id='.$resultado['id'].'" target="blank">+Info</a></td></tr>';
     $html .= '</tbody></table>';
 
     return $html;

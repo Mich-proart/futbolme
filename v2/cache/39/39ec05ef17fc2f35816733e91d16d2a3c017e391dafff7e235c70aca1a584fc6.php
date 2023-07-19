@@ -47,6 +47,6 @@ class __TwigTemplate_434f75c75696f4a16568e26a923ba68368ff1a175eb3d70cad3e8853096
 
     public function getSourceContext()
     {
-        return new Source("", "__part/dentroTwitter.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.eu/v2/templates/__part/dentroTwitter.html.twig");
+        return new Source("", "__part/dentroTwitter.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.com/v2/templates/__part/dentroTwitter.html.twig");
     }
 }

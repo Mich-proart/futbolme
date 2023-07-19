@@ -874,6 +874,6 @@ class __TwigTemplate_c37300dee7f880bea18e94628be65e133cf338a82577d5ee93375c513fb
         </tbody>
     </table>
 {% endmacro %}
-", "@WebProfiler/Collector/translation.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.eu/panel/vendor/symfony/web-profiler-bundle/Resources/views/Collector/translation.html.twig");
+", "@WebProfiler/Collector/translation.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.com/panel/vendor/symfony/web-profiler-bundle/Resources/views/Collector/translation.html.twig");
     }
 }

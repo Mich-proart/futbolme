@@ -764,6 +764,6 @@ class __TwigTemplate_37fce965d7fe57122bc7ad435d7f20023739bbe0d039a6a1dbfc3c93f2f
 
     public function getSourceContext()
     {
-        return new Source("", "index/__part/partidoDirectoSueltos.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.eu/v2/templates/index/__part/partidoDirectoSueltos.html.twig");
+        return new Source("", "index/__part/partidoDirectoSueltos.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.com/v2/templates/index/__part/partidoDirectoSueltos.html.twig");
     }
 }

@@ -29,8 +29,8 @@ ORDER BY t.pais_id, t.comunidad_id, t.orden';
     $resultado = mysqli_fetch_all($resultadoSQL, MYSQLI_ASSOC);
 
     foreach ($resultado as $k => $v) {
-    	$resultado[$k]['enlace'] = 'https://futbolme.eu/resultados-directo/torneo/'.poner_guion($v['titulo']).'/'.$v['temporada_id'].'/';
-    	$resultado[$k]['imagenPais'] ='https://futbolme.eu/img/paises/banderas/ban'.$v['pais_id'].'b.png';
+    	$resultado[$k]['enlace'] = 'https://futbolme.com/resultados-directo/torneo/'.poner_guion($v['titulo']).'/'.$v['temporada_id'].'/';
+    	$resultado[$k]['imagenPais'] ='https://futbolme.com/img/paises/banderas/ban'.$v['pais_id'].'b.png';
     	if ($v['comunidad_id']==1){ 
     		unset($resultado[$k]['comunidad_id']);
     		$resultado[$k]['comunidad']='';

@@ -475,6 +475,6 @@ header .container { display: flex; justify-content: space-between; }
     .hidden-xs-down { display: initial; }
     .help-link { margin-left: 30px; }
 }
-", "@Twig/exception.css.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.eu/panel/vendor/symfony/twig-bundle/Resources/views/exception.css.twig");
+", "@Twig/exception.css.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.com/panel/vendor/symfony/twig-bundle/Resources/views/exception.css.twig");
     }
 }

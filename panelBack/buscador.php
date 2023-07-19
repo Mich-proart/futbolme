@@ -105,8 +105,8 @@ foreach ($clasificacion['clasificacionFinal'] as $v) {
 	    echo $nombreTorneo."<br />";
 	    $h=substr($valor['hora_prevista'],0,5);$h=str_replace(":", ".", $h);
 	    echo "Jornada ".$valor['jornada']." :  ".$h."<br />";
-        echo "Clasificación https://futbolme.eu/temporada.php?id=".$valor['temporada_id']."<br />";
-        echo "Todos los detalles en https://futbolme.eu/partido.php?id=".$valor['id']."<br />";
+        echo "Clasificación https://futbolme.com/temporada.php?id=".$valor['temporada_id']."<br />";
+        echo "Todos los detalles en https://futbolme.com/partido.php?id=".$valor['id']."<br />";
 
 	    echo '@'.$valor['twitterLocal'].' '.$valor['goles_local'].'-'.$valor['goles_visitante'].' @'.$valor['twitterVisitante'];
 
@@ -179,7 +179,7 @@ foreach ($clasificacion['clasificacionFinal'] as $v) {
     <tbody class="whitebox">
     <?php
 
-    echo "Clasificación https://futbolme.eu/temporada.php?id=".$valor['temporada_id']."<br />";
+    echo "Clasificación https://futbolme.com/temporada.php?id=".$valor['temporada_id']."<br />";
         
     foreach ($clasificacion['clasificacionFinal'] as $fila) {
         $fila['css'] = '';

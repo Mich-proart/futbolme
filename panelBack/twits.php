@@ -26,9 +26,9 @@ $fecha = new \DateTime();
     	$horaPrevista = DateTime::createFromFormat('H:i:s', $partido['hora_prevista']);
 
         if ($partido['estado_partido']!=1){
-            $twit="@".$partido['twLocal']." - @".$partido['twVisitante']."  ".$horaPrevista->format('H:i')."\n ".$partido['torneoCorto']."\n Comentarios Twitter en https://futbolme.com".$pgPartido."\n Resto de la jornada y clasificación en https://futbolme.eu/temporada.php?id=".$partido['temporada_id']."\n"; 
+            $twit="@".$partido['twLocal']." - @".$partido['twVisitante']."  ".$horaPrevista->format('H:i')."\n ".$partido['torneoCorto']."\n Comentarios Twitter en https://futbolme.com".$pgPartido."\n Resto de la jornada y clasificación en https://futbolme.com/temporada.php?id=".$partido['temporada_id']."\n"; 
         } else {
-            $twit="@".$partido['twLocal']." ".$partido['goles_local']."-".$partido['goles_visitante']." @".$partido['twVisitante']."\n ".$partido['torneoCorto']."\n Comentarios Twitter en https://futbolme.com".$pgPartido."\n Resto de la jornada y clasificación en https://futbolme.eu/temporada.php?id=".$partido['temporada_id']."\n"; 
+            $twit="@".$partido['twLocal']." ".$partido['goles_local']."-".$partido['goles_visitante']." @".$partido['twVisitante']."\n ".$partido['torneoCorto']."\n Comentarios Twitter en https://futbolme.com".$pgPartido."\n Resto de la jornada y clasificación en https://futbolme.com/temporada.php?id=".$partido['temporada_id']."\n"; 
         }
     	
     	

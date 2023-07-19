@@ -81,6 +81,6 @@ class __TwigTemplate_d8abeaca521e55cf53ece679f43fd5e1681b18051daf737b3cc51a6ec59
     <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('delete' ~ noticia.id) }}\">
     <button class=\"btn btn-danger btn-block\">Eliminar noticia</button>
 </form>
-", "noticias/_delete_form.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.eu/panel/templates/noticias/_delete_form.html.twig");
+", "noticias/_delete_form.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.com/panel/templates/noticias/_delete_form.html.twig");
     }
 }

@@ -98,7 +98,7 @@ foreach ($televisados as $k => $partido) {
 	$por=substr($por,0,-3); 
 
 	$txt=$hora."\n".$por."\n".$desde."\n".$partido."\n";
-	$txt.='Consulta todos los partidos televisados hoy en https://futbolme.eu/partidos-televisados'."\n";
+	$txt.='Consulta todos los partidos televisados hoy en https://futbolme.com/partidos-televisados'."\n";
  
 
 	
@@ -174,7 +174,7 @@ foreach ($televisados as $k => $partido) {
 }
 
 
-$txt='Consulta todos los partidos televisados hoy en https://futbolme.eu/partidos-televisados'."\n";
+$txt='Consulta todos los partidos televisados hoy en https://futbolme.com/partidos-televisados'."\n";
  
 $_GET['sendMessage']=1;
 $_GET['txt']=$txt;

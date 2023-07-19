@@ -84,7 +84,7 @@ $tiempo = $tiempo_fin - $tiempo_inicio;
 echo 'Tiempo empleado: '.($tiempo_fin - $tiempo_inicio);
 
     
-        /*$from = "futbolme@futbolme.eu";
+        /*$from = "futbolme@futbolme.com";
         $to = "futbolme@gmail.com";
         $subject = "Repasador realizado ".$fechaB.' Tiempo empleado: '.($tiempo_fin-$tiempo_inicio);
         $headers = "From:" . $from;

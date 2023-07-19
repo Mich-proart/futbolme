@@ -2,7 +2,7 @@
 define('_FUTBOLME_', 1);
 require_once 'src/config.php';
 
-$titulo = 'El coronavirus y el fútbol. futbolme.eu';
+$titulo = 'El coronavirus y el fútbol. futbolme.com';
 $metaDescripcion = 'COVID-19 '.$titulo;
 
 require_once 'includes/head.php'; ?>

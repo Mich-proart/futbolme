@@ -125,7 +125,7 @@ function aRegAcces($email, $pass){
         $message="Estimado usuario/a, tu email y password han sido almacenados en nuestra base de datos. "."\n";
         $message.="Nombre de usuario: ".$email."\n";
         $message.="Password: ".$pass."\n";
-        $message.="Para completar el registro y poder gestionar los torneos que te interesan debes completar la activación en el sistema pulsando en el siguiente enlace: https://futbolme.eu/mifutbol.php?u=".$usuario."&m=".$email."\n";
+        $message.="Para completar el registro y poder gestionar los torneos que te interesan debes completar la activación en el sistema pulsando en el siguiente enlace: https://futbolme.com/mifutbol.php?u=".$usuario."&m=".$email."\n";
         //echo $message.'<br />';
         $from = "futbolme@futbolme.com";
         $to = $email;

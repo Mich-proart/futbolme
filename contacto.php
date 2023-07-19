@@ -86,7 +86,7 @@ require_once 'includes/head.php'; ?>
             exit;
         }
         ?>
-        <form class="form" method="post" action="https://futbolme.eu/contacto">
+        <form class="form" method="post" action="https://futbolme.com/contacto">
             <fieldset>
                 <legend>Contacta con nosotros</legend>
                 <strong>Recuerda que futbolme no es la web oficial de ningún club de fútbol</strong><br><br>

@@ -128,7 +128,7 @@ if (@file_exists($f)) {
 	    					$torEquipo = mysqli_fetch_all($resultadoSQL, MYSQLI_ASSOC);
 	    					if (!empty($torEquipo)){
 	    						foreach ($torEquipo as $val) { ?>
-	    							<a href="https://futbolme.eu/temporada.php?id=<?php echo $val['temporada_id']?>" target="_blank"><?php echo $val['temporada_id']?></a> - 
+	    							<a href="https://futbolme.com/temporada.php?id=<?php echo $val['temporada_id']?>" target="_blank"><?php echo $val['temporada_id']?></a> - 
 	    						<?php }
 	    					}
 

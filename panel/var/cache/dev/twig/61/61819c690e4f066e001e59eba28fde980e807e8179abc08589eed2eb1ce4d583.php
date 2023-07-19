@@ -730,6 +730,6 @@ class __TwigTemplate_51efcee492ba92495b830afbcdb3aaf318dc79d9623a86627f8e3798c3b
 
 </body>
 </html>
-", "base_template/universal-panel.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.eu/panel/templates/base_template/universal-panel.html.twig");
+", "base_template/universal-panel.html.twig", "/var/www/vhosts/futbolme.loading.net/futbolme.com/panel/templates/base_template/universal-panel.html.twig");
     }
 }

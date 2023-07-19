@@ -80,7 +80,7 @@ $txt.=$whatsapp['evento']." \n";
 $txt.=$whatsapp['marcador']." \n";
 
 if ($fila['evento']==13) {
-   $txt.='Consulta la jornada completa y la clasificación en https://futbolme.eu/temporada.php?id='.$fila['temporada_id']." \n"; 
+   $txt.='Consulta la jornada completa y la clasificación en https://futbolme.com/temporada.php?id='.$fila['temporada_id']." \n"; 
 }
 
 
