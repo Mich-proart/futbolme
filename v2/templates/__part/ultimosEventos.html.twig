@@ -7,11 +7,12 @@
 
 {% if ultimosEventos|length > 0 %}
     <div id="ultimosEventos" class="contenedorBlancoBordesRedondeados col-12">
-        <h4 class="titularSidebar">Información a la última</h4>
+        {# <h4 class="titularSidebar">Información a la última</h4> #}
 
         {% for ultimoEvento in ultimosEventos %}
 
-            <div class="cajaPartidoInformacionALaUltima{% if ultimoEvento.enJuevo %}cajaEnJuego{% endif %}">
+           {# 
+           <div class="cajaPartidoInformacionALaUltima{% if ultimoEvento.enJuevo %}cajaEnJuego{% endif %}">
 
                 <div>
                         <span class="hora">
@@ -37,11 +38,11 @@
                         </a>
                     </span>
                 </div>
-                {#
+                
                 <div class="evento">
                     {{ ultimoEvento.eventoText }}
                 </div>
-                #}
+                
                 <div>
                     {% if ultimoEvento.evento == 3 or true %}
                         <a href="/arbitro.php?id={{ arbitro.0 }}" target="blank" style="color:orange">
@@ -57,6 +58,7 @@
                 </div>
 
             </div>
+            #}
 
         {% endfor %}
     </div>
