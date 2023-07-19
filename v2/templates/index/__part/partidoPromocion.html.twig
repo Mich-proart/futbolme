@@ -187,11 +187,11 @@
 
 
                         <div class="contenedorIconosPartido col-3 nopadding h25">
-                            <div class="pull-right esto es para directos mano" style="margin-right: 4px !important">
+                            <div class="pull-right" style="margin-right: 4px !important">
 
                                 {{ icono|raw }}
 
-                                <a class="simboloMasPartido" href="javascript:mostrarColor({{ partido.id }});">
+                                <a class="simboloMasPartido jorge-directo-directo" href="javascript:mostrarColor({{ partido.id }});">
                                     {% if partido.enJuego %}
                                         <img src="/static/img/simbolo-mas-blanco.svg" title="Partido entre {{ partido.local }} y {{ partido.visitante }}" alt="Partido entre {{ partido.local }} y {{ partido.visitante }}">
                                     {% else %}
