@@ -1233,11 +1233,13 @@ function obtenerAlineacion(btnIdLiga){
       
       let result = JSON.parse(data)
 
-      if (result.results.length == 0) {  
-        
-        //jQuery(btnIdLiga).closest('.pull-right').find('.content-alineaciones').find('p').text('')
+      if (result.results.length == 0) {          
 
         jQuery('.title-alineacion').addClass('d-none')
+
+        jQuery(btnIdLiga).closest('.pull-right').find('.content-alineaciones').find('p').remove()
+
+        jQuery(btnIdLiga).closest('.jorge-jorge').find('.content-alineaciones').find('p').remove()
         
         jQuery(btnIdLiga).closest('.pull-right').find('.content-alineaciones').append('<p>No disponible</p>')
 
