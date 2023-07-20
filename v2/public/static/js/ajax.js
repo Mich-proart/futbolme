@@ -1227,17 +1227,25 @@ function obtenerAlineacion(btnIdLiga){
 
       jQuery('.span-id-torneo-alineacion').closest('.pull-right').find('.content-alineaciones').removeClass('d-flex').addClass('d-none')
 
+      jQuery('.span-id-torneo-alineacion').closest('.jorge-jorge').find('.content-alineaciones').removeClass('d-flex').addClass('d-none')
+
       jQuery('.title-alineacion').addClass('d-none')
       
       let result = JSON.parse(data)
 
-      if (result.results.length == 0) {     
+      if (result.results.length == 0) {  
+        
+        //jQuery(btnIdLiga).closest('.pull-right').find('.content-alineaciones').find('p').text('')
 
         jQuery('.title-alineacion').addClass('d-none')
         
         jQuery(btnIdLiga).closest('.pull-right').find('.content-alineaciones').append('<p>No disponible</p>')
 
+        jQuery(btnIdLiga).closest('.jorge-jorge').find('.content-alineaciones').append('<p>No disponible</p>')
+
         jQuery(btnIdLiga).closest('.pull-right').find('.content-alineaciones').removeClass('d-none').addClass('d-flex')
+
+        jQuery(btnIdLiga).closest('.jorge-jorge').find('.content-alineaciones').removeClass('d-none').addClass('d-flex')
         
       }else{
 
@@ -1245,6 +1253,9 @@ function obtenerAlineacion(btnIdLiga){
 
           jQuery(btnIdLiga).closest('.pull-right').find('.listado-locales').append(
           `<li class="item-alineacion item-local">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</li>`)
+
+          jQuery(btnIdLiga).closest('.jorge-jorge').find('.listado-locales').append(
+            `<li class="item-alineacion item-local">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</li>`)
 
           console.log(iterator)          
         }
@@ -1254,12 +1265,18 @@ function obtenerAlineacion(btnIdLiga){
           jQuery(btnIdLiga).closest('.pull-right').find('.listado-visitantes').append(
           `<li class="item-alineacion item-visitantes">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</li>`)
 
+          jQuery(btnIdLiga).closest('.jorge-jorge').find('.listado-visitantes').append(
+            `<li class="item-alineacion item-visitantes">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</li>`)
           console.log(iterator)          
         }
 
         jQuery(btnIdLiga).closest('.pull-right').find('.content-alineaciones').removeClass('d-none').addClass('d-flex')
 
+        jQuery(btnIdLiga).closest('.jorge-jorge').find('.content-alineaciones').removeClass('d-none').addClass('d-flex')
+
         jQuery(btnIdLiga).closest('.pull-right').find('.title-alineacion').removeClass('d-none')
+
+        jQuery(btnIdLiga).closest('.jorge-jorge').find('.title-alineacion').removeClass('d-none')
       }      
     }
 })
