@@ -1225,9 +1225,9 @@ function obtenerAlineacion(btnIdLiga){
 
       jQuery('.listado-visitantes').empty()
 
-      jQuery('.span-id-torneo-alineacion').closest('.pull-right').find('.content-alineaciones').removeClass('d-flex').addClass('d-none')
+      jQuery('.span-id-torneo-alineacion').closest('.pull-right').find('.content-alineaciones').removeClass('d-block').addClass('d-none')
 
-      jQuery('.span-id-torneo-alineacion').closest('.jorge-jorge').find('.content-alineaciones').removeClass('d-flex').addClass('d-none')
+      jQuery('.span-id-torneo-alineacion').closest('.jorge-jorge').find('.content-alineaciones').removeClass('d-block').addClass('d-none')
 
       jQuery('.title-alineacion').addClass('d-none')
       
@@ -1245,9 +1245,9 @@ function obtenerAlineacion(btnIdLiga){
 
         jQuery(btnIdLiga).closest('.jorge-jorge').find('.content-alineaciones').append('<p>No disponible</p>')
 
-        jQuery(btnIdLiga).closest('.pull-right').find('.content-alineaciones').removeClass('d-none').addClass('d-flex')
+        jQuery(btnIdLiga).closest('.pull-right').find('.content-alineaciones').removeClass('d-none').addClass('d-block')
 
-        jQuery(btnIdLiga).closest('.jorge-jorge').find('.content-alineaciones').removeClass('d-none').addClass('d-flex')
+        jQuery(btnIdLiga).closest('.jorge-jorge').find('.content-alineaciones').removeClass('d-none').addClass('d-block')
         
       }else{
 
@@ -1272,9 +1272,9 @@ function obtenerAlineacion(btnIdLiga){
           console.log(iterator)          
         }
 
-        jQuery(btnIdLiga).closest('.pull-right').find('.content-alineaciones').removeClass('d-none').addClass('d-flex')
+        jQuery(btnIdLiga).closest('.pull-right').find('.content-alineaciones').removeClass('d-none').addClass('d-block')
 
-        jQuery(btnIdLiga).closest('.jorge-jorge').find('.content-alineaciones').removeClass('d-none').addClass('d-flex')
+        jQuery(btnIdLiga).closest('.jorge-jorge').find('.content-alineaciones').removeClass('d-none').addClass('d-block')
 
         jQuery(btnIdLiga).closest('.pull-right').find('.title-alineacion').removeClass('d-none')
 
@@ -1293,5 +1293,5 @@ jQuery(document).on('click', '.span-id-torneo-alineacion', function(){
 
 jQuery(document).on('click', '.cerrar-alineacion', function(){
 
-  jQuery(this).closest('.content-alineaciones').removeClass('d-flex').addClass('d-none')
+  jQuery(this).closest('.content-alineaciones').removeClass('d-block').addClass('d-none')
 })
