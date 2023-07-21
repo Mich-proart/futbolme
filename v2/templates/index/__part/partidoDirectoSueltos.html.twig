@@ -190,13 +190,13 @@
 
                                 {{ icono|raw }}
 
-                                <img class="span-id-torneo-alineacion" attr-id-evento="{{ partido.id }}" src="/static/img/icon-alienacion-white.svg" alt="Partidos alineaciones">                                
+                                <img class="span-id-torneo-alineacion" attr-id-evento="{{ partido.id }}" src="/static/img/icon-alienacion-white.svg" alt="Partidos alineaciones" style="cursor: pointer;">                                
 
-                                <a class="simboloMasPartido jorge-f-clase" href="javascript:mostrarColor({{ partido.id }});">
+                                <a class="simboloMasPartido jorge-f-clase" href="javascript:mostrarColor({{ partido.id }});" class="d-inline-block">
                                     {% if partido.enJuego %}
-                                        <img src="/static/img/simbolo-mas-blanco.svg" title="Partido entre {{ partido.local }} y {{ partido.visitante }}" alt="Partido entre {{ partido.local }} y {{ partido.visitante }}">
+                                        <img src="/static/img/simbolo-mas-blanco.svg" title="Partido entre {{ partido.local }} y {{ partido.visitante }}" alt="Partido entre {{ partido.local }} y {{ partido.visitante }}" class="p-2">
                                     {% else %}
-                                        <img src="/static/img/simbolo-mas.svg" title="Partido entre {{ partido.local }} y {{ partido.visitante }}" alt="Partido entre {{ partido.local }} y {{ partido.visitante }}">
+                                        <img src="/static/img/simbolo-mas.svg" title="Partido entre {{ partido.local }} y {{ partido.visitante }}" alt="Partido entre {{ partido.local }} y {{ partido.visitante }}" class="p-2">
                                     {% endif %}
                                 </a>
 
