@@ -297,24 +297,24 @@
                     {{ partido.txtTV|raw }}
 
                     {% if (partido.tvs.0 > 0 and 1 != partido.estado_partido and pagina != 'televisados') %}
-                        <a href="/partidos-televisados#tv-{{ partido.id }}" title="partido televisado">
+                        <a href="/partidos-televisados#tv-{{ partido.id }}" title="partido televisado" class="d-inline-block">
                             {% if partido.enJuego %}
-                                <img src="/static/img/icono-partidos-televisados-blanco.svg" alt="partido televisado" width="19">
+                                <img src="/static/img/icono-partidos-televisados-blanco.svg" alt="partido televisado" width="35" class="p-2">
                             {% else %}
-                                <img src="/static/img/icono-partidos-televisados.svg" alt="partido televisado" width="19">
+                                <img src="/static/img/icono-partidos-televisados.svg" alt="partido televisado" width="35">
                             {% endif %}
                         </a>
                     {% endif %}
 
                     {{ icono|raw }}
 
-                    <img class="span-id-torneo-alineacion" attr-id-evento="{{ partido.betsapi }}" src="/static/img/icon-alienacion-white.svg" alt="Partidos alineaciones">
+                    <img class="span-id-torneo-alineacion" attr-id-evento="{{ partido.betsapi }}" src="/static/img/icon-alienacion-white.svg" alt="Partidos alineaciones" style="cursor: pointer;">
 
-                    <a class="simboloMasPartido jorge-clase" href="javascript:mostrarColor({{ partido.id }});">
+                    <a class="simboloMasPartido jorge-clase" href="javascript:mostrarColor({{ partido.id }});" class="d-inline-block">
                         {% if partido.enJuego %}
-                            <img src="/static/img/simbolo-mas-blanco.svg" title="Partido entre {{ partido.local }} y {{ partido.visitante }}" alt="Partido entre {{ partido.local }} y {{ partido.visitante }}">
+                            <img src="/static/img/simbolo-mas-blanco.svg" title="Partido entre {{ partido.local }} y {{ partido.visitante }}" alt="Partido entre {{ partido.local }} y {{ partido.visitante }}" class="p-2">
                         {% else %}
-                            <img src="/static/img/simbolo-mas.svg" title="Partido entre {{ partido.local }} y {{ partido.visitante }}" alt="Partido entre {{ partido.local }} y {{ partido.visitante }}">
+                            <img src="/static/img/simbolo-mas.svg" title="Partido entre {{ partido.local }} y {{ partido.visitante }}" alt="Partido entre {{ partido.local }} y {{ partido.visitante }}" class="p-2">
                         {% endif %}
                     </a>
 
@@ -322,8 +322,8 @@
 
                     <div class="d-none align-items-center content-alineaciones flex-wrap" style="">
                         <div class="d-flex align-items-center justify-content-between w-100">
-                            <span class="d-block">Alineacion</span>
-                            <span class="cerrar-alineacion" style="padding: 0px 10px;cursor: pointer;">&times;</span>
+                            <h3 class="d-block">Alineacion</h3>
+                            <span class="cerrar-alineacion display-1" style="cursor: pointer;">&times;</span>
                         </div>
                         <div class="left-content-alin pr-lg-3 w-50 text-left">
                             <h4 class="title-alineacion title-alineacion-locales">Local</h4>
