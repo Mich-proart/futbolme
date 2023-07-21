@@ -308,6 +308,8 @@
 
                     {{ icono|raw }}
 
+                    <img class="span-id-torneo-alineacion" attr-id-evento="{{ partido.betsapi }}" src="/static/img/icon-alienacion-white.svg" alt="Partidos alineaciones">
+
                     <a class="simboloMasPartido jorge-clase" href="javascript:mostrarColor({{ partido.id }});">
                         {% if partido.enJuego %}
                             <img src="/static/img/simbolo-mas-blanco.svg" title="Partido entre {{ partido.local }} y {{ partido.visitante }}" alt="Partido entre {{ partido.local }} y {{ partido.visitante }}">
@@ -316,18 +318,19 @@
                         {% endif %}
                     </a>
 
-                    <img style="opacity: 0;height: 0px;width: 0px;" class="span-id-torneo-alineacion" attr-id-evento="{{ partido.betsapi }}" src="/static/img/icon-alienacion-white.svg" alt="Partidos alineaciones">
+                    
 
-                    <div class="d-none align-items-center content-alineaciones flex-wrap" style="position: absolute;top: 0;right: 0;width: 500px;background: white;z-index: 1000;padding: 15px;">
-                        <div class="d-flex align-items-center justify-content-end w-100">
-                            <span class="cerrar-alineacion" style="padding: 0px 10px;cursor: pointer;">x</span>
+                    <div class="d-none align-items-center content-alineaciones flex-wrap" style="">
+                        <div class="d-flex align-items-center justify-content-between w-100">
+                            <span class="d-block">Alineacion</span>
+                            <span class="cerrar-alineacion" style="padding: 0px 10px;cursor: pointer;">&times;</span>
                         </div>
-                        <div class="left-content-alin pr-lg-3 w-50">
-                            <h4 class="title-alineacion title-alineacion-locales">Alineacion Locales</h4>
+                        <div class="left-content-alin pr-lg-3 w-50 text-left">
+                            <h4 class="title-alineacion title-alineacion-locales">Local</h4>
                             <ul class="list-unstyled listado-locales"></ul>
                         </div>
-                        <div class="rigth-content-alin w-50">
-                            <h4 class="title-alineacion title-alineacion-visitantes">Alineacion Visitantes</h4>
+                        <div class="rigth-content-alin w-50 text-left">
+                            <h4 class="title-alineacion title-alineacion-visitantes">Visitante</h4>
                             <ul class="list-unstyled listado-visitantes"></ul>
                         </div>
                     </div>
