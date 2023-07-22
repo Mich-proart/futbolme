@@ -1949,15 +1949,31 @@ function XequipoPartidos($equipo_id)
 
 // LOGIN 
 function LoginNew(){
+    $costo = 13;
     $mysqli = conectar();
-    $consulta = 'SELECT * FROM users';    
+    $consulta = "SELECT * FROM users WHERE email = 'futbolme@gmail.com' AND password = '$2y$13$7xTpryf3hzuQLLgR2lxmAOFddkZGEfnMsQsZshPSCFu4Atu7YrUiG' LIMIT 1;";    
     $resultadoSQL = mysqli_query($mysqli, $consulta);
     $resultado = mysqli_fetch_all($resultadoSQL, MYSQLI_BOTH);
     foreach ($resultado as $key => $value) {
-        var_dump($value['email']." - ".$value['password']);
+        if (password_verify(password_hash('@Admin1234', PASSWORD_BCRYPT, ['cost' => $costo]), $value['password'])) {
+            echo "La contraseña es válida.";
+        } else {
+            echo "La contraseña es inválida.";
+        }
+        //var_dump($value['email']." - ".$value['password']);
     }
     
     //return $resultado;
 
     //var_dump($resultado);
 }
+
+
+// $contrasena = "mi_contrasena";
+// $costo = 13;
+
+// // Generar el hash de contraseña utilizando Bcrypt
+// $hash = password_hash($contrasena, PASSWORD_BCRYPT, ['cost' => $costo]);
+
+// // Imprimir el hash
+// echo "Hash de contraseña: $hash";
