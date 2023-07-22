@@ -37,7 +37,7 @@ if (isset($_POST['categoria_torneo'])) {
 ?>
 
 <?php var_dump($_SESSION['user']);?>
-
+<?php if(isset($_SESSION['user'])){ ?>
 <form>
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
@@ -49,6 +49,8 @@ if (isset($_POST['categoria_torneo'])) {
   </div>
   <button type="button" class="btn btn-primary btn-login-panel">Submit</button>
 </form>
+<?php die;?>
+<?php }?>
 
 <div style="background-color: white; padding: 5px;">
   <div id="cache" class="pull-right"></div>

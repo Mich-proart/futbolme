@@ -12,7 +12,8 @@ foreach ($resultado as $key => $value) {
     if ((password_verify($_POST['password'], $value['password'])) && $_POST['user'] == $value['email']) {
         
         // Iniciamos session con un valor definido
-        session_start();
+        //session_start();
+        session_destroy();
         $_SESSION['user'] = $_POST['user'];
         header('Location: https://futbolme.com/panelBack/');
         die;
