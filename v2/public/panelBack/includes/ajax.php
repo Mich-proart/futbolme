@@ -1750,17 +1750,12 @@ function loginNew(){
     success: function(data){ 
        console.log(data)
     }             
-  });
-  //console.log(user+" - "+password)
+  });  
 }
 
 jQuery(document).on('click', '.btn-login-panel',function(){
   loginNew()
 })
-
-
-/*
- */
 
 </script>
 
