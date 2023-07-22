@@ -1950,6 +1950,11 @@ function XequipoPartidos($equipo_id)
 // LOGIN 
 function LoginNew(){
     $mysqli = conectar();
+    $consulta = 'SELECT * FROM users';    
+    $resultadoSQL = mysqli_query($mysqli, $consulta);
+    $resultado = mysqli_fetch_all($resultadoSQL, MYSQLI_BOTH);
+    
+    //return $resultado;
 
-    var_dump($mysqli);
+    var_dump($resultado);
 }
