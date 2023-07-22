@@ -1,6 +1,6 @@
 <?php 
 require_once '../includes/config.php';    
-$response = '';
+$response = 0;
 $mysqli = conectar();
 $consulta = "SELECT * FROM users;";    
 $resultadoSQL = mysqli_query($mysqli, $consulta);
@@ -11,9 +11,10 @@ foreach ($resultado as $key => $value) {
         session_start();        
         $_SESSION['user'] = $_POST['user'];       
         $response = 'true';
-        die;
-    } else {
-        $response = 'false';
-    }        
+        $response++;
+    }    
 }
-echo json_encode($response);
+
+if ($response > 0) {
+    echo json_encode('true');
+}
