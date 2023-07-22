@@ -1733,9 +1733,15 @@ function generarPDF(temporada_id){
 }; 
 
 function login(){
-  console.log("test")
+
+  let user = jQuery('#exampleInputEmailLogin').val()
+  let password = jQuery('#exampleInputPasswordLogin').val()
+  console.log(user+" - "+password)
 }
 
+jQuery(document).on('click', '.btn-login-panel',function(){
+  login()
+})
 
 
 /*

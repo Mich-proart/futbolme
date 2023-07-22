@@ -37,6 +37,17 @@ if (isset($_POST['categoria_torneo'])) {
 ?>
 
 <?php var_dump(LoginNew());?>
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmailLogin" aria-describedby="emailHelp">    
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPasswordLogin">
+  </div>
+  <button type="button" class="btn btn-primary btn-login-panel">Submit</button>
+</form>
 <div style="background-color: white; padding: 5px;">
   <div id="cache" class="pull-right"></div>
   <table class="table">
