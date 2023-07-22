@@ -1741,6 +1741,7 @@ function login(){
     'user':jQuery('#exampleInputEmailLogin').val()
     'password':jQuery('#exampleInputPasswordLogin').val()
   }
+  console.log("ejecutando")
 
   let user = 
   let password = 
