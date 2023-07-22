@@ -1738,21 +1738,19 @@ function loginNew(){
 
   const formData = {
     'trigger':'validacionDatosLogin',
-    'user':jQuery('#exampleInputEmailLogin').val()
+    'user':jQuery('#exampleInputEmailLogin').val(),
     'password':jQuery('#exampleInputPasswordLogin').val()
   }
   console.log("ejecutando")
-
-  // let user = 
-  // let password = 
-  // $.ajax({
-  //   type: 'POST',
-  //   url: url,
-  //   data: formData,
-  //   success: function(data){ 
-  //     console.log(data)
-  //   }             
-  // });
+  
+   $.ajax({
+     type: 'POST',
+     url: url,
+     data: formData,
+    success: function(data){ 
+       console.log(data)
+    }             
+  });
   //console.log(user+" - "+password)
 }
 
