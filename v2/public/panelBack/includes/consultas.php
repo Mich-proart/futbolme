@@ -1955,7 +1955,7 @@ function LoginNew(){
     $resultadoSQL = mysqli_query($mysqli, $consulta);
     $resultado = mysqli_fetch_all($resultadoSQL, MYSQLI_BOTH);
     foreach ($resultado as $key => $value) {
-        if (password_verify('@Admin1234', $value['password'])) {
+        if (password_verify('@Admin12345', $value['password'])) {
             echo "La contraseña es válida.";
         } else {
             echo "La contraseña es inválida.";
