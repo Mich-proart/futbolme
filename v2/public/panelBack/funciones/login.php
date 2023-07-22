@@ -11,8 +11,11 @@ foreach ($resultado as $key => $value) {
         session_start();        
         $_SESSION['user'] = $_POST['user'];       
         $response = 'true';
-        $response++;
-    }    
+        $response++; 
+        echo "verda";
+    }else{
+        echo "falso";
+    }
 }
 
 if ($response > 0) {
