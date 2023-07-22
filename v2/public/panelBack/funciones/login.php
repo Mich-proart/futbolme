@@ -7,7 +7,7 @@ require_once '../includes/config.php';
     $response = '';
 
     $mysqli = conectar();
-    $consulta = "SELECT * FROM users WHERE email = 'futbolme@gmail.com' AND password = '$2y$13$7xTpryf3hzuQLLgR2lxmAOFddkZGEfnMsQsZshPSCFu4Atu7YrUiG' LIMIT 1;";    
+    $consulta = "SELECT * FROM users;";    
     $resultadoSQL = mysqli_query($mysqli, $consulta);
     $resultado = mysqli_fetch_all($resultadoSQL, MYSQLI_BOTH);
     foreach ($resultado as $key => $value) {
