@@ -1732,6 +1732,10 @@ function generarPDF(temporada_id){
     });
 }; 
 
+function login(){
+  console.log("test")
+}
+
 
 
 /*

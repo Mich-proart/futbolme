@@ -1948,8 +1948,7 @@ function XequipoPartidos($equipo_id)
 }
 
 // LOGIN 
-function LoginNew(){
-    $costo = 13;
+function LoginNew(){    
     $mysqli = conectar();
     $consulta = "SELECT * FROM users WHERE email = 'futbolme@gmail.com' AND password = '$2y$13$7xTpryf3hzuQLLgR2lxmAOFddkZGEfnMsQsZshPSCFu4Atu7YrUiG' LIMIT 1;";    
     $resultadoSQL = mysqli_query($mysqli, $consulta);
@@ -1959,13 +1958,8 @@ function LoginNew(){
             echo "La contraseña es válida.";
         } else {
             echo "La contraseña es inválida.";
-        }
-        //var_dump($value['email']." - ".$value['password']);
-    }
-    
-    //return $resultado;
-
-    //var_dump($resultado);
+        }        
+    }    
 }
 
 
