@@ -37,7 +37,7 @@ session_destroy();
 ?>
 
 <?php var_dump($_SESSION['user']);?>
-<?php if(isset($_SESSION['user'])){ ?>
+<?php if(!isset($_SESSION['user'])){ ?>
 <form>
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
