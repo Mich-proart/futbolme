@@ -10,7 +10,12 @@ $resultadoSQL = mysqli_query($mysqli, $consulta);
 $resultado = mysqli_fetch_all($resultadoSQL, MYSQLI_BOTH);
 foreach ($resultado as $key => $value) {
     if ((password_verify($_POST['password'], $value['password'])) && $_POST['user'] == $value['email']) {
-        echo "los datos son correctos.";
+        
+        // Iniciamos session con un valor definido
+        session_start();
+        $_SESSION['user'] = $_POST['user'];
+        header('Location:/panelBack/');
+        die;
     } else {
         echo "La contraseña es inválida.";
     }        
