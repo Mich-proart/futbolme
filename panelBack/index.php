@@ -37,6 +37,7 @@ if (isset($_POST['categoria_torneo'])) {
 ?>
 
 <body>
+  <h1>Este es el index</h1>
 <div style="width: 100%; float:left; padding:5px">
   <div style="width: 50%; float:left">
     <span style="background-color:orange; padding:2px;">Ligas <a href="?tipo_torneo=1">FUTBOLME</a></span>
