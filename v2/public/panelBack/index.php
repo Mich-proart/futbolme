@@ -40,15 +40,15 @@ if (isset($_POST['categoria_torneo'])) {
 <div class="content-form" style="display: flex;justify-content: center;align-items: center;"></div>
 <form style="padding-top: 200px;display: flex;justify-content: center;align-items: center;flex-wrap: wrap;width: 500px;margin: auto;">
   <div class="form-group" style="width: 100%;">
-    <label for="exampleInputEmail1">Email address</label>
+    <label style="color: white;" for="exampleInputEmail1">Email address</label>
     <input type="email" class="form-control" id="exampleInputEmailLogin" aria-describedby="emailHelp">    
   </div>  
   <div class="form-group" style="width: 100%;">
-    <label for="exampleInputPassword1">Password</label>
+    <label style="color: white;" for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control" id="exampleInputPasswordLogin">
   </div> 
-  <div class="form-group form-password-incorrecto" style="display:none;">    
-    <label class="form-check-label-text">* Datos incorrectos</label>
+  <div class="form-group form-password-incorrecto" style="display:none;width: 100%;">    
+    <label style="color: white;" class="form-check-label-text">* Datos incorrectos</label>
   </div> 
   <button style="width: 50%;" type="button" class="btn btn-primary btn-login-panel">Submit</button>
 </form>
