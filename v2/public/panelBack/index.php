@@ -48,6 +48,7 @@ if (isset($_POST['categoria_torneo'])) {
   </div>
   <button type="button" class="btn btn-primary btn-login-panel">Submit</button>
 </form>
+<?php require_once 'includes/ajax.php';?>
 <?php die;?>
 <?php }?>
 
