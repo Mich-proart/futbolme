@@ -10,19 +10,11 @@ foreach ($resultado as $key => $value) {
         // Iniciamos session con un valor definido
         session_start();        
         $_SESSION['user'] = $_POST['user'];               
-        $response++; 
-        echo "verda";
-    }else{
-        echo "falso";
+        $response++;         
     }
 }
-
-
-echo $response."   - ";
 if ($response > 0) {
     echo json_encode('true');
 }else{
     echo json_encode('false');   
 }
-
-echo json_encode('true');

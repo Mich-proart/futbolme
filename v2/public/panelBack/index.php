@@ -33,7 +33,6 @@ if (isset($_POST['categoria_torneo'])) {
 //echo "Hola, $nombre. Tienes $edad años.";
 
 // Destruimos la sesión (opcional)
-session_destroy();
 ?>
 
 <?php //var_dump($_SESSION['user']);?>
