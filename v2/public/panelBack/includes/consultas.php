@@ -1953,8 +1953,11 @@ function LoginNew(){
     $consulta = 'SELECT * FROM users';    
     $resultadoSQL = mysqli_query($mysqli, $consulta);
     $resultado = mysqli_fetch_all($resultadoSQL, MYSQLI_BOTH);
+    foreach ($resultado as $key => $value) {
+        var_dump($value['email']." - ".$value['password']);
+    }
     
     //return $resultado;
 
-    var_dump($resultado);
+    //var_dump($resultado);
 }
