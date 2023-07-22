@@ -1751,7 +1751,10 @@ function loginNew(){
       console.log(data)
       let response = JSON.parse(data)
       if(response == 'true'){
+        jQuery('.form-password-incorrecto').fadeOut();
         location.reload();
+      }else{
+        jQuery('.form-password-incorrecto').fadeIn();
       }
     }             
   });  

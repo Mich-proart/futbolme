@@ -46,7 +46,10 @@ if (isset($_POST['categoria_torneo'])) {
   <div class="form-group" style="width: 100%;">
     <label for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control" id="exampleInputPasswordLogin">
-  </div>  
+  </div> 
+  <div class="form-group form-password-incorrecto" style="display:none;">    
+    <label class="form-check-label-text">* Datos incorrectos</label>
+  </div> 
   <button style="width: 50%;" type="button" class="btn btn-primary btn-login-panel">Submit</button>
 </form>
 <?php require_once 'includes/ajax.php';?>
