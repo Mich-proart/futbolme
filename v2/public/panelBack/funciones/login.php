@@ -17,4 +17,6 @@ foreach ($resultado as $key => $value) {
 
 if ($response > 0) {
     echo json_encode('true');
+}else{
+    echo json_encode('false');   
 }
