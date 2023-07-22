@@ -1741,14 +1741,12 @@ function loginNew(){
     'user':jQuery('#exampleInputEmailLogin').val(),
     'password':jQuery('#exampleInputPasswordLogin').val()
   }
-  console.log("ejecutando")
   
    $.ajax({
      type: 'POST',
      url: url,
      data: formData,
-    success: function(data){ 
-      console.log(data)
+    success: function(data){       
       let response = JSON.parse(data)
       if(response == 'true'){
         jQuery('.form-password-incorrecto').fadeOut();
