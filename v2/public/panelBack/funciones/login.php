@@ -9,8 +9,8 @@ $consulta = "SELECT * FROM users WHERE email = 'futbolme@gmail.com' AND password
 $resultadoSQL = mysqli_query($mysqli, $consulta);
 $resultado = mysqli_fetch_all($resultadoSQL, MYSQLI_BOTH);
 foreach ($resultado as $key => $value) {
-    if (password_verify($_POST['password'], $value['password'])) {
-        echo "La contraseña es válida.";
+    if ((password_verify($_POST['password'], $value['password'])) && $_POST['user'] == $value['email']) {
+        echo "los datos son correctos.";
     } else {
         echo "La contraseña es inválida.";
     }        
