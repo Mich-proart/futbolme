@@ -1732,7 +1732,7 @@ function generarPDF(temporada_id){
   });
 }; 
 
-function login(){
+function loginNew(){
 
   var url = "/panelBack/funciones/login.php";
 
@@ -1743,21 +1743,21 @@ function login(){
   }
   console.log("ejecutando")
 
-  let user = 
-  let password = 
-  $.ajax({
-    type: 'POST',
-    url: url,
-    data: formData,
-    success: function(data){ 
-      console.log(data)
-    }             
-  });
+  // let user = 
+  // let password = 
+  // $.ajax({
+  //   type: 'POST',
+  //   url: url,
+  //   data: formData,
+  //   success: function(data){ 
+  //     console.log(data)
+  //   }             
+  // });
   //console.log(user+" - "+password)
 }
 
 jQuery(document).on('click', '.btn-login-panel',function(){
-  login()
+  loginNew()
 })
 
 
