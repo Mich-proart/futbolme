@@ -9,8 +9,7 @@ foreach ($resultado as $key => $value) {
     if ((password_verify($_POST['password'], $value['password'])) && $_POST['user'] == $value['email']) {
         // Iniciamos session con un valor definido
         session_start();        
-        $_SESSION['user'] = $_POST['user'];       
-        $response = 'true';
+        $_SESSION['user'] = $_POST['user'];               
         $response++; 
         echo "verda";
     }else{
@@ -19,7 +18,7 @@ foreach ($resultado as $key => $value) {
 }
 
 
-echo $response;
+echo $response."   - ";
 if ($response > 0) {
     echo json_encode('true');
 }else{
