@@ -16,6 +16,7 @@ require_once '../includes/config.php';
             session_start();        
             $_SESSION['user'] = $_POST['user'];       
             $response = 'true';
+            die;
         } else {
             $response = 'false';
         }        
