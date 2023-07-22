@@ -1,6 +1,6 @@
 <?php 
 require_once '../includes/config.php';
-if(isset($_POST['trigger'])){
+//if(isset($_POST['trigger'])){
     //var_dump($_POST['trigger']);
     //var_dump($_POST['user']);
     //var_dump($_POST['password']);
@@ -21,4 +21,4 @@ if(isset($_POST['trigger'])){
         }        
     }
     echo json_encode($response);
-}
+//}
