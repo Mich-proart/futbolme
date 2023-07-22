@@ -1748,7 +1748,11 @@ function loginNew(){
      url: url,
      data: formData,
     success: function(data){ 
-       console.log(data)
+      console.log(data)
+      let response = JSON.parse(data)
+      if(response == 'true'){
+        location.reload();
+      }
     }             
   });  
 }
