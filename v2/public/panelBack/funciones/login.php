@@ -14,7 +14,7 @@ foreach ($resultado as $key => $value) {
         // Iniciamos session con un valor definido
         session_start();
         $_SESSION['user'] = $_POST['user'];
-        header('Location:/panelBack/');
+        header('Location: https://futbolme.com/panelBack/');
         die;
     } else {
         echo "La contraseña es inválida.";
