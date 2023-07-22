@@ -37,15 +37,16 @@ if (isset($_POST['categoria_torneo'])) {
 
 <?php //var_dump($_SESSION['user']);?>
 <?php if(!isset($_SESSION['user'])){ ?>
-<form>
-  <div class="form-group">
+<div class="content-form vh-100 vw-100" style="display: flex;justify-content: center;align-items: center;"></div>
+<form style="display: flex;justify-content: center;align-items: center;flex-wrap: wrap;width: 500px;margin: auto;">
+  <div class="form-group w-100">
     <label for="exampleInputEmail1">Email address</label>
     <input type="email" class="form-control" id="exampleInputEmailLogin" aria-describedby="emailHelp">    
-  </div>
-  <div class="form-group">
+  </div>  
+  <div class="form-group w-100">
     <label for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control" id="exampleInputPasswordLogin">
-  </div>
+  </div>  
   <button type="button" class="btn btn-primary btn-login-panel">Submit</button>
 </form>
 <?php require_once 'includes/ajax.php';?>
