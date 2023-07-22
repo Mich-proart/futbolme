@@ -168,5 +168,4 @@ if (isset($_POST['categoria_torneo'])) {
 
 <script>
 cargar_torneos(1,3,0);
-login()
 </script>
