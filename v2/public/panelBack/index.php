@@ -23,6 +23,7 @@ if (isset($_POST['categoria_torneo'])) {
 </head>
 <body>
 <h1>Este es el index</h1>
+<?php var_dump($_SESSION);?>
 <div style="background-color: white; padding: 5px;">
   <div id="cache" class="pull-right"></div>
   <table class="table">
