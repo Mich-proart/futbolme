@@ -1722,21 +1722,37 @@ function enviarHorarios(idChat,txt){
 function generarPDF(temporada_id){
   var url = "/panelBack/funciones/generarPDF.php";
   
-    $.ajax({
-        type: 'POST',
-        url: url,
-        data: 'temporada_id='+temporada_id,
-        success: function(data){ 
-          $('#pdf-'+temporada_id).html(data);
-        }             
-    });
+  $.ajax({
+      type: 'POST',
+      url: url,
+      data: 'temporada_id='+temporada_id,
+      success: function(data){ 
+        $('#pdf-'+temporada_id).html(data);
+      }             
+  });
 }; 
 
 function login(){
 
-  let user = jQuery('#exampleInputEmailLogin').val()
-  let password = jQuery('#exampleInputPasswordLogin').val()
-  console.log(user+" - "+password)
+  var url = "/panelBack/funciones/login.php";
+
+  const formData = {
+    'trigger':'validacionDatosLogin',
+    'user':jQuery('#exampleInputEmailLogin').val()
+    'password':jQuery('#exampleInputPasswordLogin').val()
+  }
+
+  let user = 
+  let password = 
+  $.ajax({
+    type: 'POST',
+    url: url,
+    data: formData,
+    success: function(data){ 
+      console.log(data)
+    }             
+  });
+  //console.log(user+" - "+password)
 }
 
 jQuery(document).on('click', '.btn-login-panel',function(){
