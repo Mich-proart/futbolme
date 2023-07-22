@@ -36,7 +36,7 @@ if (isset($_POST['categoria_torneo'])) {
 //session_destroy();
 ?>
 
-<?php //var_dump(LoginNew());?>
+<?php var_dump($_SESSION['user']);?>
 
 <form>
   <div class="form-group">
