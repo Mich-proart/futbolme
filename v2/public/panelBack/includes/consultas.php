@@ -1946,3 +1946,10 @@ function XequipoPartidos($equipo_id)
         exit;
     }
 }
+
+// LOGIN 
+function LoginNew(){
+    $mysqli = conectar();
+
+    var_dump($mysqli);
+}

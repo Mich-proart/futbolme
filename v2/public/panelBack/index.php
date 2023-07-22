@@ -22,8 +22,21 @@ if (isset($_POST['categoria_torneo'])) {
 ?>
 </head>
 <body>
-<h1>Este es el index</h1>
-<?php var_dump($_SESSION);?>
+<?php
+// Iniciamos la sesión
+//session_start();
+
+// Accedemos a los datos de la sesión
+//$nombre = $_SESSION['nombre'];
+
+// Puedes utilizar los datos como desees
+//echo "Hola, $nombre. Tienes $edad años.";
+
+// Destruimos la sesión (opcional)
+//session_destroy();
+?>
+
+<?php var_dump(LoginNew());?>
 <div style="background-color: white; padding: 5px;">
   <div id="cache" class="pull-right"></div>
   <table class="table">
