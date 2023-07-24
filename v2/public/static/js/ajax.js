@@ -1219,8 +1219,8 @@ function obtenerEvento(btnIdLiga){
     success: function (data) {
       //console.log(data)  
       let result = JSON.parse(data)
-      
-      console.log(result)
+
+      console.log(result.results[0].events)
     }
   })
 }
