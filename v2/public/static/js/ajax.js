@@ -1323,5 +1323,5 @@ jQuery(document).on('click', '.cerrar-alineacion', function(){
 // Mostramos datos de tipo evento de torneo
 jQuery(document).on('click', '.span-evento-trigger', function (){
 
-  obtenerEventos(jQuery(this))
+  obtenerEvento(jQuery(this))
 })
