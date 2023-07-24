@@ -1217,7 +1217,10 @@ function obtenerEvento(btnIdLiga){
         // accion cuando este completa la peticion
     },
     success: function (data) {
-      console.log(data)  
+      //console.log(data)  
+      let result = JSON.parse(data)
+      
+      console.log(result)
     }
   })
 }
