@@ -1199,6 +1199,31 @@ function visor_hoy(temporada_id,comunidad_id) {
     xmlhttp.send("temporada_id="+temporada_id+'&comunidad_id='+comunidad_id);
 }
 
+// Obtenemos los eventos que van pasando en el torneo entre dos equipos
+// Esto cuando estan pasando partidos en vivo
+function obtenerEvento(btnIdLiga){
+
+  jQuery.ajax({
+    url: `./apiBetsapiEventos.php`, // AJAX handler,
+    type: 'POST',
+    data: {
+        id: jQuery(btnIdLiga).attr('attr-id-evento'),
+    },
+    beforeSend: function() {
+      // accion de antes envio
+    },
+    complete: function () {
+
+        // accion cuando este completa la peticion
+    },
+    success: function (data) {
+      console.log(data)  
+    }
+  })
+}
+
+// Obtenemos las alineciones por medio de api pasando como parametro el id que le pasamos 
+// En el boton click de directo en la portada
 function obtenerAlineacion(btnIdLiga){  
 
   jQuery.ajax({
@@ -1207,15 +1232,12 @@ function obtenerAlineacion(btnIdLiga){
     data: {
         id: jQuery(btnIdLiga).attr('attr-id-evento'),
     },
-    // headers: {
-    //      'X-CSRF-TOKEN': csrfToken
-    // },
     beforeSend: function() {
-
+      // accion de antes envio
     },
     complete: function () {
 
-        //jQuery('.content-spiner-resultados-feed').addClass('ocultar-icon').removeClass('d-flex')
+        // accion cuando este completa la peticion
     },
     success: function (data) {
 
@@ -1285,13 +1307,21 @@ function obtenerAlineacion(btnIdLiga){
   
 };
 
+//Mostramos modal de alineacion
 jQuery(document).on('click', '.span-id-torneo-alineacion', function(){
 
   obtenerAlineacion(jQuery(this))
 
 })
 
+// Cerramos modal de alineacion
 jQuery(document).on('click', '.cerrar-alineacion', function(){
 
   jQuery(this).closest('.content-alineaciones').removeClass('d-block').addClass('d-none')
+})
+
+// Mostramos datos de tipo evento de torneo
+jQuery(document).on('click', '.span-evento-trigger', function (){
+
+  obtenerEventos(jQuery(this))
 })

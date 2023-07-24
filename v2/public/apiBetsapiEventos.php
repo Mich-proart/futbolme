@@ -1,6 +1,7 @@
 <?php
 // URL del endpoint
-$url = 'https://api.b365api.com/v1/event/lineup?token=153716-4djEyj4e6JZVou&LNG_ID=3&event_id='.$_POST['id'];
+$url = 'https://api.betsapi.com/v1/event/view?token=153716-4djEyj4e6JZVou&LNG_ID=3&event_id='.$_POST['id'];
+
 
 // Inicializar la solicitud cURL
 $ch = curl_init();
