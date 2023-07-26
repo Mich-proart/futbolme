@@ -1222,9 +1222,9 @@ function obtenerEvento(btnIdLiga){
       //console.log(data)  
       let result = JSON.parse(data)
       console.log(result.results[0].events)
-      listaElementos.empty()
+      jQuery(listaElementos).empty()
       for (const iterator of result.results[0].events) {
-        listaElementos.append(`<li class="list-group-item">${iterator.text}</li>`)        
+        jQuery(listaElementos).append(`<li class="list-group-item">${iterator.text}</li>`)        
       }
     }
   })
