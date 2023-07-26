@@ -1203,7 +1203,7 @@ function visor_hoy(temporada_id,comunidad_id) {
 // Esto cuando estan pasando partidos en vivo
 function obtenerEvento(btnIdLiga){
 
-  let listaElementos = jQuery(btnIdLiga).closest('.icons-directos-estaticos').find('.content-eventos').find('.lista-eventos')
+  jQuery('.lista-eventos').empty()
 
   jQuery.ajax({
     url: `./apiBetsapiEventos.php`, // AJAX handler,
@@ -1221,10 +1221,9 @@ function obtenerEvento(btnIdLiga){
     success: function (data) {
       //console.log(data)  
       let result = JSON.parse(data)
-      console.log(result.results[0].events)
-      jQuery(listaElementos).empty()
+      console.log(result.results[0].events)      
       for (const iterator of result.results[0].events) {
-        jQuery(listaElementos).append(`<li class="list-group-item">${iterator.text}</li>`)        
+        jQuery(btnIdLiga).closest('.icons-directos-estaticos').find('.lista-eventos').append(`<li class="list-group-item">${iterator.text}</li>`)        
       }
     }
   })
