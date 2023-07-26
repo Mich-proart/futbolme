@@ -1224,6 +1224,7 @@ function obtenerEvento(btnIdLiga){
       console.log(result.results[0].events)      
       for (const iterator of result.results[0].events) {
         jQuery(btnIdLiga).closest('.icons-directos-estaticos').find('.lista-eventos').append(`<li class="list-group-item">${iterator.text}</li>`)        
+        jQuery(btnIdLiga).closest('.contenedorIconosPartido').find('.lista-eventos').append(`<li class="list-group-item">${iterator.text}</li>`)                
       }
     }
   })
