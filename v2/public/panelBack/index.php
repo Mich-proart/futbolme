@@ -63,7 +63,7 @@ if (isset($_POST['categoria_torneo'])) {
         justify-content: center;
         padding-top: 40px;
         padding-bottom: 40px;
-        background-color: #f5f5f5;
+        background-color: #025325;
       }
 
       .form-signin {
@@ -106,7 +106,6 @@ if (isset($_POST['categoria_torneo'])) {
     <div class="content-form" style="display: flex;justify-content: center;align-items: center;"></div>
     <form class="form-signin">
       <img src="https://futbolme.com/static/img/logo.svg" alt="" class="img-fluid">
-      <h1 class="h3 mb-3 font-weight-normal">Iniciar sesión</h1>
      
         <label for="exampleInputEmail1" class="sr-only">Correo Electrónico</label>
         <input type="email" class="form-control" id="exampleInputEmailLogin" aria-describedby="emailHelp" placeholder="Correo Electrónico" required autofocus>
@@ -119,8 +118,8 @@ if (isset($_POST['categoria_torneo'])) {
         <label style="color: white;" class="form-check-label-text">* Datos incorrectos</label>
       </div>
 
-      <button class="btn btn-lg btn-primary btn-block btn-login-panel" type="button">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 199-2023</p>
+      <button class="btn btn-dark btn-lg btn-block btn-login-panel" type="button">Iniciar sesión</button>
+      <p class="mt-5 mb-3 text-white">&copy; 1999-2023</p>
 
 
     </form>
