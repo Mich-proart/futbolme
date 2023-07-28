@@ -74,6 +74,17 @@ h3.subtitulo {
     #contenedorGlobal {
         margin-top: 40px;
     }
+
+    .content-alineaciones{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        background: white;
+        z-index: 99999999;
+        padding: 3rem;
+        height: 100vh;
+    }
 }
 
 .contenedorSeccion {
