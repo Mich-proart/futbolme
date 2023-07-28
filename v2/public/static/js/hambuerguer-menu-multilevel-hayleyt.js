@@ -1,4 +1,4 @@
-var $menuTrigger = jQuery('.js-menuToggle');
+var $menuTrigger = jQuery('#hamburgerMenu .js-menuToggle');
 var $topNav = jQuery('.js-topPushNav');
 var $openLevel = jQuery('.js-openLevel');
 var $closeLevel = jQuery('.js-closeLevel');
