@@ -1199,7 +1199,7 @@ function visor_hoy(temporada_id,comunidad_id) {
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xmlhttp.send("temporada_id="+temporada_id+'&comunidad_id='+comunidad_id);
 }
-console.log('Aqui si')
+console.log('Aqui si');
 // Obtenemos los eventos que van pasando en el torneo entre dos equipos
 // Esto cuando estan pasando partidos en vivo
 function obtenerEvento(btnIdLiga){
