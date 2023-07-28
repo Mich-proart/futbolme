@@ -1317,18 +1317,18 @@ function obtenerAlineacion(btnIdLiga){
 //Mostramos modal de alineacion
 jQuery(document).on('click', '.span-id-torneo-alineacion', function(){
 
-  obtenerAlineacion(jQuery(this))
+  obtenerAlineacion(jQuery(this));
 
-})
+});
 
 // Cerramos modal de alineacion
 jQuery(document).on('click', '.cerrar-alineacion', function(){
 
-  jQuery(this).closest('.content-alineaciones').removeClass('d-block').addClass('d-none')
-})
+  jQuery(this).closest('.content-alineaciones').removeClass('d-block').addClass('d-none');
+});
 
 // Mostramos datos de tipo evento de torneo
 jQuery(document).on('click', '.span-evento-trigger', function (){
 
-  obtenerEvento(jQuery(this))
-})
+  obtenerEvento(jQuery(this));
+});
