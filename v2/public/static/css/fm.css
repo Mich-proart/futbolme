@@ -82,7 +82,7 @@ h3.subtitulo {
         width: 100vw;
         background: white;
         z-index: 99999999;
-        padding: 3rem;
+        padding: 1.5rem;
         height: 100vh;
     }
 }
