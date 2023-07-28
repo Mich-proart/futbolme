@@ -1,19 +1,19 @@
-var $menuTrigger = $('.js-menuToggle');
-var $topNav = $('.js-topPushNav');
-var $openLevel = $('.js-openLevel');
-var $closeLevel = $('.js-closeLevel');
-var $closeLevelTop = $('.js-closeLevelTop');
-var $navLevel = $('.js-pushNavLevel');
+var $menuTrigger = jQuery('.js-menuToggle');
+var $topNav = jQuery('.js-topPushNav');
+var $openLevel = jQuery('.js-openLevel');
+var $closeLevel = jQuery('.js-closeLevel');
+var $closeLevelTop = jQuery('.js-closeLevelTop');
+var $navLevel = jQuery('.js-pushNavLevel');
 
 function openPushNav() {
     $topNav.addClass('isOpen');
-    $('body').addClass('pushNavIsOpen');
+    jQuery('body').addClass('pushNavIsOpen');
 }
 
 function closePushNav() {
     $topNav.removeClass('isOpen');
     $openLevel.siblings().removeClass('isOpen');
-    $('body').removeClass('pushNavIsOpen');
+    jQuery('body').removeClass('pushNavIsOpen');
 }
 
 $menuTrigger.on('click', function(e) {
@@ -26,11 +26,11 @@ $menuTrigger.on('click', function(e) {
 });
 
 $openLevel.on('click ', function(){
-    $(this).next($navLevel).addClass('isOpen');
+    jQuery(this).next($navLevel).addClass('isOpen');
 });
 
 $closeLevel.on('click ', function(){
-    $(this).closest($navLevel).removeClass('isOpen');
+    jQuery(this).closest($navLevel).removeClass('isOpen');
 });
 //$closeLevelTop.on('click touchstart', function(){
 $closeLevelTop.on('click', function(){
