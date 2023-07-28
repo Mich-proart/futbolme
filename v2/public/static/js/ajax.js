@@ -5,9 +5,9 @@ function validarResultado(id,partido_id,gl,gv,tipo){
         url: '/src/funciones/validarResultado.php',
         data: "id="+id+"&partido_id="+partido_id+"&gl="+gl+"&gv="+gv+"&tipo="+tipo,
         success: function(data){
-          console.log(data);
-          console.log(id);
-          console.log(tipo);
+          //console.log(data);
+          //console.log(id);
+          //console.log(tipo);
           if (tipo===0){
             $('#va-'+id).html('OK');
             $('#ig-'+id).html('---');
@@ -31,7 +31,7 @@ function submitEnviarResultado (event, form, partido_id){
         url: url,
         data: form,
         success: function(data){
-          console.log(data);
+          //console.log(data);
           $('#resultado-'+partido_id).html(data);              
         },
         error: function(){
@@ -48,7 +48,7 @@ function submitFederacionGrabarId (event, form, temporada_id){
         url: url,
         data: form,
         success: function(data){
-          console.log(data);
+          //console.log(data);
           $('#mensaje-'+temporada_id).html(data);              
         },
         error: function(){
@@ -65,7 +65,7 @@ function submitFederacion (event, form, temporada_id){
         url: url,
         data: form,
         success: function(data){
-          console.log(data);
+          //console.log(data);
           $('#mensaje-'+temporada_id).html(data);              
         },
         error: function(){
@@ -82,7 +82,7 @@ function play_clasi(temporada_id,jornada) {
         jornada: jornada,
     };
 
-    console.log(data);
+    //console.log(data);
 
     $.ajax({
         type: 'POST',
@@ -90,7 +90,7 @@ function play_clasi(temporada_id,jornada) {
         data: data,
         cache: false,
         success: function(data){
-            console.log(data);
+            //console.log(data);
             $('#playClasi').html($(data).filter('#playClasi').html());
         },
         error: function(){
@@ -111,7 +111,7 @@ function submitForm (event, form, partido_id){
             data: form,
             success: function(data){
               //$('#partido-dia-'+partido_id).remove();              
-              console.log(data);
+              //console.log(data);
               $('#mensaje').html('');
               var dt = new Date();
               var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
@@ -139,7 +139,7 @@ function submitTwitters (event, form, club_id){
             data: form,
             success: function(data){
               //$('#partido-dia-'+partido_id).remove();              
-              console.log(data);
+              //console.log(data);
               $('#mensaje-'+club_id).html('<p><b>grabado</b></p>'); 
             },
             error: function(){
@@ -197,7 +197,7 @@ function submitPartidoApi (event, form, partido_id){
       url: url,
       data: form,
       success: function(data){  
-      console.log(data);      
+      //console.log(data);      
        $('#alerta-'+partido_id).html('grabado');       
       },
       error: function(){
@@ -209,7 +209,7 @@ function submitPartidoApi (event, form, partido_id){
 
 
 function editar_partido(str1) {
-      console.log(str1);
+      //console.log(str1);
       var xmlhttp;
         if (window.XMLHttpRequest){
         xmlhttp=new XMLHttpRequest();
@@ -227,7 +227,7 @@ function editar_partido(str1) {
   }
 
 function editar_jugador(str1) {
-      console.log(str1);
+      //console.log(str1);
       var xmlhttp;
         if (window.XMLHttpRequest){
         xmlhttp=new XMLHttpRequest();
@@ -245,7 +245,7 @@ function editar_jugador(str1) {
   }
 
 function api_partido(str1,str2,str3) {
-      console.log(str1);
+      //console.log(str1);
       var xmlhttp;
         if (window.XMLHttpRequest){
         xmlhttp=new XMLHttpRequest();
@@ -271,7 +271,7 @@ function submitEditarPartido (event, form, partido_id){
       url: url,
       data: form,
       success: function(data){  
-      console.log(data);      
+      //console.log(data);      
        $('#partido-'+partido_id).html('Todo correcto OK');       
       },
       error: function(){
@@ -289,7 +289,7 @@ function submitEditarJugador (event, form, jugador_id){
       url: url,
       data: form,
       success: function(data){  
-      console.log(data);      
+      //console.log(data);      
        $('#jugador-'+jugador_id).html('Todo correcto OK');       
       },
       error: function(){
@@ -312,7 +312,7 @@ function eliminarEquipoTemporada(event, temporada_id, equipo_id){
             url: url,
             data: "temporada_id=" + temporada_id + "&equipo_id=" + equipo_id,
             success: function(data){
-              console.log(data);
+              //console.log(data);
               $('#equipo-temporada-' + equipo_id).remove();
             },
             error: function(){
@@ -334,14 +334,14 @@ function modificarFechas (event, form, temporada_id){
             url: url,
             data: form,
             success: function(data){
-              console.log(data);
+              //console.log(data);
               $('#mensaje-fechas').html('Fechas modificadas');
               $.ajax({
                   type: 'POST',
                   url: '/src/funciones/calendario/recargarCalendario.php',
                   data: 'temporada_id=' + temporada_id,
                   success: function(data){
-                    console.log(data);
+                    //console.log(data);
                     $('#calendario-central').html(data);
                   },
                   error: function(){
@@ -368,7 +368,7 @@ function submitInsertarClub (event, form) {
       url: url,
       data: form,
       success: function(data){  
-      console.log(data);      
+      //console.log(data);      
        $('#alertaInsertarClub').html('Club y equipo grabado');       
       },
       error: function(){
@@ -388,7 +388,7 @@ function submitAsociarTorneo (event, form){
       url: url,
       data: form,
       success: function(data){  
-      console.log(data);      
+      //console.log(data);      
        $('#alertaAsociar').html('torneo asociado');       
       },
       error: function(){
@@ -406,7 +406,7 @@ function submitInicioTorneo (event, form){
       url: url,
       data: form,
       success: function(data){  
-      console.log(data);      
+      //console.log(data);      
        $('#alertaInicio').html('Fecha de inicio insertada');       
       },
       error: function(){
@@ -425,7 +425,7 @@ function submitCrearPartidos (event, form){
       url: url,
       data: form,
       success: function(data){  
-      console.log(data);      
+      //console.log(data);      
        $('#alerta').html('peticion realizada');       
       },
       error: function(){
@@ -444,7 +444,7 @@ function submitEquipoApi (event, form, equipo_id){
       url: url,
       data: form,
       success: function(data){  
-      console.log(data);      
+      //console.log(data);      
        $('#alerta-'+equipo_id).html('grabado');       
       },
       error: function(){
@@ -479,9 +479,9 @@ xmlhttp.send("categoria_torneo="+str+"&tipo_torneo="+str2+"&usuario_id="+str3);
 }
 
 function cargar_torneo_jornadas(str,str2,fecha) {
-  console.log(str);
-  console.log(str2);
-  console.log(fecha);
+  //console.log(str);
+  //console.log(str2);
+  //console.log(fecha);
   var xmlhttp;
   if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp=new XMLHttpRequest();
@@ -499,9 +499,9 @@ xmlhttp.send("temporada="+str+"&tipo_torneo="+str2+"&fecha="+fecha);
 }
 
 function cargar_torneo_futbolme(str,str2,fecha) {
-  console.log(str);
-  console.log(str2);
-  console.log(fecha);
+  //console.log(str);
+  //console.log(str2);
+  //console.log(fecha);
   var xmlhttp;
   if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp=new XMLHttpRequest();
@@ -526,8 +526,8 @@ xmlhttp.send("temporada="+str+"&tipo_torneo="+str2+"&fecha="+fecha);
 function orden_torneo (id){
   var valor = $('#boton-apuestaMA-'+id).val(); 
   var valor2 = $('#boton-betsapi-'+id).val(); 
-  console.log(valor);
-   console.log(valor2);
+  //console.log(valor);
+   //console.log(valor2);
   var url = "/src/funciones/ordenTorneo.php"; 
   $.ajax({
       type: 'POST',
@@ -547,9 +547,9 @@ function orden_torneo2 (id){
   var valor = $('#boton-visible-'+id).val(); 
   var valor2 = $('#boton-betsapi-'+id).val(); 
   var valor3 = $('#boton-jornadas-'+id).val(); 
-  console.log(valor);
-   console.log(valor2);
-   console.log(valor3);
+  //console.log(valor);
+   //console.log(valor2);
+   //console.log(valor3);
   var url = "/src/funciones/ordenTorneo2.php"; 
   $.ajax({
       type: 'POST',
@@ -605,7 +605,7 @@ function submitCrearReferencia (event, form){
             url: url,
             data: form,
             success: function(data){
-              console.log(data);
+              //console.log(data);
               $('#referencia').html(data);
             },
             error: function(){
@@ -625,14 +625,14 @@ function submitGuardarCalendario (event, form, temporada_id){
             url: url,
             data: form,
             success: function(data){
-              console.log(data);
+              //console.log(data);
               $('#guardarCalendario').html('Calendario guardado con éxito.');
               $.ajax({
                   type: 'POST',
                   url: 'new_calendario/recargarCalendario.php',
                   data: 'temporada_id=' + temporada_id,
                   success: function(data){
-                    console.log(data);
+                    //console.log(data);
                     $('#calendario-central').html(data);
                   },
                   error: function(){
@@ -656,7 +656,7 @@ function borrarCalendario(event, temporada_id){
             url: url,
             data: "temporada_id=" + temporada_id,
             success: function(data){
-              console.log(data);
+              //console.log(data);
               $('#calendario-central').html("<h1>Calendario eliminado</h1>");
             },
             error: function(){
@@ -677,7 +677,7 @@ function insertarEquipo(event, temporada_id, equipo_id, nombre){
             url: url,
             data: "temporada_id=" + temporada_id + "&equipo_id=" + equipo_id,
             success: function(data){
-              console.log(data);
+              //console.log(data);
               $('#equipos-temporada').append('<li id="equipo-temporada-' + equipo_id + '"> ' + nombre + ' - <a href="#" onclick="eliminarEquipo(event, ' + temporada_id + ', ' + equipo_id + ')">quitar</a></li>');
             },
             error: function(){
@@ -697,7 +697,7 @@ function generarCalendarioSubmit (event, form){
             url: url,
             data: form,
             success: function(data){
-              console.log(data);
+              //console.log(data);
               $('#calendario-central').html(data);
             },
             error: function(){
@@ -747,7 +747,7 @@ function editar_campo_ok (event, form, partido_id){
       url: url,
       data: form,
       success: function(data){  
-      console.log(data);      
+      //console.log(data);      
        $('#editCampo-'+partido_id).html('Todo correcto OK');       
       },
       error: function(){
@@ -765,7 +765,7 @@ function vincular_campo_ok (event, form, partidoAPI){
       url: url,
       data: form,
       success: function(data){  
-      console.log(data);      
+      //console.log(data);      
        $('#vinculCampo-'+partidoAPI).html('Vinculado correcto OK');       
       },
       error: function(){
@@ -824,7 +824,7 @@ function editarApiId(event, form, equipo_id) {
       url: url,
       data: form,
       success: function(data){  
-      console.log(data);      
+      //console.log(data);      
        $('#ver-alineacion-'+equipo_id).html('editado');       
       },
       error: function(){
@@ -843,7 +843,7 @@ function grabarTwitter (event, form, equipo_id){
       url: url,
       data: form,
       success: function(data){  
-      console.log(data);      
+      //console.log(data);      
        $('#alerta-'+equipo_id).html('grabado');       
       },
       error: function(){
@@ -861,7 +861,7 @@ $.ajax({
     url: url,
     data: "id=" + id,
     success: function(data){
-      console.log(data);
+      //console.log(data);
       $('#equipos-pais').html(data);
     },
     error: function(){
@@ -880,7 +880,7 @@ $.ajax({
     url: url,
     data: form,
     success: function(data){
-      console.log(data);
+      //console.log(data);
       $('#partido-'+id).html(data);
     },
     error: function(){
@@ -939,7 +939,7 @@ function cargar_equiposU(str) {
 }
 
 function anadir_equipo(str) {
-  console.log(str);
+  //console.log(str);
   $.ajax({
     type: 'POST',
     url: "/src/usuarios/anadirEquipoFavorito.php",
@@ -961,7 +961,7 @@ function insertarMedio (medio_id, partido_id, modo){
         url: url,
         data: "medio_id="+medio_id+"&partido_id="+partido_id+"&modo="+modo,
         success: function(data){
-          console.log(data);
+          //console.log(data);
           if (modo == 0) {
             $('#partido-medios-' + partido_id).append('<span id="partido-medio-' + medio_id + '">' + nombre + ' - <a href="#" onclick="insertarMedio(' + medio_id + ',' + partido_id + ', 1)">quitar</a></span><br />');
           } else {
@@ -984,7 +984,7 @@ function submitActiva (event, form){
             url: url,
             data: form,
             success: function(data){
-              console.log(data);
+              //console.log(data);
               $('#mensaje').html('');
               var dt = new Date();
               var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
@@ -1069,14 +1069,14 @@ function submitFormGol (event, form, partido_id){
   event.preventDefault();
   var temporada = $('#temporada').val();
   var partido = $('#partido').val();
-  console.log(partido);
+  //console.log(partido);
   var url = "/src/funciones/guardarGol.php"; // El script a dónde se realizará la petición.
   $.ajax({
       type: 'POST',
       url: url,
       data: form,
       success: function(data){
-        console.log(data); 
+        //console.log(data); 
         $('#alineaciones-'+partido).trigger('click');             
       },
       error: function(){
@@ -1090,14 +1090,14 @@ function submitFormTarjeta (event, form, partido_id){
   event.preventDefault();
   var temporada = $('#temporada').val();
   var partido = $('#partido').val();
-  console.log(temporada);
+  //console.log(temporada);
   var url = "/src/funciones/guardarTarjeta.php"; // El script a dónde se realizará la petición.
   $.ajax({
       type: 'POST',
       url: url,
       data: form,
       success: function(data){
-        console.log(data);
+        //console.log(data);
        $('#alineaciones-'+partido).trigger('click'); 
              
       },
@@ -1115,7 +1115,7 @@ function QuitarGol (golId, temporada_id, partido_id){
       url: url,
       data: "golId="+golId+"&temporada="+temporada_id+"&partido="+partido_id,
       success: function(data){
-        console.log(data);
+        //console.log(data);
         $('#alineaciones-'+partido_id).trigger('click');  
       },
       error: function(){
@@ -1132,7 +1132,7 @@ function QuitarTarjeta (golId, temporada_id, partido_id){
       url: url,
       data: "tarId="+golId+"&temporada_id="+temporada_id+"&partido_id="+partido_id,
       success: function(data){
-        console.log(data);
+        //console.log(data);
         $('#alineaciones-'+partido_id).trigger('click');  
       },
       error: function(){
@@ -1181,8 +1181,9 @@ function verPartido(id,modo) {
         xmlhttp.send("id=" + id + "&modo=" + modo);
 } 
 
+
 function visor_hoy(temporada_id,comunidad_id) {
-  console.log(temporada_id);
+  //console.log(temporada_id);
     var xmlhttp;
       if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
       xmlhttp=new XMLHttpRequest();
@@ -1198,7 +1199,7 @@ function visor_hoy(temporada_id,comunidad_id) {
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xmlhttp.send("temporada_id="+temporada_id+'&comunidad_id='+comunidad_id);
 }
-
+console.log('Aqui si')
 // Obtenemos los eventos que van pasando en el torneo entre dos equipos
 // Esto cuando estan pasando partidos en vivo
 function obtenerEvento(btnIdLiga){
@@ -1217,9 +1218,9 @@ function obtenerEvento(btnIdLiga){
         // accion cuando este completa la peticion
     },
     success: function (data) {
-      //console.log(data)  
+      console.log(data)  
       let result = JSON.parse(data)
-      console.log(result.results[0].events) 
+      //console.log(result.results[0].events) 
       jQuery('.lista-eventos').empty()     
       for (const iterator of result.results[0].events) {
         jQuery(btnIdLiga).closest('.icons-directos-estaticos').find('.lista-eventos').append(`<li class="list-group-item">${iterator.text}</li>`)        
@@ -1248,7 +1249,7 @@ function obtenerAlineacion(btnIdLiga){
     },
     success: function (data) {
 
-      console.log(data)        
+      //console.log(data)        
       
       jQuery('.listado-locales').empty()
 
@@ -1283,10 +1284,10 @@ function obtenerAlineacion(btnIdLiga){
         for (const iterator of result.results.home.startinglineup) {
 
           jQuery(btnIdLiga).closest('.pull-right').find('.listado-locales').append(
-          `<li class="item-alineacion item-local">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</li>`)
+          `<li class="item-alineacion item-local">${iterator.shirtnumber} - ${iterator.player.name}</li>`)
 
           jQuery(btnIdLiga).closest('.jorge-jorge').find('.listado-locales').append(
-            `<li class="item-alineacion item-local">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</li>`)
+            `<li class="item-alineacion item-local">${iterator.shirtnumber} - ${iterator.player.name}</li>`)
 
           console.log(iterator)          
         }
@@ -1294,10 +1295,10 @@ function obtenerAlineacion(btnIdLiga){
         for (const iterator of result.results.away.startinglineup) {
 
           jQuery(btnIdLiga).closest('.pull-right').find('.listado-visitantes').append(
-          `<li class="item-alineacion item-visitantes">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</li>`)
+          `<li class="item-alineacion item-visitantes">${iterator.shirtnumber} - ${iterator.player.name}</li>`)
 
           jQuery(btnIdLiga).closest('.jorge-jorge').find('.listado-visitantes').append(
-            `<li class="item-alineacion item-visitantes">${iterator.player.name} - ${iterator.pos} - ${iterator.shirtnumber}</li>`)
+            `<li class="item-alineacion item-visitantes">${iterator.shirtnumber} - ${iterator.player.name}</li>`)
           console.log(iterator)          
         }
 
@@ -1332,3 +1333,4 @@ jQuery(document).on('click', '.span-evento-trigger', function (){
 
   obtenerEvento(jQuery(this));
 });
+console.log('Aqui llega');
