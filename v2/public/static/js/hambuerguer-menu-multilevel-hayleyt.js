@@ -16,7 +16,7 @@ function closePushNav() {
     $('body').removeClass('pushNavIsOpen');
 }
 
-$menuTrigger.on('click touchstart', function(e) {
+$menuTrigger.on('click', function(e) {
     e.preventDefault();
     if ($topNav.hasClass('isOpen')) {
         closePushNav();
@@ -25,15 +25,15 @@ $menuTrigger.on('click touchstart', function(e) {
     }
 });
 
-$openLevel.on('click touchstart', function(){
+$openLevel.on('click ', function(){
     $(this).next($navLevel).addClass('isOpen');
 });
 
-$closeLevel.on('click touchstart', function(){
+$closeLevel.on('click ', function(){
     $(this).closest($navLevel).removeClass('isOpen');
 });
-
-$closeLevelTop.on('click touchstart', function(){
+//$closeLevelTop.on('click touchstart', function(){
+$closeLevelTop.on('click', function(){
     closePushNav();
 });
 
