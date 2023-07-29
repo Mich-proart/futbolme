@@ -1219,8 +1219,7 @@ function obtenerEvento(btnIdLiga){
     success: function (data) {
       console.log(data)  
       let result = JSON.parse(data)
-      jQuery('.lista-eventos').empty()  
-      // DESCOMENTAR LAS 4 LINEAS CUANDO LOS ESTILOS ESTEN COMO EL DE 
+      jQuery('.lista-eventos').empty()        
       jQuery('.icons-directos-estaticos').find('.content-eventos').addClass('d-none')
       jQuery('.contenedorIconosPartido').find('.content-eventos').addClass('d-none')
       jQuery(btnIdLiga).closest('.icons-directos-estaticos').find('.content-eventos').removeClass('d-none')
