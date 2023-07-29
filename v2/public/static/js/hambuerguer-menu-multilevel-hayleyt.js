@@ -41,6 +41,14 @@ $('.screen').click(function() {
     closePushNav();
 });
 
+
+/* Abrir y cerrar menu burguer */
+jQuery(document).on('click', '.hamburgerMenu', function (){
+
+    //obtenerEvento(jQuery(this));
+    console.log("nuevo js menu")
+});
+
 /* tambien asi */
 
 /* var $menuTrigger = jQuery('#hamburgerMenu .js-menuToggle');
