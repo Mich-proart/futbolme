@@ -46,7 +46,7 @@ $('.screen').click(function() {
 jQuery(document).on('click', '#hamburgerMenu', function (){
 
     //obtenerEvento(jQuery(this));
-    jQuery('.pushNav.js-topPushNav').toggleClass('isOpen')
+    jQuery('.pushNav.js-topPushNav').addClass('isOpen')
     console.log("nuevo js menu")
 });
 
