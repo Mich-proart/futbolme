@@ -1221,10 +1221,10 @@ function obtenerEvento(btnIdLiga){
       let result = JSON.parse(data)
       jQuery('.lista-eventos').empty()  
       // DESCOMENTAR LAS 4 LINEAS CUANDO LOS ESTILOS ESTEN COMO EL DE 
-      //jQuery('.icons-directos-estaticos').find('.content-eventos').addClass('d-none')
-      //jQuery('.contenedorIconosPartido').find('.content-eventos').addClass('d-none')
-      //jQuery(btnIdLiga).closest('.icons-directos-estaticos').find('.content-eventos').removeClass('d-none')
-      //jQuery(btnIdLiga).closest('.contenedorIconosPartido').find('.content-eventos').removeClass('d-none')
+      jQuery('.icons-directos-estaticos').find('.content-eventos').addClass('d-none')
+      jQuery('.contenedorIconosPartido').find('.content-eventos').addClass('d-none')
+      jQuery(btnIdLiga).closest('.icons-directos-estaticos').find('.content-eventos').removeClass('d-none')
+      jQuery(btnIdLiga).closest('.contenedorIconosPartido').find('.content-eventos').removeClass('d-none')
       for (const iterator of result.results[0].events) {
         jQuery(btnIdLiga).closest('.icons-directos-estaticos').find('.lista-eventos').append(`<li class="list-group-item">${iterator.text}</li>`)        
         jQuery(btnIdLiga).closest('.contenedorIconosPartido').find('.lista-eventos').append(`<li class="list-group-item">${iterator.text}</li>`)                
