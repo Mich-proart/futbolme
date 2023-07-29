@@ -47,7 +47,14 @@ jQuery(document).on('click', '#hamburgerMenu', function (){
 
     //obtenerEvento(jQuery(this));
     jQuery('.pushNav.js-topPushNav').addClass('isOpen')
-    console.log("nuevo js menu")
+    console.log("nuevo js menu abrir")
+});
+
+jQuery(document).on('click', '.closeLevel.js-closeLevelTop', function (){
+
+    //obtenerEvento(jQuery(this));
+    jQuery('.pushNav.js-topPushNav').removeClass('isOpen')
+    console.log("nuevo js menu cerrar")
 });
 
 /* tambien asi */
