@@ -1220,10 +1220,11 @@ function obtenerEvento(btnIdLiga){
       console.log(data)  
       let result = JSON.parse(data)
       jQuery('.lista-eventos').empty()  
-      jQuery('.icons-directos-estaticos').find('.content-eventos').addClass('d-none')
-      jQuery('.contenedorIconosPartido').find('.content-eventos').addClass('d-none')
-      jQuery(btnIdLiga).closest('.icons-directos-estaticos').find('.content-eventos').removeClass('d-none')
-      jQuery(btnIdLiga).closest('.contenedorIconosPartido').find('.content-eventos').removeClass('d-none')
+      // DESCOMENTAR LAS 4 LINEAS CUANDO LOS ESTILOS ESTEN COMO EL DE 
+      //jQuery('.icons-directos-estaticos').find('.content-eventos').addClass('d-none')
+      //jQuery('.contenedorIconosPartido').find('.content-eventos').addClass('d-none')
+      //jQuery(btnIdLiga).closest('.icons-directos-estaticos').find('.content-eventos').removeClass('d-none')
+      //jQuery(btnIdLiga).closest('.contenedorIconosPartido').find('.content-eventos').removeClass('d-none')
       for (const iterator of result.results[0].events) {
         jQuery(btnIdLiga).closest('.icons-directos-estaticos').find('.lista-eventos').append(`<li class="list-group-item">${iterator.text}</li>`)        
         jQuery(btnIdLiga).closest('.contenedorIconosPartido').find('.lista-eventos').append(`<li class="list-group-item">${iterator.text}</li>`)                
@@ -1334,4 +1335,10 @@ jQuery(document).on('click', '.cerrar-alineacion', function(){
 jQuery(document).on('click', '.span-evento-trigger', function (){
 
   obtenerEvento(jQuery(this));
+});
+
+// Ocultar modal de eventos 
+jQuery(document).on('click', '.cerrar-eventos', function (){
+
+  jQuery(this).closest('.content-eventos.de-fila-partido').addClass('d-none')
 });
