@@ -226,7 +226,7 @@ if (@file_exists($f)) {
 			<?php
 			$rutaEscudo=rutaEscudo($value['clubId'],$value['eqId']);
             if (!file_exists(trim($_SERVER['DOCUMENT_ROOT'].$rutaEscudo))) {
-                $rutaEscudo = '/static/img/jugadores/NI.png';
+                $rutaEscudo = '/v2/public/static/img/jugadores/NI.png';
             }?>
             <img src="<?php echo $rutaEscudo; ?>" itemprop="logo" style="width:24px; height:28px; margin-right: 2px">
 		</td>	
@@ -234,7 +234,7 @@ if (@file_exists($f)) {
 			<?php
 			$rutaEquipacion='/static/img/equipaciones/eq'.$value['equipacion_id'].'.png';
             if (!file_exists(trim($_SERVER['DOCUMENT_ROOT'].$rutaEquipacion))) {
-                $rutaEquipacion = '/static/img/jugadores/NI.png';
+                $rutaEquipacion = '/v2/public/static/img/jugadores/NI.png';
             }?>
             <img src="<?php echo $rutaEquipacion; ?>" itemprop="logo" style="width:24px; height:28px; margin-right: 2px">
 		</td>				

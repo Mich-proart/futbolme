@@ -8,7 +8,7 @@ if (isset($_POST['id'])){
     $id=$_POST['id'];
 	if ($f=='j'){ 
 		$fichero='jugador'.$id.'.jpg';
-		$carpeta='../../static/img/jugadores/';
+		$carpeta='/v2/public/static/img/jugadores/'; //OJO LO CAMBIE PARA PROBAR MICH 31/07/2023
 		$_FILES['fu']['name']=$fichero;
 	}
 

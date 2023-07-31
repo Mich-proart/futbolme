@@ -158,7 +158,7 @@ if (file_exists($escudo)) {?>
 <tbody>
 <?php foreach ($jugadores as $jugador) { ?>
 <tr>
-	<td><img src="/static/img/jugadores/jugador<?php echo $jugador['id']; ?>.jpg" width="50" alt="jugador"></td>
+	<td><img src="/v2/public/static/img/jugadores/jugador<?php echo $jugador['id']; ?>.jpg" width="50" alt="jugador"></td>
 	<td><?php echo $jugador['nombre']; ?> <?php echo $jugador['apellidos']; ?></td>
 	<td><?php switch ($jugador['posicion']) {
         case '1':echo 'POR';break;
