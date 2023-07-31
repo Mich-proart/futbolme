@@ -683,7 +683,7 @@ de '.number_format($golesPorPartido,2).' goles por partido, que materializan '.$
                 $nombreTorneo = 'CAMP. DE ESPAÑA - Copa S.M. El Rey';
             }
             if (1 == $temporada_id) {
-                $nombreTorneo = 'PRIMERA DIVISIÓN LaLiga Santander';
+                //$nombreTorneo = 'PRIMERA DIVISIÓN LaLiga Santander';
             }
             if (2 == $temporada_id) {
                 $nombreTorneo = 'SEGUNDA DIVISIÓN LaLiga SmartBank';
