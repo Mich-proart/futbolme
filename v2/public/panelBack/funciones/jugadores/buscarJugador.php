@@ -33,9 +33,9 @@ $link=conectar();
 				<?php
                 $resultado = mysqli_query($link, $consulta);
             while ($fila = mysqli_fetch_assoc($resultado)) {
-            $rutaJugador = '/static/img/jugadores/jugador'.$fila['id'].'.jpg';$existe=1;
+            $rutaJugador = '/v2/public/static/img/jugadores/jugador'.$fila['id'].'.jpg';$existe=1;
 	        if (!file_exists(trim($_SERVER['DOCUMENT_ROOT'].$rutaJugador))) {
-	            $rutaJugador = '/static/img/jugadores/NI.png';$existe=0;
+	            $rutaJugador = '/v2/public/static/img/jugadores/NI.png';$existe=0;
 	        }  ?>
 		<tr bgcolor="white">
 			<td>
