@@ -1341,3 +1341,27 @@ jQuery(document).on('click', '.cerrar-eventos', function (){
 
   jQuery(this).closest('.content-eventos.de-fila-partido').addClass('d-none')
 });
+
+/* Abrir y cerrar menu burguer */
+jQuery(document).on('click', '#hamburgerMenu', function (){
+  jQuery('.pushNav.js-topPushNav').addClass('isOpen')
+  console.log("nuevo js menu abrir")
+});
+
+/* Abrir y cerrar menu burguer */
+jQuery(document).on('click', '.closeLevel.js-closeLevelTop', function (){
+  jQuery('.pushNav.js-topPushNav').removeClass('isOpen')    
+});
+
+/* Abrir y cerrar submenu */
+jQuery(document).on('click', '.openLevel.js-openLevel', function (){
+  jQuery(this).closest('li').find('.pushNav.pushNav_level.js-pushNavLevel').addClass('isOpen')
+})
+
+/* Abrir y cerrar submenu */
+jQuery(document).on('click', '.closeLevel.js-closeLevel', function (){
+
+  jQuery(this).closest('.pushNav.pushNav_level.js-pushNavLevel').removeClass('isOpen')
+
+})
+

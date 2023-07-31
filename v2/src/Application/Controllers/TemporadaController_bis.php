@@ -685,10 +685,10 @@ de '.number_format($golesPorPartido,2).' goles por partido, que materializan '.$
                 //$nombreTorneo = 'PRIMERA DIVISIÓN LaLiga Santander';
             }
             if (2 == $temporada_id) {
-                $nombreTorneo = 'SEGUNDA DIVISIÓN LaLiga SmartBank';
+                //$nombreTorneo = 'SEGUNDA DIVISIÓN LaLiga SmartBank';
             }
             if (214 == $temporada_id) {
-                $nombreTorneo = 'PRIMERA DIVISIÓN FEMENINA FINETWORK LIGA F';
+                //$nombreTorneo = 'PRIMERA DIVISIÓN FEMENINA FINETWORK LIGA F';
             }
             if (1720 == $temporada_id) {
                 $nombreTorneo = 'SEGUNDA DIVISIÓN FEMENINA - Grupo Norte';
