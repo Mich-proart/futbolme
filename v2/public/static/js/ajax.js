@@ -1361,7 +1361,7 @@ jQuery(document).on('click', '.openLevel.js-openLevel', function (){
 /* Abrir y cerrar submenu */
 jQuery(document).on('click', '.closeLevel.js-closeLevel', function (){
 
-  jQuery(this).closest('.pushNav.pushNav_level.js-pushNavLevel').removeClass('isOpen')
+  jQuery('.pushNav.pushNav_level.js-pushNavLevel').removeClass('isOpen')
 
 })
 
