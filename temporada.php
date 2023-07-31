@@ -78,11 +78,11 @@ if ($categoria_torneo_id==17){ $nombreTorneo.=' - Fútbol Sala'; }
 $metaDescripcion = 'Resultados, clasificación, datos, estadísticas, goleadores y zamoras de '.$nombreTorneo.' ('.$temporada.')'.$descJornada;
 
 if (186 == $temporada_id && 1 == $_SESSION['app']) {$nombreTorneo = 'CAMP. DE ESPAÑA - Copa S.M. El Rey';}
-if (1 == $temporada_id) {$nombreTorneo = 'PRIMERA DIVISIÓN LaLiga Santander';}
-if (2 == $temporada_id) {$nombreTorneo = 'SEGUNDA DIVISIÓN LaLiga SmartBank';}
-if (214 == $temporada_id) {$nombreTorneo = 'PRIMERA DIVISIÓN FEMENINA Liga Iberdrola';}
-if (1720 == $temporada_id) {$nombreTorneo = 'SEGUNDA DIVISIÓN FEMENINA - Grupo Norte Reto Iberdrola';}
-if (1721 == $temporada_id) {$nombreTorneo = 'SEGUNDA DIVISIÓN FEMENINA - Grupo Sur Reto Iberdrola';}
+//if (1 == $temporada_id) {$nombreTorneo = 'PRIMERA DIVISIÓN LaLiga Santander';}
+//if (2 == $temporada_id) {$nombreTorneo = 'SEGUNDA DIVISIÓN LaLiga SmartBank';}
+//if (214 == $temporada_id) {$nombreTorneo = 'PRIMERA DIVISIÓN FEMENINA Liga Iberdrola';}
+//if (1720 == $temporada_id) {$nombreTorneo = 'SEGUNDA DIVISIÓN FEMENINA - Grupo Norte Reto Iberdrola';}
+//if (1721 == $temporada_id) {$nombreTorneo = 'SEGUNDA DIVISIÓN FEMENINA - Grupo Sur Reto Iberdrola';}
 
 
 
