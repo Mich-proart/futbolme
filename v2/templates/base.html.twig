@@ -217,9 +217,9 @@
 
         {# {% set torneosNotificaciones = anadirAArray(torneosNotificaciones, 131) %} #}
 
-        var torneosNotificaciones = [{{ torneosNotificaciones|join(',') }}];
+        //var torneosNotificaciones = [{{ torneosNotificaciones|join(',') }}];
 
-        function getNotificaciones1() {
+        /*function getNotificaciones1() {
             $.ajax({
                 type: "POST",
                 url: "/z_notificaciones1",
@@ -234,7 +234,7 @@
 
         setInterval(function () {
             getNotificaciones1();
-        },60000);
+        },60000);*/
     </script>
     #}
 
