@@ -203,40 +203,6 @@
 #}
 
 
-{#
-
-    <script type="text/javascript">
-        {% set torneosNotificaciones = [] %}
-
-        {% set torneosNotificaciones = anadirAArray(torneosNotificaciones, 1) %}
-        {% set torneosNotificaciones = anadirAArray(torneosNotificaciones, 2) %}
-
-        {% for i in 2615..2624 %}
-            {% set torneosNotificaciones = anadirAArray(torneosNotificaciones, i) %}
-        {% endfor %}
-
-        {# {% set torneosNotificaciones = anadirAArray(torneosNotificaciones, 131) %} #}
-
-        //var torneosNotificaciones = [{{ torneosNotificaciones|join(',') }}];
-
-        /*function getNotificaciones1() {
-            $.ajax({
-                type: "POST",
-                url: "/z_notificaciones1",
-                cache: false,
-                data: {'torneos': JSON.stringify(torneosNotificaciones)}
-            })
-            .done(function (data) {
-                $('#NotificacionesFinales').html(data);
-                //vamosCracks();
-            });
-        }
-
-        setInterval(function () {
-            getNotificaciones1();
-        },60000);*/
-    </script>
-    #}
 
     {% if not getConstante('__ES_MOBILE__') %}
     <!-- Hotjar Tracking Code for https://futbolme.com/ -->
