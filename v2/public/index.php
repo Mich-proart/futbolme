@@ -52,10 +52,10 @@ if (true && !in_array($_SERVER['SERVER_NAME'], ['localhost','version2'])) {
         $segundosCache = 20;
 
         $rutasCacheables = [
-            [
+            /* [
                 'url' => '/z_notificaciones1',
                 'segundos' => 20
-            ],
+            ], */
             [
                 'url' => '/partidos-hoy/',
                 'segundos' => $segundosCache

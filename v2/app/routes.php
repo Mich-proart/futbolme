@@ -80,12 +80,12 @@ return function (App $app) {
     })->setName('z_play_clasi');
 
     #$app->post('/z_notificaciones1', function (Request $request, Response $response, $args) {
-    $app->map(['GET', 'POST'],  '/z_notificaciones1', function (Request $request, Response $response, $args) {
+    /* $app->map(['GET', 'POST'],  '/z_notificaciones1', function (Request $request, Response $response, $args) {
 
         $miFutbolmeController = new \App\Application\Controllers\MiFutbolmeController($this);
         return $miFutbolmeController->zNotificaciones1($request, $response, $args);
 
-    })->setName('z_notificaciones1');
+    })->setName('z_notificaciones1'); */
 
 
     $app->group('/resultados-directo/torneo/{slug}/{idTorneo}', function (Group $group) {
