@@ -1217,7 +1217,7 @@ function obtenerEvento(btnIdLiga){
         // accion cuando este completa la peticion
     },
     success: function (data) {
-      console.log(data)  
+      //console.log(data)  
       let result = JSON.parse(data)
       jQuery('.lista-eventos').empty()        
       jQuery('.icons-directos-estaticos').find('.content-eventos').addClass('d-none')
@@ -1225,6 +1225,7 @@ function obtenerEvento(btnIdLiga){
       jQuery(btnIdLiga).closest('.icons-directos-estaticos').find('.content-eventos').removeClass('d-none')
       jQuery(btnIdLiga).closest('.contenedorIconosPartido').find('.content-eventos').removeClass('d-none')
       for (const iterator of result.results[0].events) {
+        console.log(iterator);
         if (jQuery(btnIdLiga).hasClass('d-custom')) {
           console.log('si hay eventos');
           jQuery(this).addClass("d-inline-block");
@@ -1296,7 +1297,7 @@ function obtenerAlineacion(btnIdLiga){
           jQuery(btnIdLiga).closest('.jorge-jorge').find('.listado-locales').append(
             `<li class="item-alineacion item-local">${iterator.shirtnumber} - ${iterator.player.name}</li>`)
 
-          console.log(iterator)          
+          //console.log(iterator)          
         }
 
         for (const iterator of result.results.away.startinglineup) {
@@ -1306,7 +1307,7 @@ function obtenerAlineacion(btnIdLiga){
 
           jQuery(btnIdLiga).closest('.jorge-jorge').find('.listado-visitantes').append(
             `<li class="item-alineacion item-visitantes">${iterator.shirtnumber} - ${iterator.player.name}</li>`)
-          console.log(iterator)          
+          //console.log(iterator)          
         }
 
         jQuery(btnIdLiga).closest('.pull-right').find('.content-alineaciones').removeClass('d-none').addClass('d-block')
@@ -1350,7 +1351,7 @@ jQuery(document).on('click', '.cerrar-eventos', function (){
 /* Abrir y cerrar menu burguer */
 jQuery(document).on('click', '#hamburgerMenu', function (){
   jQuery('.pushNav.js-topPushNav').addClass('isOpen')
-  console.log("nuevo js menu abrir")
+  //console.log("nuevo js menu abrir")
 });
 
 /* Abrir y cerrar menu burguer */
