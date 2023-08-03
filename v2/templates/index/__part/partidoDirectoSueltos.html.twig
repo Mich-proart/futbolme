@@ -36,7 +36,7 @@
                     <div class="col-12">
                         <div class="row">
 
-                        <div class="nopadding col-3 h25 {{ partido.colorFondo }}">
+                        <div class="nopadding col-lg-3 col-2 h25 {{ partido.colorFondo }}">
                             {% if partido.estado_partido == 2 or partido.estado_partido == 6 or partido.estado_partido == 1 %}
                                 <div class="horaPrevistaPartido">
                                     {% if partido.hora_prevista[-2:] == '11' %}
@@ -50,7 +50,7 @@
                             {% endif %}
                         </div>
 
-                        <div class="col-6 h25 text-center">
+                        <div class="col-lg-6 col-5 px-lg-3 px-0 h25 text-center">
                             {% if jornadaActiva is defined and jornadaActiva > 0 %}
                                 <i style='color:dimgray'>
                                     &nbsp;&nbsp;{{ jornadaTxt }}
@@ -164,19 +164,19 @@
                                     {% endif %}
 
                                     {% if partido.estado_partido == 6 %}
-                                        <p class="timeresult" style=" color: orange !important">Descanso</p>
+                                        <p class="timeresult mb-0" style=" color: orange !important">Descanso</p>
                                     {% elseif partido.estado_partido == 7 %}
-                                        <p class="timeresult" style="color: #E81346;">Penaltis</p>
+                                        <p class="timeresult mb-0" style="color: #E81346;">Penaltis</p>
                                     {% elseif partido.estado_partido == 8 %}
-                                        <p class="timeresult" style="color: dodgerblue;">Prórroga</p>
+                                        <p class="timeresult mb-0" style="color: dodgerblue;">Prórroga</p>
                                     {% elseif partido.estado_partido == 9 %}
-                                        <p class="timeresult" style="color: #9EFF23;">{{ t.tiempo|raw }}</p>
+                                        <p class="timeresult mb-0" style="color: #9EFF23;">{{ t.tiempo|raw }}</p>
                                     {% elseif partido.estado_partido == 10 %}
-                                        <p class="timeresult" style="color: #9EFF23;">{{ t.tiempo }}</p>
+                                        <p class="timeresult mb-0" style="color: #9EFF23;">{{ t.tiempo }}</p>
                                     {% elseif partido.estado_partido == 11 %}
-                                        <p class="timeresult" style="color: orange;">Desc.Prórr.</p>
+                                        <p class="timeresult mb-0" style="color: orange;">Desc.Prórr.</p>
                                     {% elseif partido.estado_partido == 2 %}
-                                        <p class="timeresult" style="color: #9EFF23; !important">{{ t.tiempo }}</p>
+                                        <p class="timeresult mb-0" style="color: #9EFF23; !important">{{ t.tiempo }}</p>
                                     {% endif %}
 
                                     {% endif %}
@@ -185,7 +185,7 @@
                         </div>
 
 
-                        <div class="contenedorIconosPartido col-3 nopadding h25">
+                        <div class="contenedorIconosPartido col-lg-3 col-5 nopadding h25">
                             <div class="pull-right icons-directos-estaticos" style="margin-right: 4px !important">
 
                                 {{ icono|raw }}

@@ -29,7 +29,7 @@
         {% endif %}
 
         <div class="col-12 contenedorPrimeraLinea">
-            <div class="row">
+            <div class="row align-items-center">
 
                 {#
                     <div class="nopadding col-xs-2 whitebox h25 <?php echo $colorFondo; ?>">
@@ -252,40 +252,40 @@
 
                             {% if partido.estado_partido == 6 %}
 
-                                {# <p class="timeresult" style="background-color: #ffe400; color: maroon !important">Descanso</p> #}
-                                <p class="timeresult" style=" color: orange !important">Descanso</p>
+                                {# <p class="timeresult mb-0" style="background-color: #ffe400; color: maroon !important">Descanso</p> #}
+                                <p class="timeresult mb-0" style=" color: orange !important">Descanso</p>
 
                             {% elseif partido.estado_partido == 7 %}
 
-                                {#  <p class="timeresult" style="background-color:#2E2E2E">Penaltis</p>#}
+                                {#  <p class="timeresult mb-0" style="background-color:#2E2E2E">Penaltis</p>#}
 
-                                <p class="timeresult" style="color: #E81346;">Penaltis</p>
+                                <p class="timeresult mb-0" style="color: #E81346;">Penaltis</p>
 
 
                             {% elseif partido.estado_partido == 8 %}
 
-                                {# <p class="timeresult" style="background-color:blue">Prórroga</p> #}
-                                <p class="timeresult" style="color: dodgerblue;">Prórroga</p>
+                                {# <p class="timeresult mb-0" style="background-color:blue">Prórroga</p> #}
+                                <p class="timeresult mb-0" style="color: dodgerblue;">Prórroga</p>
 
                             {% elseif partido.estado_partido == 9 %}
 
-                                {# <p class="timeresult" style="background-color: {{ t.color }}">{{ t.tiempo }}</p> #}
-                                <p class="timeresult" style="color: #9EFF23;">{{ t.tiempo }}</p>
+                                {# <p class="timeresult mb-0" style="background-color: {{ t.color }}">{{ t.tiempo }}</p> #}
+                                <p class="timeresult mb-0" style="color: #9EFF23;">{{ t.tiempo }}</p>
 
                             {% elseif partido.estado_partido == 10 %}
 
-                                {# <p class="timeresult" style="background-color: {{ t.color }}">{{ t.tiempo }}</p> #}
-                                <p class="timeresult" style="color: #9EFF23;">{{ t.tiempo }}</p>
+                                {# <p class="timeresult mb-0" style="background-color: {{ t.color }}">{{ t.tiempo }}</p> #}
+                                <p class="timeresult mb-0" style="color: #9EFF23;">{{ t.tiempo }}</p>
 
                             {% elseif partido.estado_partido == 11 %}
 
-                                {# <p class="timeresult tryellow">Desc.Prórr.</p> #}
-                                <p class="timeresult" style="color: orange;">Desc.Prórr.</p>
+                                {# <p class="timeresult mb-0 tryellow">Desc.Prórr.</p> #}
+                                <p class="timeresult mb-0" style="color: orange;">Desc.Prórr.</p>
 
                             {% elseif partido.estado_partido == 2 %}
 
-                                {# <p class="timeresult" style="background-color: {{ t.color }}; color: {{ colorTexto }} !important">{{ t.tiempo }}</p> #}
-                                <p class="timeresult" style="color: #9EFF23; !important">{{ t.tiempo }}</p>
+                                {# <p class="timeresult mb-0" style="background-color: {{ t.color }}; color: {{ colorTexto }} !important">{{ t.tiempo }}</p> #}
+                                <p class="timeresult mb-0" style="color: #9EFF23; !important">{{ t.tiempo }}</p>
 
                             {% endif %}
                         </div>
