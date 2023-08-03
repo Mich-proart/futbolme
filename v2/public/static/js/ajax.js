@@ -1225,11 +1225,11 @@ function obtenerEvento(btnIdLiga){
       jQuery(btnIdLiga).closest('.icons-directos-estaticos').find('.content-eventos').removeClass('d-none')
       jQuery(btnIdLiga).closest('.contenedorIconosPartido').find('.content-eventos').removeClass('d-none')
       for (const iterator of result.results[0].events) {
+        console.log('si hay eventos');
         console.log(iterator);
-        if (jQuery(btnIdLiga).hasClass('d-custom')) {
-          console.log('si hay eventos');
-          jQuery(this).addClass("d-inline-block");
-        }
+                  
+        jQuery(btnIdLiga).addClass("d-inline-block");
+        
         
         jQuery(btnIdLiga).closest('.icons-directos-estaticos').find('.lista-eventos').append(`<li class="list-group-item">${iterator.text}</li>`)        
         jQuery(btnIdLiga).closest('.contenedorIconosPartido').find('.lista-eventos').append(`<li class="list-group-item">${iterator.text}</li>`)                

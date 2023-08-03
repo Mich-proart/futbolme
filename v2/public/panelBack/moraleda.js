@@ -7,7 +7,8 @@ function submitPartido (event, form, id){
     var url = "moraleda.php";
     var txt = "Partido editado.";
     
-    console.log(txt);
+    
+    .log(txt);
     $.ajax({
         type: 'POST',
         url: url,

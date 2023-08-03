@@ -359,10 +359,10 @@ require_once 'includes/contenedorInf.php';
 
 function extraerDatosFed(temporada_id,fase,c,g,j,co,x){
 
-  console.log(temporada_id);
-  console.log(c);
-  console.log(g);
-  console.log(j);
+  //console.log(temporada_id);
+  //console.log(c);
+  //console.log(g);
+  //console.log(j);
         
    $.ajax({
         type: 'POST',
