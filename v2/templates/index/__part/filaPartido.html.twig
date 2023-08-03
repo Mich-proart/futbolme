@@ -35,7 +35,7 @@
                     <div class="nopadding col-xs-2 whitebox h25 <?php echo $colorFondo; ?>">
                 #}
 
-                <div class="nopadding col-3 h25">
+                <div class="nopadding col-lg-3 col-2 h25">
                     {% if pagina == 'equipo' %}
                         <div class="horaPrevistaPartido">
                             {% set fechaTrozos = partido.fecha|split('-') %}
@@ -54,7 +54,7 @@
                     {% endif %}
                 </div>
 
-                <div class="col-6 nopadding h25 text-center">
+                <div class="col-lg-6 col-5 px-lg-3 px-0 nopadding h25 text-center">
 
                     {% if pagina == 'index' or pagina == 'equipo' or pagina == 'seleccion' and partido.estado_partido != 2 and partido.estado_partido != 6 %}
 
@@ -292,7 +292,7 @@
                     {% endif %}
                 </div>
 
-                <div class="contenedorIconosPartido col-3 nopadding h25 jorge-jorge">
+                <div class="contenedorIconosPartido col-lg-3 col-5 nopadding h25 jorge-jorge">
 
                     {{ partido.txtTV|raw }}
 
