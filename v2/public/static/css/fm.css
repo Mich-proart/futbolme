@@ -59,6 +59,10 @@ h3.subtitulo {
     max-width: 1470px;
 }
 
+.span-evento-trigger{
+    max-width: 32px;
+}
+
 .content-alineaciones,
 .content-eventos{
     position: fixed;
