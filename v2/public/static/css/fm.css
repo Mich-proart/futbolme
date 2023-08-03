@@ -63,6 +63,10 @@ h3.subtitulo {
     max-width: 22px;
 }
 
+.d-custom{
+    display: none;
+}
+
 .content-alineaciones,
 .content-eventos{
     position: fixed;
