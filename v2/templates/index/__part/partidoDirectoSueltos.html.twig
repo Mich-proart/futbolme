@@ -192,7 +192,7 @@
 
                                 <img class="span-id-torneo-alineacion" attr-id-evento="{{ partido.id }}" src="/static/img/icon-alienacion-white.svg" alt="Partidos alineaciones" style="cursor: pointer;">                                
 
-                                <img class="span-evento-trigger img-fluid" attr-id-evento="{{ partido.id }}" src="/static/img/balon-eventos.png" alt="Partidos eventos" >
+                                <img class="span-evento-trigger img-fluid" attr-id-evento="{{ partido.id }}" src="/static/img/balon-eventos.png" alt="Partidos eventos" style="cursor: pointer;">
 
                                 <a class="simboloMasPartido jorge-f-clase" href="javascript:mostrarColor({{ partido.id }});" class="d-inline-block">
                                     {% if partido.enJuego %}
@@ -205,9 +205,9 @@
                                 <div class="d-none content-eventos de-partido-suelto" style="width: 500px;height: 500px;">
                                     <div class="d-flex align-items-center justify-content-between w-100">
                                         <h3 class="d-block">Eventos</h3>
-                                        <span class="cerrar-alineacion display-4" style="cursor: pointer;">&times;</span>
+                                        <span class="cerrar-eventos display-4" style="cursor: pointer;">&times;</span>
                                     </div>
-                                    <ul class="list-group lista-eventos"></ul>
+                                    <ul class="list-group lista-eventos text-left"></ul>
                                 </div>
                                 
 
