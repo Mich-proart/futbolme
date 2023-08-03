@@ -59,7 +59,8 @@ h3.subtitulo {
     max-width: 1470px;
 }
 
-.content-alineaciones{
+.content-alineaciones,
+.content-eventos{
     position: fixed;
     top: 0;
     left: 0;
@@ -70,12 +71,14 @@ h3.subtitulo {
     height: 100vh;
 }
 
+
 @media screen and (max-width: 768px) {
     #contenedorGlobal {
         margin-top: 40px;
     }
 
-    .content-alineaciones{
+    .content-alineaciones,
+    .content-eventos{
         position: fixed;
         top: 0;
         left: 0;
