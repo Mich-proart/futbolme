@@ -59,6 +59,16 @@ h3.subtitulo {
     max-width: 1470px;
 }
 
+.cajaGlobalPartidos.partidosEnJuego img.span-evento-trigger,
+.cajaGlobalPartidos.partidosEnJuego img.span-id-torneo-alineacion{
+    filter: contrast(1);
+}
+
+.cajaGlobalPartidos img.span-evento-trigger,
+.cajaGlobalPartidos img.span-id-torneo-alineacion{
+    filter: contrast(0);
+}
+
 .span-evento-trigger{
     max-width: 22px;
 }
