@@ -2,7 +2,11 @@
 define('_PANEL_', 1);
 require_once '../includes/config.php';
 
-$fechaSis = date('Y-m-d H:i:s');
+date_default_timezone_set('Europe/Madrid');
+$timezone = new DateTimeZone('Europe/Madrid');
+$currentTime = new DateTime('now', $timezone);
+//$fechaSis = date('Y-m-d H:i:s');
+$fechaSis = $currentTime->format('Y-m-d H:i:s');
 $fechaSis = date_create($fechaSis); //hora actual
 
 $comunidad_id=$_POST['comunidad_id'];

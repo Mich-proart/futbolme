@@ -292,3 +292,5 @@ class Twig implements ArrayAccess
         return new ArrayIterator($this->defaultVariables);
     }
 }
+
+

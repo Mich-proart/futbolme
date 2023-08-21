@@ -21,7 +21,7 @@ $resultado = mysqli_fetch_all($resultadoSQL, MYSQLI_ASSOC);
 
 $horas=array();
 $partidos=0;
-
+date_default_timezone_set('Europe/Madrid');
 foreach ($resultado as $key => $value) {	
 	$hora=substr($value['hora_prevista'],0,2);
 	//if ($hora=='09'){ imp($value); }

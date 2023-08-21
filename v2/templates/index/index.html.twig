@@ -1,5 +1,195 @@
 {% extends 'base.html.twig' %}
+{% block contenedorCentral %}
 
+    <div class="row" style="margin: 0px;">
+        <div id="contenedorLiveScore" class="col-12">
+            <div class="contenedorSelectorFechaLiveScore">
+                <a {% if categoriaArg != '' and ctArg != '' %} rel="nofollow" {% endif %} href="{% if categoriaArg != '' and ctArg != '' %}{{ full_url_for('home_fecha_categoria', { fecha: diaAnterior|date('Y-m-d'), categoria: categoriaArg, ct:ctArg }) }}{% else %}{{ full_url_for('home_fecha', { fecha: diaAnterior|date('Y-m-d') }) }}{% endif %}" class="boldfont cajasLiveScore selectorFechaLiveScore selectorFechaLiveScoreIzquierda">
+                    &lt; {{ diaAnterior|date('d/m') }}
+                </a>
+            </div>
+
+            <div class="contenedorCajaCentralLiveScore">
+                <div class="cajasLiveScore cajaCentralLiveScore text-center">
+                    {% if viendoHoy %}
+                        LIVESCORE
+                    {% else %}
+                        {{ diaVer|date('d') }} de {{ diaVer|date('F') }} - <a href="{{ full_url_for('home') }}">Ver hoy</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="contenedorSelectorFechaLiveScore">
+                <a {% if categoriaArg != '' and ctArg != '' %} rel="nofollow" {% endif %} href="{% if categoriaArg != '' and ctArg != '' %}{{ full_url_for('home_fecha_categoria', { fecha: diaSiguiente|date('Y-m-d'), categoria: categoriaArg, ct:ctArg }) }}{% else %}{{ full_url_for('home_fecha', { fecha: diaSiguiente|date('Y-m-d') }) }}{% endif %}" class="boldfont cajasLiveScore selectorFechaLiveScore selectorFechaLiveScoreDerecha">
+                    {{ diaSiguiente|date('d/m') }} &gt;
+                </a>
+            </div>
+        </div>
+
+        <div id="contenedorSubCabeceraLivescore" class="col-12">
+            <div id="contenedorBotonesFiltroLivescore" class="col-12">
+                {% if categorias|length > 1 %}
+
+                    {% for key, value in categorias %}
+
+                        {% if value == 1 %}
+
+                            {% set txtCat = 'Principal' %}
+                            {% set titolCat = 'Partidos de Primera y Segunda División, FIFA, UEFA y Amistosos' %}
+
+                        {% elseif value == 2 %}
+
+                            {% set txtCat = 'Primera RFEF' %}
+                            {% set titolCat = 'Partidos de Primera RFEF' %}
+
+                        {% elseif value == 3 %}
+
+                            {% set txtCat = 'Copa RFEF' %}
+                            {% set titolCat = 'Partidos de la COPA RFEF' %}
+
+                        {% elseif value == 4 %}
+
+                            {% set txtCat = 'Segunda Fed.' %}
+                            {% set titolCat = 'Partidos de Segunda Federación' %}
+
+                        {% elseif value == 5 %}
+
+                            {% set txtCat = 'Tercera Fed.' %}
+                            {% set titolCat = 'Partidos de Tercera Federación' %}
+
+                        {% elseif value == 7 %}
+
+                            {% set txtCat = 'Autonómica' %}
+                            {% set titolCat = 'Partidos de los torneos de ámbito regional' %}
+
+                        {% elseif value == 8 %}
+
+                            {% set txtCat = 'Juveniles' %}
+                            {% set titolCat = 'Partidos para hoy de los equipos de DHJ y LNJ' %}
+
+                        {% elseif value == 9 %}
+
+                            {% set txtCat = 'Femenino' %}
+                            {% set titolCat = 'Partidos para hoy de las ligas femeninas de categoría nacional' %}
+
+                        {% elseif value == 10 %}
+
+                            {% set txtCat = 'Europa' %}
+                            {% set titolCat = 'Partidos para hoy de las ligas europeas' %}
+
+                        {% elseif value == 22 %}
+
+                            {% set txtCat = 'Fútbol Sala' %}
+                            {% set titolCat = 'Partidos para hoy de Fútbol Sala' %}
+
+                        {% endif %}
+
+                        <a href="{% if viendoHoy %}{{ full_url_for('partidosHoy', { categoria: ponerGuion(txtCat), ct:value }) }}{% else %}{{ full_url_for('home_fecha_categoria', { fecha: diaVer|date('Y-m-d'), categoria: ponerGuion(txtCat), ct:value }) }}{% endif %}" class="botonFiltroLivescore{% if ctArg == value %} activa{% endif %}" title="{{ txtCat }}" style="margin-bottom: 5px;">
+                            {{ txtCat }}
+
+                            {% if enJuegoCat[value] is defined %}
+                                <span class="nPartidos badge badge-danger">
+                                    {{ enJuegoCat[value]|length }}
+                                </span>
+                            {% endif %}
+                        </a>
+
+                    {% endfor %}
+
+                {% endif %}
+            </div>
+             <span class="float-right col-md-4 fechaActualizado">
+                Actualizado a las {{ horaActual }}
+            </span> 
+        </div>
+
+        <div class="row"></div>
+
+        <div class="cajasPartidosHoy" style="padding: 0px;">
+            <p>
+                <span style="color:black;">Partidos para hoy: {{ nTotalPartidosHoy }}</span> -
+                <span style="color:red;">En juego: {{ nPartidosDirecto }}</span>
+            </p>
+
+            {#
+            <p>
+                * No se contabilizan en estos datos los partidos de regional (excepto preferentes), ni los partidos de fútbol base y femenino que no tengan categoría nacional</p>
+            #}
+
+        </div>
+        
+    </div>
+
+    <div>
+
+        {% if partidosDirecto|length > 0 %}
+            {% include 'index/__part/contenidoDirecto.html.twig' %}
+        {% endif %}
+
+        {% if partidosPromocion|length > 0 %}
+           {# {% include 'index/__part/contenidoPromocion.html.twig' %} #}
+        {% endif %}
+
+        {% if current_url == 'https://futbolme.com/' %}
+            {% if partidosSueltos|length > 0 %}
+                {% include 'index/__part/contenidoSueltos.html.twig' %}
+                <div class="col-12">
+                    {% if getConstante('__ES_MOBILE__') %}
+                        <div id="mobile-rectangle-infinite-fallback-wrapper"></div>
+                    {% else %}
+                        <div id="desktop-leaderboard-atf-fallback-wrapper" style="margin-top: 135px; margin-bottom: 25px;"></div>
+                    {% endif %}
+                </div> 
+            {% endif %}
+        {% endif %}
+
+        {#
+        {% if esPortada is defined and "now"|date("d/m/Y") == '21/12/2020' %}
+            {% set tituloWidget = 'Las noticias de Futbolme' %}
+            {% set longitudNoticiaWidget = 800 %}
+            {% set noticiasWidget = obtenerNoticiasPortadaPosiciones([1, 3]) %}
+
+            {% if noticiasWidget|length > 0 %}
+                <div class="row" style="display:block; clear:both; margin-bottom: 15px; padding-top: 15px;">
+                    <div class="col-12">
+                        {% include 'noticias/widgetNoticias.html.twig' %}
+                    </div>
+                </div>
+            {% endif %}
+
+            {% set longitudNoticiaWidget = 150 %}
+
+        {% else %}
+            {% set tituloWidget = 'Las noticias de Futbolme' %}
+            {% set noticiasWidget = obtenerNoticiasPortadaPosiciones([3]) %}
+
+            {% if noticiasWidget|length > 0 %}
+                <div class="row" style="display:block; clear:both; margin-bottom: 15px; padding-top: 15px;">
+                    <div class="col-12">
+                        {% include 'noticias/widgetNoticias.html.twig' %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+        #}
+
+        
+
+
+        {% include 'index/__part/contenidoIndex.html.twig' %}
+
+
+        {# {% if 'now'|date('N') < 6 %} #}
+            {% include 'index/__part/fichajes.html.twig' %}
+        {# {% endif %} #}
+
+    </div>
+
+{% endblock %}
+
+{% block contenedorDerecha %}
+    {# {% include 'index/__part/fichajes.html.twig' %} #}
+{% endblock %}
 
 {% block contenedorIzquierda %}
 
@@ -7,800 +197,41 @@
 
 {% endblock %}
 
-
-{% block contenedorCentral %}
-
-    <div class="col-12">
-        <div class="row">
-            <ul class="col-12 nav nav-tabs menuListGrises" role="tablist">
-                <li class="text-center {% if modelo == 'Partido' %} activa{% endif %}" style="margin-left: 5px;">
-                    <a class="btn btn-primary" href="{{ full_url_for('partido_index', {
-                        'idPartido' : partido_id,
-                        'slug' : slug,
-                    }) }}">Partido</a>
-                </li>
-                <li class="text-center {% if modelo == 'Enfrentamientos' %} activa{% endif %}" style="margin-left: 5px;">
-                    <a class="btn btn-primary" href="{{ full_url_for('partido_enfrentamientos', {
-                        'idPartido' : partido_id,
-                        'slug' : slug,
-                    }) }}">Enfrentamientos</a>
-                </li>
-                {#
-                <li class="text-center {% if modelo == 'Enfrentamientos' %} activa{% endif %}" style="margin-left: 5px;">
-                    <a class="btn btn-primary" href="{{ full_url_for('partido_enfrentamientos', {
-                        'idPartido' : partido_id,
-                        'slug' : slug,
-                    }) }}">Enfrentamientos</a>
-                </li>
-                #}
-            </ul>
-        </div>
-    </div>
-
-    {% if modelo == 'Enfrentamientos' %}
-
-        <style type="text/css">
-            @media screen and (min-width: 500px) {
-                #tabsEnfrentamientosContent td {
-                    font-size: 15px !important;
-                }
-            }
-        </style>
-
-        <div class="col-12 contenedorBlancoBordesRedondeados" style="margin-top: 25px; padding: 0px;">
-        <h1>ENFRENTAMIENTOS ENTRE {{ partido.local }} Y {{ partido.visitante }}</h1>
-
-            <!--
-
-            rutaFicheroEnfrentamientos: {{ rutaFicheroEnfrentamientos }}
-            existeFicheroEnfrentamientos: {{ existeFicheroEnfrentamientos }}
-
-            -->
-
-
-        <ul id="tabsEnfrentamientos" class="nav nav-tabs menuListGrises" role="tablist" style="margin-bottom: 30px; margin-top: 20px;">
-            {% set i = 0 %}
-            {% for pestanya in varEnfrentamientos.pestanyas %}
-
-                {% set slugPestanya = ponerGuion(pestanya)|replace({'.': '-'}) %}
-
-                <li class="text-center">
-                    <a class="btn btn-primary{% if i == 0 %} activa{% endif %}" id="{{ slugPestanya }}-tab" data-toggle="tab" href="#{{ slugPestanya }}" role="tab" aria-controls="{{ slugPestanya }}" aria-selected="{% if i == 0 %}true{% else %}false{% endif %}">{{ pestanya }}</a>
-                </li>
-
-                {% set i = i + 1 %}
-
-            {% endfor %}
-        </ul>
-
-
-        <div id="tabsEnfrentamientosContent" class="col-12 tab-content" style="display: inline-block; padding-bottom: 25px; padding: 0px;">
-            {% set i = 0 %}
-            {% for key,tor in varEnfrentamientos %}
-
-                    {% if key == 0 %}
-
-                        <div class="tab-pane fade show active" id="actualidad" role="tabpanel" aria-labelledby="actualidad-tab">
-
-                            <div class="col-12" style="margin-bottom: 20px;">
-                                <h2 class="subtitulo">Actualidad - {{tor.nombre}}</h2>
-                            </div>
-
-                            {% for partido in tor.partidos %}
-
-                                {% set partido = anadirAArrayKey(partido, 'localCorto', partido.local) %}
-                                {% set partido = anadirAArrayKey(partido, 'visitanteCorto', partido.visitante) %}
-
-                                {% include 'index/__part/filaPartido.html.twig' %}
-
-                            {% endfor %}
-
-                        </div>
-
-                    {% elseif key>0 %}
-                        {#  style="display: none;" #}
-
-                        {% set slugPestanya = ponerGuion(tor.nombre)|replace({'.': '-'}) %}
-
-                        <div class="tab-pane fade" id="{{ slugPestanya }}" role="tabpanel" aria-labelledby="{{ slugPestanya }}-tab">
-
-                            <div class="col-12" style="margin-top: 20px; margin-bottom: 20px;">
-                                <h2 class="subtitulo">{{ tor.nombre }} - {{ tor.totalPartidos }} ENFRENTAMIENTOS</h2>
-                            </div>
-
-                            <table class="table">
-
-                                {% for k,stad in tor.estadisticas %}
-
-                                    <tr style="background: #7bdb00; color: #FFFFFF;"><td colspan="10">
-
-                                            {% if k == 'local' %}
-
-                                                {{partido.local}} <br />
-
-                                            {% else %}
-
-                                                {{partido.visitante}}
-
-                                            {% endif %}
-
-                                        </td></tr>
-
-                                    <tr style="background: #B9BBBE; color: #434343;"><td colspan="5">Local</td><td colspan="5">Visitante</td></tr>
-                                    <tr style="font-size: 13px;"><td>G</td><td>E</td><td>P</td><td>GF</td><td>GC</td>
-                                        <td>G</td><td>E</td><td>P</td><td>GF</td><td>GC</td></tr>
-
-
-                                    <tr style="font-size: 13px;"><td>{{stad.vL }}</td>
-                                        <td>{{stad.eL}}</td>
-                                        <td>{{stad.dL}}</td>
-                                        <td>{{stad.gfL}}</td>
-                                        <td>{{stad.gcL}}</td>
-
-                                        <td>{{stad.vV}}</td>
-                                        <td>{{stad.eV}}</td>
-                                        <td>{{stad.dV}}</td>
-                                        <td>{{stad.gfV}}</td>
-                                        <td>{{stad.gcV}}</td></tr>
-
-                                {% endfor %}
-
-                            </table>
-
-                            <table class="table">
-
-                                {% set temporadaMostrando = '' %}
-
-                                {% for k,partido in tor.partidos %}
-                               
-
-                                    {% set colorL = 'black' %}
-                                    {% set colorV = 'black' %}
-
-
-                                    {% if partido.clasificado==1 %}
-                                        {% set colorL = 'green' %}
-                                        {% set colorV = 'red' %}
-                                    {% endif %}
-
-                                    {% if partido.clasificado==2 %}
-                                        {% set colorL = 'red' %}
-                                        {% set colorV = 'green' %}
-                                    {% endif %}
-
-
-                                    {% if temporadaMostrando != partido.enlace_nombre %}
-
-                                        {% set temporadaMostrando = partido.enlace_nombre %}
-
-                                        {# {% set segundoNumeroTemporada = partido.enlace_nombre[2:]+1 %} #}
-                                        {% set segundoNumeroTemporada = partido.enlace_nombre[-2:] + 1 %}
-
-                                        {% if segundoNumeroTemporada < 10 %}
-                                            {% set segundoNumeroTemporada = '0' ~ segundoNumeroTemporada %}
-                                        {% elseif segundoNumeroTemporada == 100 %}
-                                            {% set segundoNumeroTemporada = '00' %}
-                                        {% endif %}
-
-
-                                        <tr>
-                                            <td colspan="5" style="background: #626262; color: #FFFFFF;">
-
-                                                {% if partido.tipo_torneo == 1 %}
-
-                                                {% if 'Temporada' in partido.enlace_nombre %}
-                                                       
-                                                       {{partido.enlace_nombre}}
-                                                    
-                                                {% else %}
-
-                                                    Temporada {{partido.enlace_nombre}}-{{ segundoNumeroTemporada }}
-
-                                                {% endif %}
-
-
-
-                                                    {# ( {{partido.enlace_id}}) - #}
-                                                    {# {{ nombreDiaCompleto(partido.fecha) }} #}
-
-                                                {% else %}
-
-                                                    {{partido.enlace_nombre}} {# ({{partido.enlace_id}}) #}
-                                                    {# - {{ nombreDiaCompleto(partido.fecha) }} #}
-                                                    - {{partido.fase}}
-
-                                                {% endif %}
-
-
-                                            </td>
-                                        </tr>
-
-                                    {% endif %}
-
-                                    <tr style="font-size: 12px;">
-                                        {% if partido.tipo_torneo == 1 %}
-
-                                            <td align="left" style="padding-left: 0px; padding-right: 5px; width: 25px;">J{{partido.jornada}}</td>
-
-                                        {% endif %}
-
-                                        <td style="padding-left: 0px; padding-right: 5px; width: 35px;">
-                                            {{ partido.fecha|date('d/m') }}
-                                        </td>
-
-                                        <td style="color:{{colorL}}" align="right">{{partido.local}}</td>
-                                        <td style="width: 45px; padding-left: 3px; padding-right: 3px;" align="center">{{partido.goles_local}} - {{partido.goles_visitante}}</td>
-                                        <td style="color:{{colorV}}">{{partido.visitante}}</td>
-                                        {#
-                                        <td>{{partido.clasificado}}</td>
-                                        #}
-                                    </tr>
-
-
-                                {% endfor %}
-
-                            </table>
-
-                        </div>
-
-                    {% endif %}
-
-                    {% set i = i + 1 %}
-
-            {% endfor %}
-        </div>
-
-    </div>
-        {% if getConstante('__ES_MOBILE__') %}
-            <div style="width:100%;margin-left: auto;margin-right: auto; margin-bottom:10px;">
-                <script type="text/javascript" src="https://video.onnetwork.tv/widget/widget_scrolllist.php?widget=903"></script>
-            </div>
-        {% endif %}
-    {% else %}
-
-        <div class="col-12 contenedorBlancoBordesRedondeados">
-            <h1>Partido entre {{ partido.local }} y {{ partido.visitante }}</h1>
-
-            {% if partido.comunidad_id > 1 %}
-
-                <div class="flagbox comunidad flag{{ partido.comunidad_imagen }}"></div>
-
-            {% else %}
-
-                <div class="flagbox pais flag{{ partido.pais_imagen }}b"></div>
-
-            {% endif %}
-
-            <div class="row">
-                <div class="col-12">
-                    {{ partido.nombreTemporada }} -
-                    {% if partido.jornada != 198 %}
-                        {% if partido.tipo_torneo == 1 %}
-                            <a style="color: #212529;" href="{{ full_url_for('torneo_jornada', {
-                                'slug' : ponerGuion(partido.nombreTemporada),
-                                'idTorneo' : partido.temporada_id,
-                                'jornada' : partido.jornada,
-                            }) }}">Jornada {{ partido.jornada }}</a>
-                        {% else %}
-                            <a href="{{ full_url_for('torneo_jornada', {
-                                'slug' : ponerGuion(partido.nombreTemporada),
-                                'idTorneo' : partido.temporada_id,
-                                'jornada' : partido.jornada,
-                            }) }}">{{ partido.fase }}</a>
-                            {% if partido.grupo_id > 0 %}
-                                - <a href="{{ full_url_for('torneo_jornada_grupo_id', {
-                                'slug' : ponerGuion(partido.nombreTemporada),
-                                'idTorneo' : partido.temporada_id,
-                                'jornada' : partido.jornada,
-                                'grupo_id' : partido.grupo_id,
-                            }) }}">{{ partido.nombreGrupo }}</a>
-                            {% endif %}
-                        {% endif %}
-                    {% else %}
-                        Ligas Internacionales
-                    {% endif %}
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12 text-right">
-                    {% if partido.hora_prevista is defined %}
-                        {% set h = ' a las ' ~ horaPrevista|date('H:i') %}
-                    {% else %}
-                        {% set h = '' %}
-                    {% endif %}
-
-                    {{ nombreDiaCompleto(partido.fecha) ~ h }}
-                </div>
-            </div>
-
-            {% if partido.tv > 0 and partido.estado_partido != 1 %}
-                <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
-                    <div class="col-12">
-                        {{ textoTv }}
-                    </div>
-                    <div class="col-12 text-center">
-                        {% for tvs in partiTv %}
-                            <div class="row">
-                                <div class="col">
-                                    <span style="font-size: 13px;">{{ tvs.nombre }}</span>
-                                    <img src="/static/img/television/medio{{ tvs.id }}.png" alt="{{ tvs.nombre }}" style="max-height: 38px">
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            {% endif %}
-
-            
-
-            {% if comentarios|length > 2 %}
-                <div class="row" style="margin-top: 15px; margin-bottom: 15px;">
-                    
-                    <div class="col-12 text-right fechaActualizado">
-                        Actualizado a las {{ hoyDateTime()|date('H:i:s') }}
-                    </div>
-
-                    <div class="col-12 text-center">
-
-                        {% if partido.estado_partido == 6 %}
-                            <p class="subtitulo">Descanso</p>
-                        {% elseif partido.estado_partido == 2 %}
-
-                            {% set t = comentarios|split('-') %}
-
-                            {% if t is defined and t is not null %}
-
-                                {% set t = t|merge({'color': '#f07474'}) %}
-
-                                {% if t.0 == 1 %}
-                                    {% set t = t|merge({'color': '#f07474'}) %}
-                                {% endif %}
-
-                                {% if t.0 == 2 %}
-                                    {% set t = t|merge({'color': '#7cc002'}) %}
-                                {% endif %}
-
-                                {% if t.0 == 3 %}
-                                    {% set t = t|merge({'color': '#610B0B'}) %}
-                                {% endif %}
-
-                                {% if t.0 == 4 %}
-                                    {% set t = t|merge({'color': '#0B3B0B'}) %}
-                                {% endif %}
-
-                                {% set parte = '' %}
-
-                                {% if t.0 == 1 %}
-                                    {% set parte = '1T - ' %}
-                                {% elseif t.0 == 2 %}
-                                    {% set parte = '2T - ' %}
-                                {% endif %}
-
-                                {% set t = t|merge({'tiempo': 'Minuto ' ~ t.1}) %}
-
-
-                                {% if t.2 is defined and t.2 > 0 %}
-                                    {% set t = t|merge({'tiempo': t.tiempo ~ ' + ' ~ t.2}) %}
-                                {% endif %}
-
-                                {% set t = t|merge({'tiempo': parte ~ t.tiempo}) %}
-
-                            {% endif %}
-
-                            {% set p = t.tiempo|split('+') %}
-
-                           
-
-                            <p style="background-color:{{ t.color }};">{{ p.0|replace({'float:right;': ''})|raw }}</p>
-
-
-
-
-
-
-                        {% elseif partido.estado_partido == 3 %}
-                             <p class="subtitulo">Aplazado</p> 
-                        {% elseif partido.estado_partido == 4 %}
-                             <p class="subtitulo">Suspendido</p>
-                        {% endif %}
-
-                    </div>
-                </div>
-
-            {% endif %}
-
-            <div class="row">
-                <div class="col-6">
-                    <h2 class="subtitulo">{{ partido.local }}</h2>
-                </div>
-                <div class="col-6">
-                    <h2 class="subtitulo">{{ partido.visitante }}</h2>
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="col-3">
-                    <img class="escudo_ind" style="max-width: 100%;" src="{{ escudoLocal }}" alt="escudo">
-                </div>
-                {% if partido.estado_partido == 4 %}
-                    <div class="col-xs-6 col-md-4 col-lg-4 text-center border-right-white boldfont" style="border-radius: 10px; background-color: orange">
-                        Aplazado
-                    </div>
-                {% else %}
-                    <div class="col-3 text-center" style="border-radius: 10px; background-color:{{ fondo_color }}; color: {{ texto_color }}; border-right: 1px solid white;">
-                        {% if partido.estado_partido == 1 or partido.estado_partido == 2 or partido.estado_partido == 6 %}
-                            <p class="marcador" style="font-size: 5em; font-weight: bold;">{{ partido.goles_local }}</p>
-                        {% else %}
-                            <p class="marcador" style="font-size: 5em; font-weight: bold;">-</p>
-                        {% endif %}
-                    </div>
-
-                    <div class="col-3 text-center" style="border-radius: 10px; background-color:{{ fondo_color }}; color: {{ texto_color }}; border-left: 1px solid white;">
-                        {% if partido.estado_partido == 1 or partido.estado_partido == 2 or partido.estado_partido == 6 %}
-                            <p class="marcador" style="font-size: 5em; font-weight: bold;">{{ partido.goles_visitante }}</p>
-                        {% else %}
-                            <p class="marcador" style="font-size: 5em; font-weight: bold;">-</p>
-                        {% endif %}
-                    </div>
-                {% endif %}
-                <div class="col-3 text-center">
-                    <img class="escudo_ind" style="max-width: 100%;" src="{{ escudoVisitante }}" alt="escudo">
-                </div>
-
-
-                {% include 'partido/alineaciones.html.twig' %}
-
-                {% if partido.observaciones and partido.observaciones|length > 5 and partidoGoles|length == 0 %}
-
-                    <div class="col-12">
-                        {% set cadena = desglosarTexto(partido.observaciones) %}
-                        {% if cadena.1 is defined %}
-                            {% set cadenaGoles = cadena.1|length %}
-                        {% endif %}
-                        {% if cadena.2 is defined %}
-                            {% set cadenaGoles = cadena.2|length + cadenaGoles %}
-                        {% endif %}
-
-                        {% include 'partido/partidoObsR.html.twig' %}
-                    </div>
-
-                {% endif %}
-
-
-                {% if partido.ida is defined and partido.ida is not null %}
-                    <div class="col-12">
-                        {% set ida = partido.ida|split(',') %}
-                        {% set ida_resulcasa = ida.0 %}
-                        {% set ida_resulfuera = ida.1 %}
-                        {% set ida_jornada = ida.2 %}
-                        {% set ida_fecha = ida.3 %}
-
-                        {% if partido.fecha > ida_fecha and partido.jornada != 198 %}
-                            {% set ida_partido = ida.4 %}
-
-                            {% if partido.tipo_torneo == 1 %}
-                                {% set txt = 'correspondiente a la jornada ' ~ ida_jornada %}
-                            {% else %}
-                                {% set txt = '' %}
-                            {% endif %}
-
-                            {% set enlacePartido = full_url_for('partido_index', {
-                                'idPartido' : ida_partido,
-                                'slug' : ponerGuion(partido.visitante) ~ '-' ~ ponerGuion(partido.local),
-                            }) %}
-
-                            {% if ida_resulcasa == ida_resulfuera %}
-                                En el partido de ida, {{ txt }}  el {{ partido.visitante }} y el {{ partido.local }} empataron <b>{{ ida_resulcasa }}-{{ ida_resulfuera }}</b> <a href="{{ enlacePartido }}">-ver-</a>
-                            {% elseif ida_resulcasa > ida_resulfuera %}
-                                En la ida, el {{ partido.visitante }} venció al {{ partido.local }} {{ txt }} con un resultado de <b>{{ ida_resulcasa }}-{{ ida_resulfuera }}</b>. <a href="{{ enlacePartido }}">-ver-</a>
-                            {% else %}
-                                El {{ partido.visitante }} perdió en casa contra el {{ partido.local }} por <b>{{ ida_resulcasa }}-{{ ida_resulfuera }}</b> {{ txt }} <a href="{{ enlacePartido }}">-ver-</a>
-                            {% endif %}
-                        {% endif %}
-                    </div>
-                {% endif %}
-
-
-                {% if e1Clas is defined and e2Clas is defined %}
-                    <div class="col-12" style="margin-top: 20px; margin-bottom: 20px;">
-                        <table class="col-12">
-                            <thead>
-                            <tr class="darkgreenbox">
-                                <th class="text-center" colspan="2">
-                                    {% if tipo_eliminatoria == 3 %}
-                                        En sus respectivas ligas...
-                                    {% endif %}
-                                </th>
-                                <th class="text-center" style="width:7%">P<span class="hidden-xs">TO</span>S</th>
-                                <th class="text-center" style="width:7%">J<span class="hidden-xs">U</span></th>
-                                <th class="text-center" style="width:7%">G<span class="hidden-xs">A</span></th>
-                                <th class="text-center" style="width:7%">E<span class="hidden-xs">M</span></th>
-                                <th class="text-center" style="width:7%">P<span class="hidden-xs">E</span></th>
-                                <th class="text-center" style="width:7%"><span class="hidden-xs">G</span>F</th>
-                                <th class="text-center" style="width:7%"><span class="hidden-xs">G</span>C</th>
-                                <th class="text-center" style="width:9%">D<span class="hidden-xs">I</span>F</th>
-                            </tr>
-                            </thead>
-                            <tbody class="whitebox">
-                            {% set color_fondo = 'white' %}
-                            {% set txtPreferente = '' %}
-                            {% set jornadas = 0 %}
-
-                            {% for i in 0..1 %}
-                                {% if (i == 0 and e1Clas is defined) or (i == 1 and e2Clas is defined) %}
-
-                                    {% if e1Clas is defined and i == 0 %}
-                                        {% set fila = e1Clas %}
-                                        {% set temporada_id = liga_local %}
-                                    {% elseif e2Clas is defined and i == 1 %}
-                                        {% set fila = e2Clas %}
-                                        {% set temporada_id = liga_visitante %}
-                                    {% endif %}
-
-                                    {% if fila.preferente is defined %}
-                                        {% if fila.preferente == 1 and i == 0 %}
-                                            {% set color_fondo = 'yellow' %}
-                                            {% set txtPreferente = '*Clasificación En vivo' %}
-                                        {% endif %}
-                                    {% endif %}
-
-                                    {% if fila.jugados > jornadas %}
-                                        {% set jornadas = fila.jugados %}
-                                    {% endif %}
-
-                                    {% set pgEnlace = full_url_for('equipo_index', {
-                                        'idEquipo' : fila.equipo_id,
-                                        'slug': ponerGuion(fila.nombre)
-                                    }) %}
-
-                                    {% set color_fondo = 'white' %}
-
-                                    {% if fila.preferente is defined %}
-                                        {% if fila.preferente == 1 %}
-                                            {% set color_fondo = 'yellow' %}
-                                        {% endif %}
-                                    {% endif %}
-
-                                    {% set color_fila = '' %}
-
-                                    {% if equipo_id is defined and equipo_id == fila.equipo_id %}
-                                        {% set color_fila = "style='background-color:gainsboro'" %}
-                                    {% endif %}
-
-                                    {% set rutaEscudo = rutaEscudo(fila.club_id, fila.equipo_id) %}
-
-                                    {% if not fileExists(rutaEscudo) %}
-                                        {% set rutaEscudo = '/static/img/jugadores/NI.png' %}
-                                    {% endif %}
-
-                                {% endif %}
-
-                                <tr>
-                                    <td class="text-left celda-posicion" style="{{ fila.css|replace(
-                                        {
-                                            'background-color': 'color',
-                                            'white': '#000000',
-                                            'gold': '#F1C422',
-                                            'orange': '#E38800',
-                                            'indianred': '#E80000',
-                                        }
-                                    ) }};">
-                                        {{ fila.posicion }}
-                                    </td>
-                                    <td style="text-align:left;min-width: 130px" itemscope itemtype="http://schema.org/SportsTeam">
-                                        <a style="color: #212529;" href="{{ full_url_for('equipo_calendario', {
-                                            'idEquipo' : fila.equipo_id,
-                                            'slug': ponerGuion(fila.nombre)
-                                        }) }}" title="Calendario del {{ fila.nombreCorto }}">
-                                            <img src="{{ rutaEscudo }}" itemprop="logo" alt="escudo {{ fila.nombre }}" style="width:18px; height:20px; margin-right: 2px">
-                                            <strong itemprop="name">
-                                                {{ fila.nombreCorto }}
-                                            </strong>
-
-                                            <meta itemprop="url" content="{{ pgEnlace }}">
-                                        </a>
-                                    </td>
-                                    <td class="text-center" style="{# background-color:{{ color_fondo }} #}">
-                                        <a style="color:black" href="{{ full_url_for('equipo_clasificacion', {
-                                            'idEquipo' : fila.equipo_id,
-                                            'slug': ponerGuion(fila.nombre),
-                                            'vista': 'puntos',
-                                        }) }}" title="{{ fila.nombreCorto }} - Puntos conseguidos">
-                                            <b>{{ fila.puntos }}</b></a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a style="color:black" href="{{ full_url_for('equipo_clasificacion', {
-                                            'idEquipo' : fila.equipo_id,
-                                            'slug': ponerGuion(fila.nombre),
-                                            'vista': 'jugados',
-                                        }) }}" title="{{ fila.nombreCorto }} - Partidos jugados">
-                                            {{ fila.jugados }}
-                                        </a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a style="color:black" href="{{ full_url_for('equipo_clasificacion', {
-                                            'idEquipo' : fila.equipo_id,
-                                            'slug': ponerGuion(fila.nombre),
-                                            'vista': 'ganados',
-                                        }) }}" title="{{ fila.nombreCorto }} - Partidos ganados">
-                                            {{ fila.ganados }}
-                                        </a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a style="color:black" href="{{ full_url_for('equipo_clasificacion', {
-                                            'idEquipo' : fila.equipo_id,
-                                            'slug': ponerGuion(fila.nombre),
-                                            'vista': 'empatados',
-                                        }) }}" title="{{ fila.nombreCorto }} - Partidos empatados">
-                                            {{ fila.empatados }}
-                                        </a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a style="color:black" href="{{ full_url_for('equipo_clasificacion', {
-                                            'idEquipo' : fila.equipo_id,
-                                            'slug': ponerGuion(fila.nombre),
-                                            'vista': 'perdidos',
-                                        }) }}" title="{{ fila.nombreCorto }} - Partidos perdidos">
-                                            {{ fila.perdidos }}
-                                        </a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a style="color:black" href="{{ full_url_for('equipo_clasificacion', {
-                                            'idEquipo' : fila.equipo_id,
-                                            'slug': ponerGuion(fila.nombre),
-                                            'vista': 'favor',
-                                        }) }}" title="{{ fila.nombreCorto }} - Goles a favor">
-                                            {{ fila.gFavor }}
-                                        </a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a style="color:black" href="{{ full_url_for('equipo_clasificacion', {
-                                            'idEquipo' : fila.equipo_id,
-                                            'slug': ponerGuion(fila.nombre),
-                                            'vista': 'contra',
-                                        }) }}" title="{{ fila.nombreCorto }} - Goles en contra">
-                                            {{ fila.gContra }}
-                                        </a>
-                                    </td>
-                                    <td class="text-center">
-                                        {{ fila.gFavor - fila.gContra }}
-                                    </td>
-                                </tr>
-
-
-
-                            {% endfor %}
-                            </tbody>
-                        </table>
-
-                        <div class="row">
-                            <div class="col-12 text-right">
-                                <small>{{ txtPreferente }}</small>
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
-
-            </div>
-
-        </div>
-
-        {% if getConstante('__ES_MOBILE__') %}
-            <div style="width:100%;margin-left: auto;margin-right: auto; margin-bottom:10px;">
-                <script type="text/javascript" src="https://video.onnetwork.tv/widget/widget_scrolllist.php?widget=903"></script>
-            </div>
-        {% endif %}
-
-        <div class="col-12">
-            {% if getConstante('__ES_MOBILE__') %}
-                {% set espacio = 'partidoCabeceraMobile' %}
-            {% else %}
-                {% set espacio = 'partidoCabecera' %}
-            {% endif %}
-            {% include 'publicidad/publiGestion.html.twig' %}
-        </div>
-
-
-        <div class="col-12">
-            {% include '__part/pesLeerTwitsPortada.html.twig' %}
-        </div>
-
-        <div id="rachas" class="col-12 contenedorBlancoBordesRedondeados" style="margin-top: 25px; padding-bottom: 25px;">
-
-            {% for racha in rachas %}
-                {{ racha.resumen | raw }}
-                {{ racha.tabla | raw }}
-
-                {% if partido.estado_partido != 1 %}
-
-                    {% for prono in racha.pronostico %}
-                        {{ prono.txt_percentG | raw }}
-                        {{ prono.txt_percentGa | raw }}
-                        {{ prono.txt_percentGb | raw }}
-                    {% endfor %}
-                {% endif %}
-
-            {% endfor %}
-
-
-            <style type="text/css">
-                #rachas table {
-                    border-collapse: collapse;
-                    border-style: hidden;
-                }
-            </style>
-        </div>
-
-        <div class="col-12">
-            {% if getConstante('__ES_MOBILE__') %}
-                {% set espacio = 'partidoContenidoMobile' %}
-            {% else %}
-                {% set espacio = 'partidoContenido' %}
-            {% endif %}
-            {% include 'publicidad/publiGestion.html.twig' %}
-        </div>
-
-    {% endif %}
-
-{% endblock %}
-
 {% block bloqueJs %}
-
-    {% if modelo == 'Partido' %}
-        <script>
+    {% if viendoHoy %}
+        <script type="text/javascript">
             $(function () {
+
                 setInterval(function () {
-                    refrescarPartido();
+
+                    refrescarHomeAjax();
+
                 },60000);
             });
 
-            function refrescarPartido() {
-                var dt = new Date();
-                var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+            function refrescarHomeAjax() {
                 $.ajax({
                     type: 'GET',
-                    url: '{{ current_url }}',
+                    url: '{{ current_url|raw }}',
                     cache: false,
                 })
-                    .done(function (data) {
-                        $('#contenedorCentral').html($(data).find('#contenedorCentral').html());
-                        $('#ultimosEventos').html($(data).find('#ultimosEventos').html());
-                    });
+                .done(function (data) {
+                    $('#contenedorCentral').html($(data).find('#contenedorCentral').html());
+                    $('#ultimosEventos').html($(data).find('#ultimosEventos').html());      
 
+                    {% if getConstante('__ES_MOBILE__') %}
+                    var script = document.createElement('script');
+                            
+                    script.src = "https://video.onnetwork.tv/widget/widget_scrolllist.php?widget=903&cId=myContainer1";
+                            
+                    document.head.appendChild(script);
+                    {% endif %}
+
+
+                });
             }
         </script>
     {% endif %}
-
-    <script type="text/javascript">
-
-        function mostrarPestanaEnfrentamientos(pestanaMostrar) {
-            console.log(pestanaMostrar);
-
-            $('#tabsEnfrentamientos .btn').each(function(i, el) {
-                var jEl = $(el);
-                jEl.closest('li').removeClass('activa');
-            });
-            $('#tabsEnfrentamientos #' + pestanaMostrar + '-tab').closest('li').addClass('activa');
-            $('#tabsEnfrentamientosContent .tab-pane').removeClass('show activa');
-            $('#tabsEnfrentamientosContent #' + pestanaMostrar).addClass('show activa');
-        }
-
-        $(document).on('click', '#tabsEnfrentamientos .btn', function (e) {
-            var jThis = $(this);
-            var pestana = jThis.attr('aria-controls');
-
-            mostrarPestanaEnfrentamientos(pestana);
-        });
-
-    </script>
-
 {% endblock %}
 
 
-
-{% block contenedorDerecha %}
-
-
-{% endblock %}

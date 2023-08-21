@@ -189,8 +189,11 @@ $variables='?territorial='.$territorial.'&comunidad_id='.$comunidad_id.'&torneo_
 			 
 			 if (count($inicio)>1) {
 			 	$date = date_create($inicio[1]);
+				$timezone = new DateTimeZone('Europe/Madrid');
+				$currentTime = new DateTime('now', $timezone);
 
-			 	$fecha1 = date('Y-m-d H:i:s');
+			 	//$fecha1 = date('Y-m-d H:i:s');
+				$fecha1 = $currentTime->format('Y-m-d H:i:s');
 				$fecha1 = date_create($fecha1); //hora actual
 				$fecha3 = date_format($date,'Y-m-d H:i:s');
 				$fecha3 = date_create($fecha3); //hora prevista
