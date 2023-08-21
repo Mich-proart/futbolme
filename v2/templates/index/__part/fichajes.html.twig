@@ -54,12 +54,12 @@ clear:both; margin-top: 25px;">
 
         <div class="row" style="margin-top: 10px;">
             <div class="col-3 col-sm-2">
-                <a href="{{ enlace_jugador }}"><img src="{{ rutaJugador }}" class="img-rounded img-fluid" width="64" height="96"></a>
+                <a href="{{ enlace_jugador }}"><img src="{{ rutaJugador }}" class="img-rounded img-fluid" loading="lazy" width="64" height="96" ></a>
             </div>
             <div class="col-5">
                 <span><a style="color: #434343; font-size: 15px;" href="{{ enlace_jugador }}"><h4 style="font-size: 16px;">{{ jugador.apodo }}</h4></a></span>
 
-                <div style="float:left; padding-right:5px"><a href="{{ enlace_equipo }}"><img src="{{ rutaEscudo }}" class="img-rounded" width="30" height="45"></a></div>
+                <div style="float:left; padding-right:5px"><a href="{{ enlace_equipo }}"><img src="{{ rutaEscudo }}" class="img-rounded" loading="lazy" width="30" height="45"></a></div>
                 <div style="float:left"><span><a style="color: #434343; font-size: 15px;" href="{{ enlace_equipo }}">{{ jugador.equipo }}</a></span></div>
             </div>
             <div class="col-4 col-sm-5">

@@ -65,7 +65,7 @@
                                     {% set t = null %}
 
                                     {% set t = partido.comentarios|split('-') %}
-
+                                    
                                     {% if t.3 is defined %}
                                         {% set ev = t.3 %}
                                     {% endif %}
@@ -176,7 +176,7 @@
                                     {% elseif partido.estado_partido == 11 %}
                                         <p class="timeresult mb-0" style="color: orange;">Desc.Prórr.</p>
                                     {% elseif partido.estado_partido == 2 %}
-                                        <p class="timeresult mb-0" style="color: #9EFF23; !important">{{ t.tiempo }}</p>
+                                        <p class="timeresult mb-0" style="color: #9EFF23 !important;">{{ t.tiempo }}</p>
                                     {% endif %}
 
                                     {% endif %}
@@ -190,9 +190,12 @@
 
                                 {{ icono|raw }}
 
-                                <img class="span-id-torneo-alineacion" attr-id-evento="{{ partido.id }}" src="/static/img/icon-alienacion-white.svg" alt="Partidos alineaciones" style="cursor: pointer;">                                
+									
+								
+                                		<img class="span-id-torneo-alineacion partidoDirectoImg" attr-test="{{partido}}" attr-id-evento="{{ partido.id }}" src="/static/img/icon-alienacion-white.svg" alt="Partidos alineaciones" style="cursor: pointer;">                                
 
-                                <img class="span-evento-trigger img-fluid d-custom d-inline-block" attr-id-evento="{{ partido.id }}" src="/static/img/balon-eventos.png" alt="Partidos eventos" style="cursor: pointer;">
+                                		<img class="span-evento-trigger img-fluid d-custom d-inline-block partidoDirectoImg" attr-test="{{partido.betsapi}}" attr-id-evento="{{ partido.id }}" src="/static/img/balon-eventos.png" alt="Partidos eventos" style="cursor: pointer;">
+									
 
                                 <a class="simboloMasPartido jorge-f-clase" href="javascript:mostrarColor({{ partido.id }});" class="d-inline-block">
                                     {% if partido.enJuego %}
@@ -202,7 +205,7 @@
                                     {% endif %}
                                 </a>
 
-                                <div class="d-none content-eventos de-partido-suelto" style="width: 500px;height: 500px;">
+                                <div class="d-none content-eventos de-partido-suelto">
                                     <div class="d-flex align-items-center justify-content-between w-100">
                                         <h3 class="d-block">Eventos</h3>
                                         <span class="cerrar-eventos display-4" style="cursor: pointer;">&times;</span>

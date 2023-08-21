@@ -1125,9 +1125,13 @@ closelevel>i {
 
 .cajaGlobalPartidos .cajaPartido .contenedorIconosPartido a {
     text-decoration: none !important;
-    vertical-align: bottom;
+    vertical-align: top;
     text-align: center;
-    padding: 0px 1px;
+}
+
+.cajaGlobalPartidos .cajaPartido .contenedorIconosPartido > a[title='partido televisado'] > img{
+    height: 27px;
+    padding: 0px !important;
 }
 
 .cajaGlobalPartidos .cajaPartido .simboloMasPartido {

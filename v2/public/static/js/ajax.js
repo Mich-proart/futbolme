@@ -1,4 +1,3 @@
-
 function validarResultado(id,partido_id,gl,gv,tipo){
   $.ajax({
         type: 'POST',
@@ -1204,7 +1203,7 @@ function visor_hoy(temporada_id,comunidad_id) {
 function obtenerEvento(btnIdLiga){
 
   jQuery.ajax({
-    url: `./apiBetsapiEventos.php`, // AJAX handler,
+    url: `/apiBetsapiEventos.php`, // AJAX handler,
     type: 'POST',
     data: {
         id: jQuery(btnIdLiga).attr('attr-id-evento'),
@@ -1216,21 +1215,29 @@ function obtenerEvento(btnIdLiga){
 
         // accion cuando este completa la peticion
     },
-    success: function (data) {
-      //console.log(data)  
+    success: function (data) {	  
+      
+	  console.log(jQuery(btnIdLiga).attr('attr-id-evento'));
+	  console.log(data)  
+		
       let result = JSON.parse(data)
       jQuery('.lista-eventos').empty()        
       jQuery('.icons-directos-estaticos').find('.content-eventos').addClass('d-none')
       jQuery('.contenedorIconosPartido').find('.content-eventos').addClass('d-none')
       jQuery(btnIdLiga).closest('.icons-directos-estaticos').find('.content-eventos').removeClass('d-none')
       jQuery(btnIdLiga).closest('.contenedorIconosPartido').find('.content-eventos').removeClass('d-none')
-      for (const iterator of result.results[0].events) {
-       
-        jQuery(btnIdLiga).addClass("d-inline-block");
-        
-        jQuery(btnIdLiga).closest('.icons-directos-estaticos').find('.lista-eventos').append(`<li class="list-group-item">${iterator.text}</li>`)        
-        jQuery(btnIdLiga).closest('.contenedorIconosPartido').find('.lista-eventos').append(`<li class="list-group-item">${iterator.text}</li>`)                
-      }
+	  if(result.results[0].events){
+		  for (const iterator of result.results[0].events) {
+
+			jQuery(btnIdLiga).addClass("d-inline-block");
+
+			jQuery(btnIdLiga).closest('.icons-directos-estaticos').find('.lista-eventos').append(`<li class="list-group-item">${iterator.text}</li>`)        
+			jQuery(btnIdLiga).closest('.contenedorIconosPartido').find('.lista-eventos').append(`<li class="list-group-item">${iterator.text}</li>`)                
+		  }
+	  }else{
+		  console.log("en el falso")
+		  jQuery(btnIdLiga).closest('.contenedorIconosPartido').find('.lista-eventos').append(`<li class="list-group-item">No disponible</li>`) 
+	  }
     }
   })
 }
@@ -1240,7 +1247,7 @@ function obtenerEvento(btnIdLiga){
 function obtenerAlineacion(btnIdLiga){  
 
   jQuery.ajax({
-    url: `./apiBetsapi.php`, // AJAX handler,
+    url: `/apiBetsapi.php`, // AJAX handler,
     type: 'POST',
     data: {
         id: jQuery(btnIdLiga).attr('attr-id-evento'),
@@ -1253,8 +1260,10 @@ function obtenerAlineacion(btnIdLiga){
         // accion cuando este completa la peticion
     },
     success: function (data) {
-
-      //console.log(data)        
+		
+	  console.log(jQuery(btnIdLiga).attr('attr-id-evento'))
+         
+	  console.log(data)        
       
       jQuery('.listado-locales').empty()
 
@@ -1342,7 +1351,7 @@ jQuery(document).on('click', '.span-evento-trigger', function (){
 // Ocultar modal de eventos 
 jQuery(document).on('click', '.cerrar-eventos', function (){
 
-  jQuery(this).closest('.content-eventos.de-fila-partido').addClass('d-none')
+  jQuery(this).closest('.content-eventos').addClass('d-none')
 });
 
 /* Abrir y cerrar menu burguer */
@@ -1368,3 +1377,70 @@ jQuery(document).on('click', '.closeLevel.js-closeLevel', function (){
 
 })
 
+/* jQuery('.span-id-torneo-alineacion').each(function (indexInArray, valueOfElement) { 
+  console.log(jQuery(this))
+  ///console.log(jQuery(this).attr('attr-id-evento'))
+  let thisElement = jQuery(this)
+  if(jQuery(thisElement).attr('attr-id-evento') == -1){
+	  
+	 jQuery(thisElement).remove()
+	  
+  }else{
+	  
+	jQuery.ajax({
+    	url: `/apiBetsapi.php`, // AJAX handler,
+ 		type: 'POST',
+    	data: {
+        	id: jQuery(thisElement).attr('attr-id-evento'),
+   		},
+		beforeSend: function() {
+		  // accion de antes envio
+		},
+		complete: function () {
+
+			// accion cuando este completa la peticion
+		},
+		success: function (data) {
+		    
+			let result = JSON.parse(data)
+			console.log(result)
+      		if (result.results.length == 0) { 
+				jQuery(thisElement).remove()
+			}
+		}
+	})  
+  }
+   
+}); */
+
+/* jQuery('.span-evento-trigger').each(function (indexInArray, valueOfElement) { 
+  //console.log(jQuery(this))
+  console.log(jQuery(this).attr('attr-id-evento'))
+  let thisElement = jQuery(this)
+  if(jQuery(thisElement).attr('attr-id-evento') == -1 || jQuery(thisElement).attr('attr-id-evento') == 1 ){
+	 jQuery(thisElement).remove()
+  }else{
+	  
+	jQuery.ajax({
+		url: `/apiBetsapiEventos.php`, // AJAX handler,
+    	type: 'POST',
+    	data: {
+        	id: jQuery(thisElement).attr('attr-id-evento'),
+    	},
+    	beforeSend: function() {
+      	// accion de antes envio
+    	},
+    	complete: function () {
+        // accion cuando este completa la peticion
+    	},
+    	success: function (data) {	  
+	  		//console.log(data)  
+      		let result = JSON.parse(data)
+			console.log(result)
+			if (result.results.length == 0) { 
+				jQuery(thisElement).remove()
+			}
+		}
+	})
+  }
+}); */

@@ -81,8 +81,12 @@
                     {% endif %}
 
                     {% if pagina == 'televisados' and partido.estado_partido != 1 %}
+                        {# {% set diferencia = date(partido.fecha ~ partido.hora_prevista).diff(date("now"|date("Y-m-d H:i:s", "Europe/Madrid"))) %} #}
+                        {% set fechaHoraPartido = partido.fecha ~ ' ' ~ partido.hora_prevista %}
+                        {% set fechaHoraActual = "now"|date("Y-m-d H:i:s", "Europe/Madrid") %}
 
-                        {% set diferencia = date(partido.fecha ~ partido.hora_prevista).diff(date("now"|date("Y-m-d H:i:s", "Europe/Madrid"))) %}
+                        {% set diferencia = date(fechaHoraPartido).diff(date(fechaHoraActual)) %}
+
 
                         {% set dias = diferencia.d %}
                         {% set horas = diferencia.h %}
@@ -269,12 +273,10 @@
 
                             {% elseif partido.estado_partido == 9 %}
 
-                                {# <p class="timeresult mb-0" style="background-color: {{ t.color }}">{{ t.tiempo }}</p> #}
                                 <p class="timeresult mb-0" style="color: #9EFF23;">{{ t.tiempo }}</p>
 
                             {% elseif partido.estado_partido == 10 %}
 
-                                {# <p class="timeresult mb-0" style="background-color: {{ t.color }}">{{ t.tiempo }}</p> #}
                                 <p class="timeresult mb-0" style="color: #9EFF23;">{{ t.tiempo }}</p>
 
                             {% elseif partido.estado_partido == 11 %}
@@ -284,8 +286,7 @@
 
                             {% elseif partido.estado_partido == 2 %}
 
-                                {# <p class="timeresult mb-0" style="background-color: {{ t.color }}; color: {{ colorTexto }} !important">{{ t.tiempo }}</p> #}
-                                <p class="timeresult mb-0" style="color: #9EFF23; !important">{{ t.tiempo }}</p>
+                                <p class="timeresult mb-0" style="color: #9EFF23 !important;">{{ t.tiempo }}</p>
 
                             {% endif %}
                         </div>
@@ -308,9 +309,14 @@
 
                     {{ icono|raw }}
 
-                    <img class="span-id-torneo-alineacion" attr-id-evento="{{ partido.betsapi }}" src="/static/img/icon-alienacion-white.svg" alt="Partidos alineaciones" style="cursor: pointer;">
+						
+					
+                    		<img class="span-id-torneo-alineacion filaPartidoImg" attr-id-evento="{{ partido.betsapi }}" src="/static/img/icon-alienacion-white.svg" alt="Partidos alineaciones" style="cursor: pointer;" attr-test="{{ partido}}">
+							
 
-                    <img class="span-evento-trigger img-fluid d-custom d-inline-block" attr-id-evento="{{ partido.betsapi }}" src="/static/img/balon-eventos.png" alt="Partidos eventos" style="cursor: pointer;">
+                    		<img class="span-evento-trigger img-fluid d-custom d-inline-block filaPartidoImg" attr-id-evento="{{ partido.betsapi }}" src="/static/img/balon-eventos.png" alt="Partidos eventos" style="cursor: pointer;">
+						
+						
 
                     <a class="simboloMasPartido jorge-clase" href="javascript:mostrarColor({{ partido.id }});" class="d-inline-block">
                         {% if partido.enJuego %}
@@ -320,7 +326,7 @@
                         {% endif %}
                     </a>
 
-                    <div class="d-none content-eventos de-fila-partido" style="">
+                    <div class="d-none content-eventos de-fila-partido" >
                         <div class="d-flex align-items-center justify-content-between w-100">
                             <h3 class="d-block">Eventos</h3>
                             <span class="cerrar-eventos display-4" style="cursor: pointer;">&times;</span>
@@ -329,7 +335,7 @@
                     </div>
                     
 
-                    <div class="d-none content-alineaciones" style="">
+                    <div class="d-none content-alineaciones">
                         <div class="d-flex align-items-center justify-content-between w-100">
                             <h3 class="d-block">Alineaciones</h3>
                             <span class="cerrar-alineacion display-4" style="cursor: pointer;">&times;</span>
@@ -362,9 +368,7 @@
             <div class="row">
 
             <div class="col-5 equipoPartido equipoPartidoLocal">
-                {#
-                <p class="pull-right boldfont lead txt11" style="padding-right: 10px; color:<?php echo $colorL; ?>;  background-color:<?php echo $fondocolorL; ?>; cursor:pointer;"  onclick="mostrarColor(<?php echo $partido['id']?>)">
-                #}
+                
                 <p onclick="mostrarColor({{ partido.id }})">
                     <span itemprop="name" style="{% if partido.colorL != '' %}color: {{ partido.colorL }};{% endif %}"><span class="d-block d-sm-none" style="{% if partido.colorL != '' %}color: {{ partido.colorL }};{% endif %}">{{ partido.localCorto }}</span><span class="d-none d-sm-block" style="{% if partido.colorL != '' %}color: {{ partido.colorL }};{% endif %}">{{ partido.local }}</span></span>
                 </p>                
@@ -444,9 +448,8 @@
             </div>
 
             <div class="col-5 equipoPartido equipoPartidoVisitante">
-                {#
-                <p class="pull-left boldfont lead txt11" style="padding-left: 10px; color:<?php echo $colorV; ?>;  background-color:<?php echo $fondocolorV; ?>; cursor:pointer;" onclick="mostrarColor(<?php echo $partido['id']?>)">
-                #}
+                
+                
                 <p onclick="mostrarColor({{ partido.id }})">
                     <span itemprop="name" class="txt11" style="{% if partido.colorV != '' %}color: {{ partido.colorV }};{% endif %}"><span class="d-block d-sm-none" style="{% if partido.colorV != '' %}color: {{ partido.colorV }};{% endif %}">{{ partido.visitanteCorto }}</span><span class="d-none d-sm-block" style="{% if partido.colorV != '' %}color: {{ partido.colorV }};{% endif %}">{{ partido.visitante }}</span></span>
                 </p>                
