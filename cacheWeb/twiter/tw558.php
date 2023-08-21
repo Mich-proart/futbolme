@@ -1,1 +1,0 @@
-<a class="twitter-timeline" rel="nofollow" target="_blank" href="https://twitter.com/LaRodaCf">Tweets by LaRodaCf</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>

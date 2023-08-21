@@ -1,6 +1,0 @@
-AuthGroupFile /dev/null
-AuthUserFile /home/futbolme/domains/futbolme.com/.htpasswd/public_html/panelBFS/.htpasswd
-AuthName "Panel del colaborador de futbolme"
-ErrorDocument 401 "Unauthorized Access"
-require valid-user
-AuthType Basic

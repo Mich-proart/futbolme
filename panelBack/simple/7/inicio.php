@@ -1,1 +1,0 @@
-https://www.rffm.es/pnfg/NPcd/NFG_CmpJornada?cod_primaria=1000120&CodCompeticion=9031101&CodGrupo=9181281&CodTemporada=14&CodJornada=23&Sch_Tipo_Juego=1

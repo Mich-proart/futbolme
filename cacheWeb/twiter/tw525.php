@@ -1,1 +1,0 @@
-<a class="twitter-timeline" rel="nofollow" target="_blank" href="https://twitter.com/REALUNIONCIRUN?ref_src=twsrc%5Etfw">Tweets by REALUNIONCIRUN</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>

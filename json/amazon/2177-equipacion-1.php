@@ -1,2 +1,0 @@
-<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-eu.amazon-adsystem.com/e/cm?ref=qf_sp_asin_til&t=futbolme-21&m=amazon&o=30&p=8&l=as1&IS1=1&asins=B07D6PY851&linkId=8ebcdd0a46442a1fb2408e9cd41febeb&bc1=FFFFFF&lt1=_top&fc1=333333&lc1=0066C0&bg1=FFFFFF&f=ifr">
-    </iframe>

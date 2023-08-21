@@ -1,2 +1,0 @@
-<hr />
-TERCERA JUVENIL - Sevilla 1 - Jornada 24<br /><br />----proxi: 102268 uso: 1<br />671948: San Roque Balompié B - UD Morón<br /> - ponemos el id de acta 1347036<br /> - ponemos el el resultado 1-1<br />671951: AD Cerro del Águila - CD Mairena<br /> - ponemos el id de acta 1347039<br /> - ponemos el el resultado 1-3 --- <a href="https://www.rfaf.es/pnfg/NPcd/NFG_CmpJornada?cod_primaria=1000120&CodTemporada=15&cod_agrupacion=1&Sch_Codigo_Delegacion=&Sch_Tipo_Juego=&CodCompeticion=16867178&CodGrupo=17147859&CodJornada=24" target="_blank">Federacion</a><hr />

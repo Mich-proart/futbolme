@@ -1,2 +1,0 @@
-<a class="twitter-timeline" rel="nofollow" target="_blank" href="https://twitter.com/berjacf" data-widget-id="661517803661492225">Tweets por el @berjacf.</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>

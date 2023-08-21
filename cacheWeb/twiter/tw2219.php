@@ -1,2 +1,0 @@
-<a class="twitter-timeline" rel="nofollow" target="_blank" href="https://twitter.com/MislataCFF" data-widget-id="661812360282251264">Tweets por el @MislataCFF.</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
