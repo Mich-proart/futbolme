@@ -33,7 +33,6 @@ require_once 'includes/config.php';
     </style>
 
 <?php // definimos los valores iniciales para nuestro calendario
-date_default_timezone_set('Europe/Madrid');
 if (isset($_GET['fecha'])) {
     $datos = $_GET['fecha'];
     $datos = explode('-', $datos);

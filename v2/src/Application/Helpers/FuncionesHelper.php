@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Application\Helpers;
 
 
@@ -15,97 +14,83 @@ class FuncionesHelper
         $this->generalRepo = new GeneralRepository($db);
     }
 
-    function rrmdir($dir)
-    {
+    function rrmdir($dir) {
         if (is_dir($dir)) {
             $objects = scandir($dir);
             foreach ($objects as $object) {
                 if ($object != "." && $object != "..") {
-                    if (is_dir($dir . DIRECTORY_SEPARATOR . $object) && !is_link($dir . "/" . $object))
-                        $this->rrmdir($dir . DIRECTORY_SEPARATOR . $object);
+                    if (is_dir($dir. DIRECTORY_SEPARATOR .$object) && !is_link($dir."/".$object))
+                        $this->rrmdir($dir. DIRECTORY_SEPARATOR .$object);
                     else
-                        unlink($dir . DIRECTORY_SEPARATOR . $object);
+                        unlink($dir. DIRECTORY_SEPARATOR .$object);
                 }
             }
             rmdir($dir);
         }
     }
 
-    function rutaEscudo($club_id, $equipo_id)
-    {
-        if ($equipo_id != 718 && $equipo_id != 672) {
-            $ruta = '/img/club/escudo' . $club_id . '.png';
+    function rutaEscudo($club_id, $equipo_id){
+        if ($equipo_id!=718 && $equipo_id!=672){
+            $ruta='/img/club/escudo'.$club_id.'.png';
         } else {
-            $ruta = '/img/equipos/escudo' . $equipo_id . '.png';
+            $ruta='/img/equipos/escudo'.$equipo_id.'.png';
         }
         return $ruta;
     }
 
-    function publicidadAmazon($id)
-    {
-        /*  $directorio = '../json/amazon';
+    function publicidadAmazon($id){
+        $directorio = '../json/amazon';
         $ficheros  = scandir($directorio);
-        $f = array();
+        $f=array();
         foreach ($ficheros as $key => $v) {
-            $ff = explode('-', $v);
-            if ($ff[0] == $id) {
-                $f[] = $v;
-            }
+            $ff=explode('-',$v);
+            if ($ff[0]==$id) { $f[]=$v; }
         }
-        if (count($f) > 0) {
-            if (count($f) > 1) {
-                $x = rand(0, (count($f) - 1));
-                $fichero = $f[$x];
+        if (count($f)>0){
+            if (count($f)>1) {
+                $x=rand(0,(count($f)-1));
+                $fichero=$f[$x];
             } else {
-                $fichero = $f[0];
+                $fichero=$f[0];
             }
         }
 
-        if (isset($fichero)) { */ ?>
-        <div style="background-color: dimgray; z-index: 0; width: 120px" class="pull-right">
-            <?php /* include $directorio . '/' . $fichero; */ ?>
-        </div>
-        <?php /* } */
+        if (isset($fichero)){ ?>
+            <div style="background-color: dimgray; z-index: 0; width: 120px" class="pull-right">
+                <?php include $directorio.'/'.$fichero;?>
+            </div>
+        <?php }
     }
 
-    function diferenciaFechas($fecha)
-    {
-        /* $fecha1 = date('Y-m-d H:i:s');
+    function diferenciaFechas($fecha){
+        $fecha1 = date('Y-m-d H:i:s');
         $fecha2 = date($fecha);
         $fecha1 = date_create($fecha1);
         $fecha2 = date_create($fecha2);
         $diferencia = date_diff($fecha2, $fecha1);
-        return $diferencia; */
-        date_default_timezone_set('Europe/Madrid');
-        $fecha1 = new \DateTime(); // Fecha y hora actual
-        $fecha2 = new \DateTime($fecha); // Fecha proporcionada
-
-        $diferencia = $fecha2->diff($fecha1);
-
         return $diferencia;
     }
 
-    function enviarEmail($titulo, $valor)
-    {
+    function enviarEmail($titulo,$valor){
         $message = '
-        <html>
-        <head>
-        <title>' . $titulo . '</title>
-        </head>
-        <body>
-        <p><strong>Valor:</strong></p>
-        <p>' . $valor . '</p>
-        </body>
-        </html>
-        ';
+<html>
+<head>
+  <title>'.$titulo.'</title>
+</head>
+<body>
+  <p><strong>Valor:</strong></p>
+  <p>'.$valor.'</p>
+</body>
+</html>
+';
 
         $headers[] = 'MIME-Version: 1.0';
         $headers[] = 'Content-type: text/html; charset=utf8';
 
-        // Additional headers
+// Additional headers
         $headers[] = 'From: Futbolme <futbolme@futbolme.com>';
-        //$headers[] = 'Cc: javier.cuervas@gmail.com ';
-        //$headers[] = 'Reply-To: '.$email;
+//$headers[] = 'Cc: javier.cuervas@gmail.com ';
+//$headers[] = 'Reply-To: '.$email;
 
         mail('futbolme@gmail.com', $titulo, $message,  implode("\r\n", $headers));
         $ok = true;
@@ -118,14 +103,13 @@ class FuncionesHelper
         $resultado = menu();
         $menu = prepararMenu($resultado);
         guardarJSON($menu, '../json/menu.json');
-        echo "Generado un nuevo menú para futbolme.com";
-        die;
+        echo "Generado un nuevo menú para futbolme.com";die;
     }
 
     function menu()
     {
         $campos = 'tor.id, tor.nombre, tor.categoria_torneo_id, tor.tipo_torneo, te.id temporada_id, tor.orden, 
-        pa.nombre nombrePais, pa.id imagenPais, co.nombre nombreComunidad, co.id imagenComunidad';
+    pa.nombre nombrePais, pa.id imagenPais, co.nombre nombreComunidad, co.id imagenComunidad';
         $tabla = ' torneo tor';
         $union = ' INNER JOIN temporada te ON te.torneo_id=tor.id';
         $union .= ' INNER JOIN categoriatorneo ctor ON tor.categoria_torneo_id=ctor.id';
@@ -133,7 +117,7 @@ class FuncionesHelper
         $union .= ' INNER JOIN comunidad co ON tor.comunidad_id=co.id';
         $condicion = ' WHERE tor.visible>4 AND tor.visible<100 AND tor.id>7';
         $orden = ' ORDER BY tor.categoria_torneo_id, tor.orden';
-        $consulta = 'SELECT ' . $campos . ' FROM ' . $tabla . $union . $condicion . $orden;
+        $consulta = 'SELECT '.$campos.' FROM '.$tabla.$union.$condicion.$orden;
 
         $mysqli = conectar();
         $resultadoSQL = mysqli_query($mysqli, $consulta);
@@ -192,9 +176,7 @@ class FuncionesHelper
                     $menu['infantil'][$item['nombreComunidad']][] = $item;
                 }
             } elseif (7 == $item['categoria_torneo_id']) {
-                if ($item['imagenComunidad'] > 1) {
-                    continue;
-                }
+                if ($item['imagenComunidad']>1){ continue; }
                 $menu['femenino'][] = $item;
             } elseif (8 == $item['categoria_torneo_id']) {
                 if (!array_key_exists($item['nombrePais'], $menu['america'])) {
@@ -224,7 +206,7 @@ class FuncionesHelper
 
     function generarPartidosDia()
     {
-        /* ob_start();
+        ob_start();
         $fecha = new \DateTime();
         $dia = $fecha->format('Y-m-d');
         $resultado = partidosDia($dia);
@@ -234,22 +216,7 @@ class FuncionesHelper
         //$headers = "From: Partidos del día <no-reply@futbolme.com>\r\n";
         //$message = count($resultado)." partidos.\r\n";
         //mail("futbolme@futbolme.com","partidosDia - Futbolme.com",$message,$headers);
-        echo count($resultado['partidos']) . ' partidos. ' . count($resultado['directos']) . ' directos.'; */
-
-        ob_start();
-
-        $fecha = new \DateTime();
-        $dia = $fecha->format('Y-m-d');
-        $resultado = partidosDia($dia);
-
-        guardarJSON($resultado['partidos'], '../json/index.json');
-        guardarJSON($resultado['directos'], '../json/directos.json');
-
-        ob_end_flush();
-
-        $partidosCount = count($resultado['partidos']);
-        $directosCount = count($resultado['directos']);
-        echo "{$partidosCount} partidos. {$directosCount} directos.";
+        echo count($resultado['partidos']).' partidos. '.count($resultado['directos']).' directos.';
     }
 
 
@@ -291,7 +258,7 @@ class FuncionesHelper
     function borrarFile($ruta)
     {
         unlink($ruta);
-        echo 'Fichero ' . $ruta . ' eliminado';
+        echo 'Fichero '.$ruta.' eliminado';
     }
 
     function guardarFILE($array, $ruta)
@@ -301,16 +268,15 @@ class FuncionesHelper
         fclose($fh);
     }
 
-    function cabeceras()
-    {
-        $dia = date('Y-m-d');
+    function cabeceras(){
+        $dia=date('Y-m-d');
         $campos = "DISTINCT p.temporada_id, tor.tipo_torneo,
-        tor.nombre nombreTorneo,tor.torneoCorto,tor.categoria_torneo_id,tor.traduccion,
-        tor.apuesta apuesta_torneo,co.nombre nombreComunidad,co.id idComunidad,
-        pa.nombre nombrePais,pa.id idPais, 
-        (select count(id) from partido where temporada_id=p.temporada_id and fecha='" . $dia . "') partidos,
-        (select count(id) from partido where estado_partido=1 and temporada_id=p.temporada_id and fecha='" . $dia . "') finalizados,
-        (select count(id) from partido where estado_partido=2 and temporada_id=p.temporada_id and fecha='" . $dia . "') directos";
+tor.nombre nombreTorneo,tor.torneoCorto,tor.categoria_torneo_id,tor.traduccion,
+tor.apuesta apuesta_torneo,co.nombre nombreComunidad,co.id idComunidad,
+pa.nombre nombrePais,pa.id idPais, 
+(select count(id) from partido where temporada_id=p.temporada_id and fecha='".$dia."') partidos,
+(select count(id) from partido where estado_partido=1 and temporada_id=p.temporada_id and fecha='".$dia."') finalizados,
+(select count(id) from partido where estado_partido=2 and temporada_id=p.temporada_id and fecha='".$dia."') directos";
         $tabla = ' partido p';
         $union = ' INNER JOIN equipo ec ON p.equipoLocal_id=ec.id';
         $union .= ' INNER JOIN equipo ef ON p.equipoVisitante_id=ef.id';
@@ -319,11 +285,11 @@ class FuncionesHelper
         $union .= ' INNER JOIN categoriatorneo ctor ON tor.categoria_torneo_id=ctor.id';
         $union .= ' INNER JOIN comunidad co ON tor.comunidad_id=co.id';
         $union .= ' INNER JOIN pais pa ON tor.pais_id=pa.id';
-        $condicion = " WHERE p.fecha='" . $dia . "'
-        AND ec.nombre<>'SIN PAIS'
-        AND ef.nombre<>'SIN PAIS' AND tor.visible>4 AND tor.visible<100";
+        $condicion = " WHERE p.fecha='".$dia."'
+AND ec.nombre<>'SIN PAIS'
+AND ef.nombre<>'SIN PAIS' AND tor.visible>4 AND tor.visible<100";
         $orden = ' ORDER BY tor.apuestaMa DESC, ctor.orden, tor.orden, p.hora_prevista';
-        $consulta = 'SELECT ' . $campos . ' FROM ' . $tabla . $union . $condicion . $orden;
+        $consulta = 'SELECT '.$campos.' FROM '.$tabla.$union.$condicion.$orden;
         //echo $consulta;
         $mysqli = conectar();
         $resultadoSQL = mysqli_query($mysqli, $consulta);
@@ -332,16 +298,15 @@ class FuncionesHelper
         guardarJSON($cabeceras, '../json/index_cabeceras.json');
     }
 
-    function cabecerasFed()
-    {
-        $dia = date('Y-m-d');
+    function cabecerasFed(){
+        $dia=date('Y-m-d');
         $campos = "DISTINCT p.temporada_id, tor.tipo_torneo,
-        tor.nombre nombreTorneo,tor.torneoCorto,tor.categoria_torneo_id,tor.traduccion,
-        tor.apuesta apuesta_torneo,co.nombre nombreComunidad,co.id idComunidad,
-        pa.nombre nombrePais,pa.id idPais, 
-        (select count(id) from partido where temporada_id=p.temporada_id and fecha='" . $dia . "') partidos,
-        (select count(id) from partido where estado_partido=1 and temporada_id=p.temporada_id and fecha='" . $dia . "') finalizados,
-        (select count(id) from partido where estado_partido=2 and temporada_id=p.temporada_id and fecha='" . $dia . "') directos";
+tor.nombre nombreTorneo,tor.torneoCorto,tor.categoria_torneo_id,tor.traduccion,
+tor.apuesta apuesta_torneo,co.nombre nombreComunidad,co.id idComunidad,
+pa.nombre nombrePais,pa.id idPais, 
+(select count(id) from partido where temporada_id=p.temporada_id and fecha='".$dia."') partidos,
+(select count(id) from partido where estado_partido=1 and temporada_id=p.temporada_id and fecha='".$dia."') finalizados,
+(select count(id) from partido where estado_partido=2 and temporada_id=p.temporada_id and fecha='".$dia."') directos";
         $tabla = ' partido p';
         $union = ' INNER JOIN equipo ec ON p.equipoLocal_id=ec.id';
         $union .= ' INNER JOIN equipo ef ON p.equipoVisitante_id=ef.id';
@@ -350,19 +315,19 @@ class FuncionesHelper
         $union .= ' INNER JOIN categoriatorneo ctor ON tor.categoria_torneo_id=ctor.id';
         $union .= ' INNER JOIN comunidad co ON tor.comunidad_id=co.id';
         $union .= ' INNER JOIN pais pa ON tor.pais_id=pa.id';
-        $condicion = " WHERE p.fecha='" . $dia . "'
-        AND ec.nombre<>'SIN PAIS'
-        AND ef.nombre<>'SIN PAIS' AND tor.visible>99";
+        $condicion = " WHERE p.fecha='".$dia."'
+AND ec.nombre<>'SIN PAIS'
+AND ef.nombre<>'SIN PAIS' AND tor.visible>99";
         $orden = ' ORDER BY tor.apuestaMa DESC, ctor.orden, tor.orden, p.hora_prevista';
-        $consulta = 'SELECT ' . $campos . ' FROM ' . $tabla . $union . $condicion . $orden;
+        $consulta = 'SELECT '.$campos.' FROM '.$tabla.$union.$condicion.$orden;
         //echo $consulta;
         $mysqli = conectar();
         $resultadoSQL = mysqli_query($mysqli, $consulta);
         $resultado = mysqli_fetch_all($resultadoSQL, MYSQLI_ASSOC);
         //imp($resultado);
-        $cabeceras = array();
+        $cabeceras=array();
         foreach ($resultado as $key => $value) {
-            $cabeceras[$value['idComunidad']][$value['temporada_id']] = $value;
+            $cabeceras[$value['idComunidad']][$value['temporada_id']]=$value;
         }
         guardarJSON($cabeceras, '../json/index_cabecerasFed.json');
     }
@@ -373,66 +338,39 @@ class FuncionesHelper
         return null === $string ? null : mb_convert_case($string, MB_CASE_LOWER, mb_detect_encoding($string));
     }
 
-    function insertarEvento($eventos)
-    {
+    function insertarEvento($eventos){
         $mysqli = conectar();
         foreach ($eventos as $even) {
-            $even['resultado'] = $even['goles_local'] . " - " . $even['goles_visitante'];
-            if ($even['evento'] == 19) {
-                continue;
-            } //evento 19 = no jugado.
+            $even['resultado']=$even['goles_local']." - ".$even['goles_visitante'];
+            if ($even['evento']==19) { continue; } //evento 19 = no jugado.
 
             switch ($even['evento']) {
-                case '1':
-                case '2':
-                    $fecha = $even['fecha'];
-                    $hora = $even['hora_prevista'];
-                    if ($hora && '00:00:11' != $hora) {
-                        $h = ' - ' . substr($hora, 0, 5);
-                        $even['valor'] = 'Fecha-hora';
-                    } else {
-                        $h = '';
-                        $even['valor'] = 'Fecha';
-                    }
-                    $leyenda = utf8_encode(nombreDiaMini($fecha));
-                    $even['resultado'] = $leyenda . $h;
-                    break;
+                case '1': case '2':
+                $fecha = $even['fecha']; $hora = $even['hora_prevista'];
+                if ($hora && '00:00:11' != $hora) {
+                    $h = ' - '.substr($hora, 0, 5);
+                    $even['valor'] = 'Fecha-hora';
+                } else {
+                    $h = '';
+                    $even['valor'] = 'Fecha';
+                }
+                $leyenda = utf8_encode(nombreDiaMini($fecha));
+                $even['resultado'] = $leyenda.$h;
+                break;
                 case '3':
                     //para el arbitro
                     break;
-                case '5':
-                    $even['valor'] = '¡¡ GOL !! ' . $even['local'];
-                    break;
-                case '6':
-                    $even['valor'] = '¡¡ GOL !! ' . $even['visitante'];
-                    break;
-                case '7':
-                    $even['valor'] = 'Comienza el partido...';
-                    break;
-                case '8':
-                    $even['valor'] = 'Descanso';
-                    break;
-                case '9':
-                    $even['valor'] = 'Inicia la segunda parte...';
-                    break;
-                case '13':
-                    $even['valor'] = '¡¡ FINAL !!';
-                    break;
-                case '21':
-                    $even['valor'] = 'Prórroga';
-                    break;
-                case '22':
-                    $even['valor'] = 'Prórroga - 1ª Parte ';
-                    break;
-                case '23':
-                    $even['valor'] = 'Prórroga - Descanso ';
-                    break;
-                case '24':
-                    $even['valor'] = 'Prórroga - 2ª Parte ';
-                    break;
-                case '20':
-                    $even['valor'] = 'penaltis ';
-                    break;
+                case '5': $even['valor'] = '¡¡ GOL !! '.$even['local']; break;
+                case '6': $even['valor'] = '¡¡ GOL !! '.$even['visitante']; break;
+                case '7': $even['valor'] = 'Comienza el partido...'; break;
+                case '8': $even['valor'] = 'Descanso'; break;
+                case '9': $even['valor'] = 'Inicia la segunda parte...'; break;
+                case '13': $even['valor'] = '¡¡ FINAL !!'; break;
+                case '21': $even['valor'] = 'Prórroga'; break;
+                case '22': $even['valor'] = 'Prórroga - 1ª Parte '; break;
+                case '23': $even['valor'] = 'Prórroga - Descanso '; break;
+                case '24': $even['valor'] = 'Prórroga - 2ª Parte '; break;
+                case '20': $even['valor'] = 'penaltis '; break;
                 case '26': //para televisados
                     break;
             }
@@ -440,41 +378,43 @@ class FuncionesHelper
 
 
             $sql = 'SELECT partido_id,valor FROM evento WHERE 
-        partido_id=' . $even['partido_id'] . " 
-        AND valor='" . $even['valor'] . "' 
-        AND resultado='" . $even['resultado'] . "' 
+        partido_id='.$even['partido_id']." 
+        AND valor='".$even['valor']."' 
+        AND resultado='".$even['resultado']."' 
         ORDER BY id DESC LIMIT 30";
 
             $resultadoSQL = mysqli_query($mysqli, $sql);
             $resultado = mysqli_fetch_all($resultadoSQL, MYSQLI_ASSOC);
-            echo $sql . '<br />';
+            echo $sql.'<br />';
             if (0 == count($resultado)) {
                 $consulta = "INSERT INTO evento (evento, partido_id, valor, equipoLocal_id, equipoVisitante_id, momento, local, visitante, resultado)
-                VALUES ('" . $even['evento'] . "','" . $even['partido_id'] . "','" . $even['valor'] . "','" . $even['equipoLocal_id'] . "','" . $even['equipoVisitante_id'] . "',NOW(),'" . $even['local'] . "','" . $even['visitante'] . "','" . $even['resultado'] . "')";
+                VALUES ('".$even['evento']."','".$even['partido_id']."','".$even['valor']."','".$even['equipoLocal_id']."','".$even['equipoVisitante_id']."',NOW(),'".$even['local']."','".$even['visitante']."','".$even['resultado']."')";
 
                 if (!mysqli_query($mysqli, $consulta)) {
                     printf("Errormessage: %s\n", mysqli_error($mysqli));
                 }
                 //echo $consulta;
-                $f = $even['equipoLocal_id'] . '-' . $even['equipoVisitante_id'] . '-' . $even['temporada_id'] . '-' . $even['evento'];
-                guardarJSON($even, '../json/eventos/' . $f . '.json');
+                $f=$even['equipoLocal_id'].'-'.$even['equipoVisitante_id'].'-'.$even['temporada_id'].'-'.$even['evento'];
+                guardarJSON($even, '../json/eventos/'.$f.'.json');
+
             }
         }
+
     }
 
 
 
-    //*************************************************FUNCIONES TWITTER****************
+//*************************************************FUNCIONES TWITTER****************
 
     function buildBaseString($baseURI, $method, $params)
     {
         $r = array();
         ksort($params);
         foreach ($params as $key => $value) {
-            $r[] = "$key=" . rawurlencode($value);
+            $r[] = "$key=".rawurlencode($value);
         }
 
-        return $method . '&' . rawurlencode($baseURI) . '&' . rawurlencode(implode('&', $r));
+        return $method.'&'.rawurlencode($baseURI).'&'.rawurlencode(implode('&', $r));
     }
 
     function buildAuthorizationHeader($oauth)
@@ -482,22 +422,20 @@ class FuncionesHelper
         $r = 'Authorization: OAuth ';
         $values = array();
         foreach ($oauth as $key => $value) {
-            $values[] = "$key=\"" . rawurlencode($value) . '"';
+            $values[] = "$key=\"".rawurlencode($value).'"';
         }
         $r .= implode(', ', $values);
 
         return $r;
     }
 
-    function returnTweet($usuario, $equipo_id, $origen = 0)
+    function returnTweet($usuario, $equipo_id, $origen=0)
     {
 
-        if (0 == $equipo_id) {
-            return "ko " . $usuario;
-        }
+        if (0 == $equipo_id) { return "ko ".$usuario; }
 
         if (0 == $usuario) {
-            $consulta = 'SELECT slug FROM equipo WHERE id=' . $equipo_id;
+            $consulta = 'SELECT slug FROM equipo WHERE id='.$equipo_id;
             $resultadoSQL = $this->db->query($consulta);
             $resultado = $this->db->fetch($resultadoSQL);
             $usuario = $resultado['slug'];
@@ -505,10 +443,10 @@ class FuncionesHelper
 
         //var_export($usuario);
 
-        $consumer_key = '18Qv8oHn1SdC45uf4uDUj7CZz';
-        $consumer_secret = '2ZJi6ejVY1nuz061mnAVZkUNIoceyyJRZ6Uerkw747iUOL5PY5';
-        $oauth_access_token = '1326235259218898944-MRIPrAlii9Jp5RpQds44RY4yMImmqc';
-        $oauth_access_token_secret = 'Lj4e3oWLQsoNc6v7ChbmyoPkm89yvZZ6B5sd5oo5G4i6F';
+        $consumer_key='18Qv8oHn1SdC45uf4uDUj7CZz';
+        $consumer_secret='2ZJi6ejVY1nuz061mnAVZkUNIoceyyJRZ6Uerkw747iUOL5PY5';
+        $oauth_access_token='1326235259218898944-MRIPrAlii9Jp5RpQds44RY4yMImmqc';
+        $oauth_access_token_secret='Lj4e3oWLQsoNc6v7ChbmyoPkm89yvZZ6B5sd5oo5G4i6F';
 
         $twitter_timeline = 'user_timeline';  //  mentions_timeline / user_timeline / home_timeline / retweets_of_me
 
@@ -532,7 +470,7 @@ class FuncionesHelper
 
         //  do some magic
         $base_info = $this->buildBaseString("https://api.twitter.com/1.1/statuses/$twitter_timeline.json", 'GET', $oauth);
-        $composite_key = rawurlencode($consumer_secret) . '&' . rawurlencode($oauth_access_token_secret);
+        $composite_key = rawurlencode($consumer_secret).'&'.rawurlencode($oauth_access_token_secret);
         $oauth_signature = base64_encode(hash_hmac('sha1', $base_info, $composite_key, true));
         $oauth['oauth_signature'] = $oauth_signature;
 
@@ -541,7 +479,7 @@ class FuncionesHelper
         $options = array(
             CURLOPT_HTTPHEADER => $header,
             CURLOPT_HEADER => false,
-            CURLOPT_URL => "https://api.twitter.com/1.1/statuses/$twitter_timeline.json?" . http_build_query($request),
+            CURLOPT_URL => "https://api.twitter.com/1.1/statuses/$twitter_timeline.json?".http_build_query($request),
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYPEER => false,
         );
@@ -554,20 +492,21 @@ class FuncionesHelper
         $t = json_decode($json, true);
 
         if (!isset($t['errors'])) {
-            if ($origen == 0) {
-                $this->guardarJSON($t, '../json/twits/' . $equipo_id . '_twits.json');
+            if ($origen==0){
+                $this->guardarJSON($t, '../json/twits/'.$equipo_id.'_twits.json');
             } else {
-                if ($origen == 100) { //panelBack
-                    $this->guardarJSON($t, '../json/twits/' . $equipo_id . '_twits.json');
+                if ($origen==100){ //panelBack
+                    $this->guardarJSON($t, '../json/twits/'.$equipo_id.'_twits.json');
                 } else {
-                    $this->guardarJSON($t, '../../json/twits/' . $equipo_id . '_twits.json');
+                    $this->guardarJSON($t, '../../json/twits/'.$equipo_id.'_twits.json');
                 }
             }
+
         }
 
 
 
-        return 'Ok ' . $usuario;
+        return 'Ok '.$usuario;
     }
 
     function convertirUrls($ret)
@@ -582,7 +521,7 @@ class FuncionesHelper
         return $ret;
     }
 
-    //***********************fin de las funciones para twiter*************************************
+//***********************fin de las funciones para twiter*************************************
 
 
 
@@ -614,27 +553,27 @@ class FuncionesHelper
     function contarPuntos($dia, $usuario = 0)
     { //programa FIDELIDAD
         if ($usuario > 0) {
-            $filtro = "p.fecha='" . $dia . "'  AND a.usuario_id=" . $usuario;
+            $filtro = "p.fecha='".$dia."'  AND a.usuario_id=".$usuario;
         } else {
-            //        $diaAnterior = new \DateTime();
+//        $diaAnterior = new \DateTime();
             $diaAnterior = \DateTime::createFromFormat('Y-m-d', $dia);
             $diaAnterior = $diaAnterior->modify('-1 day')->format('Y-m-d');
-            $filtro = "p.fecha='" . $diaAnterior . "' ";
+            $filtro = "p.fecha='".$diaAnterior."' ";
         }
         $consulta = 'SELECT count(a.acierto), a.acierto, 
-        CASE 
-        WHEN a.acierto=0 THEN count(a.acierto)*0
-        WHEN a.acierto=1 THEN count(a.acierto)*10
-        WHEN a.acierto=2 THEN count(a.acierto)*50
-        WHEN a.acierto=3 THEN count(a.acierto)*250
-        END AS puntos1,
-        a.usuario_id, 
-        (select username from usuario where id=a.usuario_id) usuario,
-        p.fecha
-        FROM apuesta a INNER JOIN partido p ON a.partido_id=p.id 
-        WHERE a.porra_id=1 AND ' . $filtro . ' AND p.estado_partido=1 
-        GROUP BY a.usuario_id, a.acierto, p.fecha
-        ORDER BY p.fecha, a.usuario_id, a.acierto';
+	CASE 
+	WHEN a.acierto=0 THEN count(a.acierto)*0
+	WHEN a.acierto=1 THEN count(a.acierto)*10
+	WHEN a.acierto=2 THEN count(a.acierto)*50
+	WHEN a.acierto=3 THEN count(a.acierto)*250
+	END AS puntos1,
+	a.usuario_id, 
+	(select username from usuario where id=a.usuario_id) usuario,
+    p.fecha
+	FROM apuesta a INNER JOIN partido p ON a.partido_id=p.id 
+	WHERE a.porra_id=1 AND '.$filtro.' AND p.estado_partido=1 
+	GROUP BY a.usuario_id, a.acierto, p.fecha
+    ORDER BY p.fecha, a.usuario_id, a.acierto';
         //echo $consulta;die;
         $mysqli = conectar();
         $resultadoSQL = mysqli_query($mysqli, $consulta);
@@ -686,11 +625,11 @@ class FuncionesHelper
                     $usuario_id = $fila['usuario_id'];
                     $fecha = $fila['fecha'];
                     $sql = 'DELETE FROM apuestaacumulado 
-				WHERE usuario_id=' . $usuario_id . " AND periodo='" . $fecha . "'";
+				WHERE usuario_id='.$usuario_id." AND periodo='".$fecha."'";
                     $resultadoSQL = mysqli_query($mysqli, $sql);
 
                     $consulta = 'INSERT INTO apuestaacumulado(usuario_id, periodo, puntos1, puntos2, puntos3) 
-				VALUES (' . $usuario_id . ",'" . $fecha . "'," . $puntos1 . ',' . $puntos2 . ',' . $puntos3 . ')';
+				VALUES ('.$usuario_id.",'".$fecha."',".$puntos1.','.$puntos2.','.$puntos3.')';
 
                     $resultadoSQL = mysqli_query($mysqli, $consulta);
                 }
@@ -698,7 +637,7 @@ class FuncionesHelper
 
             $dias10 = \DateTime::createFromFormat('Y-m-d', $diaAnterior);
             $dias10 = $dias10->modify('-10 day')->format('Y-m-d');
-            $consulta = "DELETE FROM usuario WHERE enabled=0 AND last_login<'" . $dias10 . "'";
+            $consulta = "DELETE FROM usuario WHERE enabled=0 AND last_login<'".$dias10."'";
             $resultadoSQL = mysqli_query($mysqli, $consulta);
         } else {
             return $puntos_usuario2;
@@ -718,7 +657,7 @@ class FuncionesHelper
         }
     }
 
-    /////
+/////
 
     function microtime_float()
     {
@@ -843,10 +782,10 @@ class FuncionesHelper
         $link = $conexion->conexion();
 
         $consulta = 'SELECT jornada,estado_partido,
-        (select nombreCorto from equipo where id=equipoLocal_id) local, 
-        (select nombreCorto from equipo where id=equipoVisitante_id) visitante,
-        goles_local, goles_visitante FROM partido 
-        WHERE temporada_id=' . $temporada_id . ' AND  jornada=' . $jornadaActiva;
+	(select nombreCorto from equipo where id=equipoLocal_id) local, 
+	(select nombreCorto from equipo where id=equipoVisitante_id) visitante,
+	goles_local, goles_visitante FROM partido 
+	WHERE temporada_id='.$temporada_id.' AND  jornada='.$jornadaActiva;
         //echo $consulta;
 
         $resultado = mysqli_query($link, $consulta);
@@ -866,7 +805,7 @@ class FuncionesHelper
             // agregamos los campos que corresponden
             foreach ($campo as $b => $bValue) {
                 $campoTexto = $nodo->appendChild($dom->createElement($campo[$b]));
-                //            $campoTexto->appendChild($dom->createTextNode(mysqli_data_seek($resultado, $i, $b)));
+//            $campoTexto->appendChild($dom->createTextNode(mysqli_data_seek($resultado, $i, $b)));
                 $campoTexto->appendChild($dom->createTextNode(mysqli_data_seek($resultado, $i)));
             }
         }
@@ -1090,7 +1029,6 @@ class FuncionesHelper
 
     function nombremes($mes)
     {
-        date_default_timezone_set('Europe/Madrid');
         setlocale(LC_TIME, 'spanish');
         $nombre = strftime('%B', mktime(0, 0, 0, $mes, 1, 2000));
 
@@ -1099,31 +1037,26 @@ class FuncionesHelper
 
     function nombreDia($fecha)
     {
-        date_default_timezone_set('Europe/Madrid');
         $fecha = strtotime($fecha);
         $fecha = gmmktime(0, 0, 0, date('n', $fecha), date('j', $fecha), date('Y', $fecha));
         setlocale(LC_TIME, 'spanish');
-        //$nombre = utf8_encode(strftime('%A, %d de %B', $fecha));
-        $nombre = strftime('%A, %d de %B', $fecha);
+        $nombre = utf8_encode(strftime('%A, %d de %B', $fecha));
 
         return $nombre;
     }
 
     function nombreDiaCompleto($fecha)
     {
-        date_default_timezone_set('Europe/Madrid');
         $fecha = strtotime($fecha);
         $fecha = gmmktime(0, 0, 0, date('n', $fecha), date('j', $fecha), date('Y', $fecha));
         setlocale(LC_TIME, 'spanish');
-        //$nombre = utf8_encode(strftime('%A, %d de %B de %Y', $fecha));
-        $nombre = strftime('%A, %d de %B', $fecha);
+        $nombre = utf8_encode(strftime('%A, %d de %B de %Y', $fecha));
 
         return $nombre;
     }
 
     function getTime($horaR, $horaP, $desfase)
     {
-        date_default_timezone_set('Europe/Madrid');
         $now = date('Y-m-d H:i:s');
         $horaReal = $horaR;
         $horaPrevista = $horaP;
@@ -1134,7 +1067,6 @@ class FuncionesHelper
         $interval = date_diff($horaReal, $horaPrevista);
         $hInterval = $interval->h * 60;
         $iInterval = $interval->i;
-
         //interval nos permite saber el tiempo que hay desde la hora prevista
         //hasta la hora real y esto nos hara saber en que periodo estamos
         //-45 será la primera parte
@@ -1184,7 +1116,7 @@ class FuncionesHelper
             if ($minuto > 45) {
                 $minuto = '45+';
             }
-            $tiempo = 'Minuto ' . $minuto;
+            $tiempo = 'Minuto '.$minuto;
         } elseif (2 == $parte) {
             $color = '#7cc002';
             //if ($mdif>0) {
@@ -1196,7 +1128,7 @@ class FuncionesHelper
             if ($minuto > 90) {
                 $minuto = '90+';
             }
-            $tiempo = 'Minuto ' . $minuto;
+            $tiempo = 'Minuto '.$minuto;
         } else {
             $color = '';
             $tiempo = '';
@@ -1215,72 +1147,9 @@ class FuncionesHelper
 
         return $response;
     }
-    /* VERSION MICH  */
-    /* function getTime($horaR, $horaP, $desfase)
-    {
-        $timezone = new \DateTimeZone('Europe/Madrid');
-        $now = new \DateTime('now', $timezone);
-        $horaReal = new \DateTime($horaR);
-        $horaPrevista = new \DateTime($horaP);
-
-        $interval = $horaReal->diff($horaPrevista);
-        $hInterval = $interval->h * 60;
-        $iInterval = $interval->i;
-
-        $time = $now->diff($horaReal);
-        $h = $time->h;
-        $i = $time->i;
-        $invert = $time->invert;
-
-        $parte = (($hInterval + $iInterval) <= 45) ? 1 : 2;
-
-        $masminutos = 0;
-        $mdif = 0;
-
-        if ($desfase > 199) {
-            $masminutos = (($desfase - 200) + 45);
-            $mdif = ($desfase - 200);
-            $parte = 2;
-        } elseif ($desfase > 99 && $desfase < 200) {
-            $masminutos = ($desfase - 100);
-            $mdif = ($desfase - 100);
-            $parte = 1;
-        }
-
-        $mR = (($h * 60) + $i) + $mdif;
-
-        if ($parte == 1) {
-            $color = '#f07474';
-            $minuto = ($mR) + 1;
-            $minuto = ($minuto > 45) ? '45+' : $minuto;
-            $tiempo = 'Minuto ' . $minuto;
-        } elseif ($parte == 2) {
-            $color = '#7cc002';
-            $minuto = (($mR) + 45) + 1;
-            $minutoReal = $minuto;
-            $minuto = ($minuto > 90) ? '90+' : $minuto;
-            $tiempo = 'Minuto ' . $minuto;
-        } else {
-            $color = '';
-            $tiempo = '';
-        }
-
-        $response = array(
-            'color' => $color,
-            'tiempo' => $tiempo,
-            'invert' => $invert,
-            'h' => $h,
-            'i' => $i,
-            'minutoReal' => $mR,
-        );
-
-        return $response;
-    } */
-
 
     function getTime1p($horaR)
     {
-        date_default_timezone_set('Europe/Madrid');
         $now = date('Y-m-d H:i:s');
         $horaReal = $horaR;
         $now = date_create($now);
@@ -1293,49 +1162,25 @@ class FuncionesHelper
         if ($minuto > 105) {
             $minuto = '105+';
         }
-        $tiempo = 'Minuto ' . $minuto;
+        $tiempo = 'Minuto '.$minuto;
 
         $response = array('color' => $color, 'tiempo' => $tiempo, 'minuto' => $minuto);
 
         return $response;
     }
 
-    /* Version Mich */
-
-    /* function getTime1p($horaR)
-    {
-        // Configurar la zona horaria a Madrid
-        date_default_timezone_set('Europe/Madrid');
-
-        $now = new \DateTime(); // Obtiene la fecha y hora actual
-        $horaReal = new \DateTime($horaR); // Crea un objeto DateTime para la hora proporcionada
-
-        $timeInterval = $now->diff($horaReal); // Calcula la diferencia entre las dos fechas
-
-        $color = '#610B0B';
-        $minuto = (($timeInterval->h * 60) + $timeInterval->i) + 90 + 1;
-        $minuto = min($minuto, 105); // Asegura que el valor máximo sea 105
-
-        $tiempo = 'Minuto ' . $minuto;
-
-        $response = ['color' => $color, 'tiempo' => $tiempo, 'minuto' => $minuto];
-
-        return $response;
-    } */
-
     function getTime2p($horaR)
     {
-        date_default_timezone_set('Europe/Madrid');
         $now = date('Y-m-d H:i:s');
         $horaReal = $horaR;
         $now = date_create($now);
         $horaReal = date_create($horaReal);
 
-        //$now = new \DateTime('now');
-        //$now->format('h:i');
+        /*$now = new \DateTime('now');
+        $now->format('h:i');
 
-        //$horaReal = $horaR['date'];
-        //$horaReal = date_create($horaReal);
+        $horaReal = $horaR['date'];
+        $horaReal = date_create($horaReal);*/
 
         $time = date_diff($now, $horaReal);
         $color = '#0B3B0B';
@@ -1344,35 +1189,12 @@ class FuncionesHelper
         if ($minuto > 120) {
             $minuto = '120+';
         }
-        $tiempo = 'Minuto ' . $minuto;
+        $tiempo = 'Minuto '.$minuto;
 
         $response = array('color' => $color, 'tiempo' => $tiempo, 'minuto' => $minuto);
 
         return $response;
     }
-
-    /* Version Mich */
-    /* function getTime2p($horaR) {
-        date_default_timezone_set('Europe/Madrid'); // Establecer la zona horaria a Madrid
-        
-        $now = new \DateTime(); // Obtener la fecha y hora actual
-        $horaReal = new \DateTime($horaR); // Convertir la hora proporcionada en un objeto DateTime
-    
-        $interval = $now->diff($horaReal); // Calcular la diferencia entre las dos fechas
-    
-        $color = '#0B3B0B';
-        $minuto = (($interval->h * 60) + $interval->i) + 105 + 1;
-        
-        // Limitar el valor de $minuto a 120
-        $minuto = ($minuto > 120) ? '120+' : $minuto;
-        
-        $tiempo = 'Minuto ' . $minuto;
-    
-        $response = array('color' => $color, 'tiempo' => $tiempo, 'minuto' => $minuto);
-    
-        return $response;
-    } */
-    
 
     function poner_guion($cadena)
     {
@@ -1493,11 +1315,11 @@ class FuncionesHelper
 	  INNER JOIN torneo t ON te.torneo_id=t.id 
 	  INNER JOIN pais p ON t.pais_id=p.id
 	  INNER JOIN comunidad co ON t.comunidad_id=co.id
-	  WHERE t.visible=5 AND t.categoria_torneo_id=' . $cti . ' AND t.tipo_torneo=1
+	  WHERE t.visible=5 AND t.categoria_torneo_id='.$cti.' AND t.tipo_torneo=1
 	  ORDER BY t.discr DESC';
             $resultadoSQL = mysqli_query($mysqli, $consulta);
             $resultado = mysqli_fetch_all($resultadoSQL, MYSQLI_BOTH);
-            guardarJSON($resultado, '../json/promedio_' . $fichero . '.json');
+            guardarJSON($resultado, '../json/promedio_'.$fichero.'.json');
         } else {
             $consulta = 'SELECT t.pais_id, te.id,te.nombre,p.nombre paisNombre, t.discr, t.orden FROM temporada te 
 	  INNER JOIN torneo t ON te.torneo_id=t.id 
@@ -1513,15 +1335,10 @@ class FuncionesHelper
     function diferenciaHoras($f1, $f2)
     {
         //echo $f1." ".$f2."<hr />";
-        /* $fecha1 = date_create($f1);
+        $fecha1 = date_create($f1);
         $fecha2 = date_create($f2);
         $diferencia = date_diff($fecha1, $fecha2);
 
-        return $diferencia; */
-        date_default_timezone_set('Europe/Madrid');
-        $fecha1 = new \DateTime($f1);
-        $fecha2 = new \DateTime($f2);
-        $diferencia = $fecha1->diff($fecha2);
         return $diferencia;
     }
 
@@ -1530,19 +1347,19 @@ class FuncionesHelper
     {
         for ($i = 1; $i < 5; ++$i) {
             $consulta = 'SELECT (SELECT nombre FROM equipo WHERE id=equipo_id) equipo, sum(puntos) puntos, sum(jugados) jugados, 
-            sum(ganados) ganados, sum(empatados) empatados, sum(perdidos) perdidos, 
-            sum(golesFavor) golesFavor, sum(golesContra) golesContra, 
-            count(temporada_id) temporadas, idViejo idEquipo, idDivision, equipo_id fm_equipo_id
-            FROM nacionalclasificacionok WHERE idDivision=' . $i . ' AND estilo=0
-            GROUP BY equipo_id 
-            ORDER BY count(temporada_id) DESC, sum(puntos) DESC';
+	sum(ganados) ganados, sum(empatados) empatados, sum(perdidos) perdidos, 
+	sum(golesFavor) golesFavor, sum(golesContra) golesContra, 
+	count(temporada_id) temporadas, idViejo idEquipo, idDivision, equipo_id fm_equipo_id
+	FROM nacionalclasificacionok WHERE idDivision='.$i.' AND estilo=0
+	GROUP BY equipo_id 
+	ORDER BY count(temporada_id) DESC, sum(puntos) DESC';
             //echo $consulta; die;
             $mysqli = conectar();
             $resultadoSQL = mysqli_query($mysqli, $consulta);
             $resultado = mysqli_fetch_all($resultadoSQL, MYSQLI_ASSOC);
 
-            guardarJSON($resultado, '../../json/clasHistorica_' . $i . '.json');
-            echo '../../json/clasHistorica_' . $i . '.json';
+            guardarJSON($resultado, '../../json/clasHistorica_'.$i.'.json');
+            echo '../../json/clasHistorica_'.$i.'.json';
         }
     }
 
@@ -1551,125 +1368,105 @@ class FuncionesHelper
         $mysqli = conectar();
 
         $consulta = 'SELECT nombre,nombreCorto,escudo FROM denominacion
-	  WHERE equipo_id=' . $equipo_id . " AND temporada='" . $temporada . "'";
+	  WHERE equipo_id='.$equipo_id." AND temporada='".$temporada."'";
         $resultadoSQL = mysqli_query($mysqli, $consulta);
         $resultado = mysqli_fetch_all($resultadoSQL, MYSQLI_ASSOC);
 
         return $resultado;
     }
 
-    function obsGoleadores($goleadores)
-    {
+    function obsGoleadores($goleadores){
 
-        $goles_l = "*A ";
-        $goles_v = "*B ";
-        $resultadoAnterior = "0 - 0";
+        $goles_l="*A "; $goles_v="*B ";$resultadoAnterior="0 - 0";
         foreach ($goleadores as $g => $gol) {
 
-            if ($gol['score'] == $resultadoAnterior) {
-                continue;
-            }
+            if ($gol['score']==$resultadoAnterior) { continue; }
 
             //if ($api_id==202269 ) {
-            $ra = explode("-", $resultadoAnterior);
-            $rr = explode("-", $gol['score']);
+            $ra=explode("-",$resultadoAnterior);
+            $rr=explode("-",$gol['score']);
 
-            if ($rr[0] > $ra[0]) {
-                if ($gol['home_scorer'] == '') {
-                    $gol['home_scorer'] = '...............';
-                }
+            if ($rr[0]>$ra[0]) {
+                if ($gol['home_scorer']=='') { $gol['home_scorer']='...............'; }
             }
-            if ($rr[1] > $ra[1]) {
-                if ($gol['away_scorer'] == '') {
-                    $gol['away_scorer'] = '...............';
-                }
+            if ($rr[1]>$ra[1]) {
+                if ($gol['away_scorer']=='') { $gol['away_scorer']='...............'; }
             }
 
 
             //}
 
-            if (strlen($gol['home_scorer']) > 0) {
-                $marcadorL = str_replace(" ", "", $gol['score']);
-                $m = explode("-", $marcadorL);
-                $marcadorL = "<b>" . $m[0] . "</b>-" . $m[1];
-                $goles_l .= substr($gol['time'], 0, -1) . "´ - ";
-                $goles_l .= $gol['home_scorer'] . ", ";
-                $goles_l .= $marcadorL . '<br />';
+            if (strlen($gol['home_scorer'])>0) {
+                $marcadorL=str_replace(" ", "", $gol['score']);
+                $m=explode("-", $marcadorL);
+                $marcadorL="<b>".$m[0]."</b>-".$m[1];
+                $goles_l.=substr($gol['time'],0,-1)."´ - ";
+                $goles_l.=$gol['home_scorer'].", ";
+                $goles_l.=$marcadorL.'<br />';
+
+
             } else {
-                $marcadorV = str_replace(" ", "", $gol['score']);
-                $m = explode("-", $marcadorV);
-                $marcadorV = $m[0] . "-<b>" . $m[1] . "</b>";
-                $goles_v .= $marcadorV . ', ';
-                $goles_v .= $gol['away_scorer'] . " - ";
-                $goles_v .= substr($gol['time'], 0, -1) . "´<br />";
+                $marcadorV=str_replace(" ", "", $gol['score']);
+                $m=explode("-", $marcadorV);
+                $marcadorV=$m[0]."-<b>".$m[1]."</b>";
+                $goles_v.=$marcadorV.', ';
+                $goles_v.=$gol['away_scorer']." - ";
+                $goles_v.=substr($gol['time'],0,-1)."´<br />";
             }
 
-            $resultadoAnterior = $gol['score'];
+            $resultadoAnterior=$gol['score'];
+
         }
 
-        $cosas = $goles_l . $goles_v;
+        $cosas=$goles_l.$goles_v;
 
         return $cosas;
+
     }
 
-    function obsGoleadores2($goleadores)
-    {
-        $goles_l = "*A ";
-        $goles_v = "*B ";
-        $gl = 0;
-        $gv = 0;
+    function obsGoleadores2($goleadores){
+        $goles_l="*A "; $goles_v="*B "; $gl=0;$gv=0;
         foreach ($goleadores as $g => $gol) {
             imp($gol);
-            $mn = substr($gol['minuto'], 1);
-            if ($gol['minuto'] < 200) {
-                if ((int)$mn > 45) {
-                    $mn = "45+" . ($mn - 45);
-                }
+            $mn=substr($gol['minuto'],1);
+            if ($gol['minuto']<200){
+                if ((int)$mn>45){ $mn="45+".($mn-45); }
             } else {
-                if ((int)$mn > 90) {
-                    $mn = "90+" . ($mn - 90);
-                }
+                if ((int)$mn>90){ $mn="90+".($mn-90); }
             }
 
-            $txtTipo = "";
-            $golLocal = (int)$gol['esLocal'];
-            if ((int)$gol['tipo'] == 1) {
-                $txtTipo = " (pen.)";
-            }
-            if ((int)$gol['tipo'] == 10) {
-                $txtTipo = " (p.p.)";
-                if ((int)$gol['esLocal'] == 1) {
-                    $golLocal = 0;
-                }
-                if ((int)$gol['esLocal'] == 0) {
-                    $golLocal = 1;
-                }
+            $txtTipo="";$golLocal=(int)$gol['esLocal'];
+            if ((int)$gol['tipo']==1){ $txtTipo=" (pen.)"; }
+            if ((int)$gol['tipo']==10){
+                $txtTipo=" (p.p.)";
+                if ((int)$gol['esLocal']==1) {$golLocal=0; }
+                if ((int)$gol['esLocal']==0) {$golLocal=1; }
             }
 
-            if ((int)$golLocal == 1) {
+            if ((int)$golLocal==1) {
                 $gl++;
-                $marcadorL = "<b>" . $gl . "</b>-" . $gv;
-                $goles_l .= $mn . "´ - ";
-                $goles_l .= "<a href='/jugador.php?id=" . $gol['jugador_id'] . "' target='_blank'>" . $gol['nombreJugador'] . "</a>" . $txtTipo . ", ";
-                $goles_l .= $marcadorL . '<br />';
+                $marcadorL="<b>".$gl."</b>-".$gv;
+                $goles_l.=$mn."´ - ";
+                $goles_l.="<a href='/jugador.php?id=".$gol['jugador_id']."' target='_blank'>".$gol['nombreJugador']."</a>".$txtTipo.", ";
+                $goles_l.=$marcadorL.'<br />';
             } else {
                 $gv++;
-                $marcadorV = $gl . "-<b>" . $gv . "</b>";
-                $goles_v .= $marcadorV . ', ';
-                $goles_v .= "<a href='/jugador.php?id=" . $gol['jugador_id'] . "' target='_blank'>" . $gol['nombreJugador'] . "</a>" . $txtTipo . " - ";
-                $goles_v .= $mn . "´<br />";
+                $marcadorV=$gl."-<b>".$gv."</b>";
+                $goles_v.=$marcadorV.', ';
+                $goles_v.="<a href='/jugador.php?id=".$gol['jugador_id']."' target='_blank'>".$gol['nombreJugador']."</a>".$txtTipo." - ";
+                $goles_v.=$mn."´<br />";
             }
         }
-        $cosas = $goles_l . $goles_v;
+        $cosas=$goles_l.$goles_v;
         return $cosas;
     }
 
-    function grabarDispositivo($valor, $dispositivo)
-    {
+    function grabarDispositivo($valor,$dispositivo){
 
-        $sql = 'INSERT INTO enlace (temporada_id, tipo, nombre, origen, alcance) 
-        VALUES (0,' . $valor . ',"' . $dispositivo . '","APP",0)';
+        $sql='INSERT INTO enlace (temporada_id, tipo, nombre, origen, alcance) 
+    VALUES (0,'.$valor.',"'.$dispositivo.'","APP",0)';
         $mysqli = conectar();
         $resultadoSQL = mysqli_query($mysqli, $sql);
+
     }
 }

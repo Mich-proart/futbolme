@@ -23,11 +23,11 @@ $espacio='jugadorCabecera';
 $espacio='jugadorContenido';
 $espacio='pie';
 */
-/*
+
 $adsense=0;
 $clickio=0;
 $themoneytizer=1;
-$akcelo=1; 
+$akcelo=1;
 switch ($espacio) {
 	case 'enHead':
 		include 'publiClientes.php'; 
@@ -92,5 +92,5 @@ switch ($espacio) {
 	case 'pie':
 		include 'publiClientes.php';  
 	break;
-} */
+}
 
