@@ -60,7 +60,7 @@ class IndexController
         $ultimosEventosPreparados = $eventoRepo->prepararUltimosEventosParaMostrar($ultimosEventos, $c_id);
         */
 
-
+        date_default_timezone_set('Europe/Madrid');
 
         $tz = new \DateTimeZone('Europe/Madrid');
         $hoyDateTime = new \DateTime('now', $tz);

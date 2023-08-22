@@ -111,8 +111,9 @@ $tiempo = $tiempo_fin - $tiempo_inicio;
 echo '<hr />Tiempo empleado: '.($tiempo_fin - $tiempo_inicio);
 
 
-$time = time();
-echo '<br />La hora actual en el servidor es: '.date('H:i:s', $time);
+$timezone = new DateTimeZone('Europe/Madrid');
+$currentTime = new DateTime('now', $timezone);
+echo '<br />La hora actual en el servidor es: '.$currentTime->format('H:i:s');;
 ?>
 <script LANGUAGE="JavaScript"> 
 var pagina="_aPruebaEquipos.php"; 

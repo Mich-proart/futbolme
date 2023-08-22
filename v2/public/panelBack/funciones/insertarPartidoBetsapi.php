@@ -4,6 +4,7 @@ define('_PANEL_', 1);
 require_once '../includes/config.php';
 
 if (isset($_POST['modo'])) {
+	date_default_timezone_set('Europe/Madrid');
 	$temporada_id=$_POST['temporada_id'];
 	$api_id=$_POST['api_id'];
 	$fecha=$_POST['fecha'];
@@ -53,7 +54,7 @@ $idV=buscarEquipoBetsapi($visitante_idB);
 $local_id=$idL['id'];$local=$idL['nombreCorto'];
 $visitante_id=$idV['id'];$visitante=$idV['nombreCorto'];
 
-
+//$date = new DateTime($hora);
 
 
 ?>
@@ -65,7 +66,7 @@ Temporada id: <?php echo $temporada_id?>
 	<input type="hidden" name="betsapi_id" value="<?php echo $betsapi_id?>">
 	<input type="hidden" name="api_id" value="<?php echo $api_id?>">
 	<input type="hidden" name="fecha" value="<?php echo date('Y-m-d',$hora)?>">
-	<input type="hidden" name="hora_prevista" value="<?php echo date('H:i:s',$hora)?>">
+	<input type="hidden" name="hora_prevista" value="<?php echo date('H:i:s',$hora) //$date->format('H:i:s');?>">
 	
 Fase: <select name="fase_id">
 		<?php foreach ($resultado as $fila) { 
@@ -80,7 +81,7 @@ Fase: <select name="fase_id">
 	<input type="hidden" name="equipoLocal_id" value="<?php echo $local_id?>" size="6">
 	<input type="hidden" name="equipoVisitante_id" value="<?php echo $visitante_id?>" size="6">
 	<br /><b><?php echo $local?> - <?php echo $visitante?></b> 
-	<br />Fecha: <?php echo date('Y-m-d',$hora)?> Hora: <?php echo date('H:i:s',$hora)?>
+	<br />Fecha: <?php echo date('Y-m-d',$hora)?> Hora: <?php echo date('H:i:s',$hora) //$date->format('H:i:s');?>
 
 	<?php
 	echo "<br />Betsapi: Id Local: ".$local_idB;

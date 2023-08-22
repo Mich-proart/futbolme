@@ -2,7 +2,7 @@
 <body>
 <?php 
 define('_FUTBOLME_', 1);
-
+date_default_timezone_set('Europe/Madrid');
 include 'funcionesV2.php';
 
 $tiempo_inicio = microtime_float();
@@ -67,8 +67,10 @@ $tiempo = $tiempo_fin - $tiempo_inicio;
 echo 'Tiempo empleado: '.($tiempo_fin - $tiempo_inicio);
 
 
-$time = time();
-echo '<br />La hora actual en el servidor es: '.date('H:i:s', $time);
+//$time = time();
+$timezone = new DateTimeZone('Europe/Madrid');
+$currentTime = new DateTime('now', $timezone);
+echo '<br />La hora actual en el servidor es: '.$currentTime->format('H:i:s');;
 
 ?>
 

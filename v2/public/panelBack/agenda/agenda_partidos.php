@@ -22,7 +22,7 @@ $h = ''; $colorFila = 'white';  $variable=0;
 $sinFinalizar=array();
 
 foreach ($partidos as $key=> $partido) {
-
+	date_default_timezone_set('Europe/Madrid');
 	$fecha1 = date('Y-m-d H:i:s');
 	$fecha1 = date_create($fecha1); //hora actual
 	$fecha2 = date($partido['fecha'].' '.$partido['hora_real']); 

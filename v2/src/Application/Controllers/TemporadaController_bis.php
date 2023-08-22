@@ -33,7 +33,7 @@ class TemporadaController
         $indexRepo = new IndexRepository($db);
         $urlHelper = new UrlHelper($db);
 
-
+        date_default_timezone_set('Europe/Madrid');
 
         $temporada_id = $args['idTorneo'];
         $slug = $args['slug'];
